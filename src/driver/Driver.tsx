@@ -31,37 +31,10 @@ export class Driver {
         this.programRegistry.set("main", {
             path: "/",
             exact: true,
-            render: props => (
+            render: () => (
                 // TODO: Add main page
                 <></>
             )
-        });
-
-        /**
-         * SQL-Editor website, this is the portfolio website
-         */
-        this.programRegistry.set("sql", {
-            path: "/sql/:mode",
-            render: props => {
-                const forceMode = props.match.params.mode;
-                let mode: number | undefined;
-
-                try {
-                    if (forceMode !== undefined) mode = Number(forceMode);
-                } catch (e) {
-                    console.error(e);
-                }
-
-                if (mode === undefined) mode = Number(
-                    getOr(window.localStorage.getItem("app-page-mode"), AppPageMode.RELEASE.toString())
-                );
-
-                return (
-                    <AppPage
-                        mode={mode}
-                    />
-                );
-            }
         });
 
         /**
@@ -69,7 +42,7 @@ export class Driver {
          */
         this.programRegistry.set("unit", {
             path: "/unit",
-            render: props => (
+            render: () => (
                 <AppPage
                     mode={AppPageMode.UNIT_TEST}
                 />
@@ -77,7 +50,7 @@ export class Driver {
         });
 
         this.registerGlobal404Page({
-            render: props => (
+            render: () => (
                 // TODO: Add 404 page
                 <></>
             )
