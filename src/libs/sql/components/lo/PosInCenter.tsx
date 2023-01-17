@@ -1,12 +1,12 @@
-import React, {CSSProperties} from "react";
+import React, {CSSProperties, PropsWithChildren} from "react";
 import styled from "styled-components";
 import {getOr} from "../../logic/Utils";
 
-export type PosInCenterProps = {
+export type PosInCenterProps = PropsWithChildren<{
     style?: CSSProperties
     fullHeight?: boolean,
     classnames?: string[]
-}
+}>
 
 export const Centered: React.FC<PosInCenterProps> = React.memo(props => {
     const Wrapper = styled.div`
