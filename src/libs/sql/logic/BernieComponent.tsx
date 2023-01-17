@@ -5,7 +5,6 @@ import {RenderExecutor} from "../../RenderExecutor";
 import {v4} from "uuid";
 import {Themeable} from "./style/Themeable";
 import {App, utilizeGlobalTheme} from "./app/App";
-import {Redirect} from "react-router-dom";
 import {getOr} from "./Utils";
 import {Assembly} from "./assembly/Assembly";
 import {InputBase, styled, SwipeableDrawer} from "@mui/material";
@@ -16,6 +15,9 @@ import {Text} from "../components/lo/Text";
 import {CoMuxProps} from "../components/props/CoMuxProps";
 import {MuxRenderer} from "./MuxRenderer";
 import {ComponentHelper} from "./ComponentHelper";
+
+// import {Redirect} from "react-router-dom";
+import {redirect} from "react-router-dom";
 
 export type BernieComponentConfig<T extends BernieComponent<any, any, any> = any> = {
     enableLocalDialog: boolean,
@@ -138,6 +140,12 @@ export class BernieComponent<RProps, RState, LState extends object, Implementati
         );
     }
 
+    /**
+     * TODO: Adapt to rrd. v6 (SEE BELOW)
+     *
+     * @param to
+     * @param callback
+     */
     public goto(to: string, callback?: () => void) {
         this.redirectTo = to;
         this.redirect = true;
@@ -152,6 +160,12 @@ export class BernieComponent<RProps, RState, LState extends object, Implementati
         });
     }
 
+    /**
+     * REMOVE -> react-router-dom v5 to v6 -> no <Redirect /> anymore
+     * TODO: Change 'goto'-method
+     *
+     * @deprecated
+     */
     public renderRedirect(): JSX.Element {
         App.app().baseLog({
             id: v4(),
@@ -162,9 +176,14 @@ export class BernieComponent<RProps, RState, LState extends object, Implementati
             appendices: []
         })
 
-        return (
-            <Redirect to={this.redirectTo as string} push/>
-        );
+        // TODO: Make more versatile solution
+        redirect(this.redirectTo as string);
+
+        return (<></>);
+
+        // return (
+        //     <Redirect to={this.redirectTo as string} push/>
+        // );
     }
 
     public init() {
