@@ -1,7 +1,7 @@
 import React, {PropsWithChildren} from "react";
 import {cs, State} from "./state/State";
-import {RenderController} from "../../regex/RenderController";
-import {RenderExecutor} from "../../regex/RenderExecutor";
+import {RenderController} from "../../RenderController";
+import {RenderExecutor} from "../../RenderExecutor";
 import {v4} from "uuid";
 import {Themeable} from "./style/Themeable";
 import {App, utilizeGlobalTheme} from "./app/App";
