@@ -2,10 +2,12 @@ import React, {Dispatch, SetStateAction} from "react";
 import {v4} from "uuid";
 import {ConnectorConfig} from "./network/ConnectorConfig";
 import {App} from "./app/App";
-import {SocketSwitchProtocolDataPacket} from "../packets/in/SocketSwitchProtocolDataPacket";
 import {LatencySnapshot} from "./network/LatencySnapshot";
+
+import {SocketSwitchProtocolDataPacket} from "../packets/in/SocketSwitchProtocolDataPacket";
 import {PingPacketData} from "../packets/out/PingPacketData";
 import {PongPacketData} from "../packets/in/PongPacketData";
+
 import {getOr} from "./Utils";
 import {NetChannelConfig} from "./network/NetChannelConfig";
 
@@ -90,7 +92,6 @@ export namespace Environment {
     export enum SocketEventTypes {
         ON_OPEN, ON_CLOSE, ON_INBOUND_MESSAGE, ON_OUTBOUND_MESSAGE,
 
-
         ON_IN_SINGLETON_MESSAGE, ON_IN_RESPONSE_MESSAGE, ON_IN_CALL_MESSAGE,
 
         ON_OUT_SINGLETON_MESSAGE, ON_OUT_CALL_MESSAGE, ON_OUT_RESPONSE_MESSAGE
@@ -136,38 +137,38 @@ export namespace Environment {
         public static readonly coreProtocol: Protocol = {
             id: "core",
             handlers: new Map<string, Array<Environment.Handler>>([
-                ["SocketClosingPacketData", new Array<Environment.Handler>({
-                    handle: (connector, packet) => {
-                        const data: SocketClosingPacketData = packet.data as SocketClosingPacketData;
-                        // If the server wants to stop any attempt of automatic reconnection,
-                        // Set reconnect lock to true
-                        console.log("set the lock to: " + data.activateReconnectLock);
-                        connector.reconnectLock = data.activateReconnectLock;
-                    }
-                })],
-                ["SocketSwitchProtocolDataPacket", new Array<Environment.Handler>({
-                    handle: (connector, packet) => {
-                        const data: SocketSwitchProtocolDataPacket = packet.data as SocketSwitchProtocolDataPacket;
-                        // todo fire some sort of event
-                        console.log(`Switching protocols from '${connector.currentProtocol}' to '${data.newProtocol}'`);
-                        connector.currentProtocol = data.newProtocol;
+                // ["SocketClosingPacketData", new Array<Environment.Handler>({
+                //     handle: (connector, packet) => {
+                //         const data: SocketClosingPacketData = packet.data as SocketClosingPacketData;
+                //         // If the server wants to stop any attempt of automatic reconnection,
+                //         // Set reconnect lock to true
+                //         console.log("set the lock to: " + data.activateReconnectLock);
+                //         connector.reconnectLock = data.activateReconnectLock;
+                //     }
+                // })],
 
-                        connector.protocolChangeHandlers.forEach((handler: (connector: Environment.Connector, switchData: SocketSwitchProtocolDataPacket) => void) => {
-                            try {
-                                handler(connector, data);
-                            } catch (e) {
-                                App.app().baseLog({
-                                    id: v4(),
-                                    appendices: [],
-                                    timestamp: new Date(),
-                                    level: "ERROR",
-                                    creator: "network",
-                                    message: `Exception in protocol change handler.`
-                                })
-                            }
-                        });
-                    }
-                })]
+                // ["SocketSwitchProtocolDataPacket", new Array<Environment.Handler>({
+                //     handle: (connector, packet) => {
+                //         const data: SocketSwitchProtocolDataPacket = packet.data as SocketSwitchProtocolDataPacket;
+                //         // todo fire some sort of event
+                //         console.log(`Switching protocols from '${connector.currentProtocol}' to '${data.newProtocol}'`);
+                //         connector.currentProtocol = data.newProtocol;
+                //         connector.protocolChangeHandlers.forEach((handler: (connector: Environment.Connector, switchData: SocketSwitchProtocolDataPacket) => void) => {
+                //             try {
+                //                 handler(connector, data);
+                //             } catch (e) {
+                //                 App.app().baseLog({
+                //                     id: v4(),
+                //                     appendices: [],
+                //                     timestamp: new Date(),
+                //                     level: "ERROR",
+                //                     creator: "network",
+                //                     message: `Exception in protocol change handler.`
+                //                 })
+                //             }
+                //         });
+                //     }
+                // })]
             ])
         }
 
