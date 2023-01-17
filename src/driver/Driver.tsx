@@ -4,8 +4,6 @@ import {Screen} from "../libs/sql/components/lo/Page";
 import {AppPageMode} from "../libs/sql/pages/app/AppPageMode";
 import {getOr} from "../libs/sql/logic/Utils";
 import {AppPage} from "../libs/sql/pages/app/AppPage";
-import {PortfolioMain} from "../libs/portfolio/PortfolioMain";
-import {PageNotFoundMain} from "../libs/pageNotFound/PageNotFoundMain";
 import {AnalyticsManager} from "./AnalyticsManager";
 
 export class Driver {
@@ -34,7 +32,8 @@ export class Driver {
             path: "/",
             exact: true,
             render: props => (
-                <PortfolioMain/>
+                // TODO: Add main page
+                <></>
             )
         });
 
@@ -79,7 +78,8 @@ export class Driver {
 
         this.registerGlobal404Page({
             render: props => (
-                <PageNotFoundMain/>
+                // TODO: Add 404 page
+                <></>
             )
         });
     }
