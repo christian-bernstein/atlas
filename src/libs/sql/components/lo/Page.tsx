@@ -1,4 +1,4 @@
-import React, {CSSProperties} from "react";
+import React, {CSSProperties, PropsWithChildren} from "react";
 import {Themeable} from "../../logic/style/Themeable";
 import {utilizeGlobalTheme} from "../../logic/app/App";
 import styled from "styled-components";
@@ -6,7 +6,7 @@ import {DimensionalMeasured, px} from "../../logic/style/DimensionalMeasured";
 import {getOr} from "../../logic/Utils";
 import {Centered} from "./PosInCenter";
 
-export type PageProps = {
+export type PageProps = PropsWithChildren<{
     gapX?: DimensionalMeasured,
     gapY?: DimensionalMeasured,
     deactivateGap?: boolean,
@@ -15,7 +15,7 @@ export type PageProps = {
     deactivatePadding?: boolean
     onDoubleClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void,
     id?: string
-}
+}>
 
 export function screenedAndCentered(child: JSX.Element): JSX.Element {
     return (
