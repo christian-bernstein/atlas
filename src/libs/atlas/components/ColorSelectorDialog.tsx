@@ -3,17 +3,12 @@ import {Themeable} from "../../sql/logic/style/Themeable";
 import {Assembly} from "../../sql/logic/assembly/Assembly";
 import {Flex} from "../../sql/components/lo/FlexBox";
 import {DrawerHeader} from "../../sql/components/lo/DrawerHeader";
-import {ObjectVisualMeaning, VM} from "../../sql/logic/style/ObjectVisualMeaning";
+import {VM} from "../../sql/logic/style/ObjectVisualMeaning";
 import {createMargin} from "../../sql/logic/style/Margin";
 import React from "react";
 import {Color} from "../../sql/logic/style/Color";
 import {ColorSelector} from "../../sql/components/ho/colorSelector/ColorSelector";
-import {percent, px} from "../../sql/logic/style/DimensionalMeasured";
-import {Button} from "../../sql/components/lo/Button";
-import {Align} from "../../sql/logic/style/Align";
-import {Badge} from "../../sql/components/lo/Badge";
-import {Text, TextType} from "../../sql/components/lo/Text";
-import {ColorSelectorWidgetID} from "../../sql/components/ho/colorSelector/ColorSelectorWidgetID";
+import {percent} from "../../sql/logic/style/DimensionalMeasured";
 import {appleSystem} from "../../sql/components/ho/colorSelector/ColorSelectorDefaultPalettes";
 
 export type ColorSelectorDialogProps = {
