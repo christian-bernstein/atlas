@@ -28,7 +28,7 @@ import {If} from "../../logic/If";
 import {Separator} from "../../lo/Separator";
 import {Orientation} from "../../../logic/style/Orientation";
 import {Box} from "../../lo/Box";
-import {ObjectJSONDisplay} from "../objectJSONDisplay/ObjectJSONDisplay";
+import {ObjectJSONDisplay} from "../../ho/objectJSONDisplay/ObjectJSONDisplay";
 import {percent} from "../../../logic/style/DimensionalMeasured";
 import {OverflowBehaviour} from "../../../logic/style/OverflowBehaviour";
 import styled from "styled-components";

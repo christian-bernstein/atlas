@@ -18,7 +18,7 @@ import {Align} from "../../../logic/style/Align";
 import {ReactComponent as DeleteIcon} from "../../../../../assets/icons/ic-20/ic20-delete.svg";
 import {Icon} from "../../lo/Icon";
 import {ObjectVisualMeaning} from "../../../logic/style/ObjectVisualMeaning";
-import {CopyIcon} from "../copyIcon/CopyIcon";
+import {CopyIcon} from "../../ho/copyIcon/CopyIcon";
 
 export type CommandHistoryElementProps = {
     command: SavedCommand,

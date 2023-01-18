@@ -1,7 +1,7 @@
 import {BernieComponent} from "../../../logic/BernieComponent";
 import {Themeable} from "../../../logic/style/Themeable";
 import {Assembly} from "../../../logic/assembly/Assembly";
-import {ContextCompound} from "../contextCompound/ContextCompound";
+import {ContextCompound} from "../../ho/contextCompound/ContextCompound";
 import {FlexBox} from "../../lo/FlexBox";
 import {FlexDirection} from "../../../logic/style/FlexDirection";
 import {Align} from "../../../logic/style/Align";
@@ -20,7 +20,7 @@ import {getOr} from "../../../logic/Utils";
 import {UserActiveState} from "../../../logic/data/UserActiveState";
 import {ClientDeviceType} from "../../../logic/data/ClientDeviceType";
 import {v4} from "uuid";
-import {InformationBox} from "../informationBox/InformationBox";
+import {InformationBox} from "../../ho/informationBox/InformationBox";
 import {ImageData} from "../../../logic/data/ImageData";
 import {App} from "../../../logic/app/App";
 import {Icon} from "../../lo/Icon";

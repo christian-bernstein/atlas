@@ -5,7 +5,7 @@ import {App} from "../../../logic/app/App";
 import {SettingsElement} from "../settingsElement/SettingsElement";
 import {Assembly} from "../../../logic/assembly/Assembly";
 import {Themeable} from "../../../logic/style/Themeable";
-import {ClientDisplay} from "../clientDisplay/ClientDisplay";
+import {ClientDisplay} from "../../toDelete/clientDisplay/ClientDisplay";
 import {px} from "../../../logic/style/DimensionalMeasured";
 import {Text, TextType} from "../../lo/Text";
 

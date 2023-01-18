@@ -9,7 +9,7 @@ import {FlexDirection} from "../../../logic/style/FlexDirection";
 import {Align} from "../../../logic/style/Align";
 import {Icon} from "../../lo/Icon";
 import {ReactComponent as ContextIcon} from "../../../../../assets/icons/ic-20/ic20-more-ver.svg";
-import {ContextCompound} from "../contextCompound/ContextCompound";
+import {ContextCompound} from "../../ho/contextCompound/ContextCompound";
 import {ContextMenuElement} from "../../lo/ContextMenuElement";
 import {ObjectVisualMeaning} from "../../../logic/style/ObjectVisualMeaning";
 import {ReactComponent as FolderIcon} from "../../../../../assets/icons/ic-20/ic20-folder.svg";

@@ -6,7 +6,7 @@ import React from "react";
 import {ElementHeader} from "../../lo/ElementHeader";
 import {Box} from "../../lo/Box";
 import {Text, TextType} from "../../lo/Text";
-import {InformationBox} from "../informationBox/InformationBox";
+import {InformationBox} from "../../ho/informationBox/InformationBox";
 import {ObjectVisualMeaning} from "../../../logic/style/ObjectVisualMeaning";
 import {ReactComponent as DownloadIcon} from "../../../../../assets/icons/ic-16/ic16-download.svg";
 import {ReactComponent as CheckIcon} from "../../../../../assets/icons/ic-16/ic16-check.svg";

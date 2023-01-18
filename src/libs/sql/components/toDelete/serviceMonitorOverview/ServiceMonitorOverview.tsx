@@ -16,7 +16,7 @@ import {Align} from "../../../logic/style/Align";
 import {Justify} from "../../../logic/style/Justify";
 import {ObjectVisualMeaning} from "../../../logic/style/ObjectVisualMeaning";
 import {Button} from "../../lo/Button";
-import {ContextCompound} from "../contextCompound/ContextCompound";
+import {ContextCompound} from "../../ho/contextCompound/ContextCompound";
 import {ContextMenuElement} from "../../lo/ContextMenuElement";
 import {Box} from "../../lo/Box";
 import {Badge} from "../../lo/Badge";

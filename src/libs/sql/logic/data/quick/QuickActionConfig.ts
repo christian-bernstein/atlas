@@ -1,4 +1,4 @@
-import {QuickActionPanel} from "../../../components/ho/quickPanel/QuickActionPanel";
+import {QuickActionPanel} from "../../../components/toDelete/quickPanel/QuickActionPanel";
 import {Themeable} from "../../style/Themeable";
 import {ObjectVisualMeaning} from "../../style/ObjectVisualMeaning";
 import React, {CSSProperties} from "react";

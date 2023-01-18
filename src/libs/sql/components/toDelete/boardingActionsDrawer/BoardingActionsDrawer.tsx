@@ -6,7 +6,7 @@ import {Box} from "../../lo/Box";
 import {percent, px} from "../../../logic/style/DimensionalMeasured";
 import {Flex} from "../../lo/FlexBox";
 import React from "react";
-import {NavHeader} from "../navHeader/NavHeader";
+import {NavHeader} from "../../ho/navHeader/NavHeader";
 import {Text} from "../../lo/Text";
 import {createMargin} from "../../../logic/style/Margin";
 import styled from "styled-components";
@@ -23,7 +23,7 @@ import {DrawerHeader} from "../../lo/DrawerHeader";
 import {Input} from "../../lo/Input";
 import {App} from "../../../logic/app/App";
 import {SessionHistoryEntry} from "../../../logic/misc/SessionHistoryEntry";
-import {ContinueAsV2} from "../continueAs/ContinueAsV2";
+import {ContinueAsV2} from "../../ho/continueAs/ContinueAsV2";
 import {SettingsGroup} from "../../lo/SettingsGroup";
 
 export interface BoardingActionDrawerRenderer {

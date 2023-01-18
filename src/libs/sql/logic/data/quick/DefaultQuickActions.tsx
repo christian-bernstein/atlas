@@ -1,5 +1,5 @@
 import {QuickActionConfig} from "./QuickActionConfig";
-import {QuickActionPanel} from "../../../components/ho/quickPanel/QuickActionPanel";
+import {QuickActionPanel} from "../../../components/toDelete/quickPanel/QuickActionPanel";
 import {Themeable} from "../../style/Themeable";
 import {ReactComponent as FullscreenEnterIcon} from "../../../../../assets/icons/ic-20/ic20-fullscreen.svg";
 import {ReactComponent as FullscreenExitIcon} from "../../../../../assets/icons/ic-20/ic20-fullscreen-exit.svg";
@@ -22,15 +22,15 @@ import {ReactComponent as LogIcon} from "../../../../../assets/icons/ic-20/ic20-
 import {BadgedWrapper} from "../../../components/lo/BadgedWrapper";
 import {Constants} from "../../misc/Constants";
 import {If} from "../../../components/logic/If";
-import {ServerConnectionIcon} from "../../../components/ho/serverConnectionIcon/ServerConnectionIcon";
+import {ServerConnectionIcon} from "../../../components/toDelete/serverConnectionIcon/ServerConnectionIcon";
 import {ObjectVisualMeaning} from "../../style/ObjectVisualMeaning";
-import {AppModeSwitcher} from "../../../components/ho/appModeSwitcher/AppModeSwitcher";
+import {AppModeSwitcher} from "../../../components/toDelete/appModeSwitcher/AppModeSwitcher";
 import {AnomalyInfo} from "../../../components/ho/anomalyInfo/AnomalyInfo";
 import {AnomalyLevel} from "../AnomalyLevel";
 import {SettingsPlayground} from "../../../components/ho/settingsPlayground/SettingsPlayground";
 import {
     FirstJoinIntroductionLauncher
-} from "../../../components/ho/firstJoinIntroduction/FirstJoinIntroductionLauncher";
+} from "../../../components/toDelete/firstJoinIntroduction/FirstJoinIntroductionLauncher";
 import {DrawerHeader} from "../../../components/lo/DrawerHeader";
 import {StaticDrawerMenu} from "../../../components/lo/StaticDrawerMenu";
 

@@ -17,7 +17,7 @@ import {Separator} from "../../lo/Separator";
 import {Orientation} from "../../../logic/style/Orientation";
 import {ReactComponent as DeleteIcon} from "../../../../../assets/icons/ic-20/ic20-delete.svg";
 import {Text, TextType} from "../../lo/Text";
-import {ObjectJSONDisplay} from "../objectJSONDisplay/ObjectJSONDisplay";
+import {ObjectJSONDisplay} from "../../ho/objectJSONDisplay/ObjectJSONDisplay";
 import {Box} from "../../lo/Box";
 import React from "react";
 import {getOr} from "../../../logic/Utils";

@@ -15,7 +15,7 @@ import {Box} from "../../lo/Box";
 import {percent, px} from "../../../logic/style/DimensionalMeasured";
 import {Align} from "../../../logic/style/Align";
 import {Justify} from "../../../logic/style/Justify";
-import {ClientDisplay} from "../clientDisplay/ClientDisplay";
+import {ClientDisplay} from "../../toDelete/clientDisplay/ClientDisplay";
 import {Cursor} from "../../../logic/style/Cursor";
 
 export type ContinueAsProps = {

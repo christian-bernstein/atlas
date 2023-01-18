@@ -35,7 +35,7 @@ import {OverflowBehaviour} from "../../sql/logic/style/OverflowBehaviour";
 import {Switch} from "react-router-dom";
 import {App} from "../../sql/logic/app/App";
 import {Mobile} from "../../sql/components/logic/Media";
-import {MobileNavigation} from "../../sql/components/ho/bottomNavigation/MobileNavigation";
+import {MobileNavigation} from "../../sql/components/toDelete/bottomNavigation/MobileNavigation";
 import {BaseEntitySetupComponent} from "./BaseEntitySetupComponent";
 
 interface FolderSetupDialogActions {
