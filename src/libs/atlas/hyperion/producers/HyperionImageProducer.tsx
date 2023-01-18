@@ -1,11 +1,11 @@
-import {BC} from "../../../sql/logic/BernieComponent";
+import {BC} from "../../../base/BernieComponent";
 import {Themeable} from "../../../sql/logic/style/Themeable";
 import {Assembly} from "../../../sql/logic/assembly/Assembly";
 import {Box} from "../../../sql/components/base/Box";
 import {Flex, FlexRow} from "../../../sql/components/base/FlexBox";
 import {percent, px} from "../../../sql/logic/style/DimensionalMeasured";
 import {Q, Queryable} from "../../../sql/logic/query/Queryable";
-import {Optional} from "../../../sql/logic/Optional";
+import {Optional} from "../../../base/Optional";
 import {HyperionStorableEntry} from "../HyperionStorableEntry";
 import {HyperionAPI} from "../HyperionAPI";
 import {HyperionIndexedDBStreamAdapter} from "../HyperionIndexedDBStreamAdapter";

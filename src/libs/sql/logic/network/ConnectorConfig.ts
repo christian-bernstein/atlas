@@ -1,4 +1,4 @@
-import {Environment} from "../Environment";
+import {Environment} from "../../../base/Environment";
 import Packet = Environment.Packet;
 
 export type ConnectorConfig = {

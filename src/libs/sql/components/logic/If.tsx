@@ -1,5 +1,5 @@
 import React from "react";
-import {getOr} from "../../logic/Utils";
+import {getOr} from "../../../base/Utils";
 
 export type IfProps = {
     condition?: boolean,

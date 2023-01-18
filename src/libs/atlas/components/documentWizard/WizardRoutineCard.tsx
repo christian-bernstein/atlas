@@ -1,4 +1,4 @@
-import {BC} from "../../../sql/logic/BernieComponent";
+import {BC} from "../../../base/BernieComponent";
 import {Button} from "../../../sql/components/base/Button";
 import {percent, px} from "../../../sql/logic/style/DimensionalMeasured";
 import {Flex} from "../../../sql/components/base/FlexBox";

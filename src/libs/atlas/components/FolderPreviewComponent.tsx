@@ -1,10 +1,10 @@
-import {BC} from "../../sql/logic/BernieComponent";
+import {BC} from "../../base/BernieComponent";
 import {Folder} from "../data/Folder";
 import {Themeable} from "../../sql/logic/style/Themeable";
 import {Assembly} from "../../sql/logic/assembly/Assembly";
 import {StaticDrawerMenu} from "../../sql/components/base/StaticDrawerMenu";
 import {Text, TextType} from "../../sql/components/base/Text";
-import {getOr} from "../../sql/logic/Utils";
+import {getOr} from "../../base/Utils";
 import {Flex} from "../../sql/components/base/FlexBox";
 import {DrawerHeader} from "../../sql/components/base/DrawerHeader";
 import {VM} from "../../sql/logic/style/ObjectVisualMeaning";

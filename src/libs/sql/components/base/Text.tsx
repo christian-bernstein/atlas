@@ -3,7 +3,7 @@ import styled, {CSSProperties} from "styled-components";
 import {getMeaningfulColors, MeaningfulColors, Themeable} from "../../logic/style/Themeable";
 import {utilizeGlobalTheme} from "../../logic/app/App";
 import {createMargin, Margin, setMarginToCSSProperties} from "../../logic/style/Margin";
-import {getOr} from "../../logic/Utils";
+import {getOr} from "../../../base/Utils";
 import {DimensionalMeasured} from "../../logic/style/DimensionalMeasured";
 import {ObjectVisualMeaning} from "../../logic/style/ObjectVisualMeaning";
 import ReactMarkdown from 'react-markdown'

@@ -1,6 +1,6 @@
 import React from "react";
 import { useMediaQuery } from 'react-responsive';
-import {BernieComponent} from "../../logic/BernieComponent";
+import {BernieComponent} from "../../../base/BernieComponent";
 import {Themeable} from "../../logic/style/Themeable";
 import {Assembly} from "../../logic/assembly/Assembly";
 

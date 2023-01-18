@@ -4,11 +4,11 @@ import {getMeaningfulColors, MeaningfulColors, Themeable} from "../../logic/styl
 import {utilizeGlobalTheme} from "../../logic/app/App";
 import {DimensionalMeasured} from "../../logic/style/DimensionalMeasured";
 import {OverflowBehaviour} from "../../logic/style/OverflowBehaviour";
-import {getOr} from "../../logic/Utils";
+import {getOr} from "../../../base/Utils";
 import {ObjectVisualMeaning} from "../../logic/style/ObjectVisualMeaning";
 import {Color} from "../../logic/style/Color";
 import {Cursor} from "../../logic/style/Cursor";
-import {BernieComponent} from "../../logic/BernieComponent";
+import {BernieComponent} from "../../../base/BernieComponent";
 import {Assembly} from "../../logic/assembly/Assembly";
 
 export type BoxProps = PropsWithChildren<{

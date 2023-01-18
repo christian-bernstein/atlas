@@ -5,7 +5,7 @@ import styled from "styled-components";
 import {getMeaningfulColors, Themeable} from "../../logic/style/Themeable";
 import {utilizeGlobalTheme} from "../../logic/app/App";
 import {WithVisualMeaning} from "../../logic/style/WithVisualMeaning";
-import {getOr} from "../../logic/Utils";
+import {getOr} from "../../../base/Utils";
 import {ObjectVisualMeaning} from "../../logic/style/ObjectVisualMeaning";
 import {Cursor} from "../../logic/style/Cursor";
 import {Text} from "./Text";

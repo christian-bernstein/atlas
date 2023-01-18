@@ -1,5 +1,5 @@
 import React from "react";
-import {getOr} from "../sql/logic/Utils";
+import {getOr} from "./Utils";
 import {RenderExecutorProps} from "./RenderExecutorProps";
 
 export class RenderExecutor extends React.Component<RenderExecutorProps> {

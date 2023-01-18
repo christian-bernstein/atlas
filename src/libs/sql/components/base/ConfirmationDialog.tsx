@@ -1,7 +1,7 @@
-import {BC} from "../../logic/BernieComponent";
+import {BC} from "../../../base/BernieComponent";
 import {Themeable} from "../../logic/style/Themeable";
 import {Assembly} from "../../logic/assembly/Assembly";
-import {ConfirmationConfig, ConfirmationType} from "../../logic/ConfirmationConfig";
+import {ConfirmationConfig, ConfirmationType} from "../../../base/ConfirmationConfig";
 import {StaticDrawerMenu} from "./StaticDrawerMenu";
 import {Flex} from "./FlexBox";
 import {DrawerHeader} from "./DrawerHeader";

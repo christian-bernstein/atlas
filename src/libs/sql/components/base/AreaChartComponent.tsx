@@ -3,7 +3,7 @@ import {Box} from "./Box";
 import {utilizeGlobalTheme} from "../../logic/app/App";
 import ReactApexChart from "react-apexcharts";
 import {OverflowBehaviour} from "../../logic/style/OverflowBehaviour";
-import {array, getOr} from "../../logic/Utils";
+import {array, getOr} from "../../../base/Utils";
 import {Dimension} from "../../logic/style/Dimension";
 import {DimensionalMeasured, percent, px} from "../../logic/style/DimensionalMeasured";
 import {Text, TextType} from "./Text";

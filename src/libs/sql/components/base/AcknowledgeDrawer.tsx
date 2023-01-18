@@ -5,7 +5,7 @@ import {Text, TextType} from "./Text";
 import {Button} from "./Button";
 import {percent} from "../../logic/style/DimensionalMeasured";
 import {DrawerProps} from "../props/DrawerProps";
-import {getOr} from "../../logic/Utils";
+import {getOr} from "../../../base/Utils";
 import {If} from "../logic/If";
 
 export type AcknowledgeDrawerProps = DrawerProps<undefined> & {

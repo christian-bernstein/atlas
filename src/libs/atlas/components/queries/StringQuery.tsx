@@ -1,4 +1,4 @@
-import {BernieComponent} from "../../../sql/logic/BernieComponent";
+import {BernieComponent} from "../../../base/BernieComponent";
 import {Flex} from "../../../sql/components/base/FlexBox";
 import {DrawerHeader} from "../../../sql/components/base/DrawerHeader";
 import {ObjectVisualMeaning, VM} from "../../../sql/logic/style/ObjectVisualMeaning";

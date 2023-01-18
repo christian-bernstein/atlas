@@ -1,4 +1,4 @@
-import {BC} from "../../../sql/logic/BernieComponent";
+import {BC} from "../../../base/BernieComponent";
 import {Folder} from "../../data/Folder";
 import {VFSFolderView} from "../../components/VFSFolderView";
 import {AtlasDocument} from "../../data/AtlasDocument";

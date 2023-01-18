@@ -1,4 +1,4 @@
-import {BC, GenericBC} from "../../sql/logic/BernieComponent";
+import {BC, GenericBC} from "../../base/BernieComponent";
 import {Assembly} from "../../sql/logic/assembly/Assembly";
 import {Themeable} from "../../sql/logic/style/Themeable";
 import {Input} from "../../sql/components/base/Input";

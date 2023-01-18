@@ -1,4 +1,4 @@
-import {BC} from "../../logic/BernieComponent";
+import {BC} from "../../../base/BernieComponent";
 import {Assembly} from "../../logic/assembly/Assembly";
 import {Themeable} from "../../logic/style/Themeable";
 import {Box} from "./Box";

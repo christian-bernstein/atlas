@@ -1,4 +1,4 @@
-import {BC} from "../../sql/logic/BernieComponent";
+import {BC} from "../../base/BernieComponent";
 import {Themeable} from "../../sql/logic/style/Themeable";
 import {Assembly} from "../../sql/logic/assembly/Assembly";
 import {Screen} from "../../sql/components/base/Page";
@@ -55,7 +55,7 @@ import {DocumentViewController} from "../documentViews/DocumentViewController";
 import {VFSSettings} from "../data/vfs/VFSSettings";
 import {HyperionAPI} from "../hyperion/HyperionAPI";
 import {UpstreamTransactionType} from "../hyperion/UpstreamTransactionType";
-import {Optional} from "../../sql/logic/Optional";
+import {Optional} from "../../base/Optional";
 import {Centered} from "../../sql/components/base/PosInCenter";
 import {Description} from "../../sql/components/base/Description";
 import {LinearProgress} from "@mui/material";

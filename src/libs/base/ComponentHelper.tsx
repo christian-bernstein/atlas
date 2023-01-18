@@ -1,16 +1,16 @@
 import {BC, BernieComponent} from "./BernieComponent";
 import {ConfirmationConfig, ConfirmationType} from "./ConfirmationConfig";
-import {VM} from "./style/ObjectVisualMeaning";
-import {Flex, FlexBox} from "../components/base/FlexBox";
-import {DrawerHeader} from "../components/base/DrawerHeader";
-import {percent, px} from "./style/DimensionalMeasured";
-import {Button} from "../components/base/Button";
-import {LiteGrid} from "../components/base/LiteGrid";
-import {utilizeGlobalTheme} from "./app/App";
-import {AF} from "../components/logic/ArrayFragment";
+import {VM} from "../sql/logic/style/ObjectVisualMeaning";
+import {Flex, FlexBox} from "../sql/components/base/FlexBox";
+import {DrawerHeader} from "../sql/components/base/DrawerHeader";
+import {percent, px} from "../sql/logic/style/DimensionalMeasured";
+import {Button} from "../sql/components/base/Button";
+import {LiteGrid} from "../sql/components/base/LiteGrid";
+import {utilizeGlobalTheme} from "../sql/logic/app/App";
+import {AF} from "../sql/components/logic/ArrayFragment";
 import React from "react";
-import {StaticDrawerMenu} from "../components/base/StaticDrawerMenu";
-import {ConfirmationDialog} from "../components/base/ConfirmationDialog";
+import {StaticDrawerMenu} from "../sql/components/base/StaticDrawerMenu";
+import {ConfirmationDialog} from "../sql/components/base/ConfirmationDialog";
 
 export class ComponentHelper<RProps, RState, LState extends object, Implementation extends BernieComponent<any, any, any> = any> {
 

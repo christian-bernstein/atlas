@@ -1,4 +1,4 @@
-import {BernieComponent} from "../../logic/BernieComponent";
+import {BernieComponent} from "../../../base/BernieComponent";
 import {StaticDrawerMenu} from "../base/StaticDrawerMenu";
 import {FlexBox} from "../base/FlexBox";
 import {DrawerHeader} from "../base/DrawerHeader";

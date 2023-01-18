@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import {BC} from "./libs/sql/logic/BernieComponent";
+import {BC} from "./libs/base/BernieComponent";
 
 // driver()
 // Driver.boot()

@@ -1,6 +1,6 @@
 import {DocumentView} from "../DocumentView";
 import {DocumentViewRenderContext} from "../DocumentViewRenderContext";
-import {BC} from "../../../sql/logic/BernieComponent";
+import {BC} from "../../../base/BernieComponent";
 import {Themeable} from "../../../sql/logic/style/Themeable";
 import {Assembly} from "../../../sql/logic/assembly/Assembly";
 import {DocumentState} from "../../data/DocumentState";

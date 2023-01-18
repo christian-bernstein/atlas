@@ -1,4 +1,4 @@
-import {BernieComponent} from "../../logic/BernieComponent";
+import {BernieComponent} from "../../../base/BernieComponent";
 import {If} from "./If";
 import {App} from "../../logic/app/App";
 import {Assembly} from "../../logic/assembly/Assembly";

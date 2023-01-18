@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {ObjectVisualMeaning} from "../../logic/style/ObjectVisualMeaning";
 import {getMeaningfulColors, MeaningfulColors, Themeable} from "../../logic/style/Themeable";
 import {utilizeGlobalTheme} from "../../logic/app/App";
-import {getOr} from "../../logic/Utils";
+import {getOr} from "../../../base/Utils";
 import {ReactComponent as LinkIcon} from "../../../../assets/icons/ic-16/ic16-link.svg";
 import {LinkPreview} from "@dhaiwat10/react-link-preview";
 import {CustomTooltip} from "./CustomTooltip";

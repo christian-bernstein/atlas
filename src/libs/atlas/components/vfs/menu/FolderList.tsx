@@ -1,4 +1,4 @@
-import {BernieComponent} from "../../../../sql/logic/BernieComponent";
+import {BernieComponent} from "../../../../base/BernieComponent";
 import {Assembly} from "../../../../sql/logic/assembly/Assembly";
 import {Themeable} from "../../../../sql/logic/style/Themeable";
 import {Folder} from "../../../data/Folder";

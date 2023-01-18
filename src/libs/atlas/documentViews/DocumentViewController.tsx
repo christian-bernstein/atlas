@@ -1,4 +1,4 @@
-import {BC} from "../../sql/logic/BernieComponent";
+import {BC} from "../../base/BernieComponent";
 import {AtlasDocument} from "../data/AtlasDocument";
 import {Assembly} from "../../sql/logic/assembly/Assembly";
 import {Themeable} from "../../sql/logic/style/Themeable";
@@ -19,7 +19,7 @@ import {websiteDocumentView} from "./views/WebsiteDocumentView";
 import {pdfDocumentView} from "./views/PDFDocumentView";
 import {AF} from "../../sql/components/logic/ArrayFragment";
 import {Q, Queryable} from "../../sql/logic/query/Queryable";
-import {Optional} from "../../sql/logic/Optional";
+import {Optional} from "../../base/Optional";
 import {HyperionStorableEntry} from "../hyperion/HyperionStorableEntry";
 import {HyperionAPI} from "../hyperion/HyperionAPI";
 import {Description} from "../../sql/components/base/Description";

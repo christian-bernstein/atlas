@@ -1,8 +1,8 @@
-import {BernieComponent} from "../../logic/BernieComponent";
+import {BernieComponent} from "../../../base/BernieComponent";
 import {Assembly} from "../../logic/assembly/Assembly";
 import {Themeable} from "../../logic/style/Themeable";
 import {PropsWithChildren} from "react";
-import {array, getOr} from "../../logic/Utils";
+import {array, getOr} from "../../../base/Utils";
 import {AF} from "./ArrayFragment";
 
 export type MapProps<T> = {

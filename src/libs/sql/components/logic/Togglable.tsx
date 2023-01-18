@@ -1,6 +1,6 @@
 import React, {CSSProperties} from "react";
 import {If} from "./If";
-import {getOr} from "../../logic/Utils";
+import {getOr} from "../../../base/Utils";
 
 export type TogglableProps = {
     initialActiveState?: boolean

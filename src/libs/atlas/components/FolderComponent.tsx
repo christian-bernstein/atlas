@@ -1,9 +1,9 @@
-import {BC} from "../../sql/logic/BernieComponent";
+import {BC} from "../../base/BernieComponent";
 import {Folder} from "../data/Folder";
 import {Themeable} from "../../sql/logic/style/Themeable";
 import {Assembly} from "../../sql/logic/assembly/Assembly";
 import {Text, TextType} from "../../sql/components/base/Text";
-import {getOr} from "../../sql/logic/Utils";
+import {getOr} from "../../base/Utils";
 import {SettingsElement} from "../../sql/components/base/SettingsElement";
 import {ReactComponent as FolderIcon} from "../../../assets/icons/ic-20/ic20-folder.svg";
 import {Flex, FlexRow} from "../../sql/components/base/FlexBox";

@@ -1,7 +1,7 @@
 import React from "react";
 import {Box} from "./Box";
 import MDEditor from '@uiw/react-md-editor';
-import {getOr} from "../../logic/Utils";
+import {getOr} from "../../../base/Utils";
 import rehypeSanitize from "rehype-sanitize";
 
 export type MarkDownEditorProps = {

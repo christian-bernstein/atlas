@@ -1,5 +1,5 @@
 import {HyperionStorableEntry} from "./HyperionStorableEntry";
-import {Runnable} from "../../sql/logic/Runnable";
+import {Runnable} from "../../base/Runnable";
 import {UpstreamTransactionType} from "./UpstreamTransactionType";
 
 export type HyperionUpstreamTransaction = {

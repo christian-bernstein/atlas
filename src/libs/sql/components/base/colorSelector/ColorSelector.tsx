@@ -1,4 +1,4 @@
-import {BC} from "../../../logic/BernieComponent";
+import {BC} from "../../../../base/BernieComponent";
 import {Assembly} from "../../../logic/assembly/Assembly";
 import {Themeable} from "../../../logic/style/Themeable";
 import {Group} from "../Group";
@@ -6,7 +6,7 @@ import {Orientation} from "../../../logic/style/Orientation";
 import {Box} from "../Box";
 import {DimensionalMeasured, percent, px} from "../../../logic/style/DimensionalMeasured";
 import {Color} from "../../../logic/style/Color";
-import {array, getOr} from "../../../logic/Utils";
+import {array, getOr} from "../../../../base/Utils";
 import {Flex} from "../FlexBox";
 import {Text, TextType} from "../Text";
 import {Input} from "../Input";

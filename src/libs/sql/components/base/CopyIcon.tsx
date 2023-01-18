@@ -1,7 +1,7 @@
 import React from "react";
 import {Text} from "./Text";
 import {utilizeGlobalTheme} from "../../logic/app/App";
-import {getOr, Utils} from "../../logic/Utils";
+import {getOr, Utils} from "../../../base/Utils";
 import {CustomTooltip} from "./CustomTooltip";
 import {ObjectVisualMeaning} from "../../logic/style/ObjectVisualMeaning";
 import {If} from "../logic/If";

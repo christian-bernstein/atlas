@@ -1,4 +1,4 @@
-import {BernieComponent} from "../../libs/sql/logic/BernieComponent";
+import {BernieComponent} from "../../libs/base/BernieComponent";
 import {Assembly} from "../../libs/sql/logic/assembly/Assembly";
 import {Themeable} from "../../libs/sql/logic/style/Themeable";
 import {AnalysisFacet} from "../AnalysisFacet";
@@ -12,7 +12,7 @@ import {VM} from "../../libs/sql/logic/style/ObjectVisualMeaning";
 import React from "react";
 import {v4} from "uuid";
 import {Q, Queryable} from "../../libs/sql/logic/query/Queryable";
-import {Optional} from "../../libs/sql/logic/Optional";
+import {Optional} from "../../libs/base/Optional";
 import {QueryDisplay} from "../../libs/sql/components/logic/QueryDisplay";
 import {Flex, FlexRow} from "../../libs/sql/components/base/FlexBox";
 import {Align} from "../../libs/sql/logic/style/Align";

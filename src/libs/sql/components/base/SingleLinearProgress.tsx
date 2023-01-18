@@ -1,11 +1,11 @@
-import {BernieComponent} from "../../logic/BernieComponent";
+import {BernieComponent} from "../../../base/BernieComponent";
 import {LinearProgress} from "@mui/material";
 import React from "react";
 import {Assembly} from "../../logic/assembly/Assembly";
 import {getMeaningfulColors, Themeable} from "../../logic/style/Themeable";
 import {LinearProgressProps} from "@mui/material/LinearProgress/LinearProgress";
 import {WithVisualMeaning} from "../../logic/style/WithVisualMeaning";
-import {getOr} from "../../logic/Utils";
+import {getOr} from "../../../base/Utils";
 import {ObjectVisualMeaning} from "../../logic/style/ObjectVisualMeaning";
 
 export type SingleLinearProgressProps = WithVisualMeaning & {

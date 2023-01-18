@@ -1,4 +1,4 @@
-import {BC} from "../logic/BernieComponent";
+import {BC} from "../../base/BernieComponent";
 import {FormDataHub} from "../../base/FormDataHub";
 import {FormContext} from "./FormContext";
 import {Assembly} from "../logic/assembly/Assembly";

@@ -1,4 +1,4 @@
-import {BernieComponent} from "../../logic/BernieComponent";
+import {BernieComponent} from "../../../base/BernieComponent";
 import {Themeable} from "../../logic/style/Themeable";
 import {Assembly} from "../../logic/assembly/Assembly";
 import {DimensionalMeasured, px} from "../../logic/style/DimensionalMeasured";
@@ -6,7 +6,7 @@ import {Align} from "../../logic/style/Align";
 import {Justify} from "../../logic/style/Justify";
 import {CircularProgress} from "@mui/material";
 import {Flex} from "./FlexBox";
-import {getOr} from "../../logic/Utils";
+import {getOr} from "../../../base/Utils";
 
 export type LoaderProps = {
     size?: DimensionalMeasured,

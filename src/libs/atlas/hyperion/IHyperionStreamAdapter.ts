@@ -1,6 +1,6 @@
 import {HyperionStorableEntry} from "./HyperionStorableEntry";
 import {HyperionUpstreamTransaction} from "./HyperionUpstreamTransaction";
-import {Consumer} from "../../sql/logic/Consumer";
+import {Consumer} from "../../base/Consumer";
 import {UpstreamCacheStreamCompletedResult} from "./UpstreamCacheStreamCompletedResult";
 
 export interface IHyperionStreamAdapter {

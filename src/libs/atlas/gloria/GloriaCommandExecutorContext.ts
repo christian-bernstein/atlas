@@ -1,6 +1,6 @@
 import {GloriaCommandDefinition} from "./GloriaCommandDefinition";
 import {Gloria} from "./Gloria";
-import {GenericBC} from "../../sql/logic/BernieComponent";
+import {GenericBC} from "../../base/BernieComponent";
 
 export type GloriaCommandExecutorContext = {
     parameter: any,

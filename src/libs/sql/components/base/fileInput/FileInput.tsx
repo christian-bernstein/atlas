@@ -1,4 +1,4 @@
-import {BernieComponent} from "../../../logic/BernieComponent";
+import {BernieComponent} from "../../../../base/BernieComponent";
 import React from "react";
 import {Themeable} from "../../../logic/style/Themeable";
 import {Assembly} from "../../../logic/assembly/Assembly";
@@ -15,7 +15,7 @@ import {Separator} from "../Separator";
 import {Orientation} from "../../../logic/style/Orientation";
 import {px} from "../../../logic/style/DimensionalMeasured";
 import {VM} from "../../../logic/style/ObjectVisualMeaning";
-import {Utils} from "../../../logic/Utils";
+import {Utils} from "../../../../base/Utils";
 import {FileInputSubmissionMode} from "./FileInputSubmissionMode";
 import {If} from "../../logic/If";
 import {FileInputSubmissionContext} from "./FileInputSubmissionContext";

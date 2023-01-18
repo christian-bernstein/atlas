@@ -1,4 +1,4 @@
-import {BernieComponent} from "../../logic/BernieComponent";
+import {BernieComponent} from "../../../base/BernieComponent";
 import {Themeable} from "../../logic/style/Themeable";
 import {Assembly} from "../../logic/assembly/Assembly";
 import {Flex} from "./FlexBox";
@@ -17,7 +17,7 @@ import {Dot} from "./Dot";import React from "react";
 import {AppAnomalyData} from "../../logic/data/AppAnomalyData";
 import {If} from "../logic/If";
 import {AnomalyLevel} from "../../logic/data/AnomalyLevel";
-import {getOr} from "../../logic/Utils";
+import {getOr} from "../../../base/Utils";
 
 export type AnomalyInfoProps = {
     anomaly: AppAnomalyData,

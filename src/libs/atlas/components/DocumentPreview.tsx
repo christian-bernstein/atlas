@@ -1,4 +1,4 @@
-import {BC} from "../../sql/logic/BernieComponent";
+import {BC} from "../../base/BernieComponent";
 import {AtlasDocument} from "../data/AtlasDocument";
 import {Themeable} from "../../sql/logic/style/Themeable";
 import {Assembly} from "../../sql/logic/assembly/Assembly";
@@ -12,7 +12,7 @@ import {StaticDrawerMenu} from "../../sql/components/base/StaticDrawerMenu";
 import {v4} from "uuid";
 import {Input} from "../../sql/components/base/Input";
 import {AtlasMain} from "../AtlasMain";
-import {getOr} from "../../sql/logic/Utils";
+import {getOr} from "../../base/Utils";
 import {FlexWrap} from "../../sql/logic/style/FlexWrap";
 import {FlexDirection} from "../../sql/logic/style/FlexDirection";
 import {Align} from "../../sql/logic/style/Align";

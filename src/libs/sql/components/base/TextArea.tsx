@@ -1,6 +1,6 @@
 import React, {ChangeEvent} from "react";
 import {ObjectVisualMeaning} from "../../logic/style/ObjectVisualMeaning";
-import {getOr} from "../../logic/Utils";
+import {getOr} from "../../../base/Utils";
 import {v4} from "uuid";
 import {InputProps} from "./Input";
 import styled from "styled-components";

@@ -6,7 +6,7 @@ import {DocumentSetupDialog} from "../../../../components/DocumentSetupDialog";
 import {AtlasDocument} from "../../../../data/AtlasDocument";
 import {NoteDocumentArchetype} from "../../../../data/documentArchetypes/NoteDocumentArchetype";
 import {Flex} from "../../../../../sql/components/base/FlexBox";
-import {BC} from "../../../../../sql/logic/BernieComponent";
+import {BC} from "../../../../../base/BernieComponent";
 import {Themeable} from "../../../../../sql/logic/style/Themeable";
 import {Assembly} from "../../../../../sql/logic/assembly/Assembly";
 import {StaticDrawerMenu} from "../../../../../sql/components/base/StaticDrawerMenu";

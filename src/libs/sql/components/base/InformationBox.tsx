@@ -10,7 +10,7 @@ import {ReactComponent as SuccessIcon} from "../../../../assets/icons/ic-20/ic20
 import {ReactComponent as BetaIcon} from "../../../../assets/icons/ic-20/ic20-bug.svg";
 import {Icon} from "./Icon";
 import {Align} from "../../logic/style/Align";
-import {getOr} from "../../logic/Utils";
+import {getOr} from "../../../base/Utils";
 import {DimensionalMeasured} from "../../logic/style/DimensionalMeasured";
 import {OverflowBehaviour} from "../../logic/style/OverflowBehaviour";
 

@@ -1,4 +1,4 @@
-import {BC} from "../../sql/logic/BernieComponent";
+import {BC} from "../../base/BernieComponent";
 import {Themeable} from "../../sql/logic/style/Themeable";
 import {Assembly} from "../../sql/logic/assembly/Assembly";
 import {Folder} from "../data/Folder";
@@ -13,7 +13,7 @@ import {Text, TextType} from "../../sql/components/base/Text";
 import {OverflowBehaviour} from "../../sql/logic/style/OverflowBehaviour";
 import React from "react";
 import {Map} from "../../sql/components/logic/Map";
-import {array} from "../../sql/logic/Utils";
+import {array} from "../../base/Utils";
 import {AF} from "../../sql/components/logic/ArrayFragment";
 import {Cursor} from "../../sql/logic/style/Cursor";
 import {ReactComponent as BackIcon} from "../../../assets/icons/ic-16/ic16-chevron-left.svg";

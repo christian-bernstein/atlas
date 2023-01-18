@@ -3,7 +3,7 @@ import {getMeaningfulColors, MeaningfulColors, Themeable} from "../../logic/styl
 import {utilizeGlobalTheme} from "../../logic/app/App";
 import styled from "styled-components";
 import {ObjectVisualMeaning} from "../../logic/style/ObjectVisualMeaning";
-import {getOr} from "../../logic/Utils";
+import {getOr} from "../../../base/Utils";
 import {Color} from "../../logic/style/Color";
 import {DimensionalMeasured} from "../../logic/style/DimensionalMeasured";
 import {Cursor} from "../../logic/style/Cursor";

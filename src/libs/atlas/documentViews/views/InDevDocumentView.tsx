@@ -12,7 +12,7 @@ import {Orientation} from "../../../sql/logic/style/Orientation";
 import {Align} from "../../../sql/logic/style/Align";
 import {Text, TextType} from "../../../sql/components/base/Text";
 import {Box} from "../../../sql/components/base/Box";
-import {BC} from "../../../sql/logic/BernieComponent";
+import {BC} from "../../../base/BernieComponent";
 import {Assembly} from "../../../sql/logic/assembly/Assembly";
 import {Themeable} from "../../../sql/logic/style/Themeable";
 import {Dot} from "../../../sql/components/base/Dot";

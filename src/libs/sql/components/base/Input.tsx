@@ -4,7 +4,7 @@ import {v4} from "uuid";
 import {ObjectVisualMeaning} from "../../logic/style/ObjectVisualMeaning";
 import {getMeaningfulColors, MeaningfulColors, Themeable} from "../../logic/style/Themeable";
 import {utilizeGlobalTheme} from "../../logic/app/App";
-import {getOr} from "../../logic/Utils";
+import {getOr} from "../../../base/Utils";
 import styled from "styled-components";
 import {Color} from "../../logic/style/Color";
 import {FontWeight} from "../../logic/style/FontWeight";

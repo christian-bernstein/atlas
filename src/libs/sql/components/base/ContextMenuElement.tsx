@@ -1,4 +1,4 @@
-import {BernieComponent} from "../../logic/BernieComponent";
+import {BernieComponent} from "../../../base/BernieComponent";
 import {Assembly} from "../../logic/assembly/Assembly";
 import {Themeable} from "../../logic/style/Themeable";
 import {percent} from "../../logic/style/DimensionalMeasured";
@@ -11,7 +11,7 @@ import {Button} from "./Button";
 import React from "react";
 import {If} from "../logic/If";
 import {WithVisualMeaning} from "../../logic/style/WithVisualMeaning";
-import {getOr} from "../../logic/Utils";
+import {getOr} from "../../../base/Utils";
 import {ObjectVisualMeaning} from "../../logic/style/ObjectVisualMeaning";
 
 export type ContextMenuElementProps = WithVisualMeaning & {

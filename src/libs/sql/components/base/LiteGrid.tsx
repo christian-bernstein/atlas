@@ -1,6 +1,6 @@
 import React, {CSSProperties, PropsWithChildren} from "react";
 import styled from "styled-components";
-import {getOr} from "../../logic/Utils";
+import {getOr} from "../../../base/Utils";
 import {DimensionalMeasured, px} from "../../logic/style/DimensionalMeasured";
 
 export type GridProps = PropsWithChildren<{

@@ -1,4 +1,4 @@
-import {BernieComponent} from "../../logic/BernieComponent";
+import {BernieComponent} from "../../../base/BernieComponent";
 import {Themeable} from "../../logic/style/Themeable";
 import {Assembly} from "../../logic/assembly/Assembly";
 import {Box} from "./Box";
@@ -8,7 +8,7 @@ import {LiteGrid} from "./LiteGrid";
 import {Button} from "./Button";
 import {percent} from "../../logic/style/DimensionalMeasured";
 import {VM} from "../../logic/style/ObjectVisualMeaning";
-import {getOr} from "../../logic/Utils";
+import {getOr} from "../../../base/Utils";
 
 export type ConfirmationBoxProps = {
     title: string,

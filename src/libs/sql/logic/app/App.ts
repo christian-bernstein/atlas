@@ -6,7 +6,7 @@ import {ProgressTrackerManager} from "../misc/ProgressTrackerManager";
 import {Assembly} from "../assembly/Assembly";
 import {LogEntry} from "../data/LogEntry";
 import {UserProfileData} from "../data/UserProfileData";
-import {fromLocalStorage} from "../Utils";
+import {fromLocalStorage} from "../../../base/Utils";
 import {Cache} from "../cache/Cache";
 import {ModalDisplay} from "../modal/ModalDisplay";
 

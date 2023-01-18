@@ -1,10 +1,10 @@
-import {BernieComponent} from "../../logic/BernieComponent";
+import {BernieComponent} from "../../../base/BernieComponent";
 import {Assembly} from "../../logic/assembly/Assembly";
 import {Themeable} from "../../logic/style/Themeable";
 import {Img} from "react-image";
 import React, {CSSProperties} from "react";
 import {DimensionalMeasured, percent} from "../../logic/style/DimensionalMeasured";
-import {getOr} from "../../logic/Utils";
+import {getOr} from "../../../base/Utils";
 import {PuffLoader} from "react-spinners";
 import {Box} from "./Box";
 

@@ -1,5 +1,5 @@
 import {GloriaCommandDefinition} from "./GloriaCommandDefinition";
-import {GenericBC} from "../../sql/logic/BernieComponent";
+import {GenericBC} from "../../base/BernieComponent";
 
 export class Gloria {
 

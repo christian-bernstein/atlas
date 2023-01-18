@@ -4,7 +4,7 @@ import React from "react";
 import {Button} from "../../../../../sql/components/base/Button";
 import {AtlasDocument} from "../../../../data/AtlasDocument";
 import {Flex} from "../../../../../sql/components/base/FlexBox";
-import {BC} from "../../../../../sql/logic/BernieComponent";
+import {BC} from "../../../../../base/BernieComponent";
 import {Themeable} from "../../../../../sql/logic/style/Themeable";
 import {Assembly} from "../../../../../sql/logic/assembly/Assembly";
 import {StaticDrawerMenu} from "../../../../../sql/components/base/StaticDrawerMenu";

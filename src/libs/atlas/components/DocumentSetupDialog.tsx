@@ -1,4 +1,4 @@
-import {BC} from "../../sql/logic/BernieComponent";
+import {BC} from "../../base/BernieComponent";
 import {FormDataHub} from "../../base/FormDataHub";
 import {Category} from "../data/Category";
 import {Themeable} from "../../sql/logic/style/Themeable";

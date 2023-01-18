@@ -1,5 +1,5 @@
-import {getOr} from "../Utils";
-import {BernieComponent} from "../BernieComponent";
+import {getOr} from "../../../base/Utils";
+import {BernieComponent} from "../../../base/BernieComponent";
 import {DataQueryState} from "./DataQueryState";
 import {v4} from "uuid";
 import {QueryError} from "./QueryError";

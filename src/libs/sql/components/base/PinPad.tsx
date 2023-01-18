@@ -1,6 +1,6 @@
 import {SoundEffectProps} from "../props/SoundEffectProps";
-import {BernieComponent} from "../../logic/BernieComponent";
-import {getOr} from "../../logic/Utils";
+import {BernieComponent} from "../../../base/BernieComponent";
+import {getOr} from "../../../base/Utils";
 import {Themeable} from "../../logic/style/Themeable";
 import {Assembly} from "../../logic/assembly/Assembly";
 import {Flex, FlexRow} from "./FlexBox";

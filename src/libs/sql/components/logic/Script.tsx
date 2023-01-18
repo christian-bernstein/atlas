@@ -1,4 +1,4 @@
-import {BC} from "../../logic/BernieComponent";
+import {BC} from "../../../base/BernieComponent";
 
 export type ScriptProps = {
     script: (domEntry: Script) => number | void,

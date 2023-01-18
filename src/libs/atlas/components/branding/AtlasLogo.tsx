@@ -1,4 +1,4 @@
-import {BC} from "../../../sql/logic/BernieComponent";
+import {BC} from "../../../base/BernieComponent";
 import {Assembly} from "../../../sql/logic/assembly/Assembly";
 import {Themeable} from "../../../sql/logic/style/Themeable";
 import full from "../../assets/images/logos/atlas-logo-full.png";

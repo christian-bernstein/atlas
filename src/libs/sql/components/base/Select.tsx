@@ -1,11 +1,11 @@
-import {BernieComponent} from "../../logic/BernieComponent";
+import {BernieComponent} from "../../../base/BernieComponent";
 import {Assembly} from "../../logic/assembly/Assembly";
 import {Themeable} from "../../logic/style/Themeable";
 import {FormControl, GlobalStyles, MenuItem, Select as MUISelect} from "@mui/material";
 import React from "react";
 import {Text} from "./Text";
 import {Color} from "../../logic/style/Color";
-import {getOr} from "../../logic/Utils";
+import {getOr} from "../../../base/Utils";
 
 export type SelectElement = {
     value: any,

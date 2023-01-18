@@ -1,7 +1,7 @@
 import ReactCodeMirror from "@uiw/react-codemirror";
 import React from "react";
 import _ from "lodash";
-import {getOr} from "../../logic/Utils";
+import {getOr} from "../../../base/Utils";
 import styled from "styled-components";
 import {getMeaningfulColors, MeaningfulColors, Themeable} from "../../logic/style/Themeable";
 import {utilizeGlobalTheme} from "../../logic/app/App";

@@ -4,8 +4,8 @@ import {TheiaSource} from "./TheiaSource";
 import {TheiaFilterOptions} from "./TheiaFilterOptions";
 import {TheiaSourceImage} from "./TheiaSourceImage";
 import {TheiaLoadResult} from "./TheiaLoadResult";
-import {Optional} from "../../sql/logic/Optional";
-import {Consumer} from "../../sql/logic/Consumer";
+import {Optional} from "../../base/Optional";
+import {Consumer} from "../../base/Consumer";
 
 export class TheiaAPI implements ITheiaAPI {
 

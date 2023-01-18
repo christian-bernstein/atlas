@@ -1,4 +1,4 @@
-import {Environment} from "../Environment";
+import {Environment} from "../../../base/Environment";
 
 export function handleProxy(packet: Environment.Packet, connector: Environment.Connector, ...handlers: {
     id: string,

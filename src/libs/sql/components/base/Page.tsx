@@ -3,7 +3,7 @@ import {Themeable} from "../../logic/style/Themeable";
 import {utilizeGlobalTheme} from "../../logic/app/App";
 import styled from "styled-components";
 import {DimensionalMeasured, px} from "../../logic/style/DimensionalMeasured";
-import {getOr} from "../../logic/Utils";
+import {getOr} from "../../../base/Utils";
 import {Centered} from "./PosInCenter";
 
 export type PageProps = PropsWithChildren<{

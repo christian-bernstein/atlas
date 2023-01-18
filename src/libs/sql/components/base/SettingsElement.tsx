@@ -1,4 +1,4 @@
-import {BernieComponent} from "../../logic/BernieComponent";
+import {BernieComponent} from "../../../base/BernieComponent";
 import {percent, px} from "../../logic/style/DimensionalMeasured";
 import {Align} from "../../logic/style/Align";
 import {Box} from "./Box";
@@ -10,7 +10,7 @@ import {createMargin} from "../../logic/style/Margin";
 import React from "react";
 import {Assembly} from "../../logic/assembly/Assembly";
 import {Themeable} from "../../logic/style/Themeable";
-import {getOr} from "../../logic/Utils";
+import {getOr} from "../../../base/Utils";
 import {WithVisualMeaning} from "../../logic/style/WithVisualMeaning";
 import {AnomalyInfo} from "./AnomalyInfo";
 import {AnomalyLevel} from "../../logic/data/AnomalyLevel";

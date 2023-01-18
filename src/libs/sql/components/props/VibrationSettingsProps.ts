@@ -1,4 +1,4 @@
-import {getOr} from "../../logic/Utils";
+import {getOr} from "../../../base/Utils";
 
 export type VibrationSettingsProps = {
     enable?: boolean,

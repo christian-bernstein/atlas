@@ -1,4 +1,4 @@
-import {BC} from "../../sql/logic/BernieComponent";
+import {BC} from "../../base/BernieComponent";
 import {Themeable} from "../../sql/logic/style/Themeable";
 import {Assembly} from "../../sql/logic/assembly/Assembly";
 import {Color} from "../../sql/logic/style/Color";
@@ -20,7 +20,7 @@ import {ReactComponent as EditIcon} from "../../../assets/icons/ic-20/ic20-edit.
 import {StaticDrawerMenu} from "../../sql/components/base/StaticDrawerMenu";
 import {ColorSelectorDialog} from "./ColorSelectorDialog";
 import React from "react";
-import {getOr} from "../../sql/logic/Utils";
+import {getOr} from "../../base/Utils";
 import {v4} from "uuid";
 
 export type ColorInputProps = {

@@ -1,4 +1,4 @@
-import {BC} from "../../logic/BernieComponent";
+import {BC} from "../../../base/BernieComponent";
 import {Assembly} from "../../logic/assembly/Assembly";
 import {Themeable} from "../../logic/style/Themeable";
 import {DimensionalMeasured, percent, px} from "../../logic/style/DimensionalMeasured";
@@ -7,7 +7,7 @@ import {FlexBox} from "./FlexBox";
 import {OverflowBehaviour} from "../../logic/style/OverflowBehaviour";
 import React from "react";
 import {FlexDirection} from "../../logic/style/FlexDirection";
-import {getOr} from "../../logic/Utils";
+import {getOr} from "../../../base/Utils";
 
 export type OverflowWithHeaderProps = {
     dir?: FlexDirection

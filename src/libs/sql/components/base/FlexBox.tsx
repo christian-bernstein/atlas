@@ -3,13 +3,13 @@ import {Themeable} from "../../logic/style/Themeable";
 import {utilizeGlobalTheme} from "../../logic/app/App";
 import styled from "styled-components";
 import {FlexDirection} from "../../logic/style/FlexDirection";
-import {getOr} from "../../logic/Utils";
+import {getOr} from "../../../base/Utils";
 import {DimensionalMeasured, px} from "../../logic/style/DimensionalMeasured";
 import {Align} from "../../logic/style/Align";
 import {Justify} from "../../logic/style/Justify";
 import {OverflowBehaviour} from "../../logic/style/OverflowBehaviour";
 import {createMargin, Margin} from "../../logic/style/Margin";
-import {BernieComponent} from "../../logic/BernieComponent";
+import {BernieComponent} from "../../../base/BernieComponent";
 import {Assembly} from "../../logic/assembly/Assembly";
 import {FlexWrap} from "../../logic/style/FlexWrap";
 

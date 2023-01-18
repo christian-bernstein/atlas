@@ -1,4 +1,4 @@
-import {BC} from "../../sql/logic/BernieComponent";
+import {BC} from "../../base/BernieComponent";
 import {Assembly} from "../../sql/logic/assembly/Assembly";
 import {Themeable} from "../../sql/logic/style/Themeable";
 import {Flex} from "../../sql/components/base/FlexBox";
@@ -9,7 +9,7 @@ import React from "react";
 import {Text, TextType} from "../../sql/components/base/Text";
 import {SingleLinearProgress} from "../../sql/components/base/SingleLinearProgress";
 import {VM} from "../../sql/logic/style/ObjectVisualMeaning";
-import {Utils} from "../../sql/logic/Utils";
+import {Utils} from "../../base/Utils";
 import {StaticDrawerMenu} from "../../sql/components/base/StaticDrawerMenu";
 import {DrawerHeader} from "../../sql/components/base/DrawerHeader";
 

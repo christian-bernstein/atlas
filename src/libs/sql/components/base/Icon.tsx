@@ -5,7 +5,7 @@ import {getMeaningfulColors, MeaningfulColors, Themeable} from "../../logic/styl
 import {utilizeGlobalTheme} from "../../logic/app/App";
 import {ObjectVisualMeaning} from "../../logic/style/ObjectVisualMeaning";
 import {DimensionalMeasured, px} from "../../logic/style/DimensionalMeasured";
-import {getOr} from "../../logic/Utils";
+import {getOr} from "../../../base/Utils";
 import {Color} from "../../logic/style/Color";
 import {Tooltip} from "./Tooltip";
 
