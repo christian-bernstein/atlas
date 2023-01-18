@@ -21,7 +21,6 @@ import moment from "moment";
 import {SettingsGroup} from "../../sql/components/lo/SettingsGroup";
 import {SettingsElement} from "../../sql/components/ho/settingsElement/SettingsElement";
 import {ISOV1Data} from "../iso/v1/ISOV1Data";
-import {createMargin} from "../../sql/logic/style/Margin";
 
 export type ISOBasePreviewProps = {
     iso: ISOBase
