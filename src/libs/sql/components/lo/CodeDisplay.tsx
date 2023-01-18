@@ -2,22 +2,19 @@ import {BernieComponent} from "../../logic/BernieComponent";
 import {Assembly} from "../../logic/assembly/Assembly";
 import {Themeable} from "../../logic/style/Themeable";
 import {Box} from "./Box";
-import ReactCodeMirror, {Extension} from "@uiw/react-codemirror";
+import ReactCodeMirror from "@uiw/react-codemirror";
 import React from "react";
 import {percent, px} from "../../logic/style/DimensionalMeasured";
-import {OverflowBehaviour} from "../../logic/style/OverflowBehaviour";
 import {FlexBox} from "./FlexBox";
 import styled from "styled-components";
-import {Group} from "./Group";
 import {Button} from "./Button";
 import {CopyIcon} from "../ho/copyIcon/CopyIcon";
-import {javascript, tsxLanguage} from "@codemirror/lang-javascript";
-import {jsx} from "@emotion/react";
+import {javascript} from "@codemirror/lang-javascript";
 import {getOr} from "../../logic/Utils";
 
 export type CodeDisplayProps = {
     code: string[],
-    extensions?: Extension[]
+    extensions?: any[]
 }
 
 export class CodeDisplay extends BernieComponent<CodeDisplayProps, any, any> {
