@@ -10,7 +10,6 @@ import {Color} from "../../logic/style/Color";
 import {Cursor} from "../../logic/style/Cursor";
 import {BernieComponent} from "../../logic/BernieComponent";
 import {Assembly} from "../../logic/assembly/Assembly";
-import {MuxRenderer} from "../../logic/MuxRenderer";
 
 export type BoxProps = PropsWithChildren<{
     highlight?: boolean
