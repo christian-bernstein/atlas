@@ -19,7 +19,7 @@ import {Button} from "../../lo/Button";
 import {Cursor} from "../../../logic/style/Cursor";
 import {Icon} from "../../lo/Icon";
 import {ReactComponent as DeleteIcon} from "../../../../../assets/icons/ic-16/ic16-chevron-left.svg";
-import clickSound from "../../../../../assets/sound/click.mp3";
+// import clickSound from "../../../../../assets/sound/click.mp3";
 
 export interface PinPadActions {
     onSuccess?(component: PinPad): void,
@@ -341,7 +341,8 @@ export class PinPad extends BernieComponent<PinPadProps, any, PinPadLocalState> 
                                                 } onClick={() => {
                                                     if (this.props.enableSounds) {
                                                         // TODO: Get click sound from the sound-lib prop
-                                                        new Audio(clickSound).play().then(() => {});
+                                                        // TODO: Reactivate sound
+                                                        // new Audio(clickSound).play().then(() => {});
                                                     }
 
                                                     this.local.state.value.push(Number(i));
