@@ -45,7 +45,7 @@ export class Driver {
         this.registerGlobal404Page({
             render: () => (
                 // TODO: Add 404 page
-                <></>
+                <>404</>
             )
         });
     }
