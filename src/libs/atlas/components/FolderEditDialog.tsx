@@ -8,7 +8,6 @@ import {Dimension} from "../../sql/logic/style/Dimension";
 import {OverflowWithHeader} from "../../sql/components/lo/OverflowWithHeader";
 import {FlexDirection} from "../../sql/logic/style/FlexDirection";
 import {DrawerHeader} from "../../sql/components/lo/DrawerHeader";
-import {getOr} from "../../sql/logic/Utils";
 import {VM} from "../../sql/logic/style/ObjectVisualMeaning";
 import React from "react";
 import {Button} from "../../sql/components/lo/Button";
@@ -16,7 +15,7 @@ import {Flex} from "../../sql/components/lo/FlexBox";
 import {LiteGrid} from "../../sql/components/lo/LiteGrid";
 import {AF} from "../../sql/components/logic/ArrayFragment";
 import {BaseEntitySetupComponent} from "./BaseEntitySetupComponent";
-import {FormDataHub} from "../../epicure/components/FormDataHub";
+import {FormDataHub} from "../../FormDataHub";
 
 export interface FolderEditDialogActions {
     onSubmit(folder: Folder): void,
