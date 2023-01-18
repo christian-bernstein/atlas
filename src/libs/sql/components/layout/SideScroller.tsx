@@ -7,11 +7,11 @@ import {OverflowBehaviour} from "../../logic/style/OverflowBehaviour";
 import {FlexBox} from "../lo/FlexBox";
 import {Align} from "../../logic/style/Align";
 import ScrollContainer from "react-indiana-drag-scroll";
+import {PropsWithChildren} from "react";
 
-export type SideScrollerProps = {
-    useMouseDragging?: boolean,
-
-}
+export type SideScrollerProps = PropsWithChildren<{
+    useMouseDragging?: boolean
+}>
 
 export class SideScroller extends BernieComponent<SideScrollerProps, any, any> {
 
