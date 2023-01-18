@@ -1,13 +1,13 @@
-import React from "react";
+import React, {PropsWithChildren} from "react";
 import "../../styles/components/BadgedWrapper.scss";
 import styled from "styled-components";
 
-export type BadgedWrapperProps = {
+export type BadgedWrapperProps = PropsWithChildren<{
     badge: JSX.Element,
     showBadgeInitially: boolean,
     badgeFlowDirection?: "outwards" | "right"
     numberBadge?: boolean
-}
+}>
 
 export type BadgedWrapperState = {
     showBadge: boolean
