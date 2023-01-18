@@ -50,7 +50,6 @@ import {HyperionAPI} from "./hyperion/HyperionAPI";
 import {HyperionIndexedDBStreamAdapter} from "./hyperion/HyperionIndexedDBStreamAdapter";
 import {FileInput} from "../sql/components/ho/fileInput/FileInput";
 import {UpstreamTransactionType} from "./hyperion/UpstreamTransactionType";
-import {EntityMovePromptComponent} from "./components/EntityMovePromptComponent";
 import {Description} from "../sql/components/lo/Description";
 import {AtlasLogo} from "./components/branding/AtlasLogo";
 import {isMobile} from "react-device-detect";
