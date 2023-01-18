@@ -4,9 +4,9 @@ import {ConnectorConfig} from "../sql/logic/network/ConnectorConfig";
 import {App} from "../sql/logic/app/App";
 import {LatencySnapshot} from "../sql/logic/network/LatencySnapshot";
 
-import {SocketSwitchProtocolDataPacket} from "../sql/packets/in/SocketSwitchProtocolDataPacket";
-import {PingPacketData} from "../sql/packets/out/PingPacketData";
-import {PongPacketData} from "../sql/packets/in/PongPacketData";
+import {SocketSwitchProtocolDataPacket} from "../sql/packets/SocketSwitchProtocolDataPacket";
+import {PingPacketData} from "../sql/packets/PingPacketData";
+import {PongPacketData} from "../sql/packets/PongPacketData";
 
 import {getOr} from "./Utils";
 import {NetChannelConfig} from "../sql/logic/network/NetChannelConfig";
