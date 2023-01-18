@@ -1,7 +1,7 @@
 import {BernieComponent} from "../../logic/BernieComponent";
 import {Assembly} from "../../logic/assembly/Assembly";
 import {Themeable} from "../../logic/style/Themeable";
-import {Fragment, PropsWithChildren} from "react";
+import {PropsWithChildren} from "react";
 import {array, getOr} from "../../logic/Utils";
 import {AF} from "./ArrayFragment";
 

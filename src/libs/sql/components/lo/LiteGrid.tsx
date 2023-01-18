@@ -1,9 +1,9 @@
-import React, {CSSProperties} from "react";
+import React, {CSSProperties, PropsWithChildren} from "react";
 import styled from "styled-components";
 import {getOr} from "../../logic/Utils";
 import {DimensionalMeasured, px} from "../../logic/style/DimensionalMeasured";
 
-export type GridProps = {
+export type GridProps = PropsWithChildren<{
     rows?: number
     columns?: number
     style?: CSSProperties,
@@ -11,7 +11,7 @@ export type GridProps = {
     height?: DimensionalMeasured,
     responsive?: boolean,
     minResponsiveWidth?: DimensionalMeasured,
-}
+}>
 
 export class LiteGrid extends React.Component<GridProps, any> {
 
