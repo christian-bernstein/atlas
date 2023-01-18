@@ -1,4 +1,4 @@
-import React from "react";
+import React, {PropsWithChildren} from "react";
 import styled from "styled-components";
 import {ObjectVisualMeaning} from "../../logic/style/ObjectVisualMeaning";
 import {getMeaningfulColors, MeaningfulColors, Themeable} from "../../logic/style/Themeable";
@@ -9,12 +9,12 @@ import {LinkPreview} from "@dhaiwat10/react-link-preview";
 import {CustomTooltip} from "./CustomTooltip";
 import {If} from "../logic/If";
 
-export type LinkProps = {
+export type LinkProps = PropsWithChildren<{
     href: string,
     visualMeaning?: ObjectVisualMeaning,
     showLinkIcon?: boolean,
     linkTooltip?: boolean
-}
+}>
 
 export class Link extends React.Component<LinkProps, any> {
 
