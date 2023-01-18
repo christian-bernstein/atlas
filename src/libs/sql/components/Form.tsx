@@ -1,5 +1,5 @@
 import {BC} from "../logic/BernieComponent";
-import {FormDataHub} from "../../epicure/components/FormDataHub";
+import {FormDataHub} from "../../FormDataHub";
 import {FormContext} from "./FormContext";
 import {Assembly} from "../logic/assembly/Assembly";
 import {Themeable} from "../logic/style/Themeable";
