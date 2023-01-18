@@ -8,10 +8,6 @@ export type TitledContainerProps = {
 
 export class TitledContainer extends React.Component<TitledContainerProps, any> {
 
-    constructor(props: TitledContainerProps) {
-        super(props);
-    }
-
     render() {
         return(
             <div className={"titled-container"}>
