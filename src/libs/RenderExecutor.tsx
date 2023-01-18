@@ -25,15 +25,5 @@ export class RenderExecutor extends React.Component<RenderExecutorProps> {
                 {this.props.children}
             </>
         );
-        // todo investigate bug
-        // console.log("rerender")
-        // if (getOr(this.props.renderChildren, false)) {
-        //     return (
-        //         <>
-        //             {this.props.componentFactory()}
-        //             {this.props.children}
-        //         </>
-        //     )
-        // } else return <>{String(getOr(this.props.renderChildren, false))}</>;
     }
 }
