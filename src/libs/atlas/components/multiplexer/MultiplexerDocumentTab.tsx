@@ -22,7 +22,6 @@ import {Cursor} from "../../../sql/logic/style/Cursor";
 import {Dot} from "../../../sql/components/lo/Dot";
 import {IconLookup} from "../../icons/IconLookup";
 import {AtlasMain} from "../../AtlasMain";
-import {ObjectJSONDisplay} from "../../../sql/components/ho/objectJSONDisplay/ObjectJSONDisplay";
 
 export type MultiplexerDocumentTabProps = {
     document: AtlasDocument,
