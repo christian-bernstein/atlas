@@ -1,5 +1,5 @@
 import {Color} from "../../logic/style/Color";
-import React from "react";
+import React, {PropsWithChildren} from "react";
 // import "../styles/components/Badge.scss";
 import styled from "styled-components";
 import {getMeaningfulColors, Themeable} from "../../logic/style/Themeable";
@@ -11,14 +11,14 @@ import {Cursor} from "../../logic/style/Cursor";
 import {Text} from "./Text";
 import {px} from "../../logic/style/DimensionalMeasured";
 
-export type BadgeProps = WithVisualMeaning & {
+export type BadgeProps = PropsWithChildren<WithVisualMeaning & {
     background?: Color,
     opaque?: boolean,
     padding?: boolean,
     visibleStructure?: boolean,
     shadow?: boolean,
     cursor?: Cursor
-}
+}>
 
 export class Badge extends React.Component<BadgeProps, any>{
 
