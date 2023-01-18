@@ -1,6 +1,9 @@
 import {Program} from "./Program";
 import {LocatableProgram} from "./LocatableProgram";
 import {AnalyticsManager} from "./AnalyticsManager";
+import {InDevAtlasAPI} from "../libs/atlas/api/InDevAtlasAPI";
+import {AtlasMain} from "../libs/atlas/AtlasMain";
+import React from "react";
 
 export class Driver {
 
@@ -23,12 +26,12 @@ export class Driver {
 
         /**
          * Root website, this is the portfolio website
+         * <AtlasMain api={new InDevAtlasAPI()}/>
          */
         this.programRegistry.set("main", {
             path: "/",
             exact: true,
             render: () => (
-                // TODO: Add main page
                 <></>
             )
         });
