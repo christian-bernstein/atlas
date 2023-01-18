@@ -1,11 +1,8 @@
 import {Program} from "./Program";
 import {LocatableProgram} from "./LocatableProgram";
 import {AnalyticsManager} from "./AnalyticsManager";
-import {InDevAtlasAPI} from "../libs/atlas/api/InDevAtlasAPI";
-import {AtlasMain} from "../libs/atlas/AtlasMain";
 import React from "react";
 import {Dot} from "../libs/sql/components/lo/Dot";
-import {BernieComponent} from "../libs/sql/logic/BernieComponent";
 
 export class Driver {
 
@@ -34,7 +31,7 @@ export class Driver {
             path: "/",
             exact: true,
             render: () => (
-                <Dot/>
+                <></>
             )
         });
 

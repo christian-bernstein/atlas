@@ -9,6 +9,7 @@ export const DriverReactBridge: FC = (props, context) => {
             <Routes children={
                 Array.from(Driver.programRegistry.entries()).map(([id, program]: [string, LocatableProgram]) => (
                     <Route
+                        key={id}
                         // TODO: Equivalent available?
                         // exact={program.exact ?? true}
                         // TODO: path can be []... why tho..
