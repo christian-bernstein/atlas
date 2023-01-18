@@ -60,20 +60,10 @@ export type BoxArrowConfig = {
     bgColor?: Color
 }
 
-export class Box extends BernieComponent<BoxProps, any, any, Box> {
+export class Box extends BernieComponent<BoxProps, any, any> {
 
     constructor(props: BoxProps) {
-        super(props, undefined, undefined, {
-            renderers: new Map<string, MuxRenderer<Box>>([
-                ["light-display", {
-                     render(component: Box): JSX.Element | undefined {
-                         return (
-                             <>implement..</>
-                         );
-                     }
-                }]
-            ])
-        });
+        super(props, undefined, undefined);
     }
 
     componentRender(p: BoxProps, s: any, l: any, t: Themeable.Theme, a: Assembly): JSX.Element | undefined {
