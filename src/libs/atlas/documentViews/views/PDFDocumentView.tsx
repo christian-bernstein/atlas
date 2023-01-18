@@ -5,7 +5,6 @@ import {Themeable} from "../../../sql/logic/style/Themeable";
 import {Assembly} from "../../../sql/logic/assembly/Assembly";
 import {DocumentState} from "../../data/DocumentState";
 import {VFSFolderView} from "../../components/VFSFolderView";
-import {WebsiteDocumentArchetype} from "../../data/documentArchetypes/WebsiteDocumentArchetype";
 import React from "react";
 import {PDFDocumentArchetype} from "../../data/documentArchetypes/PDFDocumentArchetype";
 
