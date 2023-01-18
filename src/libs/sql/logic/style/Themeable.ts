@@ -5,7 +5,6 @@ import {CSSProperties} from "react";
 import {ObjectVisualMeaning} from "./ObjectVisualMeaning";
 import {time, TimeMeasured} from "../misc/TimeMeasured";
 import {TimeUnit} from "../misc/TimeUnit";
-import {ThemeKeys, ThemeObject} from "react-json-view";
 import {createTheme, Theme as MUITheme} from "@mui/material";
 import {ThemeMultiplexRenderers} from "./ThemeMultiplexRenderers";
 
@@ -178,9 +177,6 @@ export namespace Themeable {
             }
         },
         libraries: {
-            reactJson: {
-                theme: ThemeKeys | ThemeObject
-            }
         }
     }
 
