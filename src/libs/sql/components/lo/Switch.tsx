@@ -2,19 +2,19 @@ import {BernieComponent} from "../../logic/BernieComponent";
 import {getMeaningfulColors, Themeable} from "../../logic/style/Themeable";
 import {Assembly} from "../../logic/assembly/Assembly";
 import {Checkbox, FormControlLabel} from "@mui/material";
-import React, {SyntheticEvent} from "react";
+import React, {PropsWithChildren, SyntheticEvent} from "react";
 import {ObjectVisualMeaning} from "../../logic/style/ObjectVisualMeaning";
 import {WithVisualMeaning} from "../../logic/style/WithVisualMeaning";
 import {getOr} from "../../logic/Utils";
 import styled from "styled-components";
 import {If} from "../logic/If";
 
-export type SwitchProps = WithVisualMeaning & {
+export type SwitchProps = PropsWithChildren<WithVisualMeaning & {
     text?: JSX.Element | string,
     onChange?: (event: SyntheticEvent, checked: boolean) => void,
     checked?: boolean,
     basicIconColor?: boolean
-}
+}>
 
 export class Switch extends BernieComponent<SwitchProps, any, any> {
 

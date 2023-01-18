@@ -15,10 +15,6 @@ export type GridProps = PropsWithChildren<{
 
 export class LiteGrid extends React.Component<GridProps, any> {
 
-    constructor(props: GridProps) {
-        super(props);
-    }
-
     render() {
         const Wrapper = styled.div`
           display: grid;
