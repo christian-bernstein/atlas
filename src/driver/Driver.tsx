@@ -1,9 +1,5 @@
 import {Program} from "./Program";
 import {LocatableProgram} from "./LocatableProgram";
-import {Screen} from "../libs/sql/components/lo/Page";
-import {AppPageMode} from "../libs/sql/pages/app/AppPageMode";
-import {getOr} from "../libs/sql/logic/Utils";
-import {AppPage} from "../libs/sql/pages/app/AppPage";
 import {AnalyticsManager} from "./AnalyticsManager";
 
 export class Driver {
@@ -34,18 +30,6 @@ export class Driver {
             render: () => (
                 // TODO: Add main page
                 <></>
-            )
-        });
-
-        /**
-         * Unit test website
-         */
-        this.programRegistry.set("unit", {
-            path: "/unit",
-            render: () => (
-                <AppPage
-                    mode={AppPageMode.UNIT_TEST}
-                />
             )
         });
 
