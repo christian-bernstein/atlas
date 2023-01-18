@@ -5,6 +5,8 @@
   "dependencies": {
     "@codemirror/lang-javascript": "^6.1.2",
     "@dhaiwat10/react-link-preview": "^1.14.2",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "@monaco-editor/react": "^4.4.6",
     "@mui/icons-material": "^5.11.0",
     "@testing-library/jest-dom": "^5.16.5",
