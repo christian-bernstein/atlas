@@ -19,6 +19,7 @@
     "dexie": "^3.2.2",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
+    "react-apexcharts": "^1.4.0",
     "react-dom": "^18.2.0",
     "react-image": "^4.0.3",
     "react-indiana-drag-scroll": "^2.2.0",

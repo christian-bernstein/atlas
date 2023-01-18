@@ -21,10 +21,6 @@ export type AreaChartComponentProps = WithVisualMeaning & {
 
 export class AreaChartComponent extends React.Component<AreaChartComponentProps, any> {
 
-    constructor(props: AreaChartComponentProps) {
-        super(props);
-    }
-
     render() {
         const theme: Themeable.Theme = utilizeGlobalTheme();
         const mc: MeaningfulColors = getMeaningfulColors(getOr(this.props.visualMeaning, ObjectVisualMeaning.INFO), theme);
