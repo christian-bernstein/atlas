@@ -11,7 +11,6 @@ import {FlexDirection} from "../../sql/logic/style/FlexDirection";
 import {Justify} from "../../sql/logic/style/Justify";
 import {OverflowWithHeader} from "../../sql/components/lo/OverflowWithHeader";
 import {ExitToAppRounded} from "@mui/icons-material";
-import {Color} from "../../sql/logic/style/Color";
 
 export type SideMenuProps = {
     view: VFSFolderView
