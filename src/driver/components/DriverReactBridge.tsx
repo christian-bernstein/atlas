@@ -1,7 +1,7 @@
 import {FC} from "react";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {Driver} from "./Driver";
-import {LocatableProgram} from "./LocatableProgram";
+import {Driver} from "../Driver";
+import {LocatableProgram} from "../LocatableProgram";
 
 export const DriverReactBridge: FC = (props, context) => {
     return (
