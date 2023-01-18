@@ -37,7 +37,7 @@ import {Cursor} from "../../../logic/style/Cursor";
 import {AF} from "../../logic/ArrayFragment";
 import {SideScroller} from "../../layout/SideScroller";
 import {createMargin} from "../../../logic/style/Margin";
-import {FormDataHub} from "../../../../epicure/components/FormDataHub";
+import {FormDataHub} from "../../../../FormDataHub";
 import {StaticDrawerMenu} from "../../lo/StaticDrawerMenu";
 import {Badge} from "../../lo/Badge";
 import _ from "lodash";
