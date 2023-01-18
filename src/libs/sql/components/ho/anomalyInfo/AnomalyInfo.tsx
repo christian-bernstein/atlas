@@ -13,9 +13,7 @@ import {HOCWrapper} from "../../HOCWrapper";
 import {AF} from "../../logic/ArrayFragment";
 import {Cursor} from "../../../logic/style/Cursor";
 import {StaticDrawerMenu} from "../../lo/StaticDrawerMenu";
-import {Dot} from "../../lo/Dot";
-import {Console} from "console-feed";
-import React from "react";
+import {Dot} from "../../lo/Dot";import React from "react";
 import {AppAnomalyData} from "../../../logic/data/AppAnomalyData";
 import {If} from "../../logic/If";
 import {AnomalyLevel} from "../../../logic/data/AnomalyLevel";
@@ -120,13 +118,10 @@ export class AnomalyInfo extends BernieComponent<AnomalyInfoProps, any, any> {
 
                                     <Dot/>,
 
+                                    // TODO: Implement
                                     <Text text={"Stacktrace"} cursor={Cursor.pointer} bold coloredText visualMeaning={ObjectVisualMeaning.UI_NO_HIGHLIGHT} highlight align={Align.CENTER} onClick={() => {
                                         wrapper.dialog(
-                                            <Console logs={[{
-                                                data: [new Error().stack],
-                                                method: "error",
-                                                id: "error"
-                                            }]}/>
+                                            <>TODO: Implement</>
                                         );
                                     }}/>,
                                 ]}/>
