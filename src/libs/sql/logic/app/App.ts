@@ -1,12 +1,10 @@
 import {Shard} from "../misc/Shard";
 import {AppConfig} from "./AppConfig";
 import {UserData} from "../data/UserData";
-import {FlowAccessPoint} from "../misc/FlowAccessPoint";
 import {Themeable} from "../style/Themeable";
 import {ProgressTrackerManager} from "../misc/ProgressTrackerManager";
 import {Assembly} from "../assembly/Assembly";
 import {LogEntry} from "../data/LogEntry";
-import {v4} from "uuid";
 import {UserProfileData} from "../data/UserProfileData";
 import {fromLocalStorage} from "../Utils";
 import {Cache} from "../cache/Cache";
@@ -77,8 +75,6 @@ export class App {
     public static isInitiated(): boolean {
         return App.instance !== undefined && App.app().initiated;
     }
-
-    private readonly flowAccessPoint: FlowAccessPoint = new FlowAccessPoint(this);
 
     private readonly themes: Map<string, Themeable.Theme>;
 

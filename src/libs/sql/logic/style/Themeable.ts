@@ -6,7 +6,6 @@ import {ObjectVisualMeaning} from "./ObjectVisualMeaning";
 import {time, TimeMeasured} from "../misc/TimeMeasured";
 import {TimeUnit} from "../misc/TimeUnit";
 import {createTheme, Theme as MUITheme} from "@mui/material";
-import {ThemeMultiplexRenderers} from "./ThemeMultiplexRenderers";
 
 export function getMeaningfulColors(meaning: ObjectVisualMeaning, theme: Themeable.Theme): MeaningfulColors {
     switch (meaning) {

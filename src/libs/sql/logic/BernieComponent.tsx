@@ -167,15 +167,6 @@ export class BernieComponent<RProps, RState, LState extends object, Implementati
      * @deprecated
      */
     public renderRedirect(): JSX.Element {
-        App.app().baseLog({
-            id: v4(),
-            level: "TRACE",
-            message: `Try to redirect to *${this.redirectTo}* (redirect: *${this.redirect}*)`,
-            creator: "bernie-component",
-            timestamp: new Date(),
-            appendices: []
-        })
-
         // TODO: Make more versatile solution
         redirect(this.redirectTo as string);
 
