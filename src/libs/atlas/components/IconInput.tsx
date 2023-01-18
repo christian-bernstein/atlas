@@ -1,12 +1,11 @@
 import {BC} from "../../sql/logic/BernieComponent";
 import {Assembly} from "../../sql/logic/assembly/Assembly";
 import {Themeable} from "../../sql/logic/style/Themeable";
-import {Color} from "../../sql/logic/style/Color";
-import {FormDataHub} from "../../epicure/components/FormDataHub";
+import {FormDataHub} from "../../FormDataHub";
 import {IconConfig} from "../data/IconConfig";
 import {getOr} from "../../sql/logic/Utils";
 import {v4} from "uuid";
-import {FormElement} from "../../epicure/components/FormElement";
+import {FormElement} from "../../FormElement";
 import {Group} from "../../sql/components/lo/Group";
 import {percent, px} from "../../sql/logic/style/DimensionalMeasured";
 import {Orientation} from "../../sql/logic/style/Orientation";
@@ -16,12 +15,8 @@ import {Align} from "../../sql/logic/style/Align";
 import {Justify} from "../../sql/logic/style/Justify";
 import {Tooltip} from "../../sql/components/ho/tooltip/Tooltip";
 import {Icon} from "../../sql/components/lo/Icon";
-import {ReactComponent as ResetIcon} from "../../../assets/icons/ic-20/ic20-refresh.svg";
-import {Box} from "../../sql/components/lo/Box";
-import {Text} from "../../sql/components/lo/Text";
 import {ReactComponent as EditIcon} from "../../../assets/icons/ic-20/ic20-edit.svg";
 import {StaticDrawerMenu} from "../../sql/components/lo/StaticDrawerMenu";
-import {ColorSelectorDialog} from "./ColorSelectorDialog";
 import React from "react";
 import {DrawerHeader} from "../../sql/components/lo/DrawerHeader";
 
