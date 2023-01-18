@@ -22,7 +22,6 @@ import React from "react";
 import {VFSFolderView} from "../../VFSFolderView";
 import {InformationBox} from "../../../../sql/components/ho/informationBox/InformationBox";
 import {Description} from "../../../../sql/components/lo/Description";
-import {AtlasDocument} from "../../../data/AtlasDocument";
 import {AF} from "../../../../sql/components/logic/ArrayFragment";
 
 export type FolderListProps = {
