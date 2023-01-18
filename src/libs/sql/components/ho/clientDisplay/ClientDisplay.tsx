@@ -34,7 +34,6 @@ export type ClientDisplayProps = {
     enableClientBadge?: boolean,
     imageSize?: DimensionalMeasured,
     onlyImage?: boolean,
-
     pureImage?: boolean
 }
 
