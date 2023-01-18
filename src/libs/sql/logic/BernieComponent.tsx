@@ -60,18 +60,13 @@ export class BernieComponent<RProps, RState, LState extends object, Implementati
 
     constructor(props: BernieComponentBaseProps<RProps>, state: RState, local: LState, config?: Partial<BernieComponentConfig<Implementation>>) {
         super(props);
-
         this._helper = new ComponentHelper<RProps, RState, LState, Implementation>(() => this);
-
-        // todo test
         this.config = {
             ...{
                 deviceRenderSeparation: false,
-                enableLocalDialog: true,
-            },
-            ...config
+                enableLocalDialog: true
+            }, ...config
         };
-
         this.state = state;
         this._local = cs(local);
         this._controller = new RenderController();
