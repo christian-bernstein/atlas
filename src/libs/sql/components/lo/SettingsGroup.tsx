@@ -7,12 +7,12 @@ import {Align} from "../../logic/style/Align";
 import {Group} from "./Group";
 import {Orientation} from "../../logic/style/Orientation";
 import {Flex} from "./FlexBox";
-import React from "react";
+import React, {PropsWithChildren} from "react";
 
-export type SettingsGroupProps = {
+export type SettingsGroupProps = PropsWithChildren<{
     title?: string,
     elements: Array<JSX.Element>
-}
+}>
 
 export class SettingsGroup extends BernieComponent<SettingsGroupProps, any, any> {
 

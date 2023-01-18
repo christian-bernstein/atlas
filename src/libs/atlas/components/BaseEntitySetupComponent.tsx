@@ -1,10 +1,10 @@
 import {BC} from "../../sql/logic/BernieComponent";
-import {FormDataHub} from "../../epicure/components/FormDataHub";
+import {FormDataHub} from "../../FormDataHub";
 import {Assembly} from "../../sql/logic/assembly/Assembly";
 import {Themeable} from "../../sql/logic/style/Themeable";
 import {Flex, FlexBox, FlexRow} from "../../sql/components/lo/FlexBox";
 import {OverflowBehaviour} from "../../sql/logic/style/OverflowBehaviour";
-import {FormElement} from "../../epicure/components/FormElement";
+import {FormElement} from "../../FormElement";
 import {Input} from "../../sql/components/lo/Input";
 import {Group} from "../../sql/components/lo/Group";
 import {percent, px} from "../../sql/logic/style/DimensionalMeasured";

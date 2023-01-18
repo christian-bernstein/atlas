@@ -16,8 +16,6 @@ import {Button} from "../../sql/components/lo/Button";
 import React from "react";
 import {StaticDrawerMenu} from "../../sql/components/lo/StaticDrawerMenu";
 import {FlexDirection} from "../../sql/logic/style/FlexDirection";
-import {Icon} from "../../sql/components/lo/Icon";
-import {ReactComponent as SettingsIcon} from "../../../assets/icons/ic-20/ic20-settings.svg";
 
 export type CategoryComponentProps = {
     data: Category
