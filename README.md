@@ -1,3 +1,38 @@
+<div align="center">
+    <h1>Atlas</h1>
+    <a href="https://christian-bernstein.de/atlas">Live website</a>
+    <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+    <a href="https://christian-bernstein.de/atlas">Download (Soon)</a>
+    <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+    <a href="https://christian-bernstein.de/atlas">Contact (Soon)</a>
+    <br />
+    <hr />
+</div>
+
+This repository contains the serverless Atlas frontend source
+<br>
+**At the moment, Atlas is not yet meant for public usage. It may contain critical bugs & security breaches.**
+
+<br>
+<br>
+
+## Todos
+- [ ] Clean up code
+  - [ ] Remove all the unnecessary files (Leftovers from SQL-Editor / old 'App'-System)
+  - [ ] Introduce a clean folder structure
+
+
+<br>
+<br>
+
+---
+
+<br>
+<br>
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
