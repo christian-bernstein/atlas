@@ -9,7 +9,7 @@ import {Category} from "../../data/Category";
 import {AtlasDocument} from "../../data/AtlasDocument";
 import {AtlasDB} from "../../api/AtlasDB";
 import {DBDocumentAttachment} from "../../data/DBDocumentAttachment";
-import {FormDataHub} from "../../../FormDataHub";
+import {FormDataHub} from "../../../base/FormDataHub";
 import {ISOV1Data} from "./ISOV1Data";
 import {GenericBC} from "../../../sql/logic/BernieComponent";
 

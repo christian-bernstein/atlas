@@ -1,5 +1,5 @@
 import {Form} from "./Form";
-import {FormDataHub} from "../../FormDataHub";
+import {FormDataHub} from "../../base/FormDataHub";
 import {FormTransactionType} from "./FormTransactionType";
 
 export type FormContext = {

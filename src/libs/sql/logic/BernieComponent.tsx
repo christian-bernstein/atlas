@@ -1,7 +1,7 @@
 import React from "react";
 import {cs, State} from "./state/State";
-import {RenderController} from "../../RenderController";
-import {RenderExecutor} from "../../RenderExecutor";
+import {RenderController} from "../../base/RenderController";
+import {RenderExecutor} from "../../base/RenderExecutor";
 import {v4} from "uuid";
 import {Themeable} from "./style/Themeable";
 import {utilizeGlobalTheme} from "./app/App";

@@ -1,6 +1,6 @@
 import {BC} from "../../sql/logic/BernieComponent";
 import {Folder} from "../data/Folder";
-import {FormDataHub} from "../../FormDataHub";
+import {FormDataHub} from "../../base/FormDataHub";
 import {Assembly} from "../../sql/logic/assembly/Assembly";
 import {Themeable} from "../../sql/logic/style/Themeable";
 import {Category} from "../data/Category";

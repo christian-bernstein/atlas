@@ -1,11 +1,11 @@
 import {BC} from "../../sql/logic/BernieComponent";
 import {Assembly} from "../../sql/logic/assembly/Assembly";
 import {Themeable} from "../../sql/logic/style/Themeable";
-import {FormDataHub} from "../../FormDataHub";
+import {FormDataHub} from "../../base/FormDataHub";
 import {IconConfig} from "../data/IconConfig";
 import {getOr} from "../../sql/logic/Utils";
 import {v4} from "uuid";
-import {FormElement} from "../../FormElement";
+import {FormElement} from "../../base/FormElement";
 import {Group} from "../../sql/components/base/Group";
 import {percent, px} from "../../sql/logic/style/DimensionalMeasured";
 import {Orientation} from "../../sql/logic/style/Orientation";

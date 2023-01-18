@@ -1,5 +1,5 @@
 import {BC} from "../../sql/logic/BernieComponent";
-import {FormDataHub} from "../../FormDataHub";
+import {FormDataHub} from "../../base/FormDataHub";
 import {Category} from "../data/Category";
 import {Themeable} from "../../sql/logic/style/Themeable";
 import {Assembly} from "../../sql/logic/assembly/Assembly";
@@ -8,7 +8,7 @@ import {DrawerHeader} from "../../sql/components/base/DrawerHeader";
 import {VM} from "../../sql/logic/style/ObjectVisualMeaning";
 import {percent, px} from "../../sql/logic/style/DimensionalMeasured";
 import {Button} from "../../sql/components/base/Button";
-import {FormElement} from "../../FormElement";
+import {FormElement} from "../../base/FormElement";
 import {Input} from "../../sql/components/base/Input";
 import {Group} from "../../sql/components/base/Group";
 import {Orientation} from "../../sql/logic/style/Orientation";

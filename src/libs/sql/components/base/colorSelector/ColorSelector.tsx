@@ -17,7 +17,7 @@ import {Separator} from "../Separator";
 import {LiteGrid} from "../LiteGrid";
 import {AF} from "../../logic/ArrayFragment";
 import {Cursor} from "../../../logic/style/Cursor";
-import {FormDataHub} from "../../../../FormDataHub";
+import {FormDataHub} from "../../../../base/FormDataHub";
 import {utilizeGlobalTheme} from "../../../logic/app/App";
 import {If} from "../../logic/If";
 import {Button} from "../Button";

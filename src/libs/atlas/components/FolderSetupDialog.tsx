@@ -6,7 +6,7 @@ import {Themeable} from "../../sql/logic/style/Themeable";
 import {Screen} from "../../sql/components/base/Page";
 import {DrawerHeader} from "../../sql/components/base/DrawerHeader";
 import {VM} from "../../sql/logic/style/ObjectVisualMeaning";
-import {FormDataHub} from "../../FormDataHub";
+import {FormDataHub} from "../../base/FormDataHub";
 import React from "react";
 import {DimensionalMeasured, percent, px} from "../../sql/logic/style/DimensionalMeasured";
 import {Button} from "../../sql/components/base/Button";

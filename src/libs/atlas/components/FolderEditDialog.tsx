@@ -15,7 +15,7 @@ import {Flex} from "../../sql/components/base/FlexBox";
 import {LiteGrid} from "../../sql/components/base/LiteGrid";
 import {AF} from "../../sql/components/logic/ArrayFragment";
 import {BaseEntitySetupComponent} from "./BaseEntitySetupComponent";
-import {FormDataHub} from "../../FormDataHub";
+import {FormDataHub} from "../../base/FormDataHub";
 
 export interface FolderEditDialogActions {
     onSubmit(folder: Folder): void,
