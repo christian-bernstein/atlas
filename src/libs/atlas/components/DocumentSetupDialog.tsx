@@ -1,7 +1,6 @@
 import {BC} from "../../sql/logic/BernieComponent";
-import {FormDataHub} from "../../epicure/components/FormDataHub";
+import {FormDataHub} from "../../FormDataHub";
 import {Category} from "../data/Category";
-import {Folder} from "../data/Folder";
 import {Themeable} from "../../sql/logic/style/Themeable";
 import {Assembly} from "../../sql/logic/assembly/Assembly";
 import {Flex, FlexRow} from "../../sql/components/lo/FlexBox";
@@ -9,7 +8,7 @@ import {DrawerHeader} from "../../sql/components/lo/DrawerHeader";
 import {VM} from "../../sql/logic/style/ObjectVisualMeaning";
 import {percent, px} from "../../sql/logic/style/DimensionalMeasured";
 import {Button} from "../../sql/components/lo/Button";
-import {FormElement} from "../../epicure/components/FormElement";
+import {FormElement} from "../../FormElement";
 import {Input} from "../../sql/components/lo/Input";
 import {Group} from "../../sql/components/lo/Group";
 import {Orientation} from "../../sql/logic/style/Orientation";
