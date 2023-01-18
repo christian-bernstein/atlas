@@ -33,7 +33,6 @@ import {Color} from "../../sql/logic/style/Color";
 import {ReactComponent as CreateIcon} from "../../../assets/icons/ic-20/ic20-plus.svg";
 import {ReactComponent as EditIcon} from "../../../assets/icons/ic-20/ic20-edit.svg";
 import {CategorySetupDialog} from "./CategorySetupDialog";
-import {FolderEditDialog} from "./FolderEditDialog";
 
 export type FolderPreviewComponentProps = {
     data: Folder
