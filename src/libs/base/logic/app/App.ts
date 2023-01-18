@@ -9,6 +9,7 @@ import {UserProfileData} from "../data/UserProfileData";
 import {fromLocalStorage} from "../../Utils";
 import {Cache} from "../cache/Cache";
 import {ModalDisplay} from "../modal/ModalDisplay";
+import darkTritanopiaTheme = Themeable.darkTritanopiaTheme;
 
 export let defaultGlobalFallbackTheme: Themeable.Theme = Themeable.darkTritanopiaTheme;
 
@@ -22,14 +23,17 @@ export function setGlobalFallbackTheme(theme: Themeable.Theme) {
 }
 
 export function utilizeGlobalTheme(defTheme: Themeable.Theme | undefined = undefined): Themeable.Theme {
-    if (App.isInitiated()) {
-        return App.app().getGlobalTheme();
-    } else {
-        if (defTheme === undefined) {
-            return globalFallbackTheme
-        }
-        return defTheme;
-    }
+
+    return darkTritanopiaTheme;
+
+    // if (App.isInitiated()) {
+    //     return App.app().getGlobalTheme();
+    // } else {
+    //     if (defTheme === undefined) {
+    //         return globalFallbackTheme
+    //     }
+    //     return defTheme;
+    // }
 }
 
 export class App {

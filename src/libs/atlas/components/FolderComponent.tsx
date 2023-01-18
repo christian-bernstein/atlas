@@ -237,7 +237,8 @@ export class FolderComponent extends BC<FolderProps, any, any> {
 
     componentRender(p: FolderProps, s: any, l: any, t: Themeable.Theme, a: Assembly): JSX.Element | undefined {
         const pfID = p.data.parentFolder;
-        const parentFolder = pfID !== undefined ? AtlasMain.atlas().api().getFolder(pfID) : undefined;
+
+        const parentFolder = pfID !== undefined ? AtlasMain.atlas()?.api()?.getFolder(pfID) : undefined;
 
         return (
             <SettingsElement

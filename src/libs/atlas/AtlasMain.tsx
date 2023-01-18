@@ -75,8 +75,8 @@ export class AtlasMain extends BC<AtlasMainProps, any, AtlasMainLocalState> {
     private static atlasInstance: AtlasMain | undefined = undefined;
 
     public static atlas(consumer?: (atlas: AtlasMain) => void): AtlasMain {
-        consumer?.(this.atlasInstance as AtlasMain);
-        return this.atlasInstance as AtlasMain;
+        consumer?.(AtlasMain.atlasInstance as AtlasMain);
+        return AtlasMain.atlasInstance as AtlasMain;
     }
 
     constructor(props: AtlasMainProps) {
@@ -284,7 +284,8 @@ export class AtlasMain extends BC<AtlasMainProps, any, AtlasMainLocalState> {
 
     componentWillUnmount() {
         super.componentWillUnmount();
-        AtlasMain.atlasInstance = undefined;
+
+        // AtlasMain.atlasInstance = undefined;
     }
 
     // PUBLIC LOGIC
@@ -412,6 +413,10 @@ export class AtlasMain extends BC<AtlasMainProps, any, AtlasMainLocalState> {
     }
 
     public api(): IAtlasAPI {
+
+
+        console.debug("api", this.props.api)
+
         return this.props.api;
     }
 

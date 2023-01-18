@@ -8,16 +8,17 @@ import {utilizeGlobalTheme} from "./logic/app/App";
 import {getOr} from "./Utils";
 import {Assembly} from "./logic/assembly/Assembly";
 import {SwipeableDrawer} from "@mui/material";
-import {Screen} from "./components/base/Page";
-import {Centered} from "./components/base/PosInCenter";
-import {ObjectVisualMeaning} from "./logic/style/ObjectVisualMeaning";
-import {Text} from "./components/base/Text";
+// import {Screen} from "./components/base/Page";
+// import {Centered} from "./components/base/PosInCenter";
+// import {ObjectVisualMeaning} from "./logic/style/ObjectVisualMeaning";
+// import {Text} from "./components/base/Text";
 import {CoMuxProps} from "./components/props/CoMuxProps";
 import {MuxRenderer} from "./MuxRenderer";
 import {ComponentHelper} from "./ComponentHelper";
 
 // import {Redirect} from "react-router-dom";
 import {redirect} from "react-router-dom";
+import darkTritanopiaTheme = Themeable.darkTritanopiaTheme;
 
 export type BernieComponentConfig<T extends BernieComponent<any, any, any> = any> = {
     enableLocalDialog: boolean,
@@ -272,11 +273,12 @@ export class BernieComponent<
                     }
                 }} children={
                     this.renderLocalForegroundDialogGenerator === undefined ? (
-                        <Screen children={
-                            <Centered fullHeight children={
-                                <Text coloredText visualMeaning={ObjectVisualMeaning.ERROR} text={"Cannot render component-local foreground dialog"}/>
-                            }/>
-                        }/>
+                        <></>
+                        // <Screen children={
+                        //     <Centered fullHeight children={
+                        //         <Text coloredText visualMeaning={ObjectVisualMeaning.ERROR} text={"Cannot render component-local foreground dialog"}/>
+                        //     }/>
+                        // }/>
                     ) : (
                         this.renderLocalForegroundDialogGenerator(this)
                     )
@@ -323,7 +325,8 @@ export class BernieComponent<
                                 this.props,
                                 this.state,
                                 this.local.state,
-                                utilizeGlobalTheme(),
+                                // utilizeGlobalTheme(),
+                                darkTritanopiaTheme,
                                 this.assembly
                             )
                         )

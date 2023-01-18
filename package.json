@@ -2,6 +2,7 @@
   "name": "atlas",
   "version": "0.1.0",
   "private": true,
+  "homepage": "atlas",
   "dependencies": {
     "@codemirror/lang-javascript": "^6.1.2",
     "@dhaiwat10/react-link-preview": "^1.14.2",
@@ -36,6 +37,7 @@
     "rehype-raw": "^6.1.1",
     "rehype-sanitize": "^5.0.1",
     "remark-gfm": "^3.0.1",
+    "sass": "^1.57.1",
     "styled-components": "^5.3.6",
     "swiper-react": "^1.0.0",
     "typescript": "^4.9.4",

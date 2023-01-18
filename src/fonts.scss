@@ -1,0 +1,65 @@
+// OPERATOR MONO
+
+@font-face {
+  font-family: "OperatorMono";
+  src: url("assets/fonts/operatormono/OperatorMono-Bold.otf") format("opentype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "OperatorMono";
+  src: url("assets/fonts/operatormono/OperatorMono-BoldItalic.otf") format("opentype");
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "OperatorMono";
+  src: url("assets/fonts/operatormono/OperatorMono-Medium.otf") format("opentype");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "OperatorMono";
+  src: url("assets/fonts/operatormono/OperatorMono-MediumItalic.otf") format("opentype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "OperatorMono";
+  src: url("assets/fonts/operatormono/OperatorMono-Light.otf") format("opentype");
+  font-weight: 350;
+}
+
+// WHITNEY
+
+@font-face {
+  font-family: "Whitney";
+  src: url("assets/fonts/whitney/whitneymedium.otf") format("opentype");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Whitney";
+  src: url("assets/fonts/whitney/whitneybold.otf") format("opentype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Whitney";
+  src: url("assets/fonts/whitney/whitneylight.otf") format("opentype");
+  font-weight: 100;
+}
+
+// POPPINS
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap');
+
+// Rubik Mono One
+// CSS: font-family: 'Rubik Mono One', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap');
+
+// DM Serif Text
+// CSS: font-family: 'DM Serif Text', serif;
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap');

@@ -1,21 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import {BC} from "./libs/base/BernieComponent";
+import './fonts.scss';
+import {Driver, driver} from "./driver/Driver";
+import {DriverReactBridge} from "./driver/components/DriverReactBridge";
 
-// driver()
-// Driver.boot()
+driver()
+
+Driver.boot()
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-class Class extends BC<any, any, any> {}
-
 // <DriverReactBridge />
 root.render(
   <React.StrictMode>
-    Test
+      <DriverReactBridge />
   </React.StrictMode>
 );
 

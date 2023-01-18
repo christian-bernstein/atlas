@@ -2,6 +2,9 @@ import {Program} from "./Program";
 import {LocatableProgram} from "./LocatableProgram";
 import {AnalyticsManager} from "./AnalyticsManager";
 import React from "react";
+import {InDevAtlasAPI} from "../libs/atlas/api/InDevAtlasAPI";
+import {AtlasMain} from "../libs/atlas/AtlasMain";
+import {Screen} from "../libs/base/components/base/Page";
 
 export class Driver {
 
@@ -30,16 +33,18 @@ export class Driver {
             path: "/",
             exact: true,
             render: () => (
-                <>
-
-                </>
+                <Screen children={
+                    <AtlasMain api={new InDevAtlasAPI()}/>
+                }/>
             )
         });
 
         this.registerGlobal404Page({
             render: () => (
                 // TODO: Add 404 page
-                <>404</>
+                <Screen children={
+                    <AtlasMain api={new InDevAtlasAPI()}/>
+                }/>
             )
         });
     }

@@ -760,7 +760,7 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                             },
                                             error: (q, error) => {
                                                 return (
-                                                    <>error</>
+                                                    <>error {String(error?.object)}</>
                                                 );
                                             }
                                         }}/>
