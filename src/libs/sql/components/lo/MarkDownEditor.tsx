@@ -12,7 +12,6 @@ export type MarkDownEditorState = {
     value: string,
 }
 
-
 // todo solve rerender problem
 export class MarkDownEditor extends React.Component<MarkDownEditorProps, MarkDownEditorState> {
 
