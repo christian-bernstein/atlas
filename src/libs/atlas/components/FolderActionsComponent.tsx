@@ -6,7 +6,6 @@ import {StaticDrawerMenu} from "../../sql/components/lo/StaticDrawerMenu";
 import {Flex} from "../../sql/components/lo/FlexBox";
 import {DrawerHeader} from "../../sql/components/lo/DrawerHeader";
 import {VM} from "../../sql/logic/style/ObjectVisualMeaning";
-import {createMargin} from "../../sql/logic/style/Margin";
 import React from "react";
 import {SettingsGroup} from "../../sql/components/lo/SettingsGroup";
 import {SettingsElement} from "../../sql/components/ho/settingsElement/SettingsElement";
