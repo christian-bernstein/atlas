@@ -30,6 +30,9 @@ export type BernieComponentBaseProps<T> = T & CoMuxProps & {}
 
 export type GenericBC = BernieComponent<any, any, any>;
 
+/**
+ *
+ */
 export class BernieComponent<
     RProps,
     RState,
