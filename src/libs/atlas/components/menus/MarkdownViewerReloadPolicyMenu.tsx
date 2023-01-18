@@ -9,7 +9,7 @@ import {DrawerHeader} from "../../../sql/components/lo/DrawerHeader";
 import {Justify} from "../../../sql/logic/style/Justify";
 import {Align} from "../../../sql/logic/style/Align";
 import {Text, TextType} from "../../../sql/components/lo/Text";
-import {percent, px} from "../../../sql/logic/style/DimensionalMeasured";
+import {px} from "../../../sql/logic/style/DimensionalMeasured";
 import {Button} from "../../../sql/components/lo/Button";
 import {FlexDirection} from "../../../sql/logic/style/FlexDirection";
 import {createMargin} from "../../../sql/logic/style/Margin";
