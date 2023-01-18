@@ -25,7 +25,10 @@ import {If} from "../../sql/components/logic/If";
 
 import "swiper/swiper.scss";
 import "swiper/modules/pagination/pagination.scss";
-import {Swiper, SwiperSlide} from "swiper/react";
+
+// TODO: reactivate
+// import {Swiper, SwiperSlide} from "swiper/react";
+
 import {Icon} from "../../sql/components/lo/Icon";
 import {ReactComponent as AttachmentIcon} from "../../../assets/icons/ic-20/ic20-attachment.svg";
 import {ReactComponent as ActionIcon} from "../../../assets/icons/ic-20/ic20-more-ver.svg";
@@ -162,6 +165,9 @@ export class DocumentPreview extends BC<DocumentPreviewProps, any, any> {
                 <If condition={p.data.attachmentIDs !== undefined && p.data.attachmentIDs.length > 0} ifTrue={
                     <Flex gap={t.gaps.smallGab} fw>
                         <Text text={"Attachments"} uppercase bold type={TextType.secondaryDescription} fontSize={px(12)} align={Align.START}/>
+
+                        {/*
+                        TODO: reactivate
                         <Swiper style={{ width: "100%" }} spaceBetween={10} slidesPerView={1}>
                             {
                                 getOr(p.data.attachmentIDs, []).map(id => (
@@ -171,6 +177,7 @@ export class DocumentPreview extends BC<DocumentPreviewProps, any, any> {
                                 ))
                             }
                         </Swiper>
+                        */}
                     </Flex>
                 }/>,
 
