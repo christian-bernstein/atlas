@@ -22,7 +22,6 @@ import {Centered} from "../../sql/components/lo/PosInCenter";
 import {isMobile} from "react-device-detect";
 import {LiteGrid} from "../../sql/components/lo/LiteGrid";
 import {IPredicate} from "../api/IPredicate";
-import {DriveFileMoveRounded} from "@mui/icons-material";
 import {DrawerHeader} from "../../sql/components/lo/DrawerHeader";
 
 export type EntityMovePromptComponentProps = {
