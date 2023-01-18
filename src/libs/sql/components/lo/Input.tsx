@@ -1,4 +1,4 @@
-import "../../styles/components/Input.scss";
+// import "../../styles/components/Input.scss";
 import React, {ChangeEvent} from "react";
 import {v4} from "uuid";
 import {ObjectVisualMeaning} from "../../logic/style/ObjectVisualMeaning";
