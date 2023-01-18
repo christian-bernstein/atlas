@@ -1,9 +1,8 @@
 import {BC} from "../../sql/logic/BernieComponent";
 import {Assembly} from "../../sql/logic/assembly/Assembly";
 import {Themeable} from "../../sql/logic/style/Themeable";
-import {Box} from "../../sql/components/lo/Box";
 import {Flex} from "../../sql/components/lo/FlexBox";
-import {percent, px} from "../../sql/logic/style/DimensionalMeasured";
+import {px} from "../../sql/logic/style/DimensionalMeasured";
 import {Align} from "../../sql/logic/style/Align";
 import {Justify} from "../../sql/logic/style/Justify";
 import React from "react";
