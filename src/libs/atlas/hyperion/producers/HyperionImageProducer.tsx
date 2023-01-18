@@ -1,28 +1,28 @@
 import {BC} from "../../../base/BernieComponent";
-import {Themeable} from "../../../sql/logic/style/Themeable";
-import {Assembly} from "../../../sql/logic/assembly/Assembly";
-import {Box} from "../../../sql/components/base/Box";
-import {Flex, FlexRow} from "../../../sql/components/base/FlexBox";
-import {percent, px} from "../../../sql/logic/style/DimensionalMeasured";
-import {Q, Queryable} from "../../../sql/logic/query/Queryable";
+import {Themeable} from "../../../base/logic/style/Themeable";
+import {Assembly} from "../../../base/logic/assembly/Assembly";
+import {Box} from "../../../base/components/base/Box";
+import {Flex, FlexRow} from "../../../base/components/base/FlexBox";
+import {percent, px} from "../../../base/logic/style/DimensionalMeasured";
+import {Q, Queryable} from "../../../base/logic/query/Queryable";
 import {Optional} from "../../../base/Optional";
 import {HyperionStorableEntry} from "../HyperionStorableEntry";
 import {HyperionAPI} from "../HyperionAPI";
 import {HyperionIndexedDBStreamAdapter} from "../HyperionIndexedDBStreamAdapter";
-import {Description} from "../../../sql/components/base/Description";
-import {QueryDisplay} from "../../../sql/components/logic/QueryDisplay";
-import {QueryError} from "../../../sql/logic/query/QueryError";
+import {Description} from "../../../base/components/base/Description";
+import {QueryDisplay} from "../../../base/components/logic/QueryDisplay";
+import {QueryError} from "../../../base/logic/query/QueryError";
 import {v4} from "uuid";
-import {FileInput} from "../../../sql/components/base/fileInput/FileInput";
-import {Form} from "../../../sql/components/Form";
+import {FileInput} from "../../../base/components/base/fileInput/FileInput";
+import {Form} from "../../../base/components/Form";
 import {HyperionImage} from "../datatypes/HyperionImage";
 import {ImageRenderingMode} from "../datatypes/ImageRenderingMode";
 import {ImagePosition} from "../datatypes/ImagePosition";
-import {FormTransactionType} from "../../../sql/components/FormTransactionType";
-import {EnumSelector} from "../../../sql/components/logic/EnumSelector";
-import {SettingsElement} from "../../../sql/components/base/SettingsElement";
-import {HOCWrapper} from "../../../sql/components/HOCWrapper";
-import {createMargin} from "../../../sql/logic/style/Margin";
+import {FormTransactionType} from "../../../base/components/FormTransactionType";
+import {EnumSelector} from "../../../base/components/logic/EnumSelector";
+import {SettingsElement} from "../../../base/components/base/SettingsElement";
+import {HOCWrapper} from "../../../base/components/HOCWrapper";
+import {createMargin} from "../../../base/logic/style/Margin";
 import {
     CameraRounded,
     ColorLensRounded,
@@ -32,25 +32,25 @@ import {
     SettingsInputCompositeRounded
 } from "@mui/icons-material";
 import {ImageFit} from "../datatypes/ImageFit";
-import {AnomalyInfo} from "../../../sql/components/base/AnomalyInfo";
-import {Centered} from "../../../sql/components/base/PosInCenter";
-import {AF} from "../../../sql/components/logic/ArrayFragment";
-import {VM} from "../../../sql/logic/style/ObjectVisualMeaning";
-import {OverflowBehaviour} from "../../../sql/logic/style/OverflowBehaviour";
-import {Text} from "../../../sql/components/base/Text";
-import {Separator} from "../../../sql/components/base/Separator";
-import {Orientation} from "../../../sql/logic/style/Orientation";
-import {SettingsGroup} from "../../../sql/components/base/SettingsGroup";
-import {StaticDrawerMenu} from "../../../sql/components/base/StaticDrawerMenu";
+import {AnomalyInfo} from "../../../base/components/base/AnomalyInfo";
+import {Centered} from "../../../base/components/base/PosInCenter";
+import {AF} from "../../../base/components/logic/ArrayFragment";
+import {VM} from "../../../base/logic/style/ObjectVisualMeaning";
+import {OverflowBehaviour} from "../../../base/logic/style/OverflowBehaviour";
+import {Text} from "../../../base/components/base/Text";
+import {Separator} from "../../../base/components/base/Separator";
+import {Orientation} from "../../../base/logic/style/Orientation";
+import {SettingsGroup} from "../../../base/components/base/SettingsGroup";
+import {StaticDrawerMenu} from "../../../base/components/base/StaticDrawerMenu";
 import {Slider} from "@mui/material";
-import {Button} from "../../../sql/components/base/Button";
-import {Color} from "../../../sql/logic/style/Color";
-import {DrawerHeader} from "../../../sql/components/base/DrawerHeader";
-import {Icon} from "../../../sql/components/base/Icon";
-import {Align} from "../../../sql/logic/style/Align";
-import {Tooltip} from "../../../sql/components/base/Tooltip";
+import {Button} from "../../../base/components/base/Button";
+import {Color} from "../../../base/logic/style/Color";
+import {DrawerHeader} from "../../../base/components/base/DrawerHeader";
+import {Icon} from "../../../base/components/base/Icon";
+import {Align} from "../../../base/logic/style/Align";
+import {Tooltip} from "../../../base/components/base/Tooltip";
 import {UpstreamTransactionType} from "../UpstreamTransactionType";
-import {If} from "../../../sql/components/logic/If";
+import {If} from "../../../base/components/logic/If";
 
 export type HyperionImageProducerProps = {
     hyperionEntryID: string,

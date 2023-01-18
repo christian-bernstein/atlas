@@ -1,7 +1,7 @@
 import {MuxRenderer} from "./MuxRenderer";
 import {BC} from "./BernieComponent";
-import {Themeable} from "../sql/logic/style/Themeable";
-import {utilizeGlobalTheme} from "../sql/logic/app/App";
+import {Themeable} from "./logic/style/Themeable";
+import {utilizeGlobalTheme} from "./logic/app/App";
 
 /*export function mux<T extends BC<any, any, any>>(
     component: string,

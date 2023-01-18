@@ -1,0 +1,89 @@
+import {BernieComponent} from "../../../BernieComponent";
+import {ObjectVisualMeaning} from "../../../logic/style/ObjectVisualMeaning";
+import {getOr} from "../../../Utils";
+import {Box} from "../Box";
+import {Cursor} from "../../../logic/style/Cursor";
+import {Centered} from "../PosInCenter";
+import {Text} from "../Text";
+import {Separator} from "../Separator";
+import {Togglable} from "../../logic/Togglable";
+import React from "react";
+import {Themeable} from "../../../logic/style/Themeable";
+import {Assembly} from "../../../logic/assembly/Assembly";
+import {WithVisualMeaning} from "../../../logic/style/WithVisualMeaning";
+import {CockpitButtonType} from "./CockpitButtonType";
+
+export type CockpitButtonProps = WithVisualMeaning & {
+    initialActiveState: boolean,
+    onActiveChange: (props: CockpitButtonProps, active: boolean) => void,
+    title: string,
+    value: string,
+    valueFactory?: (instance: CockpitButton) => string,
+    variant: CockpitButtonType,
+    multiColorMode: boolean
+}
+
+export type CockpitButtonPropsPartial = Partial<CockpitButtonProps>;
+
+export class CockpitButton extends BernieComponent<CockpitButtonPropsPartial, any, any> {
+
+    private static readonly default: CockpitButtonProps = {
+        visualMeaning: ObjectVisualMeaning.UI_NO_HIGHLIGHT,
+        variant: CockpitButtonType.KEY_VAL,
+        onActiveChange: () => {},
+        initialActiveState: false,
+        title: "",
+        value: "",
+        multiColorMode: true
+    }
+
+    constructor(props: CockpitButtonPropsPartial) {
+        super({...CockpitButton.default, ...props}, undefined, undefined);
+    }
+
+    init() {
+        super.init();
+        this.assembly.assembly(CockpitButtonType.KEY_VAL, (theme, props) => {
+            const p: CockpitButtonProps = this.props as CockpitButtonProps;
+            return (
+                <Togglable initialActiveState={p.initialActiveState} onChange={active => getOr(p.onActiveChange, CockpitButton.default.onActiveChange)(p, active)} active={
+                    (() => {
+                        const vm: ObjectVisualMeaning = p.multiColorMode ? getOr(p.visualMeaning, ObjectVisualMeaning.INFO) : ObjectVisualMeaning.INFO;
+                        return (
+                            <Box noPadding highlight cursor={Cursor.pointer} visualMeaning={vm} opaque={!p.multiColorMode}>
+                                <Centered fullHeight>
+                                    <Text text={`**${p.title}**`} uppercase cursor={Cursor.pointer} visualMeaning={vm} coloredText={false}/>
+                                </Centered>
+                                <Separator visualMeaning={vm}/>
+                                <Centered fullHeight>
+                                    <Text text={`${p.valueFactory ? p.valueFactory(this) : p.value}`} uppercase cursor={Cursor.pointer}/>
+                                </Centered>
+                            </Box>
+                        );
+                    })()
+                } inactive={
+                    (() => {
+                        const vm: ObjectVisualMeaning = p.multiColorMode ? getOr(p.visualMeaning, ObjectVisualMeaning.UI_NO_HIGHLIGHT) : ObjectVisualMeaning.UI_NO_HIGHLIGHT;
+                        return (
+                            <Box noPadding highlight cursor={Cursor.pointer} visualMeaning={vm} opaque={true}>
+                                <Centered fullHeight>
+                                    <Text text={`**${p.title}**`} uppercase cursor={Cursor.pointer} visualMeaning={vm} coloredText/>
+                                </Centered>
+                                <Separator visualMeaning={vm}/>
+                                <Centered fullHeight>
+                                    <Text text={`${p.valueFactory ? p.valueFactory(this) : p.value}`} uppercase cursor={Cursor.pointer}/>
+                                </Centered>
+                            </Box>
+                        );
+                    })()
+                }/>
+            );
+        });
+    }
+
+    componentRender(p: CockpitButtonProps, s: any, l: any, t: Themeable.Theme, a: Assembly): JSX.Element | undefined {
+        return this.assembly.render({
+            component: this.props.variant as string
+        });
+    }
+}

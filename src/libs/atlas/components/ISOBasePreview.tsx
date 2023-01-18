@@ -1,15 +1,15 @@
 import {BC} from "../../base/BernieComponent";
 import {ISOBase} from "../iso/ISOBase";
-import {Assembly} from "../../sql/logic/assembly/Assembly";
-import {Themeable} from "../../sql/logic/style/Themeable";
-import {Box} from "../../sql/components/base/Box";
-import {percent, px} from "../../sql/logic/style/DimensionalMeasured";
-import {Flex, FlexRow} from "../../sql/components/base/FlexBox";
-import {DrawerHeader} from "../../sql/components/base/DrawerHeader";
-import {VM} from "../../sql/logic/style/ObjectVisualMeaning";
-import {Text, TextType} from "../../sql/components/base/Text";
-import {Tooltip} from "../../sql/components/base/Tooltip";
-import {Icon} from "../../sql/components/base/Icon";
+import {Assembly} from "../../base/logic/assembly/Assembly";
+import {Themeable} from "../../base/logic/style/Themeable";
+import {Box} from "../../base/components/base/Box";
+import {percent, px} from "../../base/logic/style/DimensionalMeasured";
+import {Flex, FlexRow} from "../../base/components/base/FlexBox";
+import {DrawerHeader} from "../../base/components/base/DrawerHeader";
+import {VM} from "../../base/logic/style/ObjectVisualMeaning";
+import {Text, TextType} from "../../base/components/base/Text";
+import {Tooltip} from "../../base/components/base/Tooltip";
+import {Icon} from "../../base/components/base/Icon";
 import {ReactComponent as FolderIcon} from "../../../assets/icons/ic-20/ic20-folder.svg";
 import {ReactComponent as CategoryIcon} from "../../../assets/icons/ic-20/ic20-list-bullet.svg";
 import {
@@ -18,8 +18,8 @@ import {
     SimCardRounded
 } from "@mui/icons-material";
 import moment from "moment";
-import {SettingsGroup} from "../../sql/components/base/SettingsGroup";
-import {SettingsElement} from "../../sql/components/base/SettingsElement";
+import {SettingsGroup} from "../../base/components/base/SettingsGroup";
+import {SettingsElement} from "../../base/components/base/SettingsElement";
 import {ISOV1Data} from "../iso/v1/ISOV1Data";
 
 export type ISOBasePreviewProps = {

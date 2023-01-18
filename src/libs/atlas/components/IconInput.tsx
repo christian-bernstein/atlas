@@ -1,24 +1,24 @@
 import {BC} from "../../base/BernieComponent";
-import {Assembly} from "../../sql/logic/assembly/Assembly";
-import {Themeable} from "../../sql/logic/style/Themeable";
+import {Assembly} from "../../base/logic/assembly/Assembly";
+import {Themeable} from "../../base/logic/style/Themeable";
 import {FormDataHub} from "../../base/FormDataHub";
 import {IconConfig} from "../data/IconConfig";
 import {getOr} from "../../base/Utils";
 import {v4} from "uuid";
 import {FormElement} from "../../base/FormElement";
-import {Group} from "../../sql/components/base/Group";
-import {percent, px} from "../../sql/logic/style/DimensionalMeasured";
-import {Orientation} from "../../sql/logic/style/Orientation";
-import {Button} from "../../sql/components/base/Button";
-import {Flex} from "../../sql/components/base/FlexBox";
-import {Align} from "../../sql/logic/style/Align";
-import {Justify} from "../../sql/logic/style/Justify";
-import {Tooltip} from "../../sql/components/base/Tooltip";
-import {Icon} from "../../sql/components/base/Icon";
+import {Group} from "../../base/components/base/Group";
+import {percent, px} from "../../base/logic/style/DimensionalMeasured";
+import {Orientation} from "../../base/logic/style/Orientation";
+import {Button} from "../../base/components/base/Button";
+import {Flex} from "../../base/components/base/FlexBox";
+import {Align} from "../../base/logic/style/Align";
+import {Justify} from "../../base/logic/style/Justify";
+import {Tooltip} from "../../base/components/base/Tooltip";
+import {Icon} from "../../base/components/base/Icon";
 import {ReactComponent as EditIcon} from "../../../assets/icons/ic-20/ic20-edit.svg";
-import {StaticDrawerMenu} from "../../sql/components/base/StaticDrawerMenu";
+import {StaticDrawerMenu} from "../../base/components/base/StaticDrawerMenu";
 import React from "react";
-import {DrawerHeader} from "../../sql/components/base/DrawerHeader";
+import {DrawerHeader} from "../../base/components/base/DrawerHeader";
 
 export type IconInputProps = {
     id: string

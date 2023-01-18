@@ -1,40 +1,40 @@
 import {BC} from "../../base/BernieComponent";
 import {AtlasDocument} from "../data/AtlasDocument";
-import {Themeable} from "../../sql/logic/style/Themeable";
-import {Assembly} from "../../sql/logic/assembly/Assembly";
-import {Flex} from "../../sql/components/base/FlexBox";
-import {DrawerHeader} from "../../sql/components/base/DrawerHeader";
-import {VM} from "../../sql/logic/style/ObjectVisualMeaning";
-import {percent, px} from "../../sql/logic/style/DimensionalMeasured";
-import {Button} from "../../sql/components/base/Button";
+import {Themeable} from "../../base/logic/style/Themeable";
+import {Assembly} from "../../base/logic/assembly/Assembly";
+import {Flex} from "../../base/components/base/FlexBox";
+import {DrawerHeader} from "../../base/components/base/DrawerHeader";
+import {VM} from "../../base/logic/style/ObjectVisualMeaning";
+import {percent, px} from "../../base/logic/style/DimensionalMeasured";
+import {Button} from "../../base/components/base/Button";
 import React from "react";
-import {StaticDrawerMenu} from "../../sql/components/base/StaticDrawerMenu";
+import {StaticDrawerMenu} from "../../base/components/base/StaticDrawerMenu";
 import {v4} from "uuid";
-import {Input} from "../../sql/components/base/Input";
+import {Input} from "../../base/components/base/Input";
 import {AtlasMain} from "../AtlasMain";
 import {getOr} from "../../base/Utils";
-import {FlexWrap} from "../../sql/logic/style/FlexWrap";
-import {FlexDirection} from "../../sql/logic/style/FlexDirection";
-import {Align} from "../../sql/logic/style/Align";
-import {Justify} from "../../sql/logic/style/Justify";
-import {Box} from "../../sql/components/base/Box";
-import {Cursor} from "../../sql/logic/style/Cursor";
-import {Text, TextType} from "../../sql/components/base/Text";
-import {If} from "../../sql/components/logic/If";
+import {FlexWrap} from "../../base/logic/style/FlexWrap";
+import {FlexDirection} from "../../base/logic/style/FlexDirection";
+import {Align} from "../../base/logic/style/Align";
+import {Justify} from "../../base/logic/style/Justify";
+import {Box} from "../../base/components/base/Box";
+import {Cursor} from "../../base/logic/style/Cursor";
+import {Text, TextType} from "../../base/components/base/Text";
+import {If} from "../../base/components/logic/If";
 
 // TODO: reactivate
 // import "swiper/swiper.scss";
 // import "swiper/modules/pagination/pagination.scss";
 // import {Swiper, SwiperSlide} from "swiper/react";
 
-import {Icon} from "../../sql/components/base/Icon";
+import {Icon} from "../../base/components/base/Icon";
 import {ReactComponent as AttachmentIcon} from "../../../assets/icons/ic-20/ic20-attachment.svg";
 import {ReactComponent as ActionIcon} from "../../../assets/icons/ic-20/ic20-more-ver.svg";
-import {SettingsElement} from "../../sql/components/base/SettingsElement";
-import {SettingsGroup} from "../../sql/components/base/SettingsGroup";
+import {SettingsElement} from "../../base/components/base/SettingsElement";
+import {SettingsGroup} from "../../base/components/base/SettingsGroup";
 import {Folder} from "../data/Folder";
 import {DocumentEditDialog} from "./DocumentEditDialog";
-import {HOCWrapper} from "../../sql/components/HOCWrapper";
+import {HOCWrapper} from "../../base/components/HOCWrapper";
 
 export type DocumentPreviewProps = {
     data: AtlasDocument

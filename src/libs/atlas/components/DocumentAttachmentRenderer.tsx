@@ -1,27 +1,27 @@
 import {BC} from "../../base/BernieComponent";
-import {Assembly} from "../../sql/logic/assembly/Assembly";
-import {Themeable} from "../../sql/logic/style/Themeable";
-import {Q, Queryable} from "../../sql/logic/query/Queryable";
+import {Assembly} from "../../base/logic/assembly/Assembly";
+import {Themeable} from "../../base/logic/style/Themeable";
+import {Q, Queryable} from "../../base/logic/query/Queryable";
 import {DBDocumentAttachment} from "../data/DBDocumentAttachment";
 import {AtlasMain} from "../AtlasMain";
-import {QueryDisplay} from "../../sql/components/logic/QueryDisplay";
-import {QueryError} from "../../sql/logic/query/QueryError";
-import {Flex, FlexBox} from "../../sql/components/base/FlexBox";
-import {Icon} from "../../sql/components/base/Icon";
+import {QueryDisplay} from "../../base/components/logic/QueryDisplay";
+import {QueryError} from "../../base/logic/query/QueryError";
+import {Flex, FlexBox} from "../../base/components/base/FlexBox";
+import {Icon} from "../../base/components/base/Icon";
 import {ReactComponent as AttachmentIcon} from "../../../assets/icons/ic-20/ic20-attachment.svg";
-import {Button} from "../../sql/components/base/Button";
+import {Button} from "../../base/components/base/Button";
 import React from "react";
-import {ObjectVisualMeaning} from "../../sql/logic/style/ObjectVisualMeaning";
-import {StaticDrawerMenu} from "../../sql/components/base/StaticDrawerMenu";
-import {Screen} from "../../sql/components/base/Page";
-import {Box} from "../../sql/components/base/Box";
-import {percent} from "../../sql/logic/style/DimensionalMeasured";
-import {Align} from "../../sql/logic/style/Align";
-import {Justify} from "../../sql/logic/style/Justify";
-import {AnomalyInfo} from "../../sql/components/base/AnomalyInfo";
-import {OverflowBehaviour} from "../../sql/logic/style/OverflowBehaviour";
+import {ObjectVisualMeaning} from "../../base/logic/style/ObjectVisualMeaning";
+import {StaticDrawerMenu} from "../../base/components/base/StaticDrawerMenu";
+import {Screen} from "../../base/components/base/Page";
+import {Box} from "../../base/components/base/Box";
+import {percent} from "../../base/logic/style/DimensionalMeasured";
+import {Align} from "../../base/logic/style/Align";
+import {Justify} from "../../base/logic/style/Justify";
+import {AnomalyInfo} from "../../base/components/base/AnomalyInfo";
+import {OverflowBehaviour} from "../../base/logic/style/OverflowBehaviour";
 import {PuffLoader} from "react-spinners";
-import {Text} from "../../sql/components/base/Text";
+import {Text} from "../../base/components/base/Text";
 
 export type DocumentAttachmentRendererProps = {
     attachmentID: string,

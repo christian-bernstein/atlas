@@ -1,4 +1,4 @@
-import {VM} from "../sql/logic/style/ObjectVisualMeaning";
+import {VM} from "./logic/style/ObjectVisualMeaning";
 import {BC} from "./BernieComponent";
 
 export enum ConfirmationType {

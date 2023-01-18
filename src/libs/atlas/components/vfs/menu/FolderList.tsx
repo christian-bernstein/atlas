@@ -1,28 +1,28 @@
 import {BernieComponent} from "../../../../base/BernieComponent";
-import {Assembly} from "../../../../sql/logic/assembly/Assembly";
-import {Themeable} from "../../../../sql/logic/style/Themeable";
+import {Assembly} from "../../../../base/logic/assembly/Assembly";
+import {Themeable} from "../../../../base/logic/style/Themeable";
 import {Folder} from "../../../data/Folder";
 import {AtlasMain} from "../../../AtlasMain";
-import {Flex} from "../../../../sql/components/base/FlexBox";
-import {FlexDirection} from "../../../../sql/logic/style/FlexDirection";
-import {Align} from "../../../../sql/logic/style/Align";
-import {Justify} from "../../../../sql/logic/style/Justify";
-import {Text, TextType} from "../../../../sql/components/base/Text";
-import {Dot} from "../../../../sql/components/base/Dot";
-import {Tooltip} from "../../../../sql/components/base/Tooltip";
-import {Icon} from "../../../../sql/components/base/Icon";
+import {Flex} from "../../../../base/components/base/FlexBox";
+import {FlexDirection} from "../../../../base/logic/style/FlexDirection";
+import {Align} from "../../../../base/logic/style/Align";
+import {Justify} from "../../../../base/logic/style/Justify";
+import {Text, TextType} from "../../../../base/components/base/Text";
+import {Dot} from "../../../../base/components/base/Dot";
+import {Tooltip} from "../../../../base/components/base/Tooltip";
+import {Icon} from "../../../../base/components/base/Icon";
 import {ReactComponent as CreateIcon} from "../../../../../assets/icons/ic-20/ic20-edit.svg";
-import {percent, px} from "../../../../sql/logic/style/DimensionalMeasured";
-import {SettingsGroup} from "../../../../sql/components/base/SettingsGroup";
+import {percent, px} from "../../../../base/logic/style/DimensionalMeasured";
+import {SettingsGroup} from "../../../../base/components/base/SettingsGroup";
 import {FolderComponent} from "../../FolderComponent";
-import {createMargin} from "../../../../sql/logic/style/Margin";
-import {Cursor} from "../../../../sql/logic/style/Cursor";
-import {VM} from "../../../../sql/logic/style/ObjectVisualMeaning";
+import {createMargin} from "../../../../base/logic/style/Margin";
+import {Cursor} from "../../../../base/logic/style/Cursor";
+import {VM} from "../../../../base/logic/style/ObjectVisualMeaning";
 import React from "react";
 import {VFSFolderView} from "../../VFSFolderView";
-import {InformationBox} from "../../../../sql/components/base/InformationBox";
-import {Description} from "../../../../sql/components/base/Description";
-import {AF} from "../../../../sql/components/logic/ArrayFragment";
+import {InformationBox} from "../../../../base/components/base/InformationBox";
+import {Description} from "../../../../base/components/base/Description";
+import {AF} from "../../../../base/components/logic/ArrayFragment";
 
 export type FolderListProps = {
     folders: Array<Folder>

@@ -1,15 +1,15 @@
 import {BC} from "../../base/BernieComponent";
-import {Themeable} from "../../sql/logic/style/Themeable";
-import {Assembly} from "../../sql/logic/assembly/Assembly";
-import {Flex} from "../../sql/components/base/FlexBox";
-import {DrawerHeader} from "../../sql/components/base/DrawerHeader";
-import {VM} from "../../sql/logic/style/ObjectVisualMeaning";
-import {createMargin} from "../../sql/logic/style/Margin";
+import {Themeable} from "../../base/logic/style/Themeable";
+import {Assembly} from "../../base/logic/assembly/Assembly";
+import {Flex} from "../../base/components/base/FlexBox";
+import {DrawerHeader} from "../../base/components/base/DrawerHeader";
+import {VM} from "../../base/logic/style/ObjectVisualMeaning";
+import {createMargin} from "../../base/logic/style/Margin";
 import React from "react";
-import {Color} from "../../sql/logic/style/Color";
-import {ColorSelector} from "../../sql/components/base/colorSelector/ColorSelector";
-import {percent} from "../../sql/logic/style/DimensionalMeasured";
-import {appleSystem} from "../../sql/components/base/colorSelector/ColorSelectorDefaultPalettes";
+import {Color} from "../../base/logic/style/Color";
+import {ColorSelector} from "../../base/components/base/colorSelector/ColorSelector";
+import {percent} from "../../base/logic/style/DimensionalMeasured";
+import {appleSystem} from "../../base/components/base/colorSelector/ColorSelectorDefaultPalettes";
 
 export type ColorSelectorDialogProps = {
     onSubmit: (hex: string) => void,

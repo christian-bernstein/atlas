@@ -1,22 +1,22 @@
 import {BC} from "../../base/BernieComponent";
 import {Folder} from "../data/Folder";
 import {FormDataHub} from "../../base/FormDataHub";
-import {Assembly} from "../../sql/logic/assembly/Assembly";
-import {Themeable} from "../../sql/logic/style/Themeable";
+import {Assembly} from "../../base/logic/assembly/Assembly";
+import {Themeable} from "../../base/logic/style/Themeable";
 import {Category} from "../data/Category";
-import {Flex} from "../../sql/components/base/FlexBox";
-import {DrawerHeader} from "../../sql/components/base/DrawerHeader";
-import {VM} from "../../sql/logic/style/ObjectVisualMeaning";
-import {percent, px} from "../../sql/logic/style/DimensionalMeasured";
-import {Button} from "../../sql/components/base/Button";
-import {Screen} from "../../sql/components/base/Page";
+import {Flex} from "../../base/components/base/FlexBox";
+import {DrawerHeader} from "../../base/components/base/DrawerHeader";
+import {VM} from "../../base/logic/style/ObjectVisualMeaning";
+import {percent, px} from "../../base/logic/style/DimensionalMeasured";
+import {Button} from "../../base/components/base/Button";
+import {Screen} from "../../base/components/base/Page";
 import React from "react";
 import {v4} from "uuid";
 import {BaseEntitySetupComponent} from "./BaseEntitySetupComponent";
-import {OverflowWithHeader} from "../../sql/components/base/OverflowWithHeader";
-import {FlexDirection} from "../../sql/logic/style/FlexDirection";
-import {LiteGrid} from "../../sql/components/base/LiteGrid";
-import {AF} from "../../sql/components/logic/ArrayFragment";
+import {OverflowWithHeader} from "../../base/components/base/OverflowWithHeader";
+import {FlexDirection} from "../../base/logic/style/FlexDirection";
+import {LiteGrid} from "../../base/components/base/LiteGrid";
+import {AF} from "../../base/components/logic/ArrayFragment";
 
 interface CategorySetupDialogActions {
     onSubmit(category: Category): boolean;

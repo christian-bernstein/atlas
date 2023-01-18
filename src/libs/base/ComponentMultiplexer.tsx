@@ -1,6 +1,6 @@
 import {BernieComponent, BernieComponentBaseProps} from "./BernieComponent";
-import {Assembly} from "../sql/logic/assembly/Assembly";
-import {Themeable} from "../sql/logic/style/Themeable";
+import {Assembly} from "./logic/assembly/Assembly";
+import {Themeable} from "./logic/style/Themeable";
 
 export class ComponentMultiplexer<P, S, L extends object> extends BernieComponent<P, S, L> {
     constructor(props: BernieComponentBaseProps<P>, state: S, localState: L, renderers: Map<string, () => JSX.Element>) {

@@ -1,20 +1,20 @@
 import {BC} from "../../../base/BernieComponent";
 import {CommandHighlightMode} from "../CommandHighlightMode";
-import {Assembly} from "../../../sql/logic/assembly/Assembly";
-import {Themeable} from "../../../sql/logic/style/Themeable";
-import {Flex, FlexRow} from "../../../sql/components/base/FlexBox";
-import {px} from "../../../sql/logic/style/DimensionalMeasured";
-import {Justify} from "../../../sql/logic/style/Justify";
-import {FlexDirection} from "../../../sql/logic/style/FlexDirection";
-import {Text, TextType} from "../../../sql/components/base/Text";
-import {Box} from "../../../sql/components/base/Box";
-import {Color} from "../../../sql/logic/style/Color";
+import {Assembly} from "../../../base/logic/assembly/Assembly";
+import {Themeable} from "../../../base/logic/style/Themeable";
+import {Flex, FlexRow} from "../../../base/components/base/FlexBox";
+import {px} from "../../../base/logic/style/DimensionalMeasured";
+import {Justify} from "../../../base/logic/style/Justify";
+import {FlexDirection} from "../../../base/logic/style/FlexDirection";
+import {Text, TextType} from "../../../base/components/base/Text";
+import {Box} from "../../../base/components/base/Box";
+import {Color} from "../../../base/logic/style/Color";
 import React from "react";
 import {GloriaCommandDefinition} from "../GloriaCommandDefinition";
 import {Gloria} from "../Gloria";
-import {Align} from "../../../sql/logic/style/Align";
-import {Badge} from "../../../sql/components/base/Badge";
-import {VM} from "../../../sql/logic/style/ObjectVisualMeaning";
+import {Align} from "../../../base/logic/style/Align";
+import {Badge} from "../../../base/components/base/Badge";
+import {VM} from "../../../base/logic/style/ObjectVisualMeaning";
 
 export type CommandSelectorProps = {
     gloria: Gloria,

@@ -1,17 +1,17 @@
 import {BC} from "../../base/BernieComponent";
-import {Assembly} from "../../sql/logic/assembly/Assembly";
-import {Themeable} from "../../sql/logic/style/Themeable";
-import {Flex} from "../../sql/components/base/FlexBox";
-import {px} from "../../sql/logic/style/DimensionalMeasured";
-import {Align} from "../../sql/logic/style/Align";
-import {Justify} from "../../sql/logic/style/Justify";
+import {Assembly} from "../../base/logic/assembly/Assembly";
+import {Themeable} from "../../base/logic/style/Themeable";
+import {Flex} from "../../base/components/base/FlexBox";
+import {px} from "../../base/logic/style/DimensionalMeasured";
+import {Align} from "../../base/logic/style/Align";
+import {Justify} from "../../base/logic/style/Justify";
 import React from "react";
-import {Text, TextType} from "../../sql/components/base/Text";
-import {SingleLinearProgress} from "../../sql/components/base/SingleLinearProgress";
-import {VM} from "../../sql/logic/style/ObjectVisualMeaning";
+import {Text, TextType} from "../../base/components/base/Text";
+import {SingleLinearProgress} from "../../base/components/base/SingleLinearProgress";
+import {VM} from "../../base/logic/style/ObjectVisualMeaning";
 import {Utils} from "../../base/Utils";
-import {StaticDrawerMenu} from "../../sql/components/base/StaticDrawerMenu";
-import {DrawerHeader} from "../../sql/components/base/DrawerHeader";
+import {StaticDrawerMenu} from "../../base/components/base/StaticDrawerMenu";
+import {DrawerHeader} from "../../base/components/base/DrawerHeader";
 
 export type StorageQuotaDialogLocalState = {
     se?: StorageEstimate

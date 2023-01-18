@@ -1,18 +1,18 @@
 import {BC} from "../../base/BernieComponent";
 import {Folder} from "../data/Folder";
-import {Flex, FlexBox} from "../../sql/components/base/FlexBox";
-import {Assembly} from "../../sql/logic/assembly/Assembly";
-import {Themeable} from "../../sql/logic/style/Themeable";
-import {Screen} from "../../sql/components/base/Page";
-import {DrawerHeader} from "../../sql/components/base/DrawerHeader";
-import {VM} from "../../sql/logic/style/ObjectVisualMeaning";
+import {Flex, FlexBox} from "../../base/components/base/FlexBox";
+import {Assembly} from "../../base/logic/assembly/Assembly";
+import {Themeable} from "../../base/logic/style/Themeable";
+import {Screen} from "../../base/components/base/Page";
+import {DrawerHeader} from "../../base/components/base/DrawerHeader";
+import {VM} from "../../base/logic/style/ObjectVisualMeaning";
 import {FormDataHub} from "../../base/FormDataHub";
 import React from "react";
-import {DimensionalMeasured, percent, px} from "../../sql/logic/style/DimensionalMeasured";
-import {Button} from "../../sql/components/base/Button";
+import {DimensionalMeasured, percent, px} from "../../base/logic/style/DimensionalMeasured";
+import {Button} from "../../base/components/base/Button";
 import {v4} from "uuid";
-import {Dimension} from "../../sql/logic/style/Dimension";
-import {AF} from "../../sql/components/logic/ArrayFragment";
+import {Dimension} from "../../base/logic/style/Dimension";
+import {AF} from "../../base/components/logic/ArrayFragment";
 import {BaseEntitySetupComponent} from "./BaseEntitySetupComponent";
 
 interface FolderSetupDialogActions {

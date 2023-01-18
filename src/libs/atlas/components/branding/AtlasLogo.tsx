@@ -1,8 +1,8 @@
 import {BC} from "../../../base/BernieComponent";
-import {Assembly} from "../../../sql/logic/assembly/Assembly";
-import {Themeable} from "../../../sql/logic/style/Themeable";
+import {Assembly} from "../../../base/logic/assembly/Assembly";
+import {Themeable} from "../../../base/logic/style/Themeable";
 import full from "../../assets/images/logos/atlas-logo-full.png";
-import {auto, DimensionalMeasured} from "../../../sql/logic/style/DimensionalMeasured";
+import {auto, DimensionalMeasured} from "../../../base/logic/style/DimensionalMeasured";
 
 export enum AtlasLogoVariation {
     ICON, TEXT, FULL

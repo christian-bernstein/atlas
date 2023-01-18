@@ -1,14 +1,14 @@
 import {BC} from "../../base/BernieComponent";
-import {SettingsElement} from "../../sql/components/base/SettingsElement";
-import {Assembly} from "../../sql/logic/assembly/Assembly";
-import {Themeable} from "../../sql/logic/style/Themeable";
-import {FlexRow} from "../../sql/components/base/FlexBox";
-import {Text} from "../../sql/components/base/Text";
-import {ObjectVisualMeaning, VM} from "../../sql/logic/style/ObjectVisualMeaning";
-import {px} from "../../sql/logic/style/DimensionalMeasured";
+import {SettingsElement} from "../../base/components/base/SettingsElement";
+import {Assembly} from "../../base/logic/assembly/Assembly";
+import {Themeable} from "../../base/logic/style/Themeable";
+import {FlexRow} from "../../base/components/base/FlexBox";
+import {Text} from "../../base/components/base/Text";
+import {ObjectVisualMeaning, VM} from "../../base/logic/style/ObjectVisualMeaning";
+import {px} from "../../base/logic/style/DimensionalMeasured";
 import {ReactComponent as ErrorIcon} from "../../../assets/icons/ic-20/ic20-warning.svg";
-import {AnomalyInfo} from "../../sql/components/base/AnomalyInfo";
-import {AnomalyLevel} from "../../sql/logic/data/AnomalyLevel";
+import {AnomalyInfo} from "../../base/components/base/AnomalyInfo";
+import {AnomalyLevel} from "../../base/logic/data/AnomalyLevel";
 
 export type UnresolvedDocumentComponentProps = {
     id: string,

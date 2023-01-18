@@ -1,18 +1,18 @@
 import React from "react";
-import {cs, State} from "../sql/logic/state/State";
+import {cs, State} from "./logic/state/State";
 import {RenderController} from "./RenderController";
 import {RenderExecutor} from "./RenderExecutor";
 import {v4} from "uuid";
-import {Themeable} from "../sql/logic/style/Themeable";
-import {utilizeGlobalTheme} from "../sql/logic/app/App";
+import {Themeable} from "./logic/style/Themeable";
+import {utilizeGlobalTheme} from "./logic/app/App";
 import {getOr} from "./Utils";
-import {Assembly} from "../sql/logic/assembly/Assembly";
+import {Assembly} from "./logic/assembly/Assembly";
 import {SwipeableDrawer} from "@mui/material";
-import {Screen} from "../sql/components/base/Page";
-import {Centered} from "../sql/components/base/PosInCenter";
-import {ObjectVisualMeaning} from "../sql/logic/style/ObjectVisualMeaning";
-import {Text} from "../sql/components/base/Text";
-import {CoMuxProps} from "../sql/components/props/CoMuxProps";
+import {Screen} from "./components/base/Page";
+import {Centered} from "./components/base/PosInCenter";
+import {ObjectVisualMeaning} from "./logic/style/ObjectVisualMeaning";
+import {Text} from "./components/base/Text";
+import {CoMuxProps} from "./components/props/CoMuxProps";
 import {MuxRenderer} from "./MuxRenderer";
 import {ComponentHelper} from "./ComponentHelper";
 

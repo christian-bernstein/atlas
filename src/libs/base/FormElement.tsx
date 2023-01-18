@@ -1,13 +1,13 @@
 import {BernieComponent} from "./BernieComponent";
-import {Assembly} from "../sql/logic/assembly/Assembly";
-import {Themeable} from "../sql/logic/style/Themeable";
+import {Assembly} from "./logic/assembly/Assembly";
+import {Themeable} from "./logic/style/Themeable";
 import _ from "lodash";
 import {getOr} from "./Utils";
-import {FlexBox} from "../sql/components/base/FlexBox";
-import {DimensionalMeasured, percent, px} from "../sql/logic/style/DimensionalMeasured";
-import {Text, TextType} from "../sql/components/base/Text";
+import {FlexBox} from "./components/base/FlexBox";
+import {DimensionalMeasured, percent, px} from "./logic/style/DimensionalMeasured";
+import {Text, TextType} from "./components/base/Text";
 import {FormDataHub} from "./FormDataHub";
-import {ObjectVisualMeaning} from "../sql/logic/style/ObjectVisualMeaning";
+import {ObjectVisualMeaning} from "./logic/style/ObjectVisualMeaning";
 
 export type FormElementProps = {
     height?: DimensionalMeasured,

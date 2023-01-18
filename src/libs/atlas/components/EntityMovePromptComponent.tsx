@@ -1,28 +1,28 @@
 import {BC} from "../../base/BernieComponent";
-import {Assembly} from "../../sql/logic/assembly/Assembly";
-import {Themeable} from "../../sql/logic/style/Themeable";
+import {Assembly} from "../../base/logic/assembly/Assembly";
+import {Themeable} from "../../base/logic/style/Themeable";
 import {Folder} from "../data/Folder";
-import {StaticDrawerMenu} from "../../sql/components/base/StaticDrawerMenu";
-import {Flex, FlexRow} from "../../sql/components/base/FlexBox";
-import {Text} from "../../sql/components/base/Text";
-import {Description} from "../../sql/components/base/Description";
-import {AF} from "../../sql/components/logic/ArrayFragment";
+import {StaticDrawerMenu} from "../../base/components/base/StaticDrawerMenu";
+import {Flex, FlexRow} from "../../base/components/base/FlexBox";
+import {Text} from "../../base/components/base/Text";
+import {Description} from "../../base/components/base/Description";
+import {AF} from "../../base/components/logic/ArrayFragment";
 import {AtlasMain} from "../AtlasMain";
 import {FolderComponent} from "./FolderComponent";
-import {SettingsGroup} from "../../sql/components/base/SettingsGroup";
+import {SettingsGroup} from "../../base/components/base/SettingsGroup";
 import React from "react";
-import {Justify} from "../../sql/logic/style/Justify";
-import {Button} from "../../sql/components/base/Button";
-import {VM} from "../../sql/logic/style/ObjectVisualMeaning";
+import {Justify} from "../../base/logic/style/Justify";
+import {Button} from "../../base/components/base/Button";
+import {VM} from "../../base/logic/style/ObjectVisualMeaning";
 import {FolderPathView} from "./FolderPathView";
-import {If} from "../../sql/components/logic/If";
-import {Cursor} from "../../sql/logic/style/Cursor";
-import {percent, px} from "../../sql/logic/style/DimensionalMeasured";
-import {Centered} from "../../sql/components/base/PosInCenter";
+import {If} from "../../base/components/logic/If";
+import {Cursor} from "../../base/logic/style/Cursor";
+import {percent, px} from "../../base/logic/style/DimensionalMeasured";
+import {Centered} from "../../base/components/base/PosInCenter";
 import {isMobile} from "react-device-detect";
-import {LiteGrid} from "../../sql/components/base/LiteGrid";
+import {LiteGrid} from "../../base/components/base/LiteGrid";
 import {IPredicate} from "../api/IPredicate";
-import {DrawerHeader} from "../../sql/components/base/DrawerHeader";
+import {DrawerHeader} from "../../base/components/base/DrawerHeader";
 
 export type EntityMovePromptComponentProps = {
     baseFolder: Folder,

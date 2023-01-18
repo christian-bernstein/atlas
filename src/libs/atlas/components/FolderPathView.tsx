@@ -1,23 +1,23 @@
 import {BC} from "../../base/BernieComponent";
-import {Themeable} from "../../sql/logic/style/Themeable";
-import {Assembly} from "../../sql/logic/assembly/Assembly";
+import {Themeable} from "../../base/logic/style/Themeable";
+import {Assembly} from "../../base/logic/assembly/Assembly";
 import {Folder} from "../data/Folder";
-import {FlexBox} from "../../sql/components/base/FlexBox";
-import {percent, px} from "../../sql/logic/style/DimensionalMeasured";
-import {FlexDirection} from "../../sql/logic/style/FlexDirection";
-import {Tooltip} from "../../sql/components/base/Tooltip";
-import {Icon} from "../../sql/components/base/Icon";
-import {ObjectVisualMeaning, VM} from "../../sql/logic/style/ObjectVisualMeaning";
-import {Align} from "../../sql/logic/style/Align";
-import {Text, TextType} from "../../sql/components/base/Text";
-import {OverflowBehaviour} from "../../sql/logic/style/OverflowBehaviour";
+import {FlexBox} from "../../base/components/base/FlexBox";
+import {percent, px} from "../../base/logic/style/DimensionalMeasured";
+import {FlexDirection} from "../../base/logic/style/FlexDirection";
+import {Tooltip} from "../../base/components/base/Tooltip";
+import {Icon} from "../../base/components/base/Icon";
+import {ObjectVisualMeaning, VM} from "../../base/logic/style/ObjectVisualMeaning";
+import {Align} from "../../base/logic/style/Align";
+import {Text, TextType} from "../../base/components/base/Text";
+import {OverflowBehaviour} from "../../base/logic/style/OverflowBehaviour";
 import React from "react";
-import {Map} from "../../sql/components/logic/Map";
+import {Map} from "../../base/components/logic/Map";
 import {array} from "../../base/Utils";
-import {AF} from "../../sql/components/logic/ArrayFragment";
-import {Cursor} from "../../sql/logic/style/Cursor";
+import {AF} from "../../base/components/logic/ArrayFragment";
+import {Cursor} from "../../base/logic/style/Cursor";
 import {ReactComponent as BackIcon} from "../../../assets/icons/ic-16/ic16-chevron-left.svg";
-import {Button} from "../../sql/components/base/Button";
+import {Button} from "../../base/components/base/Button";
 
 export type FolderPathViewProps = {
     path: Array<Folder>;

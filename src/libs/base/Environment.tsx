@@ -1,15 +1,15 @@
 import React, {Dispatch, SetStateAction} from "react";
 import {v4} from "uuid";
-import {ConnectorConfig} from "../sql/logic/network/ConnectorConfig";
-import {App} from "../sql/logic/app/App";
-import {LatencySnapshot} from "../sql/logic/network/LatencySnapshot";
+import {ConnectorConfig} from "./logic/network/ConnectorConfig";
+import {App} from "./logic/app/App";
+import {LatencySnapshot} from "./logic/network/LatencySnapshot";
 
-import {SocketSwitchProtocolDataPacket} from "../sql/packets/SocketSwitchProtocolDataPacket";
-import {PingPacketData} from "../sql/packets/PingPacketData";
-import {PongPacketData} from "../sql/packets/PongPacketData";
+import {SocketSwitchProtocolDataPacket} from "./logic/packets/SocketSwitchProtocolDataPacket";
+import {PingPacketData} from "./logic/packets/PingPacketData";
+import {PongPacketData} from "./logic/packets/PongPacketData";
 
 import {getOr} from "./Utils";
-import {NetChannelConfig} from "../sql/logic/network/NetChannelConfig";
+import {NetChannelConfig} from "./logic/network/NetChannelConfig";
 
 export namespace Environment {
 

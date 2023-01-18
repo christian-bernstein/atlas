@@ -1,19 +1,19 @@
 import {BernieComponent} from "../../../base/BernieComponent";
-import {Themeable} from "../../../sql/logic/style/Themeable";
-import {Assembly} from "../../../sql/logic/assembly/Assembly";
-import {StaticDrawerMenu} from "../../../sql/components/base/StaticDrawerMenu";
-import {percent, px, vh} from "../../../sql/logic/style/DimensionalMeasured";
-import {Flex, FlexBox} from "../../../sql/components/base/FlexBox";
-import {FlexDirection} from "../../../sql/logic/style/FlexDirection";
-import {OverflowBehaviour} from "../../../sql/logic/style/OverflowBehaviour";
+import {Themeable} from "../../../base/logic/style/Themeable";
+import {Assembly} from "../../../base/logic/assembly/Assembly";
+import {StaticDrawerMenu} from "../../../base/components/base/StaticDrawerMenu";
+import {percent, px, vh} from "../../../base/logic/style/DimensionalMeasured";
+import {Flex, FlexBox} from "../../../base/components/base/FlexBox";
+import {FlexDirection} from "../../../base/logic/style/FlexDirection";
+import {OverflowBehaviour} from "../../../base/logic/style/OverflowBehaviour";
 import React from "react";
-import {Text} from "../../../sql/components/base/Text";
-import {SettingsGroup} from "../../../sql/components/base/SettingsGroup";
-import {SettingsElement} from "../../../sql/components/base/SettingsElement";
-import {Description} from "../../../sql/components/base/Description";
-import {Separator} from "../../../sql/components/base/Separator";
-import {Orientation} from "../../../sql/logic/style/Orientation";
-import {OverflowWithHeader} from "../../../sql/components/base/OverflowWithHeader";
+import {Text} from "../../../base/components/base/Text";
+import {SettingsGroup} from "../../../base/components/base/SettingsGroup";
+import {SettingsElement} from "../../../base/components/base/SettingsElement";
+import {Description} from "../../../base/components/base/Description";
+import {Separator} from "../../../base/components/base/Separator";
+import {Orientation} from "../../../base/logic/style/Orientation";
+import {OverflowWithHeader} from "../../../base/components/base/OverflowWithHeader";
 
 export class SettingsDisplayRoot extends BernieComponent<any, any, any> {
 

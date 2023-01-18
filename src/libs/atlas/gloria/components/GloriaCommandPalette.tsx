@@ -1,19 +1,19 @@
 import {BC, GenericBC} from "../../../base/BernieComponent";
-import {Assembly} from "../../../sql/logic/assembly/Assembly";
-import {Themeable} from "../../../sql/logic/style/Themeable";
-import {Box} from "../../../sql/components/base/Box";
-import {DimensionalMeasured, px} from "../../../sql/logic/style/DimensionalMeasured";
-import {Color} from "../../../sql/logic/style/Color";
-import {OverflowWithHeader} from "../../../sql/components/base/OverflowWithHeader";
-import {FlexDirection} from "../../../sql/logic/style/FlexDirection";
-import {Text, TextType} from "../../../sql/components/base/Text";
-import {Flex} from "../../../sql/components/base/FlexBox";
-import {Separator} from "../../../sql/components/base/Separator";
+import {Assembly} from "../../../base/logic/assembly/Assembly";
+import {Themeable} from "../../../base/logic/style/Themeable";
+import {Box} from "../../../base/components/base/Box";
+import {DimensionalMeasured, px} from "../../../base/logic/style/DimensionalMeasured";
+import {Color} from "../../../base/logic/style/Color";
+import {OverflowWithHeader} from "../../../base/components/base/OverflowWithHeader";
+import {FlexDirection} from "../../../base/logic/style/FlexDirection";
+import {Text, TextType} from "../../../base/components/base/Text";
+import {Flex} from "../../../base/components/base/FlexBox";
+import {Separator} from "../../../base/components/base/Separator";
 import Editor from "@monaco-editor/react";
 import React from "react";
-import {Align} from "../../../sql/logic/style/Align";
-import {Dimension} from "../../../sql/logic/style/Dimension";
-import {Justify} from "../../../sql/logic/style/Justify";
+import {Align} from "../../../base/logic/style/Align";
+import {Dimension} from "../../../base/logic/style/Dimension";
+import {Justify} from "../../../base/logic/style/Justify";
 import {Gloria} from "../Gloria";
 import {CommandSelector} from "./CommandSelector";
 import {CommandHighlightMode} from "../CommandHighlightMode";
@@ -21,21 +21,21 @@ import {GloriaCommandDefinition} from "../GloriaCommandDefinition";
 import _ from "lodash";
 import {ReactComponent as Watermark} from "../assets/footer.svg";
 import {ReactComponent as ContextMenuIcon} from "../../../../assets/icons/ic-20/ic20-more-ver.svg";
-import {createMargin} from "../../../sql/logic/style/Margin";
-import {OverflowBehaviour} from "../../../sql/logic/style/OverflowBehaviour";
-import {AF} from "../../../sql/components/logic/ArrayFragment";
+import {createMargin} from "../../../base/logic/style/Margin";
+import {OverflowBehaviour} from "../../../base/logic/style/OverflowBehaviour";
+import {AF} from "../../../base/components/logic/ArrayFragment";
 import {ConfigManager} from "../../config/ConfigManager";
 import {
     LocalStorageConfigManagerPersistentAdapter
 } from "../../config/LocalStorageConfigManagerPersistentAdapter";
 import {GloriaCommandPaletteConfig} from "../config/GloriaCommandPaletteConfig";
-import {KeyHint} from "../../../sql/components/base/KeyHint";
-import {Centered} from "../../../sql/components/base/PosInCenter";
-import {FlexWrap} from "../../../sql/logic/style/FlexWrap";
-import {Default, Desktop, Mobile} from "../../../sql/components/logic/Media";
+import {KeyHint} from "../../../base/components/base/KeyHint";
+import {Centered} from "../../../base/components/base/PosInCenter";
+import {FlexWrap} from "../../../base/logic/style/FlexWrap";
+import {Default, Desktop, Mobile} from "../../../base/components/logic/Media";
 import {Description} from "@mui/icons-material";
-import {Icon} from "../../../sql/components/base/Icon";
-import {HOCWrapper} from "../../../sql/components/HOCWrapper";
+import {Icon} from "../../../base/components/base/Icon";
+import {HOCWrapper} from "../../../base/components/HOCWrapper";
 
 export type SampleCommandPaletteProps = {
     gloria: Gloria
