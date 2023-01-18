@@ -1,12 +1,10 @@
 import React from 'react';
 import './App.css';
-import {AtlasMain} from "./libs/atlas/AtlasMain";
-import {InDevAtlasAPI} from "./libs/atlas/api/InDevAtlasAPI";
+import {Flex} from "./libs/sql/components/lo/FlexBox";
 
 function App() {
   return (
     <div className="App">
-      <AtlasMain api={new InDevAtlasAPI()}/>
     </div>
   );
 }

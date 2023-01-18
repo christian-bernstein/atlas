@@ -86,34 +86,3 @@ export class FlexRow extends BernieComponent<FlexBoxProps, any, any> {
 export {
     FlexBox as Flex
 }
-
-// export class FlexBox extends React.Component<FlexBoxProps, any> {
-//
-//     render() {
-//         const theme: Themeable.Theme = utilizeGlobalTheme();
-//         const margin: Margin = getOr(this.props.margin, createMargin(0, 0, 0, 0));
-//         const Wrapper = styled['div']`
-//           display: flex;
-//           padding: ${!this.props.padding ? "0" : ((getOr(this.props.paddingY, theme.paddings.defaultObjectPadding).css() + " " + getOr(this.props.paddingX, theme.paddings.defaultObjectPadding).css()))};
-//           flex-direction: ${getOr(this.props.flexDir, FlexDirection.COLUMN)};
-//           gap: ${getOr(this.props.gap?.css(), theme.gaps.defaultGab.css())};
-//           align-items: ${this.props.align || Align.START};
-//           justify-content: ${getOr(this.props.justifyContent, Justify.FLEX_START)};
-//           width: ${getOr(this.props.width?.css(), "auto")};
-//           // todo does the removal of min-w break any
-//           // min-width: ${getOr(this.props.minWidth, px()).css()};
-//           height: ${getOr(this.props.height?.css(), "auto")};
-//           overflow-x: ${getOr<OverflowBehaviour>(this.props.overflowXBehaviour, OverflowBehaviour.VISIBLE)};
-//           overflow-y: ${getOr<OverflowBehaviour>(this.props.overflowYBehaviour, OverflowBehaviour.VISIBLE)};
-//           margin-top: ${margin.top?.css()};
-//           margin-bottom: ${margin.bottom?.css()};
-//           margin-left: ${margin.left?.css()};
-//           margin-right: ${margin.right?.css()};
-//         `;
-//         return (
-//             <Wrapper as={getOr(this.props.type, "div")} style={getOr(this.props.style, {})} className={getOr(this.props.classnames?.join(" "), "")}>
-//                 {this.props.children}
-//             </Wrapper>
-//         );
-//     }
-// }

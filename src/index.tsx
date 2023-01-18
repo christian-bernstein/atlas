@@ -1,15 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {Driver, driver} from "./driver/Driver";
+import {DriverReactBridge} from "./driver/DriverReactBridge";
+
+driver()
+
+Driver.boot()
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
-    <App />
+    <DriverReactBridge />
   </React.StrictMode>
 );
 

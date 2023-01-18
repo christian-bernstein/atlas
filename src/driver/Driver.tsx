@@ -4,6 +4,7 @@ import {AnalyticsManager} from "./AnalyticsManager";
 import {InDevAtlasAPI} from "../libs/atlas/api/InDevAtlasAPI";
 import {AtlasMain} from "../libs/atlas/AtlasMain";
 import React from "react";
+import {Dot} from "../libs/sql/components/lo/Dot";
 
 export class Driver {
 
@@ -32,7 +33,7 @@ export class Driver {
             path: "/",
             exact: true,
             render: () => (
-                <></>
+                <Dot/>
             )
         });
 
