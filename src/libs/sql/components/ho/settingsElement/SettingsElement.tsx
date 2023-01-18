@@ -27,7 +27,6 @@ import {Group} from "../../lo/Group";
 import {Orientation} from "../../../logic/style/Orientation";
 import {Accordion, AccordionDetails, AccordionSummary} from "@mui/material";
 import {OverflowBehaviour} from "../../../logic/style/OverflowBehaviour";
-import {ObjectVisualMeaning} from "../../../logic/style/ObjectVisualMeaning";
 
 export type SettingsElementIconConfig = {
     enable: boolean,

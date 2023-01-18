@@ -7,7 +7,6 @@ import {Button} from "../../lo/Button";
 import {Separator} from "../../lo/Separator";
 import {ObjectVisualMeaning} from "../../../logic/style/ObjectVisualMeaning";
 import {getOr} from "../../../logic/Utils";
-import {Color} from "../../../logic/style/Color";
 
 export type NavHeaderProps = {
     elements: Map<string, (navInstance: NavHeader) => JSX.Element>,

@@ -4,7 +4,7 @@ import {Themeable} from "../../../logic/style/Themeable";
 import {Assembly} from "../../../logic/assembly/Assembly";
 import styled from "styled-components";
 import {Icon} from "../../lo/Icon";
-import {CheckRounded, DeleteRounded, FilePresentRounded, UploadFileRounded} from "@mui/icons-material";
+import {CheckRounded, DeleteRounded, UploadFileRounded} from "@mui/icons-material";
 import {AF} from "../../logic/ArrayFragment";
 import {Description} from "../../lo/Description";
 import {FlexRow} from "../../lo/FlexBox";
@@ -18,8 +18,6 @@ import {VM} from "../../../logic/style/ObjectVisualMeaning";
 import {Utils} from "../../../logic/Utils";
 import {FileInputSubmissionMode} from "./FileInputSubmissionMode";
 import {If} from "../../logic/If";
-import {OverflowBehaviour} from "../../../logic/style/OverflowBehaviour";
-import {Document, pdfjs} from "react-pdf";
 import {FileInputSubmissionContext} from "./FileInputSubmissionContext";
 
 export type FileInputProps = {

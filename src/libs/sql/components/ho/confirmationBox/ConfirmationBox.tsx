@@ -7,7 +7,7 @@ import {Text, TextType} from "../../lo/Text";
 import {LiteGrid} from "../../lo/LiteGrid";
 import {Button} from "../../lo/Button";
 import {percent} from "../../../logic/style/DimensionalMeasured";
-import {ObjectVisualMeaning, VM} from "../../../logic/style/ObjectVisualMeaning";
+import {VM} from "../../../logic/style/ObjectVisualMeaning";
 import {getOr} from "../../../logic/Utils";
 
 export type ConfirmationBoxProps = {

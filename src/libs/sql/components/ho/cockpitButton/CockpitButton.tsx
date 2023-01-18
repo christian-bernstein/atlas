@@ -12,7 +12,6 @@ import {Themeable} from "../../../logic/style/Themeable";
 import {Assembly} from "../../../logic/assembly/Assembly";
 import {WithVisualMeaning} from "../../../logic/style/WithVisualMeaning";
 import {CockpitButtonType} from "./CockpitButtonType";
-import {percent} from "../../../logic/style/DimensionalMeasured";
 
 export type CockpitButtonProps = WithVisualMeaning & {
     initialActiveState: boolean,
