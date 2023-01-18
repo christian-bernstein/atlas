@@ -1,12 +1,12 @@
 import {BC} from "../../../sql/logic/BernieComponent";
-import {Button} from "../../../sql/components/lo/Button";
+import {Button} from "../../../sql/components/base/Button";
 import {percent, px} from "../../../sql/logic/style/DimensionalMeasured";
-import {Flex} from "../../../sql/components/lo/FlexBox";
+import {Flex} from "../../../sql/components/base/FlexBox";
 import {Align} from "../../../sql/logic/style/Align";
-import {Icon} from "../../../sql/components/lo/Icon";
+import {Icon} from "../../../sql/components/base/Icon";
 import {ReactComponent as FileIcon} from "../../../../assets/icons/ic-20/ic20-file.svg";
-import {Text, TextType} from "../../../sql/components/lo/Text";
-import {Tooltip} from "../../../sql/components/ho/tooltip/Tooltip";
+import {Text, TextType} from "../../../sql/components/base/Text";
+import {Tooltip} from "../../../sql/components/base/Tooltip";
 import React from "react";
 import {Themeable} from "../../../sql/logic/style/Themeable";
 import {Assembly} from "../../../sql/logic/assembly/Assembly";

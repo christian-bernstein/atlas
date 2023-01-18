@@ -1,15 +1,15 @@
 import {WizardRoutine} from "../../WizardRoutine";
 import {WizardRoutineCard} from "../../../../components/documentWizard/WizardRoutineCard";
 import React from "react";
-import {Button} from "../../../../../sql/components/lo/Button";
+import {Button} from "../../../../../sql/components/base/Button";
 import {AtlasDocument} from "../../../../data/AtlasDocument";
-import {Flex} from "../../../../../sql/components/lo/FlexBox";
+import {Flex} from "../../../../../sql/components/base/FlexBox";
 import {BC} from "../../../../../sql/logic/BernieComponent";
 import {Themeable} from "../../../../../sql/logic/style/Themeable";
 import {Assembly} from "../../../../../sql/logic/assembly/Assembly";
-import {StaticDrawerMenu} from "../../../../../sql/components/lo/StaticDrawerMenu";
+import {StaticDrawerMenu} from "../../../../../sql/components/base/StaticDrawerMenu";
 import Editor from "@monaco-editor/react";
-import {DrawerHeader} from "../../../../../sql/components/lo/DrawerHeader";
+import {DrawerHeader} from "../../../../../sql/components/base/DrawerHeader";
 import {percent, px} from "../../../../../sql/logic/style/DimensionalMeasured";
 import {ObjectVisualMeaning, VM} from "../../../../../sql/logic/style/ObjectVisualMeaning";
 import _ from "lodash";
@@ -17,7 +17,7 @@ import {FlexDirection} from "../../../../../sql/logic/style/FlexDirection";
 import {WizardSubRoutine} from "../../WizardSubRoutine";
 import {DefaultWizardEngine} from "../../engines/DefaultWizardEngine";
 import {WebsiteDocumentArchetype} from "../../../../data/documentArchetypes/WebsiteDocumentArchetype";
-import {Text, TextType} from "../../../../../sql/components/lo/Text";
+import {Text, TextType} from "../../../../../sql/components/base/Text";
 import {DocumentType} from "../../../../data/DocumentType";
 
 export const websiteWizardRoutine: WizardRoutine = {

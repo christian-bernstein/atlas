@@ -1,15 +1,15 @@
 import {BC} from "../../sql/logic/BernieComponent";
 import {Themeable} from "../../sql/logic/style/Themeable";
 import {Assembly} from "../../sql/logic/assembly/Assembly";
-import {Flex} from "../../sql/components/lo/FlexBox";
-import {Box} from "../../sql/components/lo/Box";
+import {Flex} from "../../sql/components/base/FlexBox";
+import {Box} from "../../sql/components/base/Box";
 import {percent, px} from "../../sql/logic/style/DimensionalMeasured";
 import {VFSFolderView} from "./VFSFolderView";
 import {ReactComponent as MenuIcon} from "../../../assets/icons/ic-20/ic20-menu.svg";
-import {Icon} from "../../sql/components/lo/Icon";
+import {Icon} from "../../sql/components/base/Icon";
 import {FlexDirection} from "../../sql/logic/style/FlexDirection";
 import {Justify} from "../../sql/logic/style/Justify";
-import {OverflowWithHeader} from "../../sql/components/lo/OverflowWithHeader";
+import {OverflowWithHeader} from "../../sql/components/base/OverflowWithHeader";
 import {ExitToAppRounded} from "@mui/icons-material";
 
 export type SideMenuProps = {

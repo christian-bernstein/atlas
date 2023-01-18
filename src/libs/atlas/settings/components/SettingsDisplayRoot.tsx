@@ -1,19 +1,19 @@
 import {BernieComponent} from "../../../sql/logic/BernieComponent";
 import {Themeable} from "../../../sql/logic/style/Themeable";
 import {Assembly} from "../../../sql/logic/assembly/Assembly";
-import {StaticDrawerMenu} from "../../../sql/components/lo/StaticDrawerMenu";
+import {StaticDrawerMenu} from "../../../sql/components/base/StaticDrawerMenu";
 import {percent, px, vh} from "../../../sql/logic/style/DimensionalMeasured";
-import {Flex, FlexBox} from "../../../sql/components/lo/FlexBox";
+import {Flex, FlexBox} from "../../../sql/components/base/FlexBox";
 import {FlexDirection} from "../../../sql/logic/style/FlexDirection";
 import {OverflowBehaviour} from "../../../sql/logic/style/OverflowBehaviour";
 import React from "react";
-import {Text} from "../../../sql/components/lo/Text";
-import {SettingsGroup} from "../../../sql/components/lo/SettingsGroup";
-import {SettingsElement} from "../../../sql/components/ho/settingsElement/SettingsElement";
-import {Description} from "../../../sql/components/lo/Description";
-import {Separator} from "../../../sql/components/lo/Separator";
+import {Text} from "../../../sql/components/base/Text";
+import {SettingsGroup} from "../../../sql/components/base/SettingsGroup";
+import {SettingsElement} from "../../../sql/components/base/SettingsElement";
+import {Description} from "../../../sql/components/base/Description";
+import {Separator} from "../../../sql/components/base/Separator";
 import {Orientation} from "../../../sql/logic/style/Orientation";
-import {OverflowWithHeader} from "../../../sql/components/lo/OverflowWithHeader";
+import {OverflowWithHeader} from "../../../sql/components/base/OverflowWithHeader";
 
 export class SettingsDisplayRoot extends BernieComponent<any, any, any> {
 

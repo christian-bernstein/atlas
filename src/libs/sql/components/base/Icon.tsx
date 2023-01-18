@@ -7,7 +7,7 @@ import {ObjectVisualMeaning} from "../../logic/style/ObjectVisualMeaning";
 import {DimensionalMeasured, px} from "../../logic/style/DimensionalMeasured";
 import {getOr} from "../../logic/Utils";
 import {Color} from "../../logic/style/Color";
-import {Tooltip} from "../ho/tooltip/Tooltip";
+import {Tooltip} from "./Tooltip";
 
 export type IconProps = {
     colored?: boolean,

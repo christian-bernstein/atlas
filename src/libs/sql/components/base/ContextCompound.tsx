@@ -1,11 +1,11 @@
 import React, {CSSProperties, PropsWithChildren} from "react";
 import {Menu} from "@mui/material";
-import {Themeable} from "../../../logic/style/Themeable";
-import {utilizeGlobalTheme} from "../../../logic/app/App";
+import {Themeable} from "../../logic/style/Themeable";
+import {utilizeGlobalTheme} from "../../logic/app/App";
 import styled from "styled-components";
-import {getOr} from "../../../logic/Utils";
-import {If} from "../../logic/If";
-import {DimensionalMeasured} from "../../../logic/style/DimensionalMeasured";
+import {getOr} from "../../logic/Utils";
+import {If} from "../logic/If";
+import {DimensionalMeasured} from "../../logic/style/DimensionalMeasured";
 
 export type ContextMenuProps = PropsWithChildren<{
     menu?: JSX.Element,

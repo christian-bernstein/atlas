@@ -1,7 +1,7 @@
 import React from "react";
-import {Box} from "../lo/Box";
+import {Box} from "../base/Box";
 import {TaskInformation} from "../../logic/data/TaskInformation";
-import {Text, TextType} from "../lo/Text";
+import {Text, TextType} from "../base/Text";
 import {Step, StepConnector, stepConnectorClasses, StepContent, StepIconProps, StepLabel, Stepper} from "@mui/material";
 import {v4} from "uuid";
 import {Themeable} from "../../logic/style/Themeable";

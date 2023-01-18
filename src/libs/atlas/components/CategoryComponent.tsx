@@ -2,19 +2,19 @@ import {BC} from "../../sql/logic/BernieComponent";
 import {Category} from "../data/Category";
 import {Themeable} from "../../sql/logic/style/Themeable";
 import {Assembly} from "../../sql/logic/assembly/Assembly";
-import {Flex} from "../../sql/components/lo/FlexBox";
+import {Flex} from "../../sql/components/base/FlexBox";
 import {getOr} from "../../sql/logic/Utils";
 import {VM} from "../../sql/logic/style/ObjectVisualMeaning";
-import {DrawerHeader} from "../../sql/components/lo/DrawerHeader";
+import {DrawerHeader} from "../../sql/components/base/DrawerHeader";
 import {AtlasMain} from "../AtlasMain";
 import {DocumentComponent} from "./DocumentComponent";
 import {UnresolvedDocumentComponent} from "./UnresolvedDocumentComponent";
-import {SettingsGroup} from "../../sql/components/lo/SettingsGroup";
+import {SettingsGroup} from "../../sql/components/base/SettingsGroup";
 import {DocumentSetupDialog} from "./DocumentSetupDialog";
 import {percent, px} from "../../sql/logic/style/DimensionalMeasured";
-import {Button} from "../../sql/components/lo/Button";
+import {Button} from "../../sql/components/base/Button";
 import React from "react";
-import {StaticDrawerMenu} from "../../sql/components/lo/StaticDrawerMenu";
+import {StaticDrawerMenu} from "../../sql/components/base/StaticDrawerMenu";
 import {FlexDirection} from "../../sql/logic/style/FlexDirection";
 
 export type CategoryComponentProps = {

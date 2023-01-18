@@ -1,23 +1,23 @@
-import {BernieComponent} from "../../../logic/BernieComponent";
-import {Themeable} from "../../../logic/style/Themeable";
-import {Assembly} from "../../../logic/assembly/Assembly";
-import {Flex} from "../../lo/FlexBox";
-import {percent, px} from "../../../logic/style/DimensionalMeasured";
-import {Align} from "../../../logic/style/Align";
-import {Badge} from "../../lo/Badge";
-import {ObjectVisualMeaning, VM} from "../../../logic/style/ObjectVisualMeaning";
-import {Text, TextType} from "../../lo/Text";
-import {createMargin} from "../../../logic/style/Margin";
-import {FlexDirection} from "../../../logic/style/FlexDirection";
-import {HOCWrapper} from "../../HOCWrapper";
-import {AF} from "../../logic/ArrayFragment";
-import {Cursor} from "../../../logic/style/Cursor";
-import {StaticDrawerMenu} from "../../lo/StaticDrawerMenu";
-import {Dot} from "../../lo/Dot";import React from "react";
-import {AppAnomalyData} from "../../../logic/data/AppAnomalyData";
-import {If} from "../../logic/If";
-import {AnomalyLevel} from "../../../logic/data/AnomalyLevel";
-import {getOr} from "../../../logic/Utils";
+import {BernieComponent} from "../../logic/BernieComponent";
+import {Themeable} from "../../logic/style/Themeable";
+import {Assembly} from "../../logic/assembly/Assembly";
+import {Flex} from "./FlexBox";
+import {percent, px} from "../../logic/style/DimensionalMeasured";
+import {Align} from "../../logic/style/Align";
+import {Badge} from "./Badge";
+import {ObjectVisualMeaning, VM} from "../../logic/style/ObjectVisualMeaning";
+import {Text, TextType} from "./Text";
+import {createMargin} from "../../logic/style/Margin";
+import {FlexDirection} from "../../logic/style/FlexDirection";
+import {HOCWrapper} from "../HOCWrapper";
+import {AF} from "../logic/ArrayFragment";
+import {Cursor} from "../../logic/style/Cursor";
+import {StaticDrawerMenu} from "./StaticDrawerMenu";
+import {Dot} from "./Dot";import React from "react";
+import {AppAnomalyData} from "../../logic/data/AppAnomalyData";
+import {If} from "../logic/If";
+import {AnomalyLevel} from "../../logic/data/AnomalyLevel";
+import {getOr} from "../../logic/Utils";
 
 export type AnomalyInfoProps = {
     anomaly: AppAnomalyData,

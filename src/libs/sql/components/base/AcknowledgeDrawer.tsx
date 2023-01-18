@@ -1,12 +1,12 @@
 import React from "react";
-import {StaticDrawerMenu} from "../StaticDrawerMenu";
-import {Flex} from "../FlexBox";
-import {Text, TextType} from "../Text";
-import {Button} from "../Button";
-import {percent} from "../../../logic/style/DimensionalMeasured";
-import {DrawerProps} from "../../props/DrawerProps";
-import {getOr} from "../../../logic/Utils";
-import {If} from "../../logic/If";
+import {StaticDrawerMenu} from "./StaticDrawerMenu";
+import {Flex} from "./FlexBox";
+import {Text, TextType} from "./Text";
+import {Button} from "./Button";
+import {percent} from "../../logic/style/DimensionalMeasured";
+import {DrawerProps} from "../props/DrawerProps";
+import {getOr} from "../../logic/Utils";
+import {If} from "../logic/If";
 
 export type AcknowledgeDrawerProps = DrawerProps<undefined> & {
     title?: string,

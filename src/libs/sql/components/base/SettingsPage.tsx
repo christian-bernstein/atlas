@@ -1,24 +1,24 @@
-import {BernieComponent} from "../../../logic/BernieComponent";
-import {Assembly} from "../../../logic/assembly/Assembly";
-import {Themeable} from "../../../logic/style/Themeable";
-import {Screen} from "../../lo/Page";
-import {FlexBox} from "../../lo/FlexBox";
-import {DimensionalMeasured, percent, px} from "../../../logic/style/DimensionalMeasured";
-import {Dimension} from "../../../logic/style/Dimension";
-import {OverflowBehaviour} from "../../../logic/style/OverflowBehaviour";
+import {BernieComponent} from "../../logic/BernieComponent";
+import {Assembly} from "../../logic/assembly/Assembly";
+import {Themeable} from "../../logic/style/Themeable";
+import {Screen} from "./Page";
+import {FlexBox} from "./FlexBox";
+import {DimensionalMeasured, percent, px} from "../../logic/style/DimensionalMeasured";
+import {Dimension} from "../../logic/style/Dimension";
+import {OverflowBehaviour} from "../../logic/style/OverflowBehaviour";
 import {SwipeableDrawer} from "@mui/material";
-import {Text, TextType} from "../../lo/Text";
-import {ObjectVisualMeaning} from "../../../logic/style/ObjectVisualMeaning";
+import {Text, TextType} from "./Text";
+import {ObjectVisualMeaning} from "../../logic/style/ObjectVisualMeaning";
 import React from "react";
-import {AF} from "../../logic/ArrayFragment";
-import {Align} from "../../../logic/style/Align";
-import {If} from "../../logic/If";
-import {LiteGrid} from "../../lo/LiteGrid";
-import {Justify} from "../../../logic/style/Justify";
-import {createMargin} from "../../../logic/style/Margin";
-import {Icon} from "../../lo/Icon";
-import {ReactComponent as BackIcon} from "../../../../../assets/icons/ic-16/ic16-chevron-left.svg";
-import {Cursor} from "../../../logic/style/Cursor";
+import {AF} from "../logic/ArrayFragment";
+import {Align} from "../../logic/style/Align";
+import {If} from "../logic/If";
+import {LiteGrid} from "./LiteGrid";
+import {Justify} from "../../logic/style/Justify";
+import {createMargin} from "../../logic/style/Margin";
+import {Icon} from "./Icon";
+import {ReactComponent as BackIcon} from "../../../../assets/icons/ic-16/ic16-chevron-left.svg";
+import {Cursor} from "../../logic/style/Cursor";
 
 export type SettingsPageProps = {
     parentPageName?: string,

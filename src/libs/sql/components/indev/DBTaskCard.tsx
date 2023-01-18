@@ -1,17 +1,17 @@
 import {BernieComponent} from "../../logic/BernieComponent";
 import {Themeable} from "../../logic/style/Themeable";
 import {Assembly} from "../../logic/assembly/Assembly";
-import {Box} from "../lo/Box";
-import {FlexBox} from "../lo/FlexBox";
+import {Box} from "../base/Box";
+import {FlexBox} from "../base/FlexBox";
 import {FlexDirection} from "../../logic/style/FlexDirection";
 import {Align} from "../../logic/style/Align";
 import {Justify} from "../../logic/style/Justify";
 import {percent, px} from "../../logic/style/DimensionalMeasured";
-import {Icon} from "../lo/Icon";
+import {Icon} from "../base/Icon";
 import {ReactComponent as ShowIcon} from "../../../../assets/icons/ic-20/ic20-visibility.svg";
 import React from "react";
-import {Text, TextType} from "../lo/Text";
-import {Button} from "../lo/Button";
+import {Text, TextType} from "../base/Text";
+import {Button} from "../base/Button";
 
 export type DBTaskCardProps = {
 

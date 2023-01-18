@@ -5,13 +5,13 @@ import {AtlasDocument} from "../../data/AtlasDocument";
 import {DocumentViewMultiplexer} from "../DocumentViewMultiplexer";
 import {DocumentState} from "../../data/DocumentState";
 import {VFSFolderView} from "../VFSFolderView";
-import {Flex, FlexRow} from "../../../sql/components/lo/FlexBox";
+import {Flex, FlexRow} from "../../../sql/components/base/FlexBox";
 import {px} from "../../../sql/logic/style/DimensionalMeasured";
-import {Box} from "../../../sql/components/lo/Box";
-import {Description} from "../../../sql/components/lo/Description";
+import {Box} from "../../../sql/components/base/Box";
+import {Description} from "../../../sql/components/base/Description";
 import {If} from "../../../sql/components/logic/If";
 import {DocumentSaveState} from "../../data/DocumentSaveState";
-import {Icon} from "../../../sql/components/lo/Icon";
+import {Icon} from "../../../sql/components/base/Icon";
 import {VM} from "../../../sql/logic/style/ObjectVisualMeaning";
 import {ReactComponent as PendingIcon} from "../../../../assets/icons/ic-20/ic20-hourglass-progress.svg";
 import {ReactComponent as SavedIcon} from "../../../../assets/icons/ic-20/ic20-check.svg";
@@ -19,7 +19,7 @@ import {ReactComponent as ActionsIcon} from "../../../../assets/icons/ic-20/ic20
 import {ReactComponent as CloseIcon} from "../../../../assets/icons/ic-20/ic20-close.svg";
 import {Align} from "../../../sql/logic/style/Align";
 import {Cursor} from "../../../sql/logic/style/Cursor";
-import {Dot} from "../../../sql/components/lo/Dot";
+import {Dot} from "../../../sql/components/base/Dot";
 import {IconLookup} from "../../icons/IconLookup";
 import {AtlasMain} from "../../AtlasMain";
 

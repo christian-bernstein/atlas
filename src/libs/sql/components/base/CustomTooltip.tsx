@@ -3,7 +3,7 @@ import {Tooltip, tooltipClasses, TooltipProps, Zoom} from "@mui/material";
 import styled from "styled-components";
 import {Themeable} from "../../logic/style/Themeable";
 import {utilizeGlobalTheme} from "../../logic/app/App";
-import {ContextCompound} from "../ho/contextCompound/ContextCompound";
+import {ContextCompound} from "./ContextCompound";
 import {px} from "../../logic/style/DimensionalMeasured";
 
 export type CustomTooltipProps = {

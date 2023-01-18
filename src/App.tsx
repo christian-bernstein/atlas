@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {Flex} from "./libs/sql/components/lo/FlexBox";
+import {Flex} from "./libs/sql/components/base/FlexBox";
 
 function App() {
   return (

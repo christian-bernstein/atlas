@@ -2,8 +2,6 @@ import {Program} from "./Program";
 import {LocatableProgram} from "./LocatableProgram";
 import {AnalyticsManager} from "./AnalyticsManager";
 import React from "react";
-import {Dot} from "../libs/sql/components/lo/Dot";
-import {HOCWrapper} from "../libs/sql/components/HOCWrapper";
 
 export class Driver {
 
@@ -33,11 +31,7 @@ export class Driver {
             exact: true,
             render: () => (
                 <>
-                    <HOCWrapper body={wrapper => {
-                        return (
-                            <></>
-                        );
-                    }}/>
+
                 </>
             )
         });

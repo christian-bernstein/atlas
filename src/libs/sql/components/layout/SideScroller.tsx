@@ -4,7 +4,7 @@ import {Themeable} from "../../logic/style/Themeable";
 import {FlexDirection} from "../../logic/style/FlexDirection";
 import {percent} from "../../logic/style/DimensionalMeasured";
 import {OverflowBehaviour} from "../../logic/style/OverflowBehaviour";
-import {FlexBox} from "../lo/FlexBox";
+import {FlexBox} from "../base/FlexBox";
 import {Align} from "../../logic/style/Align";
 import ScrollContainer from "react-indiana-drag-scroll";
 import {PropsWithChildren} from "react";

@@ -1,24 +1,24 @@
-import {BernieComponent} from "../../../logic/BernieComponent";
-import {Themeable} from "../../../logic/style/Themeable";
-import {Assembly} from "../../../logic/assembly/Assembly";
-import {Box} from "../../lo/Box";
-import {FlexBox} from "../../lo/FlexBox";
-import {percent, px} from "../../../logic/style/DimensionalMeasured";
-import {FlexDirection} from "../../../logic/style/FlexDirection";
-import {Justify} from "../../../logic/style/Justify";
-import {Text, TextType} from "../../lo/Text";
-import {Icon} from "../../lo/Icon";
-import {ReactComponent as ContextIcon} from "../../../../../assets/icons/ic-20/ic20-more-ver.svg";
-import {ReactComponent as ShareIcon} from "../../../../../assets/icons/ic-24/ic24-share.svg";
-import {ReactComponent as StatisticsIcon} from "../../../../../assets/icons/ic-20/ic20-chart-bar.svg";
-import {Align} from "../../../logic/style/Align";
-import {createMargin} from "../../../logic/style/Margin";
-import {Dimension} from "../../../logic/style/Dimension";
-import {Cursor} from "../../../logic/style/Cursor";
-import {ContextCompound} from "../contextCompound/ContextCompound";
-import {ContextMenuElement} from "../../lo/ContextMenuElement";
-import {Badge} from "../../lo/Badge";
-import {ObjectVisualMeaning} from "../../../logic/style/ObjectVisualMeaning";
+import {BernieComponent} from "../../logic/BernieComponent";
+import {Themeable} from "../../logic/style/Themeable";
+import {Assembly} from "../../logic/assembly/Assembly";
+import {Box} from "./Box";
+import {FlexBox} from "./FlexBox";
+import {percent, px} from "../../logic/style/DimensionalMeasured";
+import {FlexDirection} from "../../logic/style/FlexDirection";
+import {Justify} from "../../logic/style/Justify";
+import {Text, TextType} from "./Text";
+import {Icon} from "./Icon";
+import {ReactComponent as ContextIcon} from "../../../../assets/icons/ic-20/ic20-more-ver.svg";
+import {ReactComponent as ShareIcon} from "../../../../assets/icons/ic-24/ic24-share.svg";
+import {ReactComponent as StatisticsIcon} from "../../../../assets/icons/ic-20/ic20-chart-bar.svg";
+import {Align} from "../../logic/style/Align";
+import {createMargin} from "../../logic/style/Margin";
+import {Dimension} from "../../logic/style/Dimension";
+import {Cursor} from "../../logic/style/Cursor";
+import {ContextCompound} from "./ContextCompound";
+import {ContextMenuElement} from "./ContextMenuElement";
+import {Badge} from "./Badge";
+import {ObjectVisualMeaning} from "../../logic/style/ObjectVisualMeaning";
 
 export type ObjectCategoryCoverProps = {
     icon: (props: ObjectCategoryCoverProps) => JSX.Element,

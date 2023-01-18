@@ -2,14 +2,14 @@ import {BC} from "../../sql/logic/BernieComponent";
 import {Themeable} from "../../sql/logic/style/Themeable";
 import {Assembly} from "../../sql/logic/assembly/Assembly";
 import {Folder} from "../data/Folder";
-import {FlexBox} from "../../sql/components/lo/FlexBox";
+import {FlexBox} from "../../sql/components/base/FlexBox";
 import {percent, px} from "../../sql/logic/style/DimensionalMeasured";
 import {FlexDirection} from "../../sql/logic/style/FlexDirection";
-import {Tooltip} from "../../sql/components/ho/tooltip/Tooltip";
-import {Icon} from "../../sql/components/lo/Icon";
+import {Tooltip} from "../../sql/components/base/Tooltip";
+import {Icon} from "../../sql/components/base/Icon";
 import {ObjectVisualMeaning, VM} from "../../sql/logic/style/ObjectVisualMeaning";
 import {Align} from "../../sql/logic/style/Align";
-import {Text, TextType} from "../../sql/components/lo/Text";
+import {Text, TextType} from "../../sql/components/base/Text";
 import {OverflowBehaviour} from "../../sql/logic/style/OverflowBehaviour";
 import React from "react";
 import {Map} from "../../sql/components/logic/Map";
@@ -17,7 +17,7 @@ import {array} from "../../sql/logic/Utils";
 import {AF} from "../../sql/components/logic/ArrayFragment";
 import {Cursor} from "../../sql/logic/style/Cursor";
 import {ReactComponent as BackIcon} from "../../../assets/icons/ic-16/ic16-chevron-left.svg";
-import {Button} from "../../sql/components/lo/Button";
+import {Button} from "../../sql/components/base/Button";
 
 export type FolderPathViewProps = {
     path: Array<Folder>;

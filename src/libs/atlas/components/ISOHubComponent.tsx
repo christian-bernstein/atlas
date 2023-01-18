@@ -1,22 +1,22 @@
 import {BC} from "../../sql/logic/BernieComponent";
 import {Assembly} from "../../sql/logic/assembly/Assembly";
 import {Themeable} from "../../sql/logic/style/Themeable";
-import {Flex} from "../../sql/components/lo/FlexBox";
-import {DrawerHeader} from "../../sql/components/lo/DrawerHeader";
+import {Flex} from "../../sql/components/base/FlexBox";
+import {DrawerHeader} from "../../sql/components/base/DrawerHeader";
 import {VM} from "../../sql/logic/style/ObjectVisualMeaning";
 import {percent, px} from "../../sql/logic/style/DimensionalMeasured";
-import {Button} from "../../sql/components/lo/Button";
+import {Button} from "../../sql/components/base/Button";
 import {Align} from "../../sql/logic/style/Align";
-import {Text, TextType} from "../../sql/components/lo/Text";
-import {StaticDrawerMenu} from "../../sql/components/lo/StaticDrawerMenu";
+import {Text, TextType} from "../../sql/components/base/Text";
+import {StaticDrawerMenu} from "../../sql/components/base/StaticDrawerMenu";
 import React from "react";
 import {ISODownloadComponent} from "./ISODownloadComponent";
 import {ISOUploadComponent} from "./ISOUploadComponent";
 import {Download, ImportExportRounded, Upload} from "@mui/icons-material";
-import {Icon} from "../../sql/components/lo/Icon";
-import {LiteGrid} from "../../sql/components/lo/LiteGrid";
+import {Icon} from "../../sql/components/base/Icon";
+import {LiteGrid} from "../../sql/components/base/LiteGrid";
 import {AF} from "../../sql/components/logic/ArrayFragment";
-import {Tooltip} from "../../sql/components/ho/tooltip/Tooltip";
+import {Tooltip} from "../../sql/components/base/Tooltip";
 
 export class ISOHubComponent extends BC<any, any, any> {
 

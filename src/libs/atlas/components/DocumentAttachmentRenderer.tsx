@@ -6,22 +6,22 @@ import {DBDocumentAttachment} from "../data/DBDocumentAttachment";
 import {AtlasMain} from "../AtlasMain";
 import {QueryDisplay} from "../../sql/components/logic/QueryDisplay";
 import {QueryError} from "../../sql/logic/query/QueryError";
-import {Flex, FlexBox} from "../../sql/components/lo/FlexBox";
-import {Icon} from "../../sql/components/lo/Icon";
+import {Flex, FlexBox} from "../../sql/components/base/FlexBox";
+import {Icon} from "../../sql/components/base/Icon";
 import {ReactComponent as AttachmentIcon} from "../../../assets/icons/ic-20/ic20-attachment.svg";
-import {Button} from "../../sql/components/lo/Button";
+import {Button} from "../../sql/components/base/Button";
 import React from "react";
 import {ObjectVisualMeaning} from "../../sql/logic/style/ObjectVisualMeaning";
-import {StaticDrawerMenu} from "../../sql/components/lo/StaticDrawerMenu";
-import {Screen} from "../../sql/components/lo/Page";
-import {Box} from "../../sql/components/lo/Box";
+import {StaticDrawerMenu} from "../../sql/components/base/StaticDrawerMenu";
+import {Screen} from "../../sql/components/base/Page";
+import {Box} from "../../sql/components/base/Box";
 import {percent} from "../../sql/logic/style/DimensionalMeasured";
 import {Align} from "../../sql/logic/style/Align";
 import {Justify} from "../../sql/logic/style/Justify";
-import {AnomalyInfo} from "../../sql/components/ho/anomalyInfo/AnomalyInfo";
+import {AnomalyInfo} from "../../sql/components/base/AnomalyInfo";
 import {OverflowBehaviour} from "../../sql/logic/style/OverflowBehaviour";
 import {PuffLoader} from "react-spinners";
-import {Text} from "../../sql/components/lo/Text";
+import {Text} from "../../sql/components/base/Text";
 
 export type DocumentAttachmentRendererProps = {
     attachmentID: string,

@@ -1,16 +1,16 @@
 import React from "react";
-import {Box} from "../../lo/Box";
-import {utilizeGlobalTheme} from "../../../logic/app/App";
+import {Box} from "./Box";
+import {utilizeGlobalTheme} from "../../logic/app/App";
 import ReactApexChart from "react-apexcharts";
-import {OverflowBehaviour} from "../../../logic/style/OverflowBehaviour";
-import {array, getOr} from "../../../logic/Utils";
-import {Dimension} from "../../../logic/style/Dimension";
-import {DimensionalMeasured, percent, px} from "../../../logic/style/DimensionalMeasured";
-import {Text, TextType} from "../../lo/Text";
+import {OverflowBehaviour} from "../../logic/style/OverflowBehaviour";
+import {array, getOr} from "../../logic/Utils";
+import {Dimension} from "../../logic/style/Dimension";
+import {DimensionalMeasured, percent, px} from "../../logic/style/DimensionalMeasured";
+import {Text, TextType} from "./Text";
 import styled from "styled-components";
-import {getMeaningfulColors, MeaningfulColors, Themeable} from "../../../logic/style/Themeable";
-import {WithVisualMeaning} from "../../../logic/style/WithVisualMeaning";
-import {ObjectVisualMeaning} from "../../../logic/style/ObjectVisualMeaning";
+import {getMeaningfulColors, MeaningfulColors, Themeable} from "../../logic/style/Themeable";
+import {WithVisualMeaning} from "../../logic/style/WithVisualMeaning";
+import {ObjectVisualMeaning} from "../../logic/style/ObjectVisualMeaning";
 
 export type AreaChartComponentProps = WithVisualMeaning & {
     series: number[],

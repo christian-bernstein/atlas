@@ -6,7 +6,7 @@ import {Group} from "./Group";
 import {Box} from "./Box";
 import {Orientation} from "../../logic/style/Orientation";
 import {DimensionalMeasured, percent, px} from "../../logic/style/DimensionalMeasured";
-import {InformationBox} from "../ho/informationBox/InformationBox";
+import {InformationBox} from "./InformationBox";
 import {ObjectVisualMeaning} from "../../logic/style/ObjectVisualMeaning";
 import {Text} from "./Text";
 import {CSSProp} from "styled-components";

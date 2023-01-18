@@ -3,9 +3,9 @@ import {Assembly} from "./sql/logic/assembly/Assembly";
 import {Themeable} from "./sql/logic/style/Themeable";
 import _ from "lodash";
 import {getOr} from "./sql/logic/Utils";
-import {FlexBox} from "./sql/components/lo/FlexBox";
+import {FlexBox} from "./sql/components/base/FlexBox";
 import {DimensionalMeasured, percent, px} from "./sql/logic/style/DimensionalMeasured";
-import {Text, TextType} from "./sql/components/lo/Text";
+import {Text, TextType} from "./sql/components/base/Text";
 import {FormDataHub} from "./FormDataHub";
 import {ObjectVisualMeaning} from "./sql/logic/style/ObjectVisualMeaning";
 

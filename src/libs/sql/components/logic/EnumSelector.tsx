@@ -1,7 +1,7 @@
 import {BernieComponent} from "../../logic/BernieComponent";
-import {StaticDrawerMenu} from "../lo/StaticDrawerMenu";
-import {FlexBox} from "../lo/FlexBox";
-import {DrawerHeader} from "../lo/DrawerHeader";
+import {StaticDrawerMenu} from "../base/StaticDrawerMenu";
+import {FlexBox} from "../base/FlexBox";
+import {DrawerHeader} from "../base/DrawerHeader";
 import {Assembly} from "../../logic/assembly/Assembly";
 import {Themeable} from "../../logic/style/Themeable";
 import {ObjectVisualMeaning} from "../../logic/style/ObjectVisualMeaning";
@@ -9,10 +9,10 @@ import {percent, px} from "../../logic/style/DimensionalMeasured";
 import {Align} from "../../logic/style/Align";
 import {AnomalyLevel} from "../../logic/data/AnomalyLevel";
 import {AF} from "./ArrayFragment";
-import {Button} from "../lo/Button";
-import {AnomalyInfo} from "../ho/anomalyInfo/AnomalyInfo";
+import {Button} from "../base/Button";
+import {AnomalyInfo} from "../base/AnomalyInfo";
 import React from "react";
-import {LiteGrid} from "../lo/LiteGrid";
+import {LiteGrid} from "../base/LiteGrid";
 
 export type EnumSelectorProps<T> = {
     from: T,

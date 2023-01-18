@@ -1,14 +1,14 @@
 import {BC, GenericBC} from "../../../sql/logic/BernieComponent";
 import {Assembly} from "../../../sql/logic/assembly/Assembly";
 import {Themeable} from "../../../sql/logic/style/Themeable";
-import {Box} from "../../../sql/components/lo/Box";
+import {Box} from "../../../sql/components/base/Box";
 import {DimensionalMeasured, px} from "../../../sql/logic/style/DimensionalMeasured";
 import {Color} from "../../../sql/logic/style/Color";
-import {OverflowWithHeader} from "../../../sql/components/lo/OverflowWithHeader";
+import {OverflowWithHeader} from "../../../sql/components/base/OverflowWithHeader";
 import {FlexDirection} from "../../../sql/logic/style/FlexDirection";
-import {Text, TextType} from "../../../sql/components/lo/Text";
-import {Flex} from "../../../sql/components/lo/FlexBox";
-import {Separator} from "../../../sql/components/lo/Separator";
+import {Text, TextType} from "../../../sql/components/base/Text";
+import {Flex} from "../../../sql/components/base/FlexBox";
+import {Separator} from "../../../sql/components/base/Separator";
 import Editor from "@monaco-editor/react";
 import React from "react";
 import {Align} from "../../../sql/logic/style/Align";
@@ -29,12 +29,12 @@ import {
     LocalStorageConfigManagerPersistentAdapter
 } from "../../config/LocalStorageConfigManagerPersistentAdapter";
 import {GloriaCommandPaletteConfig} from "../config/GloriaCommandPaletteConfig";
-import {KeyHint} from "../../../sql/components/lo/KeyHint";
-import {Centered} from "../../../sql/components/lo/PosInCenter";
+import {KeyHint} from "../../../sql/components/base/KeyHint";
+import {Centered} from "../../../sql/components/base/PosInCenter";
 import {FlexWrap} from "../../../sql/logic/style/FlexWrap";
 import {Default, Desktop, Mobile} from "../../../sql/components/logic/Media";
 import {Description} from "@mui/icons-material";
-import {Icon} from "../../../sql/components/lo/Icon";
+import {Icon} from "../../../sql/components/base/Icon";
 import {HOCWrapper} from "../../../sql/components/HOCWrapper";
 
 export type SampleCommandPaletteProps = {

@@ -1,16 +1,16 @@
 import {BC, BernieComponent} from "./BernieComponent";
 import {ConfirmationConfig, ConfirmationType} from "./ConfirmationConfig";
 import {VM} from "./style/ObjectVisualMeaning";
-import {Flex, FlexBox} from "../components/lo/FlexBox";
-import {DrawerHeader} from "../components/lo/DrawerHeader";
+import {Flex, FlexBox} from "../components/base/FlexBox";
+import {DrawerHeader} from "../components/base/DrawerHeader";
 import {percent, px} from "./style/DimensionalMeasured";
-import {Button} from "../components/lo/Button";
-import {LiteGrid} from "../components/lo/LiteGrid";
+import {Button} from "../components/base/Button";
+import {LiteGrid} from "../components/base/LiteGrid";
 import {utilizeGlobalTheme} from "./app/App";
 import {AF} from "../components/logic/ArrayFragment";
 import React from "react";
-import {StaticDrawerMenu} from "../components/lo/StaticDrawerMenu";
-import {ConfirmationDialog} from "../components/lo/ConfirmationDialog";
+import {StaticDrawerMenu} from "../components/base/StaticDrawerMenu";
+import {ConfirmationDialog} from "../components/base/ConfirmationDialog";
 
 export class ComponentHelper<RProps, RState, LState extends object, Implementation extends BernieComponent<any, any, any> = any> {
 

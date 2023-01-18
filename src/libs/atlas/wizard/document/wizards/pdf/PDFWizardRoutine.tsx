@@ -6,9 +6,9 @@ import {AtlasDocument} from "../../../../data/AtlasDocument";
 import {DocumentType} from "../../../../data/DocumentType";
 import {WebsiteDocumentArchetype} from "../../../../data/documentArchetypes/WebsiteDocumentArchetype";
 import React from "react";
-import {StaticDrawerMenu} from "../../../../../sql/components/lo/StaticDrawerMenu";
-import {FileInput} from "../../../../../sql/components/ho/fileInput/FileInput";
-import {FileInputSubmissionMode} from "../../../../../sql/components/ho/fileInput/FileInputSubmissionMode";
+import {StaticDrawerMenu} from "../../../../../sql/components/base/StaticDrawerMenu";
+import {FileInput} from "../../../../../sql/components/base/fileInput/FileInput";
+import {FileInputSubmissionMode} from "../../../../../sql/components/base/fileInput/FileInputSubmissionMode";
 import {PDFDocumentArchetype} from "../../../../data/documentArchetypes/PDFDocumentArchetype";
 
 export const pdfWizardRoutine: WizardRoutine = {

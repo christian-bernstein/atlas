@@ -2,14 +2,14 @@ import {BC} from "../../sql/logic/BernieComponent";
 import {ISOBase} from "../iso/ISOBase";
 import {Assembly} from "../../sql/logic/assembly/Assembly";
 import {Themeable} from "../../sql/logic/style/Themeable";
-import {Box} from "../../sql/components/lo/Box";
+import {Box} from "../../sql/components/base/Box";
 import {percent, px} from "../../sql/logic/style/DimensionalMeasured";
-import {Flex, FlexRow} from "../../sql/components/lo/FlexBox";
-import {DrawerHeader} from "../../sql/components/lo/DrawerHeader";
+import {Flex, FlexRow} from "../../sql/components/base/FlexBox";
+import {DrawerHeader} from "../../sql/components/base/DrawerHeader";
 import {VM} from "../../sql/logic/style/ObjectVisualMeaning";
-import {Text, TextType} from "../../sql/components/lo/Text";
-import {Tooltip} from "../../sql/components/ho/tooltip/Tooltip";
-import {Icon} from "../../sql/components/lo/Icon";
+import {Text, TextType} from "../../sql/components/base/Text";
+import {Tooltip} from "../../sql/components/base/Tooltip";
+import {Icon} from "../../sql/components/base/Icon";
 import {ReactComponent as FolderIcon} from "../../../assets/icons/ic-20/ic20-folder.svg";
 import {ReactComponent as CategoryIcon} from "../../../assets/icons/ic-20/ic20-list-bullet.svg";
 import {
@@ -18,8 +18,8 @@ import {
     SimCardRounded
 } from "@mui/icons-material";
 import moment from "moment";
-import {SettingsGroup} from "../../sql/components/lo/SettingsGroup";
-import {SettingsElement} from "../../sql/components/ho/settingsElement/SettingsElement";
+import {SettingsGroup} from "../../sql/components/base/SettingsGroup";
+import {SettingsElement} from "../../sql/components/base/SettingsElement";
 import {ISOV1Data} from "../iso/v1/ISOV1Data";
 
 export type ISOBasePreviewProps = {

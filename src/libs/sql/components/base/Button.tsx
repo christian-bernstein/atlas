@@ -9,7 +9,7 @@ import {DimensionalMeasured} from "../../logic/style/DimensionalMeasured";
 import {Cursor} from "../../logic/style/Cursor";
 import {Text} from "./Text";
 import {BackgroundColorProps} from "../props/BackgroundColorProps";
-import {Tooltip} from "../ho/tooltip/Tooltip";
+import {Tooltip} from "./Tooltip";
 
 export type ButtonProps = PropsWithChildren<{
     style?: CSSProperties,

@@ -1,13 +1,13 @@
 import {BC} from "../../sql/logic/BernieComponent";
-import {SettingsElement} from "../../sql/components/ho/settingsElement/SettingsElement";
+import {SettingsElement} from "../../sql/components/base/SettingsElement";
 import {Assembly} from "../../sql/logic/assembly/Assembly";
 import {Themeable} from "../../sql/logic/style/Themeable";
-import {FlexRow} from "../../sql/components/lo/FlexBox";
-import {Text} from "../../sql/components/lo/Text";
+import {FlexRow} from "../../sql/components/base/FlexBox";
+import {Text} from "../../sql/components/base/Text";
 import {ObjectVisualMeaning, VM} from "../../sql/logic/style/ObjectVisualMeaning";
 import {px} from "../../sql/logic/style/DimensionalMeasured";
 import {ReactComponent as ErrorIcon} from "../../../assets/icons/ic-20/ic20-warning.svg";
-import {AnomalyInfo} from "../../sql/components/ho/anomalyInfo/AnomalyInfo";
+import {AnomalyInfo} from "../../sql/components/base/AnomalyInfo";
 import {AnomalyLevel} from "../../sql/logic/data/AnomalyLevel";
 
 export type UnresolvedDocumentComponentProps = {

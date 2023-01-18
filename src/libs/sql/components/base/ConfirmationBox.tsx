@@ -1,14 +1,14 @@
-import {BernieComponent} from "../../../logic/BernieComponent";
-import {Themeable} from "../../../logic/style/Themeable";
-import {Assembly} from "../../../logic/assembly/Assembly";
-import {Box} from "../../lo/Box";
-import {FlexBox} from "../../lo/FlexBox";
-import {Text, TextType} from "../../lo/Text";
-import {LiteGrid} from "../../lo/LiteGrid";
-import {Button} from "../../lo/Button";
-import {percent} from "../../../logic/style/DimensionalMeasured";
-import {VM} from "../../../logic/style/ObjectVisualMeaning";
-import {getOr} from "../../../logic/Utils";
+import {BernieComponent} from "../../logic/BernieComponent";
+import {Themeable} from "../../logic/style/Themeable";
+import {Assembly} from "../../logic/assembly/Assembly";
+import {Box} from "./Box";
+import {FlexBox} from "./FlexBox";
+import {Text, TextType} from "./Text";
+import {LiteGrid} from "./LiteGrid";
+import {Button} from "./Button";
+import {percent} from "../../logic/style/DimensionalMeasured";
+import {VM} from "../../logic/style/ObjectVisualMeaning";
+import {getOr} from "../../logic/Utils";
 
 export type ConfirmationBoxProps = {
     title: string,

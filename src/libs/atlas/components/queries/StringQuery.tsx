@@ -1,13 +1,13 @@
 import {BernieComponent} from "../../../sql/logic/BernieComponent";
-import {Flex} from "../../../sql/components/lo/FlexBox";
-import {DrawerHeader} from "../../../sql/components/lo/DrawerHeader";
+import {Flex} from "../../../sql/components/base/FlexBox";
+import {DrawerHeader} from "../../../sql/components/base/DrawerHeader";
 import {ObjectVisualMeaning, VM} from "../../../sql/logic/style/ObjectVisualMeaning";
 import {FlexDirection} from "../../../sql/logic/style/FlexDirection";
 import {percent, px} from "../../../sql/logic/style/DimensionalMeasured";
-import {Button} from "../../../sql/components/lo/Button";
+import {Button} from "../../../sql/components/base/Button";
 import Editor from "@monaco-editor/react";
-import {Text, TextType} from "../../../sql/components/lo/Text";
-import {StaticDrawerMenu} from "../../../sql/components/lo/StaticDrawerMenu";
+import {Text, TextType} from "../../../sql/components/base/Text";
+import {StaticDrawerMenu} from "../../../sql/components/base/StaticDrawerMenu";
 import React from "react";
 import {Themeable} from "../../../sql/logic/style/Themeable";
 import {Assembly} from "../../../sql/logic/assembly/Assembly";

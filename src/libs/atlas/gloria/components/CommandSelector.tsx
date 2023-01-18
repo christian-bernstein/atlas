@@ -2,18 +2,18 @@ import {BC} from "../../../sql/logic/BernieComponent";
 import {CommandHighlightMode} from "../CommandHighlightMode";
 import {Assembly} from "../../../sql/logic/assembly/Assembly";
 import {Themeable} from "../../../sql/logic/style/Themeable";
-import {Flex, FlexRow} from "../../../sql/components/lo/FlexBox";
+import {Flex, FlexRow} from "../../../sql/components/base/FlexBox";
 import {px} from "../../../sql/logic/style/DimensionalMeasured";
 import {Justify} from "../../../sql/logic/style/Justify";
 import {FlexDirection} from "../../../sql/logic/style/FlexDirection";
-import {Text, TextType} from "../../../sql/components/lo/Text";
-import {Box} from "../../../sql/components/lo/Box";
+import {Text, TextType} from "../../../sql/components/base/Text";
+import {Box} from "../../../sql/components/base/Box";
 import {Color} from "../../../sql/logic/style/Color";
 import React from "react";
 import {GloriaCommandDefinition} from "../GloriaCommandDefinition";
 import {Gloria} from "../Gloria";
 import {Align} from "../../../sql/logic/style/Align";
-import {Badge} from "../../../sql/components/lo/Badge";
+import {Badge} from "../../../sql/components/base/Badge";
 import {VM} from "../../../sql/logic/style/ObjectVisualMeaning";
 
 export type CommandSelectorProps = {

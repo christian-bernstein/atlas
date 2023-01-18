@@ -8,7 +8,7 @@ import {percent, px} from "../../logic/style/DimensionalMeasured";
 import {FlexBox} from "./FlexBox";
 import styled from "styled-components";
 import {Button} from "./Button";
-import {CopyIcon} from "../ho/copyIcon/CopyIcon";
+import {CopyIcon} from "./CopyIcon";
 import {javascript} from "@codemirror/lang-javascript";
 import {getOr} from "../../logic/Utils";
 

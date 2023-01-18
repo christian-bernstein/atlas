@@ -1,4 +1,4 @@
-import {SettingsElementIconConfig} from "../../sql/components/ho/settingsElement/SettingsElement";
+import {SettingsElementIconConfig} from "../../sql/components/base/SettingsElement";
 
 export type SettingsPageBlueprint = {
     pageID: string,
