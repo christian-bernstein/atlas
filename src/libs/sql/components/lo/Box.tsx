@@ -159,7 +159,6 @@ export class Box extends BernieComponent<BoxProps, any, any> {
             clip-path: polygon(0 50%, 100% 0, 100% 100%);
             // background-color: ${getOr(this.props.noBGColor, false) ? "none" : bgColor.css()};
             background-color: ${arrayBgColor.css()};
-            // background-color: red;
           }
         `;
 

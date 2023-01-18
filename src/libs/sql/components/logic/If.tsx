@@ -15,7 +15,7 @@ export type IfProps = {
 
 export class If extends BernieComponent<IfProps, any, any> {
 
-    private static loadElement(ifVal?: JSX.Element, ifGen?: () => JSX.Element): JSX.Element | undefined {
+    private loadElement(ifVal?: JSX.Element, ifGen?: () => JSX.Element): JSX.Element | undefined {
         if (ifVal !== undefined) {
             return ifVal;
         }
@@ -24,9 +24,9 @@ export class If extends BernieComponent<IfProps, any, any> {
 
     componentRender(p: IfProps, s: any, l: any, t: Themeable.Theme, a: Assembly): JSX.Element | undefined {
         if (p.condition) {
-            return getOr(If.loadElement(p.ifTrue, p.ifTrueGen), getOr(p.undefinedOnEmpty, false) ? undefined : <></>);
+            return getOr(this.loadElement(p.ifTrue, p.ifTrueGen), getOr(p.undefinedOnEmpty, false) ? undefined : <></>);
         } else {
-            return getOr(If.loadElement(p.ifFalse, p.ifFalseGen), getOr(p.undefinedOnEmpty, false) ? undefined : <></>);
+            return getOr(this.loadElement(p.ifFalse, p.ifFalseGen), getOr(p.undefinedOnEmpty, false) ? undefined : <></>);
         }
     }
 }
