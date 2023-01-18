@@ -23,10 +23,6 @@ import {ReactComponent as SavedIcon} from "../../../../assets/icons/ic-20/ic20-c
 import {ReactComponent as PendingIcon} from "../../../../assets/icons/ic-20/ic20-hourglass-progress.svg";
 import {VM} from "../../../sql/logic/style/ObjectVisualMeaning";
 import {DocumentState} from "../../data/DocumentState";
-import {Button} from "../../../sql/components/lo/Button";
-import EmojiPicker, {Emoji, EmojiStyle, SuggestionMode, Theme} from "emoji-picker-react";
-import {ContextCompound} from "../../../sql/components/ho/contextCompound/ContextCompound";
-import styled from "styled-components";
 import {DocumentViewRenderContext} from "../DocumentViewRenderContext";
 import {VFSFolderView} from "../../components/VFSFolderView";
 
