@@ -7,23 +7,13 @@ import {getOr} from "../../sql/logic/Utils";
 import {StaticDrawerMenu} from "../../sql/components/lo/StaticDrawerMenu";
 import {DocumentPreview} from "./DocumentPreview";
 import {AtlasMain} from "../AtlasMain";
-import {percent, px} from "../../sql/logic/style/DimensionalMeasured";
+import {percent} from "../../sql/logic/style/DimensionalMeasured";
 import {Color} from "../../sql/logic/style/Color";
-import {Flex, FlexBox, FlexRow} from "../../sql/components/lo/FlexBox";
+import {FlexRow} from "../../sql/components/lo/FlexBox";
 import {Align} from "../../sql/logic/style/Align";
 import {If} from "../../sql/components/logic/If";
 import {Icon} from "../../sql/components/lo/Icon";
-import {FiberPinRounded, PinDropRounded, PinRounded, StarRounded} from "@mui/icons-material";
-import {BadgeMark} from "@mui/material";
-import {Cursor} from "../../sql/logic/style/Cursor";
-import {Justify} from "../../sql/logic/style/Justify";
-import {FlexDirection} from "../../sql/logic/style/FlexDirection";
-import {Box} from "../../sql/components/lo/Box";
-import {OverflowBehaviour} from "../../sql/logic/style/OverflowBehaviour";
-import {Text} from "../../sql/components/lo/Text";
-import {createMargin} from "../../sql/logic/style/Margin";
-import {HashLoader} from "react-spinners";
-import {ReactComponent as SubpageIcon} from "../../../assets/icons/ic-16/ic16-chevron-right.svg";
+import {StarRounded} from "@mui/icons-material";
 import React from "react";
 
 export type DocumentComponentProps = {
