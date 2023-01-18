@@ -12,7 +12,6 @@ import {StaticDrawerMenu} from "../../sql/components/lo/StaticDrawerMenu";
 import {v4} from "uuid";
 import {Input} from "../../sql/components/lo/Input";
 import {AtlasMain} from "../AtlasMain";
-import {DocumentAttachmentRenderer} from "./DocumentAttachmentRenderer";
 import {getOr} from "../../sql/logic/Utils";
 import {FlexWrap} from "../../sql/logic/style/FlexWrap";
 import {FlexDirection} from "../../sql/logic/style/FlexDirection";
@@ -23,10 +22,9 @@ import {Cursor} from "../../sql/logic/style/Cursor";
 import {Text, TextType} from "../../sql/components/lo/Text";
 import {If} from "../../sql/components/logic/If";
 
-import "swiper/swiper.scss";
-import "swiper/modules/pagination/pagination.scss";
-
 // TODO: reactivate
+// import "swiper/swiper.scss";
+// import "swiper/modules/pagination/pagination.scss";
 // import {Swiper, SwiperSlide} from "swiper/react";
 
 import {Icon} from "../../sql/components/lo/Icon";
