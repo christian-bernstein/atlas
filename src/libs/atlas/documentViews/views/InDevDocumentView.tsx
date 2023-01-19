@@ -25,6 +25,7 @@ import {VM} from "../../../base/logic/style/ObjectVisualMeaning";
 import {DocumentState} from "../../data/DocumentState";
 import {DocumentViewRenderContext} from "../DocumentViewRenderContext";
 import {VFSFolderView} from "../../components/VFSFolderView";
+import {Buffer} from "buffer";
 
 export const inDevDocumentView: DocumentView = {
     renderer: (context) => {
@@ -323,6 +324,7 @@ class InDevDocumentView extends BC<InDevDocumentViewProps, any, InDevDocumentVie
                                             const charCount = note.length;
                                             const wordCount = note.trim().split(/\s+/).length;
                                             const byteLength = Buffer.byteLength(note, 'utf16le');
+
 
                                             return (
                                                 <Flex flexDir={FlexDirection.ROW} align={Align.CENTER} gap={t.gaps.smallGab} elements={[
