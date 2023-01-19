@@ -75,23 +75,18 @@ export class FolderList extends BernieComponent<FolderListProps, any, FolderList
                     const selected = ls.selectionMode ? ls.selectedFolders.includes(folder.id) : false;
                     return (
                         <FolderComponent inSelectionMode={ls.selectionMode} selected={selected} renderDetails={false} data={folder} onSelect={(component, data) => new Promise<void>((resolve, reject) => {
-
                             if (this.ls().selectionMode) {
-
                                 let selected = this.ls().selectedFolders;
                                 if (selected.includes(folder.id)) {
-                                    selected.filter(id => id !== folder.id);
+                                    selected = selected.filter(id => id !== folder.id);
                                 } else {
                                     selected.push(folder.id);
                                 }
                                 this.local.setStateWithChannels({
                                     selectedFolders: selected
                                 }, ["selection-state"])
-
                                 return;
                             }
-
-
 
                             view.local.setState({
                                 currentFolderID: data.id
@@ -117,9 +112,18 @@ export class FolderList extends BernieComponent<FolderListProps, any, FolderList
                     <Flex fw flexDir={FlexDirection.ROW} align={Align.CENTER} justifyContent={Justify.SPACE_BETWEEN} elements={[
                         <Flex flexDir={FlexDirection.ROW} align={Align.CENTER} gap={theme.gaps.smallGab} elements={[
                             <Checkbox indeterminate={!allFoldersChecked ? someFoldersChecked : undefined} checked={allFoldersChecked} size={"small"} sx={{ padding: "0", ".MuiSvgIcon-root ": {
-                                // fill: `${theme.colors.primaryColor.css()} !important`
-                                    fill: `white !important`
-                            }}}/>,
+                                fill: `white !important`
+                            }}} onChange={(event, checked) => {
+                                if (checked) {
+                                    this.local.setStateWithChannels({
+                                        selectedFolders: this.props.folders.map(folder => folder.id)
+                                    }, ["selection-state"])
+                                } else {
+                                    this.local.setStateWithChannels({
+                                        selectedFolders: []
+                                    }, ["selection-state"])
+                                }
+                            }}/>,
 
                             <Text text={"Select"} bold/>,
                             <Dot/>,
