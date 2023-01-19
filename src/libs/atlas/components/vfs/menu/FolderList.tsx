@@ -156,14 +156,16 @@ export class FolderList extends BernieComponent<FolderListProps, any, FolderList
         })
     }
 
+    /**
+     * TODO: Wrap
+     */
     private mainAssembly() {
         this.assembly.assembly("main", (theme, view: VFSFolderView) => {
             type FolderArray = Array<Folder>;
             const folders = this.props.folders;
             const pinnedSubFolders: FolderArray = folders.filter(folder => folder.pinned ?? false);
             const unpinnedSubFolders: FolderArray = folders.filter(folder => !(folder.pinned ?? false));
-
-
+            
             return (
                 <Flex fw elements={[
                     <Flex fw elements={[
