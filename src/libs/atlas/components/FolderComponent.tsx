@@ -23,6 +23,8 @@ import {SettingsGroup} from "../../base/components/base/SettingsGroup";
 import {EntityMovePromptComponent} from "./EntityMovePromptComponent";
 import {Description} from "../../base/components/base/Description";
 import {Checkbox} from "@mui/material";
+import {FolderEditDialog} from "./FolderEditDialog";
+import {Badge} from "../../base/components/base/Badge";
 
 export type FolderProps = {
     data: Folder,
@@ -114,6 +116,36 @@ export class FolderComponent extends BC<FolderProps, any, any> {
                             />,
 
                             <SettingsGroup title={"Actions"} elements={[
+
+                                <SettingsElement title={"Edit"} groupDisplayMode promiseBasedOnClick={element => new Promise<void>((resolve, reject) => {
+                                    try {
+                                        element.dialog(
+                                            <FolderEditDialog
+                                                folder={folder}
+                                                actions={{
+                                                    onSubmit: (edited: Folder) => {
+                                                        AtlasMain.atlas().api().updateFolder(folder.id, original => {
+                                                            return ({
+                                                                ...original,
+                                                                ...edited
+                                                            })
+                                                        });
+                                                        element.closeLocalDialog();
+                                                        AtlasMain.atlas().rerender("folders");
+                                                        resolve();
+                                                    },
+                                                    onCancel: () => {
+                                                        element.closeLocalDialog();
+                                                        resolve();
+                                                    }
+                                                }}
+                                            />
+                                        );
+                                    } catch (e) {
+                                        reject(e);
+                                    }
+                                })}/>,
+
                                 <SettingsElement title={"Move"} groupDisplayMode iconConfig={{ enable: true, iconGenerator: elem => <DriveFileMoveRounded/> }} promiseBasedOnClick={elem => new Promise<void>((resolve, reject) => {
                                     const api = AtlasMain.atlas().api();
                                     const root = api.getFolder("root");

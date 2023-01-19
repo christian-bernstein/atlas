@@ -55,6 +55,7 @@ import {AtlasLogo} from "./components/branding/AtlasLogo";
 import {isMobile} from "react-device-detect";
 import {TheiaAPI} from "./theia/TheiaAPI";
 import {TheiaLocalDBNode} from "./theia/TheiaLocalDBNode";
+import {FolderList} from "./components/vfs/menu/FolderList";
 
 export type AtlasMainProps = {
     api: IAtlasAPI

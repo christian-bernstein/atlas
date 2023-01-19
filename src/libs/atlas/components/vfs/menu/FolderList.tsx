@@ -24,6 +24,7 @@ import {InformationBox} from "../../../../base/components/base/InformationBox";
 import {Description} from "../../../../base/components/base/Description";
 import {AF} from "../../../../base/components/logic/ArrayFragment";
 import {Checkbox} from "@mui/material";
+import {DriveFileMoveRounded} from "@mui/icons-material";
 
 export type FolderListProps = {
     folders: Array<Folder>
@@ -125,9 +126,11 @@ export class FolderList extends BernieComponent<FolderListProps, any, FolderList
                                 }
                             }}/>,
 
-                            <Text text={"Select"} bold/>,
                             <Dot/>,
                             <Text text={`${ls.selectedFolders.length} selected`} type={TextType.secondaryDescription}/>,
+
+                            <Dot/>,
+                            <Icon tooltip={"Move"} icon={<DriveFileMoveRounded/>}/>
                         ]}/>,
 
                         <Flex flexDir={FlexDirection.ROW} align={Align.CENTER} gap={theme.gaps.smallGab} elements={[
@@ -165,7 +168,7 @@ export class FolderList extends BernieComponent<FolderListProps, any, FolderList
             const folders = this.props.folders;
             const pinnedSubFolders: FolderArray = folders.filter(folder => folder.pinned ?? false);
             const unpinnedSubFolders: FolderArray = folders.filter(folder => !(folder.pinned ?? false));
-            
+
             return (
                 <Flex fw elements={[
                     <Flex fw elements={[
