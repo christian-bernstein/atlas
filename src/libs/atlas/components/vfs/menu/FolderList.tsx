@@ -17,23 +17,43 @@ import {SettingsGroup} from "../../../../base/components/base/SettingsGroup";
 import {FolderComponent} from "../../FolderComponent";
 import {createMargin} from "../../../../base/logic/style/Margin";
 import {Cursor} from "../../../../base/logic/style/Cursor";
-import {VM} from "../../../../base/logic/style/ObjectVisualMeaning";
+import {ObjectVisualMeaning, VM} from "../../../../base/logic/style/ObjectVisualMeaning";
 import React from "react";
 import {VFSFolderView} from "../../VFSFolderView";
 import {InformationBox} from "../../../../base/components/base/InformationBox";
 import {Description} from "../../../../base/components/base/Description";
 import {AF} from "../../../../base/components/logic/ArrayFragment";
+import {Checkbox} from "@mui/material";
 
 export type FolderListProps = {
     folders: Array<Folder>
 }
 
-export class FolderList extends BernieComponent<FolderListProps, any, any> {
+export type FolderListLocalState = {
+    selectionMode: boolean,
+    selectedFolders: Array<string>
+}
+
+export class FolderList extends BernieComponent<FolderListProps, any, FolderListLocalState> {
+
+    constructor(props: FolderListProps) {
+        super(props, undefined, {
+            selectionMode: false,
+            selectedFolders: []
+        });
+    }
 
     init() {
         super.init();
         this.noVFSViewFallbackAssembly();
         this.mainAssembly();
+        this.headerAssembly();
+    }
+
+    private toggleSelectionMode() {
+        this.local.setStateWithChannels({
+            selectionMode: !this.ls().selectionMode
+        }, ["selection-state"])
     }
 
     private noVFSViewFallbackAssembly() {
@@ -48,11 +68,31 @@ export class FolderList extends BernieComponent<FolderListProps, any, any> {
 
     private renderFolders(folders: Array<Folder>, view: VFSFolderView): JSX.Element {
         if (folders.length === 0) return <></>;
+        const ls = this.ls();
         return (
             <SettingsGroup elements={
                 folders.map(folder => {
+                    const selected = ls.selectionMode ? ls.selectedFolders.includes(folder.id) : false;
                     return (
-                        <FolderComponent renderDetails={false} data={folder} onSelect={(component, data) => new Promise<void>((resolve, reject) => {
+                        <FolderComponent inSelectionMode={ls.selectionMode} selected={selected} renderDetails={false} data={folder} onSelect={(component, data) => new Promise<void>((resolve, reject) => {
+
+                            if (this.ls().selectionMode) {
+
+                                let selected = this.ls().selectedFolders;
+                                if (selected.includes(folder.id)) {
+                                    selected.filter(id => id !== folder.id);
+                                } else {
+                                    selected.push(folder.id);
+                                }
+                                this.local.setStateWithChannels({
+                                    selectedFolders: selected
+                                }, ["selection-state"])
+
+                                return;
+                            }
+
+
+
                             view.local.setState({
                                 currentFolderID: data.id
                             }, new Map<string, any>(), () => {
@@ -63,6 +103,53 @@ export class FolderList extends BernieComponent<FolderListProps, any, any> {
                 })
             }/>
         );
+    }
+
+    private headerAssembly() {
+        this.assembly.assembly("header", (theme, view: VFSFolderView) => {
+            const folders = this.props.folders;
+            const ls = this.ls();
+            const allFoldersChecked = ls.selectedFolders.length === folders.length;
+            const someFoldersChecked = ls.selectedFolders.length > 0;
+
+            if (ls.selectionMode) {
+                return (
+                    <Flex fw flexDir={FlexDirection.ROW} align={Align.CENTER} justifyContent={Justify.SPACE_BETWEEN} elements={[
+                        <Flex flexDir={FlexDirection.ROW} align={Align.CENTER} gap={theme.gaps.smallGab} elements={[
+                            <Checkbox indeterminate={!allFoldersChecked ? someFoldersChecked : undefined} checked={allFoldersChecked} size={"small"} sx={{ padding: "0", ".MuiSvgIcon-root ": {
+                                // fill: `${theme.colors.primaryColor.css()} !important`
+                                    fill: `white !important`
+                            }}}/>,
+
+                            <Text text={"Select"} bold/>,
+                            <Dot/>,
+                            <Text text={`${ls.selectedFolders.length} selected`} type={TextType.secondaryDescription}/>,
+                        ]}/>,
+
+                        <Flex flexDir={FlexDirection.ROW} align={Align.CENTER} gap={theme.gaps.smallGab} elements={[
+                            <Description text={"Cancel"} highlight visualMeaning={VM.INFO} cursor={Cursor.pointer} onClick={() => this.toggleSelectionMode()}/>,
+                        ]}/>,
+                    ]}/>
+                );
+            }
+
+            return (
+                <Flex fw flexDir={FlexDirection.ROW} align={Align.CENTER} justifyContent={Justify.SPACE_BETWEEN} elements={[
+                    <Flex flexDir={FlexDirection.ROW} align={Align.CENTER} gap={theme.gaps.smallGab} elements={[
+                        <Text text={"Folders"} bold/>,
+                        <Dot/>,
+                        <Text text={`${folders.length}`} type={TextType.secondaryDescription}/>,
+                    ]}/>,
+
+                    <Flex flexDir={FlexDirection.ROW} align={Align.CENTER} gap={theme.gaps.smallGab} elements={[
+                        <Description text={"Select"} highlight visualMeaning={VM.INFO} cursor={Cursor.pointer} onClick={() => this.toggleSelectionMode()}/>,
+                        <Tooltip title={"Create folder"} arrow children={
+                            <Icon icon={<CreateIcon/>} size={px(16)} onClick={() => view.openCreateFolderSetup()}/>
+                        }/>
+                    ]}/>,
+                ]}/>
+            );
+        })
     }
 
     private mainAssembly() {
@@ -76,25 +163,15 @@ export class FolderList extends BernieComponent<FolderListProps, any, any> {
             return (
                 <Flex fw elements={[
                     <Flex fw elements={[
-                        <Flex fw flexDir={FlexDirection.ROW} align={Align.CENTER} justifyContent={Justify.SPACE_BETWEEN} elements={[
-                            <Flex flexDir={FlexDirection.ROW} align={Align.CENTER} gap={theme.gaps.smallGab} elements={[
-                                <Text text={"Folders"} bold/>,
-                                <Dot/>,
-                                <Text text={`${folders.length}`} type={TextType.secondaryDescription}/>,
-                            ]}/>,
-
-                            <Flex flexDir={FlexDirection.ROW} align={Align.CENTER} gap={theme.gaps.smallGab} elements={[
-                                <Tooltip title={"Create folder"} arrow children={
-                                    <Icon icon={<CreateIcon/>} size={px(16)} onClick={() => view.openCreateFolderSetup()}/>
-                                }/>
-                            ]}/>,
-                        ]}/>,
+                        this.component(() => this.a("header", view), "selection-state"),
 
                         folders.length > 0 ? (
-                            <AF elements={[
-                                this.renderFolders(pinnedSubFolders, view),
-                                this.renderFolders(unpinnedSubFolders, view),
-                            ]}/>
+                            this.component(() => (
+                                <AF elements={[
+                                    this.renderFolders(pinnedSubFolders, view),
+                                    this.renderFolders(unpinnedSubFolders, view),
+                                ]}/>
+                            ), "selection-state")
                         ) : (
                             <Flex margin={createMargin(20, 0, 20, 0)} fw align={Align.CENTER} justifyContent={Justify.CENTER} gap={px()} elements={[
                                 <Text

@@ -22,13 +22,17 @@ import {DrawerHeader} from "../../base/components/base/DrawerHeader";
 import {SettingsGroup} from "../../base/components/base/SettingsGroup";
 import {EntityMovePromptComponent} from "./EntityMovePromptComponent";
 import {Description} from "../../base/components/base/Description";
+import {Checkbox} from "@mui/material";
 
 export type FolderProps = {
     data: Folder,
     onSelect: (component: FolderComponent, data: Folder) => Promise<any>,
     renderDetails?: boolean,
     renderPinInfo?: boolean,
-    renderContextMenu?: boolean
+    renderContextMenu?: boolean,
+
+    inSelectionMode?: boolean,
+    selected?: boolean,
 }
 
 export class FolderComponent extends BC<FolderProps, any, any> {
@@ -198,6 +202,10 @@ export class FolderComponent extends BC<FolderProps, any, any> {
         this.assembly.assembly("appendix", (theme, element: SettingsElement) => {
             const renderDetails = this.props.renderDetails ?? true;
 
+            if (this.props.inSelectionMode) {
+                return (<></>);
+            }
+
             return (
                 <FlexRow align={Align.CENTER} gap={theme.gaps.smallGab} elements={[
                     (() => {
@@ -242,7 +250,7 @@ export class FolderComponent extends BC<FolderProps, any, any> {
 
         return (
             <SettingsElement
-                forceRenderSubpageIcon
+                forceRenderSubpageIcon={!this.props.inSelectionMode}
                 groupDisplayMode
 
                 // title={getOr(p.data.title, "N/A")}
@@ -269,9 +277,17 @@ export class FolderComponent extends BC<FolderProps, any, any> {
                 iconConfig={{
                     enable: true,
                     color: p.data.iconColorHEX === undefined ? undefined : Color.ofHex(p.data.iconColorHEX),
-                    iconGenerator: element => (
-                        <FolderIcon/>
-                    )
+                    iconGenerator: element => {
+                        if (!this.props.inSelectionMode) {
+                            return (<FolderIcon/>);
+                        }
+
+                        return (
+                            <Checkbox checked={this.props.selected} size={"small"} sx={{ padding: "0", ".MuiSvgIcon-root ": {
+                                fill: `${t.colors.primaryColor.css()} !important`
+                            }}}/>
+                        );
+                    }
                 }}
                 appendixGenerator={element => this.a("appendix", element)}
                 promiseBasedOnClick={element => p.onSelect(this, p.data)}

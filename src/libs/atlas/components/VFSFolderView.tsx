@@ -736,7 +736,7 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                                         <DrawerHeader
                                                             header={String(this.getCurrentFolder()?.title)}
                                                             badgeText={"Folder view"}
-                                                            enableBadge
+                                                            enableBadge={false}
                                                             badgeVM={ObjectVisualMeaning.UI_NO_HIGHLIGHT}
                                                             description={this.getCurrentFolder().description}
                                                         />,
