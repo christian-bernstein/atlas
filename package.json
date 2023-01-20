@@ -28,6 +28,7 @@
     "react-apexcharts": "^1.4.0",
     "react-device-detect": "^2.2.2",
     "react-dom": "^18.2.0",
+    "react-dropzone": "^14.2.3",
     "react-image": "^4.0.3",
     "react-indiana-drag-scroll": "^2.2.0",
     "react-markdown": "^8.0.5",

@@ -60,6 +60,7 @@ import {Centered} from "../../base/components/base/PosInCenter";
 import {Description} from "../../base/components/base/Description";
 import {LinearProgress} from "@mui/material";
 import {AtlasLogo} from "./branding/AtlasLogo";
+import Dropzone from "react-dropzone";
 
 export type VFSFolderViewProps = {
     initialFolderID?: string,
@@ -830,6 +831,7 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                                     this.component(() => this.a("folder-view"), "folder-view"),
 
                                                     this.component(() => this.a("document-view"), "document-view", "search-filter-state"),
+
                                                 ]}/>
                                             );
                                         },

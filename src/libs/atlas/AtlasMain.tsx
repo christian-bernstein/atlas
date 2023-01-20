@@ -56,6 +56,8 @@ import {isMobile} from "react-device-detect";
 import {TheiaAPI} from "./theia/TheiaAPI";
 import {TheiaLocalDBNode} from "./theia/TheiaLocalDBNode";
 import {FolderList} from "./components/vfs/menu/FolderList";
+import Dropzone from "react-dropzone";
+import {EntityImportDialog} from "./components/EntityImportDialog";
 
 export type AtlasMainProps = {
     api: IAtlasAPI
@@ -681,6 +683,8 @@ export class AtlasMain extends BC<AtlasMainProps, any, AtlasMainLocalState> {
                             )
                         }}/>,
                     ]}/>,
+
+                    <Button text={"Import"} onClick={() => this.dialog(<EntityImportDialog/>)}/>,
 
                     this.component(() => {
                         // Render empty state
