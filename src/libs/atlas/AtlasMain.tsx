@@ -684,7 +684,11 @@ export class AtlasMain extends BC<AtlasMainProps, any, AtlasMainLocalState> {
                         }}/>,
                     ]}/>,
 
-                    <Button text={"Import"} onClick={() => this.dialog(<EntityImportDialog/>)}/>,
+                    <Button text={"Import"} onClick={() => this.dialog(
+                        <EntityImportDialog onCancel={() => this.closeLocalDialog()} onSubmit={files => {
+
+                        }}/>
+                    )}/>,
 
                     this.component(() => {
                         // Render empty state

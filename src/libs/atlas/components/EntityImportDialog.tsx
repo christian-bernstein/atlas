@@ -22,19 +22,24 @@ import {createMargin} from "../../base/logic/style/Margin";
 import {Dot} from "../../base/components/base/Dot";
 import {Utils} from "../../base/Utils";
 
-export type EntityImportDialogLocalState = {
-    files: File[]
+export type EntityImportDialogProps = {
+    onSubmit: (files: File[]) => void,
+    onCancel: () => void
 }
 
-export class EntityImportDialog extends BC<any, any, EntityImportDialogLocalState> {
+export type EntityImportDialogLocalState = {
+    files: File[],
+}
 
-    constructor() {
-        super(undefined, undefined, {
+export class EntityImportDialog extends BC<EntityImportDialogProps, any, EntityImportDialogLocalState> {
+
+    constructor(props: EntityImportDialogProps) {
+        super(props, undefined, {
             files: []
         });
     }
 
-    componentRender(p: any, s: any, l: any, t: Themeable.Theme, a: Assembly): JSX.Element | undefined {
+    componentRender(p: EntityImportDialogProps, s: any, l: any, t: Themeable.Theme, a: Assembly): JSX.Element | undefined {
         return (
             <StaticDrawerMenu body={props => {
                 return (
