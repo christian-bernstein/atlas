@@ -754,6 +754,16 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                                             ))
                                                         }/>,
 
+                                                        <Tooltip title={"Import files"} arrow children={
+                                                            <Icon icon={<ImportExportRounded/>} onClick={() => {
+                                                                this.dialog(
+                                                                    <EntityImportDialog onCancel={() => this.closeLocalDialog()} onSubmit={files => {
+
+                                                                    }}/>
+                                                                );
+                                                            }}/>
+                                                        }/>,
+
                                                         this.a("menu-filter"),
 
                                                         this.component(() => this.a("folder-view"), "folder-view"),

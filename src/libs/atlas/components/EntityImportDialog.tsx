@@ -100,7 +100,7 @@ export class EntityImportDialog extends BC<EntityImportDialogProps, any, EntityI
                             ), "files"),
                         ]}/>,
 
-                        <Dropzone autoFocus onDrop={(acceptedFiles, fileRejections, event) => {
+                        <Dropzone onDrop={(acceptedFiles, fileRejections, event) => {
                             this.ls().files.push(...acceptedFiles)
                             this.local.setStateWithChannels({
                                 files: this.ls().files
@@ -117,6 +117,22 @@ export class EntityImportDialog extends BC<EntityImportDialogProps, any, EntityI
                                                 </>
                                             }/>
                                         ]}/>
+                                    </div>
+                                </section>
+                            )}
+                        </Dropzone>,
+
+                        <Dropzone onDrop={(acceptedFiles, fileRejections, event) => {
+                            this.ls().files.push(...acceptedFiles)
+                            this.local.setStateWithChannels({
+                                files: this.ls().files
+                            }, ["files"])
+                        }}>
+                            {({getRootProps, getInputProps}) => (
+                                <section className="container" style={{ width: "100%" }}>
+                                    <div {...getRootProps({className: 'dropzone'})}>
+                                        <input {...getInputProps()} type={"file"} />
+                                        <p>Drag 'n' drop some files here, or click to select files</p>
                                     </div>
                                 </section>
                             )}
