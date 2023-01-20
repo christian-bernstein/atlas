@@ -47,7 +47,7 @@ import {VFSFolderViewFilterState} from "../data/vfs/VFSFolderViewFilterState";
 import {UnaryFunction} from "../utils/UnaryFunction";
 import {Input} from "../../base/components/base/Input";
 import {If} from "../../base/components/logic/If";
-import {DeleteRounded} from "@mui/icons-material";
+import {DeleteRounded, ImportExportRounded} from "@mui/icons-material";
 import {FolderList} from "./vfs/menu/FolderList";
 import {Default, Mobile} from "../../base/components/logic/Media";
 import {isMobile} from 'react-device-detect';
@@ -61,6 +61,9 @@ import {Description} from "../../base/components/base/Description";
 import {LinearProgress} from "@mui/material";
 import {AtlasLogo} from "./branding/AtlasLogo";
 import Dropzone from "react-dropzone";
+import {Button} from "../../base/components/base/Button";
+import {EntityImportDialog} from "./EntityImportDialog";
+import {Tooltip} from "../../base/components/base/Tooltip";
 
 export type VFSFolderViewProps = {
     initialFolderID?: string,
@@ -824,6 +827,19 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                                             }/>
                                                         ))
                                                     }/>,
+
+
+                                                    <Tooltip title={"Import files"} arrow children={
+                                                        <Icon icon={<ImportExportRounded/>} onClick={() => {
+                                                            this.dialog(
+                                                                <EntityImportDialog onCancel={() => this.closeLocalDialog()} onSubmit={files => {
+
+                                                                }}/>
+                                                            );
+                                                        }}/>
+                                                    }/>,
+
+
 
                                                     this.a("menu-filter"),
 

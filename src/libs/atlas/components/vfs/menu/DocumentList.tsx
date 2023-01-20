@@ -161,19 +161,6 @@ export class DocumentList extends BernieComponent<DocumentListProps, any, any> {
                             ]}/>,
 
                             <Flex flexDir={FlexDirection.ROW} align={Align.CENTER} gap={theme.gaps.smallGab} elements={[
-
-
-                                <Tooltip title={"Import files"} arrow children={
-                                    <Icon icon={<ImportExportRounded/>} size={px(16)} onClick={() => {
-                                        this.dialog(
-                                            <EntityImportDialog onCancel={() => this.closeLocalDialog()} onSubmit={files => {
-
-                                            }}/>
-                                        );
-                                    }}/>
-                                }/>,
-
-
                                 <Tooltip title={"Create document"} arrow children={
                                     <Icon icon={<CreateIcon/>} size={px(16)} onClick={() => view.openCreateBlankDocumentSetup()}/>
                                 }/>

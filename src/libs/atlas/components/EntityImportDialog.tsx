@@ -100,7 +100,7 @@ export class EntityImportDialog extends BC<EntityImportDialogProps, any, EntityI
                             ), "files"),
                         ]}/>,
 
-                        <Dropzone onDrop={(acceptedFiles, fileRejections, event) => {
+                        <Dropzone autoFocus onDrop={(acceptedFiles, fileRejections, event) => {
                             this.ls().files.push(...acceptedFiles)
                             this.local.setStateWithChannels({
                                 files: this.ls().files
@@ -131,7 +131,7 @@ export class EntityImportDialog extends BC<EntityImportDialogProps, any, EntityI
                                             color: t.colors.backgroundHighlightColor200,
                                             iconGenerator: element => <Icon icon={<FileUploadRounded/>}/>
                                         }} alternateTitleRenderer={element => (
-                                            <Description cursor={Cursor.pointer} text={file.name}/>
+                                            <Description cursor={Cursor.pointer} text={(file as any).path}/>
                                         )} appendixGenerator={element => (
                                             <FlexRow gap={t.gaps.smallGab} margin={createMargin(0, t.gaps.smallGab.measurand, 0 ,0)} elements={[
                                                 <Description cursor={Cursor.pointer} whitespace={"nowrap"} text={Utils.humanFileSize(file.size)}/>,
