@@ -758,44 +758,10 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                                                     <Icon icon={<UploadRounded/>} onClick={() => {
                                                                         this.dialog(
                                                                             <EntityImportDialog onCancel={() => this.closeLocalDialog()} onSubmit={files => {
-                                                                                files.forEach((file, index, array) => {
-                                                                                    AtlasMain.atlas(atlas => {
-                                                                                        const api = AtlasMain.atlas().api();
-                                                                                        const path = ((file as any).path as string).match(/(.*\/)/g)?.[0]!.split("/")!.filter(s => s.trim().length > 0)!;
-
-                                                                                        let folder: Folder = api.getFolder(this.ls().currentFolderID!);
-                                                                                        path.forEach(elem => {
-                                                                                            let element = folder.subFolderIDs
-                                                                                                ?.map(sfID => api.getFolder(sfID))
-                                                                                                ?.filter(f => f !== undefined && f.title === elem)
-                                                                                                ?.[0] ?? undefined;
-                                                                                            if (element === undefined) {
-                                                                                                const newFolder: Folder = {
-                                                                                                    id: v4(),
-                                                                                                    title: elem,
-                                                                                                    categories: [],
-                                                                                                    parentFolder: folder.id
-                                                                                                }
-                                                                                                api.createSubFolder(folder.id, newFolder);
-                                                                                                element = newFolder;
-                                                                                            }
-                                                                                            folder = element!;
-                                                                                        });
-
-                                                                                        const getSubFolderFromPath = (path: Array<string>): Folder => {
-                                                                                            let folder: Folder = api.getFolder(this.ls().currentFolderID!);
-                                                                                            path.forEach(elem => {
-                                                                                                let element = folder.subFolderIDs?.map(sfID => api.getFolder(sfID)).filter(f => f !== undefined && f.title === elem)[0];
-                                                                                                folder = element!;
-                                                                                            });
-                                                                                            return folder;
-                                                                                        }
-
-                                                                                        api.createDocumentInFolder(getSubFolderFromPath(path).id, {
-                                                                                            id: v4(),
-                                                                                            title: file.name
-                                                                                        });
-                                                                                    });
+                                                                                AtlasMain.atlas(atlas => {
+                                                                                    atlas.api().importFiles(this.ls().currentFolderID!, files)
+                                                                                    this.closeLocalDialog();
+                                                                                    this.ls().currentFolderData.query();
                                                                                 });
                                                                             }}/>
                                                                         );
@@ -938,8 +904,6 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                 this.a("side-menu"),
 
                                 this.component(() => this.a("menu"), "menu"),
-
-                                // <Separator orientation={Orientation.VERTICAL}/>,
 
                                 this.component(local => {
                                     return (

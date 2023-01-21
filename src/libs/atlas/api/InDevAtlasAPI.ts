@@ -7,6 +7,8 @@ import {FormDataHub} from "../../base/FormDataHub";
 import {AtlasDB} from "./AtlasDB";
 import {IISOAdapter} from "../iso/IISOAdapter";
 import {ISOAdapterV1} from "../iso/v1/ISOAdapterV1";
+import {AtlasMain} from "../AtlasMain";
+import {v4} from "uuid";
 
 enum DBAddresses {
     DOCUMENTS = "documents",
@@ -242,5 +244,44 @@ export class InDevAtlasAPI implements IAtlasAPI {
                 return folder;
             });
         }
+    }
+
+    importFiles(folderID: string, files: Array<File>) {
+        files.forEach((file, index, array) => {
+            const path = ((file as any).path as string).match(/(.*\/)/g)?.[0]!.split("/")!.filter(s => s.trim().length > 0)!;
+
+            let folder: Folder = this.getFolder(folderID);
+            path.forEach(elem => {
+                let element = folder.subFolderIDs
+                    ?.map(sfID => this.getFolder(sfID))
+                    ?.filter(f => f !== undefined && f.title === elem)
+                    ?.[0] ?? undefined;
+                if (element === undefined) {
+                    const newFolder: Folder = {
+                        id: v4(),
+                        title: elem,
+                        categories: [],
+                        parentFolder: folder.id
+                    }
+                    this.createSubFolder(folder.id, newFolder);
+                    element = newFolder;
+                }
+                folder = element!;
+            });
+
+            this.createDocumentInFolder(this.getFolderFromPath(folderID, path).id, {
+                id: v4(),
+                title: file.name
+            });
+        });
+    }
+
+    getFolderFromPath(baseFolderID: string, path: Array<string>): Folder {
+        let folder: Folder = this.getFolder(baseFolderID);
+        path.forEach(elem => {
+            let element = folder.subFolderIDs?.map(sfID => this.getFolder(sfID)).filter(f => f !== undefined && f.title === elem)[0];
+            folder = element!;
+        });
+        return folder;
     }
 }
