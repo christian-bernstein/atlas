@@ -7,6 +7,7 @@ import {FlexDirection} from "../../base/logic/style/FlexDirection";
 import {Text, TextType} from "../../base/components/base/Text";
 import {percent, px, vw} from "../../base/logic/style/DimensionalMeasured";
 import {ReactComponent as SettingsIcon} from "../../../assets/icons/ic-20/ic20-settings.svg";
+import {ReactComponent as EditIcon} from "../../../assets/icons/ic-20/ic20-edit.svg";
 import {Icon} from "../../base/components/base/Icon";
 import {Justify} from "../../base/logic/style/Justify";
 import {Align} from "../../base/logic/style/Align";
@@ -47,7 +48,7 @@ import {VFSFolderViewFilterState} from "../data/vfs/VFSFolderViewFilterState";
 import {UnaryFunction} from "../utils/UnaryFunction";
 import {Input} from "../../base/components/base/Input";
 import {If} from "../../base/components/logic/If";
-import {DeleteRounded, ImportExportRounded, UploadRounded} from "@mui/icons-material";
+import {DeleteRounded, UploadRounded} from "@mui/icons-material";
 import {FolderList} from "./vfs/menu/FolderList";
 import {Default, Mobile} from "../../base/components/logic/Media";
 import {isMobile} from 'react-device-detect';
@@ -60,8 +61,8 @@ import {Centered} from "../../base/components/base/PosInCenter";
 import {Description} from "../../base/components/base/Description";
 import {AtlasLogo} from "./branding/AtlasLogo";
 import {EntityImportDialog} from "./EntityImportDialog";
-import {Tooltip} from "../../base/components/base/Tooltip";
 import {Button} from "../../base/components/base/Button";
+import {Dot} from "../../base/components/base/Dot";
 
 export type VFSFolderViewProps = {
     initialFolderID?: string,
@@ -804,20 +805,62 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
             return (
                 <Flex fh fw elements={[
                     <OverflowWithHeader height={percent(100)} dir={FlexDirection.COLUMN_REVERSE} staticContainer={{
-                        gap: px(),
                         elements: [
-                            <Flex fw padding align={Align.CENTER} flexDir={FlexDirection.ROW} justifyContent={Justify.CENTER} elements={[
-                                <Icon icon={<AttachmentIcon/>}/>,
-                                <Flex fw fh justifyContent={Justify.CENTER} gap={t.gaps.smallGab} align={Align.CENTER} elements={[
-                                    <Text text={"Atlas Document Viewer"} bold/>,
-                                ]}/>,
-                                <Icon icon={<SettingsIcon/>}/>
-                            ]}/>
+                            this.component(() => (
+                                <QueryDisplay<Folder | undefined> q={this.local.state.currentFolderData} renderer={{
+                                    processing(q: Queryable<Folder | undefined>): JSX.Element {
+                                        return (
+                                            <>processing..</>
+                                        );
+                                    },
+                                    success: (q: Queryable<Folder | undefined>, data: Folder | undefined) => {
+                                        return (
+                                            <Flex style={{ paddingTop: `${t.gaps.defaultGab.times(2.5).measurand}px !important` }} fw padding paddingY={t.gaps.defaultGab} paddingX={t.gaps.defaultGab} elements={[
+                                                <Flex gap={px(6)} elements={[
+                                                    <FlexRow gap={t.gaps.smallGab} align={Align.CENTER} elements={[
+                                                        <Text bold fontSize={px(20)} text={String(this.getCurrentFolder()?.title)} type={TextType.displayText}/>,
+                                                        <Icon icon={<EditIcon/>}/>
+                                                    ]}/>,
+                                                    <FlexRow gap={px(5)} align={Align.CENTER} elements={[
+                                                        <Description renderMarkdown={false} text={`${data?.subFolderIDs?.length ?? 0} folders`}/>,
+                                                        <Dot/>,
+                                                        <Description renderMarkdown={false} text={`Created ${new Date(Date.parse(data?.creationDate ?? new Date().toISOString())).toDateString()}`}/>
+                                                    ]}/>
+                                                ]}/>,
+                                                <Separator orientation={Orientation.HORIZONTAL}/>
+                                            ]}/>
+                                        );
+                                    },
+                                    error: (q, error) => {
+                                        return (
+                                            <>error</>
+                                        );
+                                    }
+                                }}/>
+                            ), ...Q.allChannels("current-folder"))
                         ]
                     }} overflowContainer={{
                         elements: [
-                            <Flex height={px(50)} fw fh padding style={{ backgroundColor: t.colors.backgroundHighlightColor.css() }} elements={[
-                                this.component(() => this.a("folder-level-view"), "current-folder"),
+                            <Flex height={px(50)} fw fh padding elements={[
+
+                                <FlexRow fw justifyContent={Justify.SPACE_BETWEEN} align={Align.CENTER} elements={[
+                                    this.component(() => this.a("folder-level-view"), "current-folder"),
+
+
+                                    <FlexRow align={Align.CENTER} elements={[
+                                        <Icon icon={<UploadRounded/>} onClick={() => {
+                                            this.dialog(
+                                                <EntityImportDialog onCancel={() => this.closeLocalDialog()} onSubmit={files => {
+                                                    AtlasMain.atlas(atlas => {
+                                                        atlas.api().importFiles(this.ls().currentFolderID!, files)
+                                                        this.closeLocalDialog();
+                                                        this.ls().currentFolderData.query();
+                                                    });
+                                                }}/>
+                                            );
+                                        }}/>
+                                    ]}/>
+                                ]}/>,
 
                                 this.component(() => (
                                     <QueryDisplay<Folder | undefined> q={this.local.state.currentFolderData} renderer={{
@@ -829,36 +872,25 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                         success: (q: Queryable<Folder | undefined>, data: Folder | undefined) => {
                                             return (
                                                 <Flex fw fh overflowYBehaviour={OverflowBehaviour.SCROLL} elements={[
-                                                    <DrawerHeader
-                                                        header={String(this.getCurrentFolder()?.title)}
-                                                        badgeText={"Folder view"}
-                                                        enableBadge
-                                                        badgeVM={ObjectVisualMeaning.UI_NO_HIGHLIGHT}
-                                                        description={this.getCurrentFolder().description}
-                                                    />,
+                                                    // <DrawerHeader
+                                                    //     header={String(this.getCurrentFolder()?.title)}
+                                                    //     badgeText={"Folder view"}
+                                                    //     enableBadge={false}
+                                                    //     badgeVM={ObjectVisualMeaning.UI_NO_HIGHLIGHT}
+                                                    //     description={this.getCurrentFolder().description}
+                                                    // />,
 
-                                                    <Flex margin={createMargin(0, 0, 40, 0)} wrap={FlexWrap.WRAP} flexDir={FlexDirection.ROW} fw gap={t.gaps.smallGab} align={Align.CENTER} justifyContent={Justify.CENTER} elements={
-                                                        this.getCurrentFolder().tags?.map(s => (
-                                                            <Box highlightShadow={false} cursor={Cursor.pointer} highlight opaque paddingY={px(4)} paddingX={px(7)} visualMeaning={VM.SUCCESS} borderRadiiConfig={{ enableCustomBorderRadii: true, fallbackCustomBorderRadii: px(500)}} borderless children={
-                                                                <Text text={s} whitespace={"nowrap"} cursor={Cursor.pointer} visualMeaning={VM.SUCCESS} fontSize={px(12)} coloredText type={TextType.secondaryDescription}/>
-                                                            }/>
-                                                        ))
-                                                    }/>,
-
-
-                                                    <Tooltip title={"Import files"} arrow children={
-                                                        <Icon icon={<ImportExportRounded/>} onClick={() => {
-                                                            this.dialog(
-                                                                <EntityImportDialog onCancel={() => this.closeLocalDialog()} onSubmit={files => {
-
-                                                                }}/>
-                                                            );
-                                                        }}/>
-                                                    }/>,
+                                                    // <Flex margin={createMargin(0, 0, 40, 0)} wrap={FlexWrap.WRAP} flexDir={FlexDirection.ROW} fw gap={t.gaps.smallGab} align={Align.CENTER} justifyContent={Justify.CENTER} elements={
+                                                    //     this.getCurrentFolder().tags?.map(s => (
+                                                    //         <Box highlightShadow={false} cursor={Cursor.pointer} highlight opaque paddingY={px(4)} paddingX={px(7)} visualMeaning={VM.SUCCESS} borderRadiiConfig={{ enableCustomBorderRadii: true, fallbackCustomBorderRadii: px(500)}} borderless children={
+                                                    //             <Text text={s} whitespace={"nowrap"} cursor={Cursor.pointer} visualMeaning={VM.SUCCESS} fontSize={px(12)} coloredText type={TextType.secondaryDescription}/>
+                                                    //         }/>
+                                                    //     ))
+                                                    // }/>,
 
 
 
-                                                    this.a("menu-filter"),
+                                                    // this.a("menu-filter"),
 
                                                     this.component(() => this.a("folder-view"), "folder-view"),
 

@@ -151,9 +151,18 @@ export class InDevAtlasAPI implements IAtlasAPI {
     deleteFolder(id: string): boolean {
         let folders = this.getAllFolders();
         const lenBefore = folders.length;
+        const targetFolder = folders.filter(folder => folder.id === id);
         folders = folders.filter(folder => folder.id !== id);
         const lenAfter = folders.length;
         this.database.set(DBAddresses.FOLDERS, folders, true);
+
+        // TODO: Control this recursive behaviour directly!
+        if (targetFolder.length > 0) {
+            const folder = targetFolder[0];
+            folder.documentsIDs?.forEach(documentID => this.deleteDocument(documentID));
+            folder.subFolderIDs?.forEach(subFolderID => this.deleteFolder(subFolderID));
+        }
+
         return lenBefore > lenAfter;
     }
 
