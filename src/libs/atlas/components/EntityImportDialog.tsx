@@ -57,7 +57,8 @@ export class EntityImportDialog extends BC<EntityImportDialogProps, any, EntityI
 
 
                         <FlexRow gap={t.gaps.smallGab} fw elements={[
-                            <Button tooltip={"Close"} children={
+                            <Button tooltip={"Close"} onClick={() => this.props.onCancel()
+                            } children={
                                 <Icon icon={<TransitEnterexitRounded/>}/>
                             }/>,
                             <Button tooltip={"Clear"} children={
@@ -80,6 +81,7 @@ export class EntityImportDialog extends BC<EntityImportDialogProps, any, EntityI
                                         visualMeaning={VM.SUCCESS_DEFAULT}
                                         height={px(38)}
                                         bgColorOnDefault={false}
+                                        onClick={() => this.props.onSubmit(this.ls().files)}
                                         children={
                                             <Description text={"Import"}/>
                                         }

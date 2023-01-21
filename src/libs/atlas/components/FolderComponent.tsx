@@ -117,6 +117,16 @@ export class FolderComponent extends BC<FolderProps, any, any> {
 
                             <SettingsGroup title={"Actions"} elements={[
 
+                                <SettingsElement title={"Delete"} groupDisplayMode promiseBasedOnClick={element => new Promise<void>((resolve, reject) => {
+                                    try {
+                                        AtlasMain.atlas().api().deleteFolder(folder.id);
+                                        AtlasMain.atlas().rerender("folders");
+                                        resolve();
+                                    } catch (e) {
+                                        reject(e);
+                                    }
+                                })}/>,
+
                                 <SettingsElement title={"Edit"} groupDisplayMode promiseBasedOnClick={element => new Promise<void>((resolve, reject) => {
                                     try {
                                         element.dialog(

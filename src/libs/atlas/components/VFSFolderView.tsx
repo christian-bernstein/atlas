@@ -47,7 +47,7 @@ import {VFSFolderViewFilterState} from "../data/vfs/VFSFolderViewFilterState";
 import {UnaryFunction} from "../utils/UnaryFunction";
 import {Input} from "../../base/components/base/Input";
 import {If} from "../../base/components/logic/If";
-import {DeleteRounded, ImportExportRounded} from "@mui/icons-material";
+import {DeleteRounded, ImportExportRounded, UploadRounded} from "@mui/icons-material";
 import {FolderList} from "./vfs/menu/FolderList";
 import {Default, Mobile} from "../../base/components/logic/Media";
 import {isMobile} from 'react-device-detect';
@@ -58,12 +58,10 @@ import {UpstreamTransactionType} from "../hyperion/UpstreamTransactionType";
 import {Optional} from "../../base/Optional";
 import {Centered} from "../../base/components/base/PosInCenter";
 import {Description} from "../../base/components/base/Description";
-import {LinearProgress} from "@mui/material";
 import {AtlasLogo} from "./branding/AtlasLogo";
-import Dropzone from "react-dropzone";
-import {Button} from "../../base/components/base/Button";
 import {EntityImportDialog} from "./EntityImportDialog";
 import {Tooltip} from "../../base/components/base/Tooltip";
+import {Button} from "../../base/components/base/Button";
 
 export type VFSFolderViewProps = {
     initialFolderID?: string,
@@ -746,23 +744,66 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                                         />,
 
 
-                                                        <Flex margin={createMargin(0, 0, 40, 0)} wrap={FlexWrap.WRAP} flexDir={FlexDirection.ROW} fw gap={t.gaps.smallGab} align={Align.CENTER} justifyContent={Justify.CENTER} elements={
-                                                            this.getCurrentFolder().tags?.map(s => (
-                                                                <Box highlightShadow={false} cursor={Cursor.pointer} highlight opaque paddingY={px(4)} paddingX={px(7)} visualMeaning={VM.SUCCESS} borderRadiiConfig={{ enableCustomBorderRadii: true, fallbackCustomBorderRadii: px(500)}} borderless children={
-                                                                    <Text text={s} whitespace={"nowrap"} cursor={Cursor.pointer} visualMeaning={VM.SUCCESS} fontSize={px(12)} coloredText type={TextType.secondaryDescription}/>
-                                                                }/>
-                                                            ))
-                                                        }/>,
+                                                        <Flex fw margin={createMargin(0, 0, 40, 0)} align={Align.CENTER} elements={[
+                                                            <Flex wrap={FlexWrap.WRAP} flexDir={FlexDirection.ROW} fw gap={t.gaps.smallGab} align={Align.CENTER} justifyContent={Justify.CENTER} elements={
+                                                                this.getCurrentFolder().tags?.map(s => (
+                                                                    <Box highlightShadow={false} cursor={Cursor.pointer} highlight opaque paddingY={px(4)} paddingX={px(7)} visualMeaning={VM.SUCCESS} borderRadiiConfig={{ enableCustomBorderRadii: true, fallbackCustomBorderRadii: px(500)}} borderless children={
+                                                                        <Text text={s} whitespace={"nowrap"} cursor={Cursor.pointer} visualMeaning={VM.SUCCESS} fontSize={px(12)} coloredText type={TextType.secondaryDescription}/>
+                                                                    }/>
+                                                                ))
+                                                            }/>,
 
-                                                        <Tooltip title={"Import files"} arrow children={
-                                                            <Icon icon={<ImportExportRounded/>} onClick={() => {
-                                                                this.dialog(
-                                                                    <EntityImportDialog onCancel={() => this.closeLocalDialog()} onSubmit={files => {
+                                                            <Flex wrap={FlexWrap.WRAP} flexDir={FlexDirection.ROW} fw gap={t.gaps.smallGab} align={Align.CENTER} justifyContent={Justify.CENTER} elements={[
+                                                                <Button tooltip={"Import files"} bgColorOnDefault={false} border={false} opaque visualMeaning={VM.UI_NO_HIGHLIGHT} children={
+                                                                    <Icon icon={<UploadRounded/>} onClick={() => {
+                                                                        this.dialog(
+                                                                            <EntityImportDialog onCancel={() => this.closeLocalDialog()} onSubmit={files => {
+                                                                                files.forEach((file, index, array) => {
+                                                                                    AtlasMain.atlas(atlas => {
+                                                                                        const api = AtlasMain.atlas().api();
+                                                                                        const path = ((file as any).path as string).match(/(.*\/)/g)?.[0]!.split("/")!.filter(s => s.trim().length > 0)!;
 
+                                                                                        let folder: Folder = api.getFolder(this.ls().currentFolderID!);
+                                                                                        path.forEach(elem => {
+                                                                                            let element = folder.subFolderIDs
+                                                                                                ?.map(sfID => api.getFolder(sfID))
+                                                                                                ?.filter(f => f !== undefined && f.title === elem)
+                                                                                                ?.[0] ?? undefined;
+                                                                                            if (element === undefined) {
+                                                                                                const newFolder: Folder = {
+                                                                                                    id: v4(),
+                                                                                                    title: elem,
+                                                                                                    categories: [],
+                                                                                                    parentFolder: folder.id
+                                                                                                }
+                                                                                                api.createSubFolder(folder.id, newFolder);
+                                                                                                element = newFolder;
+                                                                                            }
+                                                                                            folder = element!;
+                                                                                        });
+
+                                                                                        const getSubFolderFromPath = (path: Array<string>): Folder => {
+                                                                                            let folder: Folder = api.getFolder(this.ls().currentFolderID!);
+                                                                                            path.forEach(elem => {
+                                                                                                let element = folder.subFolderIDs?.map(sfID => api.getFolder(sfID)).filter(f => f !== undefined && f.title === elem)[0];
+                                                                                                folder = element!;
+                                                                                            });
+                                                                                            return folder;
+                                                                                        }
+
+                                                                                        api.createDocumentInFolder(getSubFolderFromPath(path).id, {
+                                                                                            id: v4(),
+                                                                                            title: file.name
+                                                                                        });
+                                                                                    });
+                                                                                });
+                                                                            }}/>
+                                                                        );
                                                                     }}/>
-                                                                );
-                                                            }}/>
-                                                        }/>,
+                                                                }/>
+                                                            ]}/>
+                                                        ]}/>,
+
 
                                                         this.a("menu-filter"),
 

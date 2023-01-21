@@ -416,10 +416,6 @@ export class AtlasMain extends BC<AtlasMainProps, any, AtlasMainLocalState> {
     }
 
     public api(): IAtlasAPI {
-
-
-        console.debug("api", this.props.api)
-
         return this.props.api;
     }
 
