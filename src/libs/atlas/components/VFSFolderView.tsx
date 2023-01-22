@@ -818,7 +818,7 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                             <Flex style={{ paddingTop: `${t.gaps.defaultGab.times(2.5).measurand}px !important` }} fw padding paddingY={t.gaps.defaultGab} paddingX={t.gaps.defaultGab} elements={[
                                                 <Flex gap={px(6)} elements={[
                                                     <FlexRow gap={t.gaps.smallGab} align={Align.CENTER} elements={[
-                                                        <Text bold fontSize={px(20)} text={String(this.getCurrentFolder()?.title)} type={TextType.displayText}/>,
+                                                        <Text bold fontSize={px(20)} text={String(this.getCurrentFolder()?.title)}/>,
                                                         <Icon icon={<EditIcon/>}/>
                                                     ]}/>,
                                                     <FlexRow gap={px(5)} align={Align.CENTER} elements={[
