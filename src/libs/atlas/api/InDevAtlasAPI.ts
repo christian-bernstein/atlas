@@ -7,7 +7,6 @@ import {FormDataHub} from "../../base/FormDataHub";
 import {AtlasDB} from "./AtlasDB";
 import {IISOAdapter} from "../iso/IISOAdapter";
 import {ISOAdapterV1} from "../iso/v1/ISOAdapterV1";
-import {AtlasMain} from "../AtlasMain";
 import {v4} from "uuid";
 
 enum DBAddresses {
