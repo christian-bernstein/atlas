@@ -54,9 +54,7 @@ export class FormDataHub {
 
     public get(key: string, def?: any): any {
         const filtered = this.data.filter(kv => kv.key === key);
-
-        console.log("get", key, "result", filtered);
-
+        // console.log("get", key, "result", filtered);
         if (filtered.length === 0) {
             return def;
         } else {

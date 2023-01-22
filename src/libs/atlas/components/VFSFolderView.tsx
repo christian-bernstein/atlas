@@ -81,9 +81,6 @@ export type VFSFolderViewLocalState = {
     filterState: VFSFolderViewFilterState,
     debouncedTitleFilterUpdater: (newTitleFilterValue: string) => void,
     vfsSettings: Q<Optional<VFSSettings>>,
-
-
-
     animateFolderSlider: boolean,
     folderSliderAnimationDirection: "right" | "left" | "up" | "down" | undefined
 }
@@ -888,14 +885,10 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                             );
                                         },
                                         success: (q: Queryable<Folder | undefined>, data: Folder | undefined) => {
-
-                                            const A = React.forwardRef((props, ref) => {
+                                            const FolderSlider = React.forwardRef((props, ref) => {
                                                 return (
-                                                    <div ref={ref as any} {...props} style={{
-                                                        width: "100%"
-                                                    }}>
+                                                    <div ref={ref as any} {...props} style={{ width: "100%" }} children={
                                                         <Flex fw fh overflowYBehaviour={OverflowBehaviour.SCROLL} elements={[
-
                                                             // <Flex margin={createMargin(0, 0, 40, 0)} wrap={FlexWrap.WRAP} flexDir={FlexDirection.ROW} fw gap={t.gaps.smallGab} align={Align.CENTER} justifyContent={Justify.CENTER} elements={
                                                             //     this.getCurrentFolder().tags?.map(s => (
                                                             //         <Box highlightShadow={false} cursor={Cursor.pointer} highlight opaque paddingY={px(4)} paddingX={px(7)} visualMeaning={VM.SUCCESS} borderRadiiConfig={{ enableCustomBorderRadii: true, fallbackCustomBorderRadii: px(500)}} borderless children={
@@ -903,27 +896,27 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                                             //         }/>
                                                             //     ))
                                                             // }/>,
-
                                                             // this.a("menu-filter"),
-
                                                             this.component(() => this.a("folder-view"), "folder-view"),
-
                                                             this.component(() => this.a("document-view"), "document-view", "search-filter-state"),
-
                                                         ]}/>
-                                                    </div>
+                                                    }/>
                                                 );
                                             })
 
                                             if (this.ls().animateFolderSlider) {
+                                                this.local.setState({
+                                                    folderSliderAnimationDirection: undefined,
+                                                    animateFolderSlider: false
+                                                });
                                                 return (
                                                     <Slide in id={v4()} key={v4()} direction={this.ls().folderSliderAnimationDirection} children={
-                                                        <A/>
+                                                        <FolderSlider/>
                                                     }/>
                                                 );
                                             } else {
                                                 return (
-                                                    <A/>
+                                                    <FolderSlider/>
                                                 );
                                             }
                                         },
@@ -940,16 +933,6 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                 ]}/>
             );
         });
-    }
-
-    onPostComponentRenderEvent() {
-        super.onPostComponentRenderEvent();
-        if (this.ls().animateFolderSlider) {
-            this.local.setState({
-                animateFolderSlider: false,
-                folderSliderAnimationDirection: undefined
-            });
-        }
     }
 
     private mobileMainAssembly() {
@@ -1037,7 +1020,6 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
      * TODO: Add loading interrupt error screen / anomaly display
      */
     componentRender(p: VFSFolderViewProps, s: any, l: VFSFolderViewLocalState, t: Themeable.Theme, a: Assembly): JSX.Element | undefined {
-
         return this.component(() => (
             <QueryDisplay<Optional<VFSSettings>>
                 q={this.ls().vfsSettings}
