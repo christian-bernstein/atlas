@@ -429,8 +429,7 @@ export class AtlasMain extends BC<AtlasMainProps, any, AtlasMainLocalState> {
         }
 
         this.dialog(
-
-            <Blueprint blueprint={<Img src={TestBlueprint}/>} children={
+            <Blueprint enable={false} blueprint={<Img src={TestBlueprint}/>} children={
                 <VFSFolderView
                     onClose={() => onClose()}
                     onMount={(view: VFSFolderView) => {

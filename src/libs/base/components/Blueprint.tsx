@@ -2,11 +2,18 @@ import React, {PropsWithChildren} from "react";
 import {Screen} from "./base/Page";
 
 export type BlueprintProps = PropsWithChildren<{
+    enable?: boolean,
     blueprint: JSX.Element,
     opacity?: number
 }>
 
 export const Blueprint: React.FC<BlueprintProps> = props => {
+    if (!props.enable ?? true) {
+        return (
+            <>{props.children}</>
+        );
+    }
+
     return (
         <Screen deactivatePadding style={{ backgroundColor: "black", position: "relative" }} children={<>
             <span style={{

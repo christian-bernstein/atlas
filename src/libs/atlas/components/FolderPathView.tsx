@@ -59,38 +59,12 @@ export class FolderPathView extends BC<FolderPathViewProps, any, any> {
 
     private foldersAssembly() {
         this.assembly.assembly("folders", theme => {
-            // return (
-            //     <Map<Folder>
-            //         data={this.props.path}
-            //         renderer={(folder, data, index) => {
-            //             const isLast = !(index < array.length);
-            //             return (
-            //                 <AF elements={[
-            //                     <Tooltip title={`Go to ${folder.id}`} arrow children={
-            //                         <Text
-            //                             whitespace={"nowrap"}
-            //                             text={`${folder.title}`}
-            //                             cursor={Cursor.pointer}
-            //                             highlight={isLast}
-            //                             coloredText={isLast}
-            //                             visualMeaning={isLast ? VM.INFO : VM.UI_NO_HIGHLIGHT}
-            //                             onClick={() => {
-            //                                 console.log(!isLast, index)
-            //                                 if (!isLast) {
-            //                                     this.props.gotoFolder(folder);
-            //                                 }
-            //                             }
-            //                         }/>
-            //                     }/>,
-            //                     <Text text={"/"} type={TextType.secondaryDescription}/>
-            //                 ]}/>
-            //             );
-            //         }}
-            //     />
-            // );
-
             return (
-                <Breadcrumbs separator="›" children={
+                <Breadcrumbs separator="›" sx={{
+                    ".MuiBreadcrumbs-separator": {
+                        color: "#FFFFFF",
+                    }
+                }} children={
                     this.props.path.map((folder, index, data) => {
                         const isLast = !(index < data.length - 1);
                         return (
