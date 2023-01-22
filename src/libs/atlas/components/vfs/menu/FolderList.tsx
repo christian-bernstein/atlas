@@ -89,11 +89,8 @@ export class FolderList extends BernieComponent<FolderListProps, any, FolderList
                                 return;
                             }
 
-                            view.local.setState({
-                                currentFolderID: data.id
-                            }, new Map<string, any>(), () => {
-                                view.reloadFolderView();
-                            });
+
+                            view.changeCurrentFolder(data.id, "down");
                         })}/>
                     );
                 })

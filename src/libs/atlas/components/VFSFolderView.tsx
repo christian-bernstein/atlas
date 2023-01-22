@@ -63,6 +63,7 @@ import {AtlasLogo} from "./branding/AtlasLogo";
 import {EntityImportDialog} from "./EntityImportDialog";
 import {Button} from "../../base/components/base/Button";
 import {Dot} from "../../base/components/base/Dot";
+import Slide from '@mui/material/Slide';
 
 export type VFSFolderViewProps = {
     initialFolderID?: string,
@@ -79,7 +80,12 @@ export type VFSFolderViewLocalState = {
     menuVisible: boolean,
     filterState: VFSFolderViewFilterState,
     debouncedTitleFilterUpdater: (newTitleFilterValue: string) => void,
-    vfsSettings: Q<Optional<VFSSettings>>
+    vfsSettings: Q<Optional<VFSSettings>>,
+
+
+
+    animateFolderSlider: boolean,
+    folderSliderAnimationDirection: "right" | "left" | "up" | "down" | undefined
 }
 
 export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLocalState> {
@@ -90,6 +96,8 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
 
     constructor(props: VFSFolderViewProps) {
         super(props, undefined, {
+            animateFolderSlider: false,
+            folderSliderAnimationDirection: undefined,
             menuVisible: true,
             documentStates: new Map<string, DocumentState>(),
             documentBodyUpdaters: new Map<string, (body: string) => void>(),
@@ -177,9 +185,6 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
             }),
             viewMultiplexers: []
         });
-
-        console.debug("VFSFolderView created")
-
         // Begin all pre-rendering querying processes
         this.ls().vfsSettings.query();
     }
@@ -282,14 +287,6 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                 )}/>
             );
         })
-    }
-
-    private updateCurrentFolder(newFolderID: string) {
-        this.local.setState({
-            currentFolderID: newFolderID
-        }, new Map<string, any>(), () => {
-            this.reloadFolderView();
-        });
     }
 
     private openDocumentInMobileMode(data: AtlasDocument) {
@@ -579,7 +576,7 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                             <FolderPathView
                                 path={tree.reverse()}
                                 gotoFolder={selectedFolder => {
-                                    this.updateCurrentFolder(selectedFolder.id);
+                                    this.changeCurrentFolder(selectedFolder.id, "up");
                                 }}
                             />
                         );
@@ -799,10 +796,29 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
         })
     }
 
+    public changeCurrentFolder(newFolderID: string, heading: "up" | "down" | undefined = undefined) {
+        if (heading !== undefined) {
+            this.primeSliderAnimation(heading === "down" ? "left" : "right");
+        }
+
+        this.local.setState({
+            currentFolderID: newFolderID
+        }, new Map<string, any>(), () => {
+            this.reloadFolderView();
+        });
+    }
+
+    public primeSliderAnimation(direction: "right" | "left" | "up" | "down" | undefined) {
+        this.local.setState({
+            folderSliderAnimationDirection: direction,
+            animateFolderSlider: true
+        });
+    }
+
     private mobileMenuAssembly() {
         this.assembly.assembly("mobile-menu", t => {
             return (
-                <Flex fh fw elements={[
+                <Flex fh fw align={Align.CENTER} elements={[
                     <OverflowWithHeader gap={px()} height={percent(100)} dir={FlexDirection.COLUMN_REVERSE} staticContainer={{
                         elements: [
                             this.component(() => (
@@ -847,11 +863,7 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                             <Flex height={px(50)} fw fh padding elements={[
 
                                 <FlexRow fw justifyContent={Justify.SPACE_BETWEEN} align={Align.CENTER} elements={[
-
-
-
                                     this.component(() => this.a("folder-level-view"), "current-folder"),
-
 
                                     <FlexRow align={Align.CENTER} elements={[
                                         <Icon icon={<UploadRounded/>} onClick={() => {
@@ -876,27 +888,44 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                             );
                                         },
                                         success: (q: Queryable<Folder | undefined>, data: Folder | undefined) => {
-                                            return (
-                                                <Flex fw fh overflowYBehaviour={OverflowBehaviour.SCROLL} elements={[
 
-                                                    // <Flex margin={createMargin(0, 0, 40, 0)} wrap={FlexWrap.WRAP} flexDir={FlexDirection.ROW} fw gap={t.gaps.smallGab} align={Align.CENTER} justifyContent={Justify.CENTER} elements={
-                                                    //     this.getCurrentFolder().tags?.map(s => (
-                                                    //         <Box highlightShadow={false} cursor={Cursor.pointer} highlight opaque paddingY={px(4)} paddingX={px(7)} visualMeaning={VM.SUCCESS} borderRadiiConfig={{ enableCustomBorderRadii: true, fallbackCustomBorderRadii: px(500)}} borderless children={
-                                                    //             <Text text={s} whitespace={"nowrap"} cursor={Cursor.pointer} visualMeaning={VM.SUCCESS} fontSize={px(12)} coloredText type={TextType.secondaryDescription}/>
-                                                    //         }/>
-                                                    //     ))
-                                                    // }/>,
+                                            const A = React.forwardRef((props, ref) => {
+                                                return (
+                                                    <div ref={ref as any} {...props} style={{
+                                                        width: "100%"
+                                                    }}>
+                                                        <Flex fw fh overflowYBehaviour={OverflowBehaviour.SCROLL} elements={[
 
+                                                            // <Flex margin={createMargin(0, 0, 40, 0)} wrap={FlexWrap.WRAP} flexDir={FlexDirection.ROW} fw gap={t.gaps.smallGab} align={Align.CENTER} justifyContent={Justify.CENTER} elements={
+                                                            //     this.getCurrentFolder().tags?.map(s => (
+                                                            //         <Box highlightShadow={false} cursor={Cursor.pointer} highlight opaque paddingY={px(4)} paddingX={px(7)} visualMeaning={VM.SUCCESS} borderRadiiConfig={{ enableCustomBorderRadii: true, fallbackCustomBorderRadii: px(500)}} borderless children={
+                                                            //             <Text text={s} whitespace={"nowrap"} cursor={Cursor.pointer} visualMeaning={VM.SUCCESS} fontSize={px(12)} coloredText type={TextType.secondaryDescription}/>
+                                                            //         }/>
+                                                            //     ))
+                                                            // }/>,
 
+                                                            // this.a("menu-filter"),
 
-                                                    // this.a("menu-filter"),
+                                                            this.component(() => this.a("folder-view"), "folder-view"),
 
-                                                    this.component(() => this.a("folder-view"), "folder-view"),
+                                                            this.component(() => this.a("document-view"), "document-view", "search-filter-state"),
 
-                                                    this.component(() => this.a("document-view"), "document-view", "search-filter-state"),
+                                                        ]}/>
+                                                    </div>
+                                                );
+                                            })
 
-                                                ]}/>
-                                            );
+                                            if (this.ls().animateFolderSlider) {
+                                                return (
+                                                    <Slide in id={v4()} key={v4()} direction={this.ls().folderSliderAnimationDirection} children={
+                                                        <A/>
+                                                    }/>
+                                                );
+                                            } else {
+                                                return (
+                                                    <A/>
+                                                );
+                                            }
                                         },
                                         error: (q, error) => {
                                             return (
@@ -911,6 +940,16 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                 ]}/>
             );
         });
+    }
+
+    onPostComponentRenderEvent() {
+        super.onPostComponentRenderEvent();
+        if (this.ls().animateFolderSlider) {
+            this.local.setState({
+                animateFolderSlider: false,
+                folderSliderAnimationDirection: undefined
+            });
+        }
     }
 
     private mobileMainAssembly() {

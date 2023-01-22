@@ -295,11 +295,18 @@ export class BernieComponent<
         this.componentActive = false;
     }
 
+    /**
+     * Will run after 'componentRender' returned & right before submitting the newly rendered JSX to react.
+     * This method has to be as fast as possible.
+     */
+    onPostComponentRenderEvent() {
+    }
+
     render() {
         if (this.redirect) {
             return this.renderRedirect();
         } else {
-            return (
+            const renderResult = (
                 <>
                     {
                         this.config.enableLocalDialog ? (
@@ -333,6 +340,8 @@ export class BernieComponent<
                     }
                 </>
             );
+            this.onPostComponentRenderEvent();
+            return renderResult;
         }
     }
 }
