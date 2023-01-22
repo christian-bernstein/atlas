@@ -55,9 +55,9 @@ import {AtlasLogo} from "./components/branding/AtlasLogo";
 import {isMobile} from "react-device-detect";
 import {TheiaAPI} from "./theia/TheiaAPI";
 import {TheiaLocalDBNode} from "./theia/TheiaLocalDBNode";
-import {FolderList} from "./components/vfs/menu/FolderList";
-import Dropzone from "react-dropzone";
-import {EntityImportDialog} from "./components/EntityImportDialog";
+import {Blueprint} from "../base/components/Blueprint";
+import {Img} from "react-image";
+import TestBlueprint from "../../assets/development/blueprints/test_blueprint.png";
 
 export type AtlasMainProps = {
     api: IAtlasAPI
@@ -421,8 +421,6 @@ export class AtlasMain extends BC<AtlasMainProps, any, AtlasMainLocalState> {
 
     public openTreeViewDialog() {
         const onClose = () => {
-            console.debug("VFSFolderView onClose in AtlasMain")
-
             this.closeLocalDialog();
             this.local.setStateWithChannels({
                 vfsFolderViewOpened: false,
@@ -431,15 +429,20 @@ export class AtlasMain extends BC<AtlasMainProps, any, AtlasMainLocalState> {
         }
 
         this.dialog(
-            <VFSFolderView
-                onClose={() => onClose()}
-                onMount={(view: VFSFolderView) => {
-                    this.local.setStateWithChannels({
-                        vfsFolderViewOpened: true,
-                        vfsFolderViewInstance: view
-                    }, ["vfs-folder-view"]);
-                }}
-            />
+
+            <Blueprint blueprint={<Img src={TestBlueprint}/>} children={
+                <VFSFolderView
+                    onClose={() => onClose()}
+                    onMount={(view: VFSFolderView) => {
+                        this.local.setStateWithChannels({
+                            vfsFolderViewOpened: true,
+                            vfsFolderViewInstance: view
+                        }, ["vfs-folder-view"]);
+                    }}
+                />
+            }/>
+
+
             // , () => onClose()
         );
     }

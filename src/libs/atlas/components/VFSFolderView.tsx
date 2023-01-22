@@ -567,7 +567,6 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
             return this.component(local => (
                 <QueryDisplay<Folder | undefined> q={this.local.state.currentFolderData} renderer={{
                     success: (q, f: Folder | undefined) => {
-                        // TODO: use 'f' -> Clean up this code
                         const currentFolder = this.local.state.currentFolderData.get()[0];
                         const tree: Array<Folder> = new Array<Folder>();
                         let folder = currentFolder;
@@ -804,7 +803,7 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
         this.assembly.assembly("mobile-menu", t => {
             return (
                 <Flex fh fw elements={[
-                    <OverflowWithHeader height={percent(100)} dir={FlexDirection.COLUMN_REVERSE} staticContainer={{
+                    <OverflowWithHeader gap={px()} height={percent(100)} dir={FlexDirection.COLUMN_REVERSE} staticContainer={{
                         elements: [
                             this.component(() => (
                                 <QueryDisplay<Folder | undefined> q={this.local.state.currentFolderData} renderer={{
@@ -815,10 +814,14 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                     },
                                     success: (q: Queryable<Folder | undefined>, data: Folder | undefined) => {
                                         return (
-                                            <Flex style={{ paddingTop: `${t.gaps.defaultGab.times(2.5).measurand}px !important` }} fw padding paddingY={t.gaps.defaultGab} paddingX={t.gaps.defaultGab} elements={[
+                                            <Flex style={{
+                                                paddingTop: t.gaps.defaultGab.css(),
+                                                paddingLeft: t.gaps.defaultGab.css(),
+                                                paddingRight: t.gaps.defaultGab.css(),
+                                            }} fw elements={[
                                                 <Flex gap={px(6)} elements={[
                                                     <FlexRow gap={t.gaps.smallGab} align={Align.CENTER} elements={[
-                                                        <Text bold fontSize={px(20)} text={String(this.getCurrentFolder()?.title)}/>,
+                                                        <Text bold fontSize={px(21)} text={String(this.getCurrentFolder()?.title)}/>,
                                                         <Icon icon={<EditIcon/>}/>
                                                     ]}/>,
                                                     <FlexRow gap={px(5)} align={Align.CENTER} elements={[
@@ -844,6 +847,9 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                             <Flex height={px(50)} fw fh padding elements={[
 
                                 <FlexRow fw justifyContent={Justify.SPACE_BETWEEN} align={Align.CENTER} elements={[
+
+
+
                                     this.component(() => this.a("folder-level-view"), "current-folder"),
 
 
@@ -872,13 +878,6 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                         success: (q: Queryable<Folder | undefined>, data: Folder | undefined) => {
                                             return (
                                                 <Flex fw fh overflowYBehaviour={OverflowBehaviour.SCROLL} elements={[
-                                                    // <DrawerHeader
-                                                    //     header={String(this.getCurrentFolder()?.title)}
-                                                    //     badgeText={"Folder view"}
-                                                    //     enableBadge={false}
-                                                    //     badgeVM={ObjectVisualMeaning.UI_NO_HIGHLIGHT}
-                                                    //     description={this.getCurrentFolder().description}
-                                                    // />,
 
                                                     // <Flex margin={createMargin(0, 0, 40, 0)} wrap={FlexWrap.WRAP} flexDir={FlexDirection.ROW} fw gap={t.gaps.smallGab} align={Align.CENTER} justifyContent={Justify.CENTER} elements={
                                                     //     this.getCurrentFolder().tags?.map(s => (
@@ -917,7 +916,7 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
     private mobileMainAssembly() {
         this.assembly.assembly("mobile-main", theme => {
             return (
-                <Screen deactivatePadding children={
+                <Screen deactivatePadding={false} children={
                     this.component(() => this.a("mobile-menu"), "menu")
                 }/>
             );
