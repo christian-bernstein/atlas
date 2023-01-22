@@ -902,7 +902,7 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                                         ]}/>
                                                     }/>
                                                 );
-                                            })
+                                            });
 
                                             if (this.ls().animateFolderSlider) {
                                                 this.local.setState({
