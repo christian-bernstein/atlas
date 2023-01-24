@@ -58,6 +58,7 @@ import {TheiaLocalDBNode} from "./theia/TheiaLocalDBNode";
 import {Blueprint} from "../base/components/Blueprint";
 import {Img} from "react-image";
 import TestBlueprint from "../../assets/development/blueprints/test_blueprint.png";
+import {HyperionImageProducer} from "./hyperion/producers/HyperionImageProducer";
 
 export type AtlasMainProps = {
     api: IAtlasAPI
@@ -390,19 +391,9 @@ export class AtlasMain extends BC<AtlasMainProps, any, AtlasMainLocalState> {
                                 executor: (ctx) => new Promise(resolve => {
                                     ctx.dialogEntry?.dialog(
                                         <StaticDrawerMenu body={() => (
-                                            <FileInput onSubmit={fiCtx => {
-                                                HyperionAPI.hyperion(prop => prop.upstreamTransaction({
-                                                    type: UpstreamTransactionType.OVERWRITE,
-                                                    transactionID: v4(),
-                                                    onStreamed: () => {
-                                                        // TODO: Rerender
-                                                    },
-                                                    entry: {
-                                                        id: "atlas-document-background",
-                                                        value: fiCtx.dataURL ?? "error"
-                                                    }
-                                                }));
-                                            }}/>
+                                            <>
+                                                <HyperionImageProducer hyperionEntryID={"atlas-document-background"} showDisplaySettings/>
+                                            </>
                                         )}/>
                                     );
                                     resolve(undefined);
