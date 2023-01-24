@@ -1004,8 +1004,6 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
 
                                 this.a("side-menu"),
 
-
-
                                 this.component(() => this.a("menu"), "menu"),
 
                                 // Main view - Flexing middle section
