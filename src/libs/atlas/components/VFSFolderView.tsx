@@ -66,9 +66,8 @@ import {Dot} from "../../base/components/base/Dot";
 import Slide from '@mui/material/Slide';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
-import { styled } from '@mui/material/styles';
-import Badge from '@mui/material/Badge';
-import {array} from "../../base/Utils";
+import Collapse from '@mui/material/Collapse';
+import {TransitionGroup} from "react-transition-group";
 
 export type VFSFolderViewProps = {
     initialFolderID?: string,
@@ -1004,6 +1003,8 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                 // <SideMenu view={this}/>,
 
                                 this.a("side-menu"),
+
+
 
                                 this.component(() => this.a("menu"), "menu"),
 
