@@ -306,13 +306,13 @@ export class FolderComponent extends BC<FolderProps, any, any> {
                             <FlexRow align={Align.CENTER} gap={px()} elements={[
                                 // <Description visualMeaning={VM.WARNING} coloredText text={parentFolder.title ?? "N/A"}/>,
                                 // <Description visualMeaning={VM.UI_NO_HIGHLIGHT} coloredText text={"/"}/>,
-                                <Description text={p.data.title ?? "N/A"}/>
+                                <Description renderMarkdown={false} text={p.data.title ?? "N/A"}/>
                             ]}/>
                         );
                     }
                     // Render just the title
                     return (
-                        <Description text={p.data.title ?? "N/A"}/>
+                        <Description renderMarkdown={false} text={p.data.title ?? "N/A"}/>
                     );
                 }}
 

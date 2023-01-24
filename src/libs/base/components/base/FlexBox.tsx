@@ -14,6 +14,7 @@ import {Assembly} from "../../logic/assembly/Assembly";
 import {FlexWrap} from "../../logic/style/FlexWrap";
 
 export type FlexBoxProps = PropsWithChildren<{
+    onDoubleClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void,
     flexDir?: FlexDirection,
     gap?: DimensionalMeasured,
     style?: CSSProperties,
@@ -67,7 +68,7 @@ export const FlexBox: React.FC<FlexBoxProps> = props => {
     `;
 
     return (
-        <Wrapper id={props.id} as={getOr(props.type, "div")} style={getOr(props.style, {})} className={getOr(props.classnames?.join(" "), "")}>
+        <Wrapper onDoubleClick={(event: any) => getOr(props.onDoubleClick, () => {})(event)} id={props.id} as={getOr(props.type, "div")} style={getOr(props.style, {})} className={getOr(props.classnames?.join(" "), "")}>
             {props.elements}
             {props.children}
         </Wrapper>

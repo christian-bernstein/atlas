@@ -64,6 +64,11 @@ import {EntityImportDialog} from "./EntityImportDialog";
 import {Button} from "../../base/components/base/Button";
 import {Dot} from "../../base/components/base/Dot";
 import Slide from '@mui/material/Slide';
+import Avatar from '@mui/material/Avatar';
+import AvatarGroup from '@mui/material/AvatarGroup';
+import { styled } from '@mui/material/styles';
+import Badge from '@mui/material/Badge';
+import {array} from "../../base/Utils";
 
 export type VFSFolderViewProps = {
     initialFolderID?: string,
@@ -727,6 +732,26 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                                 );
                                             },
                                             success: (q: Queryable<Folder | undefined>, data: Folder | undefined) => {
+
+                                                const FolderSlider = React.forwardRef((props, ref) => {
+                                                    return (
+                                                        <div ref={ref as any} {...props} style={{ width: "100%" }} children={
+                                                            <Flex fw fh overflowYBehaviour={OverflowBehaviour.SCROLL} elements={[
+                                                                this.component(() => this.a("folder-view"), "folder-view"),
+                                                                this.component(() => this.a("document-view"), "document-view", "search-filter-state"),
+                                                            ]}/>
+                                                        }/>
+                                                    );
+                                                });
+
+                                                const animate = this.ls().animateFolderSlider;
+
+                                                if (this.ls().animateFolderSlider) {
+                                                    this.local.setState({
+                                                        animateFolderSlider: false
+                                                    });
+                                                }
+
                                                 return (
                                                     <Flex fw fh overflowYBehaviour={OverflowBehaviour.SCROLL} elements={[
                                                         <DrawerHeader
@@ -767,9 +792,16 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
 
                                                         this.a("menu-filter"),
 
-                                                        this.component(() => this.a("folder-view"), "folder-view"),
+                                                        // this.component(() => this.a("folder-view"), "folder-view"),
+                                                        // this.component(() => this.a("document-view"), "document-view", "search-filter-state"),
 
-                                                        this.component(() => this.a("document-view"), "document-view", "search-filter-state"),
+                                                        <If condition={animate} ifTrue={
+                                                            <Slide in id={v4()} key={v4()} direction={this.ls().folderSliderAnimationDirection} children={
+                                                                <FolderSlider/>
+                                                            }/>
+                                                        } ifFalse={
+                                                            <FolderSlider/>
+                                                        }/>
                                                     ]}/>
                                                 );
                                             },
@@ -832,15 +864,34 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                                 paddingLeft: t.gaps.defaultGab.css(),
                                                 paddingRight: t.gaps.defaultGab.css(),
                                             }} fw elements={[
-                                                <Flex gap={px(6)} elements={[
+                                                <Flex fw gap={px(6)} elements={[
                                                     <FlexRow gap={t.gaps.smallGab} align={Align.CENTER} elements={[
                                                         <Text bold fontSize={px(21)} text={String(this.getCurrentFolder()?.title)}/>,
                                                         <Icon icon={<EditIcon/>}/>
                                                     ]}/>,
-                                                    <FlexRow gap={px(5)} align={Align.CENTER} elements={[
-                                                        <Description renderMarkdown={false} text={`${data?.subFolderIDs?.length ?? 0} folders`}/>,
-                                                        <Dot/>,
-                                                        <Description renderMarkdown={false} text={`Created ${new Date(Date.parse(data?.creationDate ?? new Date().toISOString())).toDateString()}`}/>
+
+                                                    <FlexRow fw align={Align.CENTER} justifyContent={Justify.SPACE_BETWEEN} elements={[
+                                                        <FlexRow fw gap={px(5)} align={Align.CENTER} elements={[
+                                                            <Description renderMarkdown={false} text={`${data?.subFolderIDs?.length ?? 0} folders`}/>,
+                                                            <Dot/>,
+                                                            <Description renderMarkdown={false} text={`Created ${new Date(Date.parse(data?.creationDate ?? new Date().toISOString())).toDateString()}`}/>
+                                                        ]}/>,
+
+                                                        <AvatarGroup sx={{
+                                                            ".MuiAvatar-root": {
+                                                                borderColor: `${t.colors.backgroundColor.css()} !important`
+                                                            }
+                                                        }} children={
+                                                            [
+                                                                "https://i.pinimg.com/originals/cc/73/9b/cc739b3e53b9562f98400b7817614d68.png",
+                                                                "https://i.pinimg.com/564x/b2/24/20/b2242039d0b728a5e36ba0fef544b6e8.jpg",
+                                                                "https://static.wikia.nocookie.net/95c5a16e-c866-4373-b4fd-6589e559b778/scale-to-width/755"
+                                                            ].map(url => (
+                                                                <Avatar src={url} sx={{
+                                                                    width: 16, height: 16
+                                                                }}/>
+                                                            ))
+                                                        }/>
                                                     ]}/>
                                                 ]}/>,
                                                 <Separator orientation={Orientation.HORIZONTAL}/>
@@ -858,10 +909,8 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                     }} overflowContainer={{
                         elements: [
                             <Flex height={px(50)} fw fh padding elements={[
-
                                 <FlexRow fw justifyContent={Justify.SPACE_BETWEEN} align={Align.CENTER} elements={[
                                     this.component(() => this.a("folder-level-view"), "current-folder"),
-
                                     <FlexRow align={Align.CENTER} elements={[
                                         <Icon icon={<UploadRounded/>} onClick={() => {
                                             this.dialog(
@@ -885,6 +934,7 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                             );
                                         },
                                         success: (q: Queryable<Folder | undefined>, data: Folder | undefined) => {
+
                                             const FolderSlider = React.forwardRef((props, ref) => {
                                                 return (
                                                     <div ref={ref as any} {...props} style={{ width: "100%" }} children={
@@ -906,7 +956,6 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
 
                                             if (this.ls().animateFolderSlider) {
                                                 this.local.setState({
-                                                    folderSliderAnimationDirection: undefined,
                                                     animateFolderSlider: false
                                                 });
                                                 return (
@@ -958,6 +1007,7 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
 
                                 this.component(() => this.a("menu"), "menu"),
 
+                                // Main view - Flexing middle section
                                 this.component(local => {
                                     return (
                                         <LiteGrid style={{ width: "100%" }} columns={local.state.viewMultiplexers.length} children={
@@ -980,6 +1030,9 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                         }/>
                                     );
                                 }, "multiplexer-created", "multiplexer-removed", "multiplexer-root"),
+
+                                // this.component(() => this.a("menu"), "menu"),
+                                // this.a("side-menu"),
                             ]}/>
                         ]
                     }}/>

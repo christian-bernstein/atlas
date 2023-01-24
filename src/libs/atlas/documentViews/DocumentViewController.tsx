@@ -38,24 +38,31 @@ export class DocumentViewController extends BC<DocumentViewControllerProps, any,
 
     componentRender(p: DocumentViewControllerProps, s: any, l: any, t: Themeable.Theme, a: Assembly): JSX.Element | undefined {
         if (p.document === undefined) {
-            return (
-                <Centered style={{ position: "relative" }} fullHeight children={
-                    <AF elements={[
-                        <Flex fw fh style={{ position: "absolute" }} elements={[
-                            <HyperionImageSubscriber
-                                hyperionEntryID={"atlas-document-background"}
-                                openFullscreenContextOnClick={false}
-                                preventUserSelection
-                            />
-                        ]}/>,
 
-                        // TODO: Make visible again
-                        <Flex align={Align.CENTER} justifyContent={Justify.CENTER} elements={[
-                            <Text text={"No document selected"} type={TextType.secondaryDescription}/>,
-                            <Text text={"Select a document from the folder view"} type={TextType.secondaryDescription} fontSize={px(11)}/>
+            return (
+                <Flex fw fh onDoubleClick={(event) => {
+                    event.stopPropagation();
+                    event.preventDefault();
+                    this.props.view.toggleMenu();
+                }} elements={[
+                    <Centered style={{ position: "relative" }} fullHeight children={
+                        <AF elements={[
+                            <Flex fw fh style={{ position: "absolute" }} elements={[
+                                <HyperionImageSubscriber
+                                    hyperionEntryID={"atlas-document-background"}
+                                    openFullscreenContextOnClick={false}
+                                    preventUserSelection
+                                />
+                            ]}/>,
+
+                            // TODO: Make visible again
+                            <Flex align={Align.CENTER} justifyContent={Justify.CENTER} elements={[
+                                <Text text={"No document selected"} type={TextType.secondaryDescription}/>,
+                                <Text text={"Select a document from the folder view"} type={TextType.secondaryDescription} fontSize={px(11)}/>
+                            ]}/>
                         ]}/>
-                    ]}/>
-                }/>
+                    }/>
+                ]}/>
             );
         } else {
             const computedDocID = p.document?.id ?? "special@fallback";

@@ -29,6 +29,7 @@ export type BoxProps = PropsWithChildren<{
     paddingX?: DimensionalMeasured,
     paddingY?: DimensionalMeasured,
     onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
+    onDoubleClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
     gapX?: DimensionalMeasured,
     gapY?: DimensionalMeasured,
     color?: Color,
@@ -165,7 +166,7 @@ export class Box extends BernieComponent<BoxProps, any, any> {
         const classNames: string[] = this.props.classNames === undefined ? [] : this.props.classNames;
         const highlight: boolean = this.props.highlight === undefined ? false : this.props.highlight;
         return (
-            <Box id={this.props.id} style={getOr(this.props.style, {})} onClick={event => getOr(this.props.onClick, () => {})(event)} className={[...classNames, "box", highlight ? "highlight" : ""].join(" ").trim()}>
+            <Box onDoubleClick={event => getOr(this.props.onDoubleClick, () => {})(event)} id={this.props.id} style={getOr(this.props.style, {})} onClick={event => getOr(this.props.onClick, () => {})(event)} className={[...classNames, "box", highlight ? "highlight" : ""].join(" ").trim()}>
                 {this.props.elements}
                 {this.props.children}
             </Box>

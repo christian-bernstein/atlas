@@ -390,7 +390,7 @@ export class AtlasMain extends BC<AtlasMainProps, any, AtlasMainLocalState> {
                                 executor: (ctx) => new Promise(resolve => {
                                     ctx.dialogEntry?.dialog(
                                         <StaticDrawerMenu body={() => (
-                                            <FileInput onSubmit={ctx => {
+                                            <FileInput onSubmit={fiCtx => {
                                                 HyperionAPI.hyperion(prop => prop.upstreamTransaction({
                                                     type: UpstreamTransactionType.OVERWRITE,
                                                     transactionID: v4(),
@@ -399,7 +399,7 @@ export class AtlasMain extends BC<AtlasMainProps, any, AtlasMainLocalState> {
                                                     },
                                                     entry: {
                                                         id: "atlas-document-background",
-                                                        value: ctx.dataURL ?? "error"
+                                                        value: fiCtx.dataURL ?? "error"
                                                     }
                                                 }));
                                             }}/>
