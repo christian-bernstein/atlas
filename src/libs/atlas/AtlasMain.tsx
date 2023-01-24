@@ -391,9 +391,13 @@ export class AtlasMain extends BC<AtlasMainProps, any, AtlasMainLocalState> {
                                 executor: (ctx) => new Promise(resolve => {
                                     ctx.dialogEntry?.dialog(
                                         <StaticDrawerMenu body={() => (
-                                            <>
-                                                <HyperionImageProducer hyperionEntryID={"atlas-document-background"} showDisplaySettings/>
-                                            </>
+                                            <Flex elements={[
+                                                <HyperionImageProducer
+                                                    hyperionEntryID={"atlas-document-background"}
+                                                    width={percent(100)}
+                                                    showDisplaySettings
+                                                />
+                                            ]}/>
                                         )}/>
                                     );
                                     resolve(undefined);

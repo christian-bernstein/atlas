@@ -3,7 +3,7 @@ import {Themeable} from "../../../base/logic/style/Themeable";
 import {Assembly} from "../../../base/logic/assembly/Assembly";
 import {Box} from "../../../base/components/base/Box";
 import {Flex, FlexRow} from "../../../base/components/base/FlexBox";
-import {percent, px} from "../../../base/logic/style/DimensionalMeasured";
+import {DimensionalMeasured, percent, px} from "../../../base/logic/style/DimensionalMeasured";
 import {Q, Queryable} from "../../../base/logic/query/Queryable";
 import {Optional} from "../../../base/Optional";
 import {HyperionStorableEntry} from "../HyperionStorableEntry";
@@ -54,7 +54,8 @@ import {If} from "../../../base/components/logic/If";
 
 export type HyperionImageProducerProps = {
     hyperionEntryID: string,
-    showDisplaySettings?: boolean
+    showDisplaySettings?: boolean,
+    width?: DimensionalMeasured | undefined
 }
 
 export type HyperionImageProducerLocalState = {
@@ -103,7 +104,7 @@ export class HyperionImageProducer extends BC<HyperionImageProducerProps, any, H
         const showDisplaySettings = p.showDisplaySettings ?? true;
 
         return (
-            <Box width={px(400)} elements={[
+            <Box width={p.width ?? px(400)} elements={[
                 <Form formID={`${p.hyperionEntryID}-form`} onSubmit={(ctx, get) => {
                     const src = get("src");
                     const renderMode = get("render-mode");

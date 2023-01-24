@@ -1031,8 +1031,9 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                     );
                                 }, "multiplexer-created", "multiplexer-removed", "multiplexer-root"),
 
-                                // this.component(() => this.a("menu"), "menu"),
-                                // this.a("side-menu"),
+                                this.component(() => this.a("menu"), "menu"),
+
+                                this.a("side-menu"),
                             ]}/>
                         ]
                     }}/>
