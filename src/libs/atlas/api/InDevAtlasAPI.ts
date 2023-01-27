@@ -8,6 +8,7 @@ import {AtlasDB} from "./AtlasDB";
 import {IISOAdapter} from "../iso/IISOAdapter";
 import {ISOAdapterV1} from "../iso/v1/ISOAdapterV1";
 import {v4} from "uuid";
+import { StorageSummary } from "./StorageSummary";
 
 enum DBAddresses {
     DOCUMENTS = "documents",
@@ -20,6 +21,8 @@ export class InDevAtlasAPI implements IAtlasAPI {
     private database: FormDataHub = new FormDataHub("InDevAtlasAPI").loadFromLocalStore();
 
     private persistentDatabase: AtlasDB = new AtlasDB("InDevAtlasAPI");
+
+    private meta: FormDataHub = new FormDataHub("InDevAtlasAPI_meta").loadFromLocalStore();
 
     createDocument(...data: Array<AtlasDocument>): boolean {
         try {
@@ -291,5 +294,24 @@ export class InDevAtlasAPI implements IAtlasAPI {
             folder = element!;
         });
         return folder;
+    }
+
+    getStorageSummary(recalculate: boolean): StorageSummary {
+        if (recalculate || this.meta.get("storage_summary") === undefined) {
+            this.recalculateStorageSummary();
+        }
+        return this.meta.get("storage_summary");
+    }
+    recalculateStorageSummary(): void {
+        const documents = this.getAllDocuments();
+
+        const usedBytes = documents.map(doc => new Blob([doc.body ?? ""]).size).reduceRight((pVal, cVal) => pVal + cVal);
+
+        
+        this.meta.set("storage_summary", {
+            fileCount: documents.length,
+            unixCreationTimestamp: new Date().getDate(),
+            usedBytes:
+        } as StorageSummary);
     }
 }

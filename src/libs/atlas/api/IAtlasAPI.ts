@@ -5,6 +5,7 @@ import {IPredicate} from "./IPredicate";
 import {FormDataHub} from "../../base/FormDataHub";
 import {AtlasDB} from "./AtlasDB";
 import {IISOAdapter} from "../iso/IISOAdapter";
+import {StorageSummary} from "./StorageSummary";
 
 export interface IAtlasAPI {
     getFolder(id: string): Folder;
@@ -35,5 +36,11 @@ export interface IAtlasAPI {
     isoAdapter(id: string): IISOAdapter;
 
     importFiles(folderID: string, files: Array<File>): void;
-    getFolderFromPath(baseFolderID: string, path: Array<string>): Folder
+    getFolderFromPath(baseFolderID: string, path: Array<string>): Folder;
+
+
+
+
+    getStorageSummary(recalculate: boolean): StorageSummary;
+    recalculateStorageSummary(): void;
 }
