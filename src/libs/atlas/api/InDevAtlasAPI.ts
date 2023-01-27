@@ -307,11 +307,11 @@ export class InDevAtlasAPI implements IAtlasAPI {
 
         const usedBytes = documents.map(doc => new Blob([doc.body ?? ""]).size).reduceRight((pVal, cVal) => pVal + cVal);
 
-        
+
         this.meta.set("storage_summary", {
             fileCount: documents.length,
             unixCreationTimestamp: new Date().getDate(),
-            usedBytes:
+            usedBytes: usedBytes
         } as StorageSummary);
     }
 }
