@@ -304,14 +304,14 @@ export class InDevAtlasAPI implements IAtlasAPI {
     }
     recalculateStorageSummary(): void {
         const documents = this.getAllDocuments();
-
         const usedBytes = documents.map(doc => new Blob([doc.body ?? ""]).size).reduceRight((pVal, cVal) => pVal + cVal);
-
 
         this.meta.set("storage_summary", {
             fileCount: documents.length,
             unixCreationTimestamp: new Date().getDate(),
-            usedBytes: usedBytes
+            usedBytes: usedBytes,
+            // TODO: Make fts
+            fileTypeSummaries: []
         } as StorageSummary);
     }
 }
