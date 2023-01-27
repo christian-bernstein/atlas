@@ -18,6 +18,8 @@ enum DBAddresses {
 
 export class InDevAtlasAPI implements IAtlasAPI {
 
+    private static readonly STORAGE_SUMMARY_ID: string = "storage_summary";
+
     private database: FormDataHub = new FormDataHub("InDevAtlasAPI").loadFromLocalStore();
 
     private persistentDatabase: AtlasDB = new AtlasDB("InDevAtlasAPI");
@@ -297,19 +299,22 @@ export class InDevAtlasAPI implements IAtlasAPI {
     }
 
     getStorageSummary(recalculate: boolean): StorageSummary {
-        if (recalculate || this.meta.get("storage_summary") === undefined) {
+        if (recalculate || this.meta.get(InDevAtlasAPI.STORAGE_SUMMARY_ID) === undefined) {
             this.recalculateStorageSummary();
         }
-        return this.meta.get("storage_summary");
+        return this.meta.get(InDevAtlasAPI.STORAGE_SUMMARY_ID);
     }
+
     recalculateStorageSummary(): void {
         const documents = this.getAllDocuments();
         const usedBytes = documents.map(doc => new Blob([doc.body ?? ""]).size).reduceRight((pVal, cVal) => pVal + cVal);
 
-        this.meta.set("storage_summary", {
+
+        this.meta.set(InDevAtlasAPI.STORAGE_SUMMARY_ID, {
             fileCount: documents.length,
             unixCreationTimestamp: new Date().getDate(),
             usedBytes: usedBytes,
+
             // TODO: Make fts
             fileTypeSummaries: []
         } as StorageSummary);
