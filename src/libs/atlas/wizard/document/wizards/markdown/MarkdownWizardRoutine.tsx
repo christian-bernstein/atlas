@@ -30,7 +30,8 @@ export const markdownWizardRoutine: WizardRoutine = {
                 icon: {
                     dict: "atlas",
                     id: "md-file"
-                }
+                },
+                documentType: DocumentType.MARKDOWN
             },
             subRoutines: new Array<WizardSubRoutine>({
                 run: (document, context) => {

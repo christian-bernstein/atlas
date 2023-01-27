@@ -48,8 +48,6 @@ import {KeyCommandOption} from "./keylogger/KeyCommandOption";
 import {SettingsDisplayRoot} from "./settings/components/SettingsDisplayRoot";
 import {HyperionAPI} from "./hyperion/HyperionAPI";
 import {HyperionIndexedDBStreamAdapter} from "./hyperion/HyperionIndexedDBStreamAdapter";
-import {FileInput} from "../base/components/base/fileInput/FileInput";
-import {UpstreamTransactionType} from "./hyperion/UpstreamTransactionType";
 import {Description} from "../base/components/base/Description";
 import {AtlasLogo} from "./components/branding/AtlasLogo";
 import {isMobile} from "react-device-detect";
@@ -59,6 +57,8 @@ import {Blueprint} from "../base/components/Blueprint";
 import {Img} from "react-image";
 import TestBlueprint from "../../assets/development/blueprints/test_blueprint.png";
 import {HyperionImageProducer} from "./hyperion/producers/HyperionImageProducer";
+import {StorageInformationPanel} from "./components/panels/StorageInformationPanel";
+import {DocumentType} from "./data/DocumentType";
 
 export type AtlasMainProps = {
     api: IAtlasAPI

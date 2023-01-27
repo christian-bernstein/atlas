@@ -68,6 +68,9 @@ import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
 import Collapse from '@mui/material/Collapse';
 import {TransitionGroup} from "react-transition-group";
+import {DocumentType} from "../data/DocumentType";
+import {StorageInformationPanel} from "./panels/StorageInformationPanel";
+import {HOCWrapper} from "../../base/components/HOCWrapper";
 
 export type VFSFolderViewProps = {
     initialFolderID?: string,
@@ -721,6 +724,34 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                         }} overflowContainer={{
                             elements: [
                                 <Flex height={px(50)} fw fh padding style={{ backgroundColor: t.colors.backgroundHighlightColor.css() }} elements={[
+
+
+
+
+                                    <HOCWrapper body={() => {
+                                        type Summary = {
+                                            occurrences: number,
+                                            title: string
+                                        };
+                                        const docSummaries: Map<string, Summary> = new Map<string, Summary>();
+                                        Object.keys(DocumentType).filter((item) => isNaN(Number(item))).forEach(type => docSummaries.set(type, {
+                                            occurrences: 0,
+                                            title: type.toLowerCase().toLocaleUpperCase()
+                                        }));
+                                        AtlasMain.atlas().api().getAllDocuments().forEach(doc => {
+                                            const summary = docSummaries.get(String(doc.documentType ?? DocumentType.UNSPECIFIED))!;
+                                            if (summary !== undefined) summary.occurrences++;
+                                        });
+
+                                        return (
+                                            <StorageInformationPanel series={Array.from(docSummaries.values()).map(i => ({
+                                                occurrences: i.occurrences,
+                                                title: i.title
+                                            }))}/>
+                                        );
+                                    }}/>,
+
+
                                     this.component(() => this.a("folder-level-view"), "current-folder"),
 
                                     this.component(() => (

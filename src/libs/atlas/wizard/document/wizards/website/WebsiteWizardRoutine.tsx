@@ -39,6 +39,9 @@ export const websiteWizardRoutine: WizardRoutine = {
             currentFolder: currentFolder,
             onSetupComplete: onSetupComplete,
             wizardEngineID: "default",
+            documentBase: {
+                documentType: DocumentType.WEBSITE
+            },
             subRoutines: new Array<WizardSubRoutine>({
                 run: (document, context) => {
                     return new Promise<Partial<AtlasDocument>>((resolve, reject) => {

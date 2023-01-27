@@ -2,7 +2,6 @@ import {WizardRoutine} from "../../WizardRoutine";
 import {WizardRoutineCard} from "../../../../components/documentWizard/WizardRoutineCard";
 import React from "react";
 import {Button} from "../../../../../base/components/base/Button";
-import {DocumentSetupDialog} from "../../../../components/DocumentSetupDialog";
 import {AtlasDocument} from "../../../../data/AtlasDocument";
 import {NoteDocumentArchetype} from "../../../../data/documentArchetypes/NoteDocumentArchetype";
 import {Flex} from "../../../../../base/components/base/FlexBox";
@@ -19,6 +18,7 @@ import {FlexDirection} from "../../../../../base/logic/style/FlexDirection";
 import {Dimension} from "../../../../../base/logic/style/Dimension";
 import {WizardSubRoutine} from "../../WizardSubRoutine";
 import {DefaultWizardEngine} from "../../engines/DefaultWizardEngine";
+import {DocumentType} from "../../../../data/DocumentType";
 
 export const noteWizardRoutine: WizardRoutine = {
     title: "Create note",
@@ -43,7 +43,8 @@ export const noteWizardRoutine: WizardRoutine = {
                 icon: {
                     dict: "atlas",
                     id: "note-file"
-                }
+                },
+                documentType: DocumentType.NOTE
             },
             subRoutines: new Array<WizardSubRoutine>({
                 run: (document, context) => {

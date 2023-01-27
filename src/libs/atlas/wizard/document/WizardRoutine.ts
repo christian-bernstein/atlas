@@ -9,6 +9,5 @@ export type WizardRoutine = {
     description: string,
     tags: Array<string>,
     previewCard: (onSelectCallback: () => void) => JSX.Element,
-
     run: (view: VFSFolderView, currentFolder: Folder, component: BC<any, any, any>, onSetupComplete: (document: AtlasDocument) => void) => Promise<void>
 }
