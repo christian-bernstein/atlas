@@ -8,8 +8,10 @@ import {AtlasDB} from "./AtlasDB";
 import {IISOAdapter} from "../iso/IISOAdapter";
 import {ISOAdapterV1} from "../iso/v1/ISOAdapterV1";
 import {v4} from "uuid";
-import { StorageSummary } from "./StorageSummary";
+import {StorageSummary} from "./StorageSummary";
 import {DocumentArchetype} from "./DocumentArchetype";
+import {GenericFileArchetype} from "../data/documentArchetypes/GenericFileArchetype";
+import {DocumentType} from "../data/DocumentType";
 
 enum DBAddresses {
     DOCUMENTS = "documents",
@@ -261,11 +263,11 @@ export class InDevAtlasAPI implements IAtlasAPI {
     }
 
     importFiles(folderID: string, files: Array<File>) {
-        files.forEach((file, index, array) => {
+        files.forEach(async (file, index, array) => {
             const path = ((file as any).path as string).match(/(.*\/)/g)?.[0]!.split("/")!.filter(s => s.trim().length > 0)!;
 
             let folder: Folder = this.getFolder(folderID);
-            path.forEach(elem => {
+            path?.forEach(elem => {
                 let element = folder.subFolderIDs
                     ?.map(sfID => this.getFolder(sfID))
                     ?.filter(f => f !== undefined && f.title === elem)
@@ -283,16 +285,23 @@ export class InDevAtlasAPI implements IAtlasAPI {
                 folder = element!;
             });
 
+            const fileContent = await file.text();
             this.createDocumentInFolder(this.getFolderFromPath(folderID, path).id, {
                 id: v4(),
-                title: file.name
+                title: file.name,
+                documentType: DocumentType.GENERIC_FILE,
+                body: JSON.stringify({
+                    filename: file.name,
+                    filetype: file.type,
+                    body: fileContent
+                } as GenericFileArchetype)
             });
         });
     }
 
     getFolderFromPath(baseFolderID: string, path: Array<string>): Folder {
         let folder: Folder = this.getFolder(baseFolderID);
-        path.forEach(elem => {
+        path?.forEach(elem => {
             let element = folder.subFolderIDs?.map(sfID => this.getFolder(sfID)).filter(f => f !== undefined && f.title === elem)[0];
             folder = element!;
         });

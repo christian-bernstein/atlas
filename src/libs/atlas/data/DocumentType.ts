@@ -3,5 +3,6 @@ export enum DocumentType {
     UNSPECIFIED,
     NOTE,
     WEBSITE,
-    PDF
+    PDF,
+    GENERIC_FILE
 }
