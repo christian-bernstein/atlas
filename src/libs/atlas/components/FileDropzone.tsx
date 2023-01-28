@@ -68,7 +68,7 @@ export const FileDropzone: React.FC<FileDropzoneProps> = props => {
     `;
 
     return (
-        <Dropzone onDrop={(acceptedFiles, fileRejections, event) => {}}>
+        <Dropzone {...props}>
             {({getRootProps, getInputProps}) => (
                 <Section className="container" style={{ width: "100%" }} children={
                     <div {...getRootProps({className: 'dropzone'})}>
