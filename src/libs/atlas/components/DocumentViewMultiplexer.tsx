@@ -229,31 +229,53 @@ export class DocumentViewMultiplexer extends BC<DocumentViewMultiplexerProps, an
             const activeDocument = this.getActiveDocument();
 
             return (
-                <Flex fw flexDir={FlexDirection.ROW} gap={px()} elements={[
-                    // <Separator orientation={Orientation.VERTICAL}/>,
-                    <OverflowWithHeader
-                        dir={FlexDirection.COLUMN_REVERSE}
-                        staticContainer={{
-                            gap: px(),
-                            elements: [
-                                this.a("header"),
-                                <Separator/>
-                            ]
-                        }}
-                        overflowContainer={{
-                            elements: [
-                                this.a("main")
-                            ]
-                        }}
-                        staticContainerHeader={{
-                            gap: px(),
-                            elements: [
-                                <Separator/>,
-                                this.a("footer")
-                            ]
-                        }}
-                    />
-                ]}/>
+                // TODO: Remove unnecessary Flex component
+                // <Flex fw flexDir={FlexDirection.ROW} gap={px()} elements={[
+                //     <OverflowWithHeader
+                //         dir={FlexDirection.COLUMN_REVERSE}
+                //         staticContainer={{
+                //             gap: px(),
+                //             elements: [
+                //                 this.a("header"),
+                //                 <Separator/>
+                //             ]
+                //         }}
+                //         overflowContainer={{
+                //             elements: [
+                //                 this.a("main")
+                //             ]
+                //         }}
+                //         staticContainerHeader={{
+                //             gap: px(),
+                //             elements: [
+                //                 <Separator/>,
+                //                 this.a("footer")
+                //             ]
+                //         }}
+                //     />
+                // ]}/>
+                <OverflowWithHeader
+                    dir={FlexDirection.COLUMN_REVERSE}
+                    staticContainer={{
+                        gap: px(),
+                        elements: [
+                            this.a("header"),
+                            <Separator/>
+                        ]
+                    }}
+                    overflowContainer={{
+                        elements: [
+                            this.a("main")
+                        ]
+                    }}
+                    staticContainerHeader={{
+                        gap: px(),
+                        elements: [
+                            <Separator/>,
+                            this.a("footer")
+                        ]
+                    }}
+                />
             );
         }, ...this.generateViewChannels("main"))
     }
