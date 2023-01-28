@@ -29,7 +29,7 @@ export class Panel extends BC<PanelProps, any, any> {
 
         const PanelSlider = React.forwardRef((props, ref) => {
             return (
-                <div ref={ref as any} {...props} style={{
+                <div id={"panel-slider-div"} ref={ref as any} {...props} style={{
                     width: "350px",
                     minWidth: "350px",
                     height: "100%",
@@ -55,10 +55,9 @@ export class Panel extends BC<PanelProps, any, any> {
         });
 
         return (
-            <Collapse in={p.visible} sx={{
-                width: "350px",
-                height: "100%"
-            }} unmountOnExit id={p.id} key={p.id} orientation={"horizontal"} children={
+            <Collapse sx={{
+                flexShrink: 0
+            }} in={p.visible} unmountOnExit id={p.id} key={p.id} orientation={"horizontal"} children={
                 <PanelSlider/>
             }/>
         );
