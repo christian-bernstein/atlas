@@ -66,11 +66,9 @@ import {Dot} from "../../base/components/base/Dot";
 import Slide from '@mui/material/Slide';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
-import Collapse from '@mui/material/Collapse';
-import {TransitionGroup} from "react-transition-group";
-import {DocumentType} from "../data/DocumentType";
 import {StorageInformationPanel} from "./panels/StorageInformationPanel";
 import {HOCWrapper} from "../../base/components/HOCWrapper";
+import {Anchorpoint, Panel} from "./panels/Panel";
 
 export type VFSFolderViewProps = {
     initialFolderID?: string,
@@ -724,22 +722,6 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                         }} overflowContainer={{
                             elements: [
                                 <Flex height={px(50)} fw fh padding style={{ backgroundColor: t.colors.backgroundHighlightColor.css() }} elements={[
-
-
-
-
-                                    <HOCWrapper body={() => {
-
-                                        const sum = AtlasMain.atlas().api().getStorageSummary(false);
-                                        return (
-                                            <StorageInformationPanel series={sum.archetypeSummaries.map(arch => ({
-                                                title: arch.archetype.name,
-                                                occurrences: arch.fileCount
-                                            }))}/>
-                                        );
-                                    }}/>,
-
-
                                     this.component(() => this.a("folder-level-view"), "current-folder"),
 
                                     this.component(() => (
@@ -1049,7 +1031,23 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                     );
                                 }, "multiplexer-created", "multiplexer-removed", "multiplexer-root"),
 
-                                this.component(() => this.a("menu"), "menu"),
+
+
+                                // this.component(() => this.a("menu"), "menu"),
+
+                                this.component(() => (
+                                    <Panel anchorpoint={Anchorpoint.RIGHT} children={
+                                        <HOCWrapper body={() => {
+                                            const sum = AtlasMain.atlas().api().getStorageSummary(false);
+                                            return (
+                                                <StorageInformationPanel series={sum.archetypeSummaries.map(arch => ({
+                                                    title: arch.archetype.name,
+                                                    occurrences: arch.fileCount
+                                                }))}/>
+                                            );
+                                        }}/>
+                                    }/>
+                                ), "menu"),
 
                                 this.a("side-menu"),
                             ]}/>
