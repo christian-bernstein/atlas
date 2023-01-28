@@ -55,7 +55,10 @@ export class Panel extends BC<PanelProps, any, any> {
         });
 
         return (
-            <Collapse in={p.visible} unmountOnExit id={p.id} key={p.id} orientation={"horizontal"} children={
+            <Collapse in={p.visible} sx={{
+                width: "350px",
+                height: "100%"
+            }} unmountOnExit id={p.id} key={p.id} orientation={"horizontal"} children={
                 <PanelSlider/>
             }/>
         );
