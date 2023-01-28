@@ -27,6 +27,9 @@ import {QueryError} from "../../base/logic/query/QueryError";
 import {QueryDisplay} from "../../base/components/logic/QueryDisplay";
 import {HyperionIndexedDBStreamAdapter} from "../hyperion/HyperionIndexedDBStreamAdapter";
 import {HyperionImageSubscriber} from "../hyperion/subscribers/HyperionImageSubscriber";
+import {GenericFileArchetype} from "../data/documentArchetypes/GenericFileArchetype";
+import {DocumentView} from "./DocumentView";
+import {imageDocumentView} from "./views/ImageDocumentView";
 
 export type DocumentViewControllerProps = {
     view: VFSFolderView,
@@ -112,6 +115,30 @@ export class DocumentViewController extends BC<DocumentViewControllerProps, any,
                         }
                     }
                 }))
+            }
+
+            if (p.document.documentType === DocumentType.GENERIC_FILE) {
+                const rawBody = p.document.body ?? "";
+                const body: GenericFileArchetype = JSON.parse(rawBody);
+
+                const renderDocumentView = (view: DocumentView): JSX.Element => {
+                    return view.renderer(new DocumentViewRenderContext({
+                        view: p.view,
+                        documentID: p.document!.id,
+                        documentGetter: () => AtlasMain.atlas().api().getDocument(computedDocID),
+                        documentStateGetter: () => p.view.getDocumentState(computedDocID),
+                        bodyUpdater: {
+                            update: (instruction: DocumentBodyUpdaterInstruction) => {
+                                // TODO implement better solution (bypass debouncing)
+                                p.updateBody(instruction.newBody);
+                            }
+                        }
+                    }))
+                }
+
+                switch (body.filetype) {
+                    case "image/png": return renderDocumentView(imageDocumentView)
+                }
             }
 
             return inDevDocumentView.renderer(new DocumentViewRenderContext({

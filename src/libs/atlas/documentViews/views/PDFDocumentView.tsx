@@ -37,6 +37,7 @@ class PDFDocumentView extends BC<PDFDocumentViewProps, any, any> {
 
         return (
             <iframe
+                title={document.title}
                 src={dataURL}
                 width={"100%"}
                 height={"100%"}
