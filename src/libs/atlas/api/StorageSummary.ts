@@ -1,12 +1,8 @@
-import {DocumentArchetype} from "./DocumentArchetype";
+import {StorageArchetypeSummary} from "./StorageArchetypeSummary";
 
 export type StorageSummary = {
     unixCreationTimestamp: number,
     usedBytes: number,
     fileCount: number,
-    fileTypeSummaries: Array<{
-        archetype: DocumentArchetype,
-        fileCount: number,
-        usedBytes: number
-    }>
+    archetypeSummaries: Array<StorageArchetypeSummary>
 }

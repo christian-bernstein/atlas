@@ -335,7 +335,7 @@ export class InDevAtlasAPI implements IAtlasAPI {
             usedBytes: usedBytes,
 
             // TODO: Make fts
-            fileTypeSummaries: []
+            archetypeSummaries: []
         } as StorageSummary);
     }
 }
