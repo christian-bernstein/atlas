@@ -308,7 +308,10 @@ export class InDevAtlasAPI implements IAtlasAPI {
     }
 
     /**
-     *
+     * Important: Setting the "recalculate" flag to true causes the storage summary to be renewed.
+     * This process iterates multiple times over the list of documents. Be aware that this operation can become
+     * resource-intense quite quickly.
+     * A lightweight solution will come soon.
      *
      * @param recalculate
      */
