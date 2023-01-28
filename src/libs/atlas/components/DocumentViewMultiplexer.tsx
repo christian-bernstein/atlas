@@ -217,7 +217,7 @@ export class DocumentViewMultiplexer extends BC<DocumentViewMultiplexerProps, an
 
             return (
                 this.props.controlConfigMirror.view.component((local) => (
-                    <Panel id={"footer_panel"} size={auto()} visible={local.state.menuVisible} anchorpoint={Anchorpoint.RIGHT} children={
+                    <Panel id={"footer_panel"} size={auto()} visible={local.state.menuVisible} anchorpoint={Anchorpoint.TOP} children={
                         <HOCWrapper body={() => {
 
                             return (
