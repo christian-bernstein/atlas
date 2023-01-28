@@ -883,11 +883,7 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                                                 borderColor: `${t.colors.backgroundColor.css()} !important`
                                                             }
                                                         }} children={
-                                                            [
-                                                                "https://i.pinimg.com/originals/cc/73/9b/cc739b3e53b9562f98400b7817614d68.png",
-                                                                "https://i.pinimg.com/564x/b2/24/20/b2242039d0b728a5e36ba0fef544b6e8.jpg",
-                                                                "https://static.wikia.nocookie.net/95c5a16e-c866-4373-b4fd-6589e559b778/scale-to-width/755"
-                                                            ].map(url => (
+                                                            ["", "", ""].map(url => (
                                                                 <Avatar src={url} sx={{
                                                                     width: 16, height: 16
                                                                 }}/>
