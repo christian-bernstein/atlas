@@ -26,7 +26,8 @@ export type PanelProps = PropsWithChildren<{
 export class Panel extends BC<PanelProps, any, any> {
 
     componentRender(p: PanelProps, s: any, l: any, t: Themeable.Theme, a: Assembly): JSX.Element | undefined {
-        const orientation: Orientation = p.anchorpoint === Anchorpoint.BOTTOM || p.anchorpoint === Anchorpoint.TOP ? Orientation.HORIZONTAL : Orientation.VERTICAL
+        const orientation: Orientation = p.anchorpoint === Anchorpoint.BOTTOM || p.anchorpoint === Anchorpoint.TOP ? Orientation.HORIZONTAL : Orientation.VERTICAL;
+
         const PanelSlider = React.forwardRef((props, ref) => {
             return (
                 <div ref={ref as any} {...props} style={{
