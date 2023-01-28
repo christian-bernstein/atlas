@@ -6,5 +6,8 @@ export type AtlasDocument = AtlasEntity & Identifiable & {
     issuer?: string,
     documentType?: DocumentType,
     attachmentIDs?: Array<string>;
-    body?: string
+    body?: string,
+
+    // TODO: Implement
+    archetypeID?: string
 }

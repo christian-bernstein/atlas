@@ -1,4 +1,5 @@
 export type DocumentArchetype = {
     id: string,
-    name: string
+    name: string,
+    archetypeFamily: string
 }

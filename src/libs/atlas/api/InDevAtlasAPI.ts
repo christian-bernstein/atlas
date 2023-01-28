@@ -300,7 +300,11 @@ export class InDevAtlasAPI implements IAtlasAPI {
     }
 
     getDocumentArchetype(archetypeID: string): DocumentArchetype {
-
+        return {
+            id: "implement",
+            name: "Implement..",
+            archetypeFamily: "implement"
+        }
     }
 
     getStorageSummary(recalculate: boolean): StorageSummary {
@@ -313,10 +317,16 @@ export class InDevAtlasAPI implements IAtlasAPI {
     recalculateStorageSummary(): void {
         const documents = this.getAllDocuments();
         const usedBytes = documents.map(doc => new Blob([doc.body ?? ""]).size).reduceRight((pVal, cVal) => pVal + cVal);
-
+        const defaultArchetype = "default_archetype";
+        const docsByArchetype = new Map<DocumentArchetype, Set<AtlasDocument>>();
 
         documents.forEach(doc => {
-            doc.
+            const archetype = this.getDocumentArchetype(doc.archetypeID ?? defaultArchetype);
+            if (!docsByArchetype.has(archetype)) {
+                docsByArchetype.set(archetype, new Set([doc]));
+            } else {
+                docsByArchetype.get(archetype)?.add(doc);
+            }
         });
 
         this.meta.set(InDevAtlasAPI.STORAGE_SUMMARY_ID, {

@@ -1,9 +1,11 @@
+import {DocumentArchetype} from "./DocumentArchetype";
+
 export type StorageSummary = {
     unixCreationTimestamp: number,
     usedBytes: number,
     fileCount: number,
     fileTypeSummaries: Array<{
-        fileType: string,
+        archetype: DocumentArchetype,
         fileCount: number,
         usedBytes: number
     }>
