@@ -44,8 +44,6 @@ export class EntityImportDialog extends BC<EntityImportDialogProps, any, EntityI
             <StaticDrawerMenu body={props => {
                 return (
                     <Flex align={Align.CENTER} fw elements={[
-
-
                         <DrawerHeader
                             badgeText={"Import"}
                             header={"Import files & folders"}
