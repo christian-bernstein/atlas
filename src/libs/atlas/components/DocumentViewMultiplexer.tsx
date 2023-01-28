@@ -230,7 +230,7 @@ export class DocumentViewMultiplexer extends BC<DocumentViewMultiplexerProps, an
 
             return (
                 <Flex fw flexDir={FlexDirection.ROW} gap={px()} elements={[
-                    <Separator orientation={Orientation.VERTICAL}/>,
+                    // <Separator orientation={Orientation.VERTICAL}/>,
                     <OverflowWithHeader
                         dir={FlexDirection.COLUMN_REVERSE}
                         staticContainer={{
