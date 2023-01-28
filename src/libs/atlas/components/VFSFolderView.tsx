@@ -5,7 +5,7 @@ import {Screen} from "../../base/components/base/Page";
 import {Flex, FlexRow} from "../../base/components/base/FlexBox";
 import {FlexDirection} from "../../base/logic/style/FlexDirection";
 import {Text, TextType} from "../../base/components/base/Text";
-import {percent, px, vw} from "../../base/logic/style/DimensionalMeasured";
+import {auto, percent, px, vw} from "../../base/logic/style/DimensionalMeasured";
 import {ReactComponent as SettingsIcon} from "../../../assets/icons/ic-20/ic20-settings.svg";
 import {ReactComponent as EditIcon} from "../../../assets/icons/ic-20/ic20-edit.svg";
 import {Icon} from "../../base/components/base/Icon";
@@ -1002,9 +1002,7 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                     <OverflowWithHeader dir={FlexDirection.COLUMN_REVERSE} staticContainer={{ gap: px(), elements: [] }} overflowContainer={{
                         elements: [
                             <Flex fh fw gap={px()} flexDir={FlexDirection.ROW} elements={[
-                                // <SideMenu view={this}/>,
-
-                                this.a("side-menu"),
+                                <Panel size={auto()} visible={true} anchorpoint={Anchorpoint.LEFT} id={"right_side_menu"} children={this.a("side-menu")}/>,
 
                                 this.component(() => this.a("menu"), "menu"),
 
@@ -1032,8 +1030,6 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                     );
                                 }, "multiplexer-created", "multiplexer-removed", "multiplexer-root"),
 
-                                // this.component(() => this.a("menu"), "menu"),
-
                                 this.component((local) => (
                                     <Panel id={"details_panel"} visible={local.state.menuVisible} anchorpoint={Anchorpoint.RIGHT} children={
                                         <HOCWrapper body={() => {
@@ -1048,8 +1044,7 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                     }/>
                                 ), "menu"),
 
-                                <Panel visible={true} anchorpoint={Anchorpoint.RIGHT} id={"right_side_menu"} children={this.a("side-menu")}/>
-
+                                <Panel size={auto()} visible={true} anchorpoint={Anchorpoint.RIGHT} id={"right_side_menu"} children={this.a("side-menu")}/>
                             ]}/>
                         ]
                     }}/>

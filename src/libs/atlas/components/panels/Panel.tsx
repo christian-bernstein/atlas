@@ -39,7 +39,6 @@ export class Panel extends BC<PanelProps, any, any> {
                                 <Separator orientation={Orientation.VERTICAL}/>,
                                 <Flex children={p.children} fh width={p.size ?? px(350)} style={{
                                     backgroundColor: t.colors.backgroundHighlightColor.css(),
-                                    // minWidth: (p.size ?? px(350)).css()
                                 }}/>
                             ]}/>
                         );
@@ -49,7 +48,6 @@ export class Panel extends BC<PanelProps, any, any> {
                                 <Separator orientation={Orientation.VERTICAL}/>,
                                 <Flex children={p.children} fw height={p.size ?? px(350)} style={{
                                     backgroundColor: t.colors.backgroundHighlightColor.css(),
-                                    // minHeight: (p.size ?? px(350)).css()
                                 }}/>
                             ]}/>
                         );
