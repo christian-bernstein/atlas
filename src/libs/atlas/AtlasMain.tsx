@@ -59,6 +59,7 @@ import TestBlueprint from "../../assets/development/blueprints/test_blueprint.pn
 import {HyperionImageProducer} from "./hyperion/producers/HyperionImageProducer";
 import {StorageInformationPanel} from "./components/panels/StorageInformationPanel";
 import {DocumentType} from "./data/DocumentType";
+import {FileDropzone} from "./components/FileDropzone";
 
 export type AtlasMainProps = {
     api: IAtlasAPI
@@ -818,7 +819,9 @@ export class AtlasMain extends BC<AtlasMainProps, any, AtlasMainLocalState> {
                     // Visual content
                     <Screen deactivatePadding children={
                         <Flex fh fw align={Align.CENTER} elements={[
-                            this.a("folder")
+                            // this.a("folder")
+
+                            <FileDropzone/>
                         ]}/>
                     }/>,
 
