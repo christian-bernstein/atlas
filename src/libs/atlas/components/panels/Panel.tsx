@@ -18,6 +18,7 @@ export type PanelProps = PropsWithChildren<{
     anchorpoint: Anchorpoint,
     visible?: boolean,
     size?: DimensionalMeasured
+    id: string
 }>
 
 export class Panel extends BC<PanelProps, any, any> {
@@ -69,7 +70,7 @@ export class Panel extends BC<PanelProps, any, any> {
 
 
         return (
-            <Collapse in={p.visible} unmountOnExit id={"asd123"} key={"asd123"} orientation={"horizontal"} children={
+            <Collapse in={p.visible} unmountOnExit id={p.id} key={p.id} orientation={"horizontal"} children={
                 <PanelSlider/>
             }/>
         );
