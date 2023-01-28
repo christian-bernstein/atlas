@@ -1048,7 +1048,7 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                     }/>
                                 ), "menu"),
 
-                                <Panel anchorpoint={Anchorpoint.RIGHT} id={"right_side_menu"} children={this.a("side-menu")}/>
+                                <Panel visible={true} anchorpoint={Anchorpoint.RIGHT} id={"right_side_menu"} children={this.a("side-menu")}/>
 
                             ]}/>
                         ]
