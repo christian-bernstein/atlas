@@ -18,7 +18,10 @@ export type PanelProps = PropsWithChildren<{
     anchorpoint: Anchorpoint,
     visible?: boolean,
     size?: DimensionalMeasured
-    id: string
+    id: string,
+
+    // TODO: Implement -> also add isClosing / isOpening to the available Panel API
+    // body: (panel: Panel) => JSX.Element
 }>
 
 export class Panel extends BC<PanelProps, any, any> {
