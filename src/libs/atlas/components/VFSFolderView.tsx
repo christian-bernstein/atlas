@@ -690,12 +690,16 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
 
     private sideMenuAssembly() {
         this.assembly.assembly("side-menu", theme => {
+            // return (
+            //     <AF elements={[
+            //         <SideMenu view={this}/>,
+            //         // this.component(() => this.ls().menuVisible ? <Separator orientation={Orientation.VERTICAL}/> : <></>, "menu"),
+            //         <Separator orientation={Orientation.VERTICAL}/>
+            //     ]}/>
+            // );
+
             return (
-                <AF elements={[
-                    <SideMenu view={this}/>,
-                    // this.component(() => this.ls().menuVisible ? <Separator orientation={Orientation.VERTICAL}/> : <></>, "menu"),
-                    <Separator orientation={Orientation.VERTICAL}/>
-                ]}/>
+                <SideMenu view={this}/>
             );
         })
     }
@@ -1044,7 +1048,8 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                     }/>
                                 ), "menu"),
 
-                                // this.a("side-menu"),
+                                <Panel anchorpoint={Anchorpoint.RIGHT} id={"right_side_menu"} children={this.a("side-menu")}/>
+
                             ]}/>
                         ]
                     }}/>
