@@ -307,7 +307,12 @@ export class InDevAtlasAPI implements IAtlasAPI {
         }
     }
 
-    getStorageSummary(recalculate: boolean): StorageSummary {
+    /**
+     *
+     *
+     * @param recalculate
+     */
+    getStorageSummary(recalculate: boolean = false): StorageSummary {
         if (recalculate || this.meta.get(InDevAtlasAPI.STORAGE_SUMMARY_ID) === undefined) {
             this.recalculateStorageSummary();
         }
@@ -333,9 +338,13 @@ export class InDevAtlasAPI implements IAtlasAPI {
             fileCount: documents.length,
             unixCreationTimestamp: new Date().getDate(),
             usedBytes: usedBytes,
-
-            // TODO: Make fts
-            archetypeSummaries: []
+            archetypeSummaries: Array.from(docsByArchetype.entries()).map(([aType, aDocs]) => {
+                return ({
+                    archetype: aType,
+                    fileCount: aDocs.size,
+                    usedBytes: Array.from(aDocs.values()).map(doc => new Blob([doc.body ?? ""]).size).reduceRight((pVal, cVal) => pVal + cVal)
+                });
+            })
         } as StorageSummary);
     }
 }
