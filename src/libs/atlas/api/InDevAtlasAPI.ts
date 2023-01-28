@@ -340,9 +340,6 @@ export class InDevAtlasAPI implements IAtlasAPI {
             const archetype = this.getDocumentArchetype(doc.archetypeID ?? defaultArchetype);
             const sum = Array.from(docsByArchetype.entries()).filter(([arch]) => arch.id === archetype.id);
             if (sum.length === 0) {
-
-                console.log("arch not there")
-
                 docsByArchetype.set(archetype, new Set([doc]));
             } else {
                 sum[0][1].add(doc);
