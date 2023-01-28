@@ -30,6 +30,7 @@ import {HyperionImageSubscriber} from "../hyperion/subscribers/HyperionImageSubs
 import {GenericFileArchetype} from "../data/documentArchetypes/GenericFileArchetype";
 import {DocumentView} from "./DocumentView";
 import {imageDocumentView} from "./views/ImageDocumentView";
+import {AtlasUtils} from "../AtlasUtils";
 
 export type DocumentViewControllerProps = {
     view: VFSFolderView,
@@ -138,6 +139,15 @@ export class DocumentViewController extends BC<DocumentViewControllerProps, any,
 
                 switch (body.filetype) {
                     case "image/png": return renderDocumentView(imageDocumentView)
+                    // TODO: Implement
+                    case "text/plain": {
+
+                        AtlasUtils.dataURItoBlob(body.body).text().then(value => {
+                            const element = document.getElementById("asd");
+                            if (element !== null) element.innerText = value;
+                        });
+                        return <p id={"asd"}>awaiting text..</p>
+                    }
                 }
             }
 

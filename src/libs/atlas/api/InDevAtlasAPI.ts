@@ -285,7 +285,11 @@ export class InDevAtlasAPI implements IAtlasAPI {
                 folder = element!;
             });
 
-            const fileContent = await file.text();
+            const fileContent = await new Promise(resolve => {
+                // TODO: This creates a cached blob -> does not really store the data..
+                resolve(URL.createObjectURL(file));
+            });
+
             this.createDocumentInFolder(this.getFolderFromPath(folderID, path).id, {
                 id: v4(),
                 title: file.name,

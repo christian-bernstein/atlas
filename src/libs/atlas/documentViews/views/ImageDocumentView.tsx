@@ -9,6 +9,7 @@ export const imageDocumentView: DocumentView = {
         const body: GenericFileArchetype = JSON.parse(rawBody);
         return (
             <img src={body.body} alt={"file content"} style={{
+                objectFit: "contain",
                 width: "100%",
                 height: "100%",
             }}/>
