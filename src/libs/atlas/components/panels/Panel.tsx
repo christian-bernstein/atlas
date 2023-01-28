@@ -33,9 +33,9 @@ export class Panel extends BC<PanelProps, any, any> {
                 <div ref={ref as any} {...props} style={{
 
                     // TODO: Remove
-                    width: "350px",
-                    minWidth: "350px",
-                    height: "100%",
+                    // width: "350px",
+                    // minWidth: "350px",
+                    // height: "100%",
 
                     flexShrink: 0
                 }} children={
