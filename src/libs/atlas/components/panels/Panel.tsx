@@ -5,10 +5,9 @@ import {Flex} from "../../../base/components/base/FlexBox";
 import {DimensionalMeasured, px} from "../../../base/logic/style/DimensionalMeasured";
 import React, {PropsWithChildren} from "react";
 import {Orientation} from "../../../base/logic/style/Orientation";
-import {OverflowBehaviour} from "../../../base/logic/style/OverflowBehaviour";
-import Slide from "@mui/material/Slide";
 import Collapse from "@mui/material/Collapse";
-import {v4} from "uuid";
+import {Separator} from "../../../base/components/base/Separator";
+import {FlexDirection} from "../../../base/logic/style/FlexDirection";
 
 export enum Anchorpoint {
     TOP, RIGHT, BOTTOM, LEFT
@@ -42,17 +41,23 @@ export class Panel extends BC<PanelProps, any, any> {
                 }} children={
                     (() => {
                         if (orientation === Orientation.VERTICAL) return (
-                            <Flex children={p.children} fh width={p.size ?? px(350)} style={{
-                                backgroundColor: t.colors.backgroundHighlightColor.css(),
-                                minWidth: (p.size ?? px(350)).css()
-                            }}/>
+                            <Flex fh gap={px()} flexDir={p.anchorpoint === Anchorpoint.LEFT ? FlexDirection.ROW_REVERSE : FlexDirection.ROW} elements={[
+                                <Separator orientation={Orientation.VERTICAL}/>,
+                                <Flex children={p.children} fh width={p.size ?? px(350)} style={{
+                                    backgroundColor: t.colors.backgroundHighlightColor.css(),
+                                    minWidth: (p.size ?? px(350)).css()
+                                }}/>
+                            ]}/>
                         );
 
                         if (orientation === Orientation.HORIZONTAL) return (
-                            <Flex children={p.children} fw height={p.size ?? px(350)} style={{
-                                backgroundColor: t.colors.backgroundHighlightColor.css(),
-                                minHeight: (p.size ?? px(350)).css()
-                            }}/>
+                            <Flex fh gap={px()} flexDir={p.anchorpoint === Anchorpoint.TOP ? FlexDirection.COLUMN_REVERSE : FlexDirection.COLUMN} elements={[
+                                <Separator orientation={Orientation.VERTICAL}/>,
+                                <Flex children={p.children} fw height={p.size ?? px(350)} style={{
+                                    backgroundColor: t.colors.backgroundHighlightColor.css(),
+                                    minHeight: (p.size ?? px(350)).css()
+                                }}/>
+                            ]}/>
                         );
                     })()
                 }/>
