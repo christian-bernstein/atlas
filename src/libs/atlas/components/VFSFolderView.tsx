@@ -707,7 +707,7 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                         minWidth: "350px",
                         backgroundColor: t.colors.backgroundHighlightColor.css()
                     }} elements={[
-                        <OverflowWithHeader height={percent(100)} dir={FlexDirection.COLUMN_REVERSE}  staticContainer={{
+                        <OverflowWithHeader height={percent(100)} dir={FlexDirection.COLUMN_REVERSE} staticContainer={{
                             gap: px(),
                             elements: [
                                 <Flex fw padding align={Align.CENTER} flexDir={FlexDirection.ROW} justifyContent={Justify.CENTER} elements={[
