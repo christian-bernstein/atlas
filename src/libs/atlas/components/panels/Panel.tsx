@@ -35,7 +35,8 @@ export class Panel extends BC<PanelProps, any, any> {
                     // TODO: Remove
                     // width: "350px",
                     // minWidth: "350px",
-                    // height: "100%",
+
+                    height: "100%",
 
                     flexShrink: 0
                 }} children={
