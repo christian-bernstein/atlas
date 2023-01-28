@@ -318,7 +318,7 @@ export namespace Themeable {
         },
         texts: {
             // todo implement global font family
-            fontFamily: "Operator Mono",
+            fontFamily: "OperatorMono",
             displayFontFamily: "Whitney",
             complete: {
                 boldLargeHeader: {
