@@ -21,6 +21,7 @@ import {SettingsElement} from "../../base/components/base/SettingsElement";
 import {createMargin} from "../../base/logic/style/Margin";
 import {Dot} from "../../base/components/base/Dot";
 import {Utils} from "../../base/Utils";
+import {FileDropzone} from "./FileDropzone";
 
 export type EntityImportDialogProps = {
     onSubmit: (files: File[]) => void,
@@ -100,43 +101,12 @@ export class EntityImportDialog extends BC<EntityImportDialogProps, any, EntityI
                             ), "files"),
                         ]}/>,
 
-                        <Dropzone onDrop={(acceptedFiles, fileRejections, event) => {
+                        <FileDropzone onDrop={(acceptedFiles, fileRejections, event) => {
                             this.ls().files.push(...acceptedFiles)
                             this.local.setStateWithChannels({
                                 files: this.ls().files
                             }, ["files"])
-                        }}>
-                            {({getRootProps, getInputProps}) => (
-                                <section className="container" style={{ width: "100%" }}>
-                                    <div {...getRootProps({className: 'dropzone'})}>
-                                        <Box paddingY={px(30)} highlight cursor={Cursor.pointer} elements={[
-                                            <Centered children={
-                                                <>
-                                                    <input {...getInputProps()} type={"file"} />
-                                                    <Description cursor={Cursor.pointer} align={Align.CENTER} renderMarkdown={false} text={"Drag 'n' drop some files here, or click to select files"}/>
-                                                </>
-                                            }/>
-                                        ]}/>
-                                    </div>
-                                </section>
-                            )}
-                        </Dropzone>,
-
-                        <Dropzone onDrop={(acceptedFiles, fileRejections, event) => {
-                            this.ls().files.push(...acceptedFiles)
-                            this.local.setStateWithChannels({
-                                files: this.ls().files
-                            }, ["files"])
-                        }}>
-                            {({getRootProps, getInputProps}) => (
-                                <section className="container" style={{ width: "100%" }}>
-                                    <div {...getRootProps({className: 'dropzone'})}>
-                                        <input {...getInputProps()} type={"file"} />
-                                        <p>Drag 'n' drop some files here, or click to select files</p>
-                                    </div>
-                                </section>
-                            )}
-                        </Dropzone>,
+                        }}/>,
 
                         this.component(local => (
                             local.state.files.length > 0 ? (

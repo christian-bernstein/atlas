@@ -819,9 +819,7 @@ export class AtlasMain extends BC<AtlasMainProps, any, AtlasMainLocalState> {
                     // Visual content
                     <Screen deactivatePadding children={
                         <Flex fh fw align={Align.CENTER} elements={[
-                            // this.a("folder")
-
-                            <FileDropzone/>
+                            this.a("folder")
                         ]}/>
                     }/>,
 
