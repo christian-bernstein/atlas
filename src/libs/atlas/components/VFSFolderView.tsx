@@ -694,6 +694,7 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                 <AF elements={[
                     <SideMenu view={this}/>,
                     // this.component(() => this.ls().menuVisible ? <Separator orientation={Orientation.VERTICAL}/> : <></>, "menu"),
+                    <Separator orientation={Orientation.VERTICAL}/>
                 ]}/>
             );
         })
