@@ -1035,10 +1035,12 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                         <HOCWrapper body={() => {
                                             const sum = AtlasMain.atlas().api().getStorageSummary(false);
                                             return (
-                                                <StorageInformationPanel series={sum.archetypeSummaries.map(arch => ({
-                                                    title: arch.archetype.name,
-                                                    occurrences: arch.fileCount
-                                                }))}/>
+                                                <Flex fw align={Align.CENTER} elements={[
+                                                    <StorageInformationPanel series={sum.archetypeSummaries.map(arch => ({
+                                                        title: arch.archetype.name,
+                                                        occurrences: arch.fileCount
+                                                    }))}/>
+                                                ]}/>
                                             );
                                         }}/>
                                     }/>

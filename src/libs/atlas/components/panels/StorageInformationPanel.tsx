@@ -33,7 +33,7 @@ export const StorageInformationPanel: React.FC<StorageInformationPanelProps> = p
             },
             stroke: {
                 width: 5,
-                colors: [utilizeGlobalTheme().colors.backgroundColor.css()]
+                colors: [utilizeGlobalTheme().colors.backgroundHighlightColor.css()]
             },
             grid: {
                 padding: {
