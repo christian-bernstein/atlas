@@ -322,6 +322,14 @@ export class InDevAtlasAPI implements IAtlasAPI {
         return this.meta.get(InDevAtlasAPI.STORAGE_SUMMARY_ID);
     }
 
+    /**
+     * When should the summary be recalculated?
+     * - On every application start
+     * - On document deletion
+     * - On document creation
+     * - On archetype change? -> *If this becomes a thing*
+     * - On document body change -> *This might become very resource intense -> Introduction of 'Summary patching' (Manually changing parts of the summary)*
+     */
     recalculateStorageSummary(): void {
         const documents = this.getAllDocuments();
         const usedBytes = documents.map(doc => new Blob([doc.body ?? ""]).size).reduceRight((pVal, cVal) => pVal + cVal);

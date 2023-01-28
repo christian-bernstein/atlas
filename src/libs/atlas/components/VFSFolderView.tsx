@@ -729,24 +729,25 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
 
 
                                     <HOCWrapper body={() => {
-                                        type Summary = {
-                                            occurrences: number,
-                                            title: string
-                                        };
-                                        const docSummaries: Map<string, Summary> = new Map<string, Summary>();
-                                        Object.keys(DocumentType).filter((item) => isNaN(Number(item))).forEach(type => docSummaries.set(type, {
-                                            occurrences: 0,
-                                            title: type.toLowerCase().toLocaleUpperCase()
-                                        }));
-                                        AtlasMain.atlas().api().getAllDocuments().forEach(doc => {
-                                            const summary = docSummaries.get(String(doc.documentType ?? DocumentType.UNSPECIFIED))!;
-                                            if (summary !== undefined) summary.occurrences++;
-                                        });
+                                        // type Summary = {
+                                        //     occurrences: number,
+                                        //     title: string
+                                        // };
+                                        // const docSummaries: Map<string, Summary> = new Map<string, Summary>();
+                                        // Object.keys(DocumentType).filter((item) => isNaN(Number(item))).forEach(type => docSummaries.set(type, {
+                                        //     occurrences: 0,
+                                        //     title: type.toLowerCase().toLocaleUpperCase()
+                                        // }));
+                                        // AtlasMain.atlas().api().getAllDocuments().forEach(doc => {
+                                        //     const summary = docSummaries.get(String(doc.documentType ?? DocumentType.UNSPECIFIED))!;
+                                        //     if (summary !== undefined) summary.occurrences++;
+                                        // });
 
+                                        const sum = AtlasMain.atlas().api().getStorageSummary(true);
                                         return (
-                                            <StorageInformationPanel series={Array.from(docSummaries.values()).map(i => ({
-                                                occurrences: i.occurrences,
-                                                title: i.title
+                                            <StorageInformationPanel series={sum.archetypeSummaries.map(arch => ({
+                                                title: arch.archetype.name,
+                                                occurrences: arch.fileCount
                                             }))}/>
                                         );
                                     }}/>,
