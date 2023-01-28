@@ -29,38 +29,22 @@ export class Panel extends BC<PanelProps, any, any> {
 
         const PanelSlider = React.forwardRef((props, ref) => {
             return (
-                <div ref={ref as any} {...props} style={{ width: "100%" }} children={
+                <div ref={ref as any} {...props} style={{
+                    width: "350px",
+                    minWidth: "350px"
+                }} children={
                     (() => {
-                        // if (p.visible ?? true) {
-                        //     if (orientation === Orientation.VERTICAL) return (
-                        //         <Flex children={p.children} fh width={p.size ?? px(350)} style={{
-                        //             backgroundColor: t.colors.backgroundHighlightColor.css(),
-                        //             // minWidth: (p.size ?? px(350)).css()
-                        //         }}/>
-                        //     );
-                        //     if (orientation === Orientation.HORIZONTAL) return (
-                        //         <Flex children={p.children} fw height={p.size ?? px(350)} style={{
-                        //             backgroundColor: t.colors.backgroundHighlightColor.css(),
-                        //             // minHeight: (p.size ?? px(350)).css()
-                        //         }}/>
-                        //     );
-                        // } else {
-                        //     return (
-                        //         <></>
-                        //     );
-                        // }
-
                         if (orientation === Orientation.VERTICAL) return (
                             <Flex children={p.children} fh width={p.size ?? px(350)} style={{
                                 backgroundColor: t.colors.backgroundHighlightColor.css(),
-                                // minWidth: (p.size ?? px(350)).css()
+                                minWidth: (p.size ?? px(350)).css()
                             }}/>
                         );
 
                         if (orientation === Orientation.HORIZONTAL) return (
                             <Flex children={p.children} fw height={p.size ?? px(350)} style={{
                                 backgroundColor: t.colors.backgroundHighlightColor.css(),
-                                // minHeight: (p.size ?? px(350)).css()
+                                minHeight: (p.size ?? px(350)).css()
                             }}/>
                         );
                     })()
@@ -68,14 +52,10 @@ export class Panel extends BC<PanelProps, any, any> {
             );
         });
 
-
         return (
             <Collapse in={p.visible} unmountOnExit id={p.id} key={p.id} orientation={"horizontal"} children={
                 <PanelSlider/>
             }/>
         );
-
-
-
     }
 }
