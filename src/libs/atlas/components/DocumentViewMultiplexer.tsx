@@ -8,7 +8,7 @@ import {DocumentViewController} from "../documentViews/DocumentViewController";
 import {OverflowWithHeader} from "../../base/components/base/OverflowWithHeader";
 import {FlexDirection} from "../../base/logic/style/FlexDirection";
 import {Box} from "../../base/components/base/Box";
-import {px} from "../../base/logic/style/DimensionalMeasured";
+import {auto, px} from "../../base/logic/style/DimensionalMeasured";
 import {Text, TextType} from "../../base/components/base/Text";
 import {Separator} from "../../base/components/base/Separator";
 import {Orientation} from "../../base/logic/style/Orientation";
@@ -21,6 +21,11 @@ import {Justify} from "../../base/logic/style/Justify";
 import {ContextCompound} from "../../base/components/base/ContextCompound";
 import {SettingsGroup} from "../../base/components/base/SettingsGroup";
 import {MultiplexerDocumentTab} from "./multiplexer/MultiplexerDocumentTab";
+import {Anchorpoint, Panel} from "./panels/Panel";
+import React from "react";
+import {HOCWrapper} from "../../base/components/HOCWrapper";
+import {AtlasMain} from "../AtlasMain";
+import {StorageInformationPanel} from "./panels/StorageInformationPanel";
 
 export type DocumentViewMultiplexerControlConfig = {
     documents: Array<AtlasDocument>
@@ -209,18 +214,43 @@ export class DocumentViewMultiplexer extends BC<DocumentViewMultiplexerProps, an
     private footerAssembly() {
         this.assembly.assembly("footer", t => {
             const activeDocument = this.getActiveDocument();
+
             return (
-                <Box
-                    fw
-                    borderless
-                    borderRadiiConfig={{enableCustomBorderRadii: true, fallbackCustomBorderRadii: px(0)}}
-                    elements={[
-                        <Flex flexDir={FlexDirection.ROW} align={Align.CENTER} elements={[
-                            <Text text={"ViewMultiplexer footer"} fontSize={px(11)} type={TextType.secondaryDescription}/>
-                        ]}/>,
-                    ]}
-                />
+                this.props.controlConfigMirror.view.component((local) => (
+                    <Panel id={"footer_panel"} visible={local.state.menuVisible} anchorpoint={Anchorpoint.RIGHT} children={
+                        <HOCWrapper body={() => {
+
+                            return (
+                                <Box
+                                    fw
+                                    borderless
+                                    borderRadiiConfig={{enableCustomBorderRadii: true, fallbackCustomBorderRadii: px(0)}}
+                                    elements={[
+                                        <Flex flexDir={FlexDirection.ROW} align={Align.CENTER} elements={[
+                                            <Text text={"ViewMultiplexer footer"} fontSize={px(11)} type={TextType.secondaryDescription}/>
+                                        ]}/>,
+                                    ]}
+                                />
+                            );
+                        }}/>
+                    }/>
+                ), "menu")
+
             );
+
+
+            // return (
+            //     <Box
+            //         fw
+            //         borderless
+            //         borderRadiiConfig={{enableCustomBorderRadii: true, fallbackCustomBorderRadii: px(0)}}
+            //         elements={[
+            //             <Flex flexDir={FlexDirection.ROW} align={Align.CENTER} elements={[
+            //                 <Text text={"ViewMultiplexer footer"} fontSize={px(11)} type={TextType.secondaryDescription}/>
+            //             ]}/>,
+            //         ]}
+            //     />
+            // );
         })
     }
 
