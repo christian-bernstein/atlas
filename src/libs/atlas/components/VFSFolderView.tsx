@@ -1035,8 +1035,8 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
 
                                 // this.component(() => this.a("menu"), "menu"),
 
-                                this.component(() => (
-                                    <Panel anchorpoint={Anchorpoint.RIGHT} children={
+                                this.component((local) => (
+                                    <Panel visible={local.state.menuVisible} anchorpoint={Anchorpoint.RIGHT} children={
                                         <HOCWrapper body={() => {
                                             const sum = AtlasMain.atlas().api().getStorageSummary(false);
                                             return (
