@@ -3,14 +3,8 @@ import Dropzone, {DropzoneProps} from "react-dropzone";
 import styled from "styled-components";
 import {utilizeGlobalTheme} from "../../base/logic/app/App";
 import {CloudOutlined} from "@mui/icons-material";
-import {Flex} from "../../base/components/base/FlexBox";
-import {Align} from "../../base/logic/style/Align";
-import {px} from "../../base/logic/style/DimensionalMeasured";
-import {createMargin} from "../../base/logic/style/Margin";
 
-export type FileDropzoneProps = DropzoneProps & {
-
-}
+export type FileDropzoneProps = DropzoneProps & {}
 
 export const FileDropzone: React.FC<FileDropzoneProps> = props => {
     const theme = utilizeGlobalTheme();
@@ -21,7 +15,7 @@ export const FileDropzone: React.FC<FileDropzoneProps> = props => {
       justify-content: center;
       align-items: center;
       border-radius: ${theme.radii.defaultObjectRadius.css()};
-      border: 1px dashed transparent;
+      border: 1px dashed ${theme.colors.borderPrimaryColor.css()};
       transition: all 200ms;
       cursor: pointer;
       text-align: center;
