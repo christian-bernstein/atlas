@@ -9,6 +9,7 @@ import {IISOAdapter} from "../iso/IISOAdapter";
 import {ISOAdapterV1} from "../iso/v1/ISOAdapterV1";
 import {v4} from "uuid";
 import { StorageSummary } from "./StorageSummary";
+import {DocumentArchetype} from "./DocumentArchetype";
 
 enum DBAddresses {
     DOCUMENTS = "documents",
@@ -298,6 +299,10 @@ export class InDevAtlasAPI implements IAtlasAPI {
         return folder;
     }
 
+    getDocumentArchetype(archetypeID: string): DocumentArchetype {
+
+    }
+
     getStorageSummary(recalculate: boolean): StorageSummary {
         if (recalculate || this.meta.get(InDevAtlasAPI.STORAGE_SUMMARY_ID) === undefined) {
             this.recalculateStorageSummary();
@@ -309,6 +314,10 @@ export class InDevAtlasAPI implements IAtlasAPI {
         const documents = this.getAllDocuments();
         const usedBytes = documents.map(doc => new Blob([doc.body ?? ""]).size).reduceRight((pVal, cVal) => pVal + cVal);
 
+
+        documents.forEach(doc => {
+            doc.
+        });
 
         this.meta.set(InDevAtlasAPI.STORAGE_SUMMARY_ID, {
             fileCount: documents.length,

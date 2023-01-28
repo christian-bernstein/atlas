@@ -6,6 +6,7 @@ import {FormDataHub} from "../../base/FormDataHub";
 import {AtlasDB} from "./AtlasDB";
 import {IISOAdapter} from "../iso/IISOAdapter";
 import {StorageSummary} from "./StorageSummary";
+import {DocumentArchetype} from "./DocumentArchetype";
 
 export interface IAtlasAPI {
     getFolder(id: string): Folder;
@@ -39,7 +40,7 @@ export interface IAtlasAPI {
     getFolderFromPath(baseFolderID: string, path: Array<string>): Folder;
 
 
-
+    getDocumentArchetype(archetypeID: string): DocumentArchetype;
 
     getStorageSummary(recalculate: boolean): StorageSummary;
     recalculateStorageSummary(): void;
