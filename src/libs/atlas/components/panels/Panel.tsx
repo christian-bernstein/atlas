@@ -31,7 +31,9 @@ export class Panel extends BC<PanelProps, any, any> {
             return (
                 <div ref={ref as any} {...props} style={{
                     width: "350px",
-                    minWidth: "350px"
+                    minWidth: "350px",
+                    height: "100%",
+                    flexShrink: 0
                 }} children={
                     (() => {
                         if (orientation === Orientation.VERTICAL) return (
