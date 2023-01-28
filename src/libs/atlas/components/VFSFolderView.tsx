@@ -701,8 +701,6 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
 
     private menuAssembly() {
         this.assembly.assembly("menu", t => {
-
-
             return (
                 <Panel id={"explorer_panel"} visible={this.ls().menuVisible} anchorpoint={Anchorpoint.LEFT} children={
                     <Flex fh width={px(350)} style={{
@@ -820,131 +818,7 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                     ]}/>
                 }/>
             );
-
-
-
-            // if (this.ls().menuVisible) {
-            //     return (
-            //         <Flex fh width={px(350)} style={{
-            //             minWidth: "350px",
-            //             backgroundColor: t.colors.backgroundHighlightColor.css()
-            //         }} elements={[
-            //             <OverflowWithHeader height={percent(100)} dir={FlexDirection.COLUMN_REVERSE}  staticContainer={{
-            //                 gap: px(),
-            //                 elements: [
-            //                     <Flex fw padding align={Align.CENTER} flexDir={FlexDirection.ROW} justifyContent={Justify.CENTER} elements={[
-            //                         <Icon icon={<AttachmentIcon/>}/>,
-            //                         <Flex fw fh justifyContent={Justify.CENTER} gap={t.gaps.smallGab} align={Align.CENTER} elements={[
-            //                             // Badge.beta(),
-            //                             <Text text={"Atlas Document Viewer"} bold/>,
-            //                         ]}/>,
-            //                         <Icon icon={<SettingsIcon/>}/>
-            //                     ]}/>
-            //                 ]
-            //             }} overflowContainer={{
-            //                 elements: [
-            //                     <Flex height={px(50)} fw fh padding style={{ backgroundColor: t.colors.backgroundHighlightColor.css() }} elements={[
-            //                         this.component(() => this.a("folder-level-view"), "current-folder"),
-//
-            //                         this.component(() => (
-            //                             <QueryDisplay<Folder | undefined> q={this.local.state.currentFolderData} renderer={{
-            //                                 processing(q: Queryable<Folder | undefined>): JSX.Element {
-            //                                     return (
-            //                                         <>processing..</>
-            //                                     );
-            //                                 },
-            //                                 success: (q: Queryable<Folder | undefined>, data: Folder | undefined) => {
-//
-            //                                     const FolderSlider = React.forwardRef((props, ref) => {
-            //                                         return (
-            //                                             <div ref={ref as any} {...props} style={{ width: "100%" }} children={
-            //                                                 <Flex fw fh overflowYBehaviour={OverflowBehaviour.SCROLL} elements={[
-            //                                                     this.component(() => this.a("folder-view"), "folder-view"),
-            //                                                     this.component(() => this.a("document-view"), "document-view", "search-filter-state"),
-            //                                                 ]}/>
-            //                                             }/>
-            //                                         );
-            //                                     });
-//
-            //                                     const animate = this.ls().animateFolderSlider;
-//
-            //                                     if (this.ls().animateFolderSlider) {
-            //                                         this.local.setState({
-            //                                             animateFolderSlider: false
-            //                                         });
-            //                                     }
-//
-            //                                     return (
-            //                                         <Flex fw fh overflowYBehaviour={OverflowBehaviour.SCROLL} elements={[
-            //                                             <DrawerHeader
-            //                                                 header={String(this.getCurrentFolder()?.title)}
-            //                                                 badgeText={"Folder view"}
-            //                                                 enableBadge={false}
-            //                                                 badgeVM={ObjectVisualMeaning.UI_NO_HIGHLIGHT}
-            //                                                 description={this.getCurrentFolder().description}
-            //                                             />,
-//
-//
-            //                                             <Flex fw margin={createMargin(0, 0, 40, 0)} align={Align.CENTER} elements={[
-            //                                                 <Flex wrap={FlexWrap.WRAP} flexDir={FlexDirection.ROW} fw gap={t.gaps.smallGab} align={Align.CENTER} justifyContent={Justify.CENTER} elements={
-            //                                                     this.getCurrentFolder().tags?.map(s => (
-            //                                                         <Box highlightShadow={false} cursor={Cursor.pointer} highlight opaque paddingY={px(4)} paddingX={px(7)} visualMeaning={VM.SUCCESS} borderRadiiConfig={{ enableCustomBorderRadii: true, fallbackCustomBorderRadii: px(500)}} borderless children={
-            //                                                             <Text text={s} whitespace={"nowrap"} cursor={Cursor.pointer} visualMeaning={VM.SUCCESS} fontSize={px(12)} coloredText type={TextType.secondaryDescription}/>
-            //                                                         }/>
-            //                                                     ))
-            //                                                 }/>,
-//
-            //                                                 <Flex wrap={FlexWrap.WRAP} flexDir={FlexDirection.ROW} fw gap={t.gaps.smallGab} align={Align.CENTER} justifyContent={Justify.CENTER} elements={[
-            //                                                     <Button tooltip={"Import files"} bgColorOnDefault={false} border={false} opaque visualMeaning={VM.UI_NO_HIGHLIGHT} children={
-            //                                                         <Icon icon={<UploadRounded/>} onClick={() => {
-            //                                                             this.dialog(
-            //                                                                 <EntityImportDialog onCancel={() => this.closeLocalDialog()} onSubmit={files => {
-            //                                                                     AtlasMain.atlas(atlas => {
-            //                                                                         atlas.api().importFiles(this.ls().currentFolderID!, files)
-            //                                                                         this.closeLocalDialog();
-            //                                                                         this.ls().currentFolderData.query();
-            //                                                                     });
-            //                                                                 }}/>
-            //                                                             );
-            //                                                         }}/>
-            //                                                     }/>
-            //                                                 ]}/>
-            //                                             ]}/>,
-//
-//
-            //                                             this.a("menu-filter"),
-//
-            //                                             // this.component(() => this.a("folder-view"), "folder-view"),
-            //                                             // this.component(() => this.a("document-view"), "document-view", "search-filter-state"),
-//
-            //                                             <If condition={animate} ifTrue={
-            //                                                 <Slide in id={v4()} key={v4()} direction={this.ls().folderSliderAnimationDirection} children={
-            //                                                     <FolderSlider/>
-            //                                                 }/>
-            //                                             } ifFalse={
-            //                                                 <FolderSlider/>
-            //                                             }/>
-            //                                         ]}/>
-            //                                     );
-            //                                 },
-            //                                 error: (q, error) => {
-            //                                     return (
-            //                                         <>error {String(error?.object)}</>
-            //                                     );
-            //                                 }
-            //                             }}/>
-            //                         ), ...Q.allChannels("current-folder"))
-            //                     ]}/>
-            //                 ]
-            //             }}/>
-            //         ]}/>
-            //     );
-            // } else {
-            //     return (
-            //         <></>
-            //     );
-            // }
-        })
+        });
     }
 
     public changeCurrentFolder(newFolderID: string, heading: "up" | "down" | undefined = undefined) {
