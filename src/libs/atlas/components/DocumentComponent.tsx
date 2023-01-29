@@ -7,7 +7,7 @@ import {getOr} from "../../base/Utils";
 import {StaticDrawerMenu} from "../../base/components/base/StaticDrawerMenu";
 import {DocumentPreview} from "./DocumentPreview";
 import {AtlasMain} from "../AtlasMain";
-import {percent} from "../../base/logic/style/DimensionalMeasured";
+import {percent, px} from "../../base/logic/style/DimensionalMeasured";
 import {Color} from "../../base/logic/style/Color";
 import {FlexRow} from "../../base/components/base/FlexBox";
 import {Align} from "../../base/logic/style/Align";
@@ -15,6 +15,8 @@ import {If} from "../../base/components/logic/If";
 import {Icon} from "../../base/components/base/Icon";
 import {StarRounded} from "@mui/icons-material";
 import React from "react";
+import {Description} from "../../base/components/base/Description";
+import {Cursor} from "../../base/logic/style/Cursor";
 
 export type DocumentComponentProps = {
     data: AtlasDocument
@@ -133,7 +135,12 @@ export class DocumentComponent extends BC<DocumentComponentProps, any, DocumentC
             <SettingsElement
                 groupDisplayMode
                 forceRenderSubpageIcon
-                title={getOr(p.data.title, "N/A")}
+                title={""}
+                alternateTitleRenderer={element => {
+                    return (
+                        <Description renderMarkdown={false} text={getOr(p.data.title, "N/A")}/>
+                    );
+                }}
                 iconConfig={{
                     enable: true,
                     color: p.data.iconColorHEX === undefined ? undefined : Color.ofHex(p.data.iconColorHEX),

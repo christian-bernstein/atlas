@@ -48,7 +48,7 @@ import {VFSFolderViewFilterState} from "../data/vfs/VFSFolderViewFilterState";
 import {UnaryFunction} from "../utils/UnaryFunction";
 import {Input} from "../../base/components/base/Input";
 import {If} from "../../base/components/logic/If";
-import {DeleteRounded, UploadRounded} from "@mui/icons-material";
+import {DeleteRounded, MoreVertRounded, UploadRounded} from "@mui/icons-material";
 import {FolderList} from "./vfs/menu/FolderList";
 import {Default, Mobile} from "../../base/components/logic/Media";
 import {isMobile} from 'react-device-detect';
@@ -69,6 +69,7 @@ import AvatarGroup from '@mui/material/AvatarGroup';
 import {StorageInformationPanel} from "./panels/StorageInformationPanel";
 import {HOCWrapper} from "../../base/components/HOCWrapper";
 import {Anchorpoint, Panel} from "./panels/Panel";
+import {ContextCompound} from "../../base/components/base/ContextCompound";
 
 export type VFSFolderViewProps = {
     initialFolderID?: string,
@@ -727,7 +728,47 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                         }} overflowContainer={{
                             elements: [
                                 <Flex height={px(50)} fw fh padding style={{ backgroundColor: t.colors.backgroundHighlightColor.css() }} elements={[
-                                    this.component(() => this.a("folder-level-view"), "current-folder"),
+                                    // this.component(() => this.a("folder-level-view"), "current-folder"),
+
+                                    <FlexRow fw justifyContent={Justify.SPACE_BETWEEN} align={Align.CENTER} elements={[
+                                        this.component(() => this.a("folder-level-view"), "current-folder"),
+                                        <FlexRow align={Align.CENTER} elements={[
+                                            <Icon tooltip={"Import"} icon={<UploadRounded/>} onClick={() => {
+                                                this.dialog(
+                                                    <EntityImportDialog onCancel={() => this.closeLocalDialog()} onSubmit={files => {
+                                                        AtlasMain.atlas(atlas => {
+                                                            atlas.api().importFiles(this.ls().currentFolderID!, files)
+                                                            this.closeLocalDialog();
+                                                            this.ls().currentFolderData.query();
+                                                        });
+                                                    }}/>
+                                                );
+                                            }}/>,
+                                            <ContextCompound wrapMenu={false} children={<Icon tooltip={"Actions"} icon={<MoreVertRounded/>}/>} menu={
+                                                <SettingsGroup elements={[
+                                                    <SettingsElement groupDisplayMode title={"Upload & import"} iconConfig={{
+                                                        iconGenerator: element => <UploadRounded/>,
+                                                        enable: true
+                                                    }} promiseBasedOnClick={element => new Promise<void>((resolve, reject) => {
+                                                        this.dialog(
+                                                            <EntityImportDialog onCancel={() => this.closeLocalDialog()} onSubmit={files => {
+                                                                AtlasMain.atlas(atlas => {
+                                                                    atlas.api().importFiles(this.ls().currentFolderID!, files)
+                                                                    this.closeLocalDialog();
+                                                                    this.ls().currentFolderData.query();
+                                                                    resolve();
+                                                                });
+                                                            }}/>,
+                                                            () => reject()
+                                                        )
+                                                    })}/>,
+                                                    <SettingsElement groupDisplayMode title={"1 Do something"}/>,
+                                                    <SettingsElement groupDisplayMode title={"2 Do something"}/>
+                                                ]}/>
+                                            }/>,
+
+                                        ]}/>
+                                    ]}/>,
 
                                     this.component(() => (
                                         <QueryDisplay<Folder | undefined> q={this.local.state.currentFolderData} renderer={{
@@ -776,22 +817,6 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                                                     }/>
                                                                 ))
                                                             }/>,
-
-                                                            <Flex wrap={FlexWrap.WRAP} flexDir={FlexDirection.ROW} fw gap={t.gaps.smallGab} align={Align.CENTER} justifyContent={Justify.CENTER} elements={[
-                                                                <Button tooltip={"Import files"} bgColorOnDefault={false} border={false} opaque visualMeaning={VM.UI_NO_HIGHLIGHT} children={
-                                                                    <Icon icon={<UploadRounded/>} onClick={() => {
-                                                                        this.dialog(
-                                                                            <EntityImportDialog onCancel={() => this.closeLocalDialog()} onSubmit={files => {
-                                                                                AtlasMain.atlas(atlas => {
-                                                                                    atlas.api().importFiles(this.ls().currentFolderID!, files)
-                                                                                    this.closeLocalDialog();
-                                                                                    this.ls().currentFolderData.query();
-                                                                                });
-                                                                            }}/>
-                                                                        );
-                                                                    }}/>
-                                                                }/>
-                                                            ]}/>
                                                         ]}/>,
 
 

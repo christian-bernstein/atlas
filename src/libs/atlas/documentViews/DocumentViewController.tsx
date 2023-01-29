@@ -138,7 +138,11 @@ export class DocumentViewController extends BC<DocumentViewControllerProps, any,
                 }
 
                 switch (body.filetype) {
-                    case "image/png": return renderDocumentView(imageDocumentView)
+                    case "image/png": return renderDocumentView(imageDocumentView);
+                    case "image/jpeg": return renderDocumentView(imageDocumentView);
+                    case "image/jpg": return renderDocumentView(imageDocumentView);
+                    case "image/gif": return renderDocumentView(imageDocumentView);
+                    case "image/webp": return renderDocumentView(imageDocumentView);
                     // TODO: Implement
                     case "text/plain": {
 
