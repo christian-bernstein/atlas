@@ -715,7 +715,7 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                                     }}/>
                                                 );
                                             }}/>,
-                                            <ContextCompound wrapMenu={false} children={<Icon tooltip={"Actions"} icon={<MoreVertRounded/>}/>} menu={
+                                            <ContextCompound wrapperStyle={{ border: "none !important" }} wrapMenu={false} children={<Icon tooltip={"Actions"} icon={<MoreVertRounded/>}/>} menu={
                                                 <SettingsGroup elements={[
                                                     <SettingsElement forceRenderSubpageIcon groupDisplayMode title={"Upload & import"} iconConfig={{
                                                         iconGenerator: element => <UploadRounded/>,

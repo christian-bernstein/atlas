@@ -144,9 +144,7 @@ export class DocumentViewController extends BC<DocumentViewControllerProps, any,
                     case "image/jpg": return renderDocumentView(imageDocumentView);
                     case "image/gif": return renderDocumentView(imageDocumentView);
                     case "image/webp": return renderDocumentView(imageDocumentView);
-
-
-
+                    
                     case "application/pdf": return <iframe
                         title={document.title}
                         src={body.body}
@@ -154,8 +152,6 @@ export class DocumentViewController extends BC<DocumentViewControllerProps, any,
                         height={"100%"}
                         style={{ border: "none" }}
                     />
-
-
 
                     // TODO: Implement
                     case "text/plain": {
