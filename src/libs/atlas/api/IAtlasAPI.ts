@@ -36,7 +36,7 @@ export interface IAtlasAPI {
     persistentDB(): AtlasDB;
     isoAdapter(id: string): IISOAdapter;
 
-    importFiles(folderID: string, files: Array<File>): void;
+    importFiles(folderID: string, files: Array<File>): Promise<void>;
     getFolderFromPath(baseFolderID: string, path: Array<string>): Folder;
 
 

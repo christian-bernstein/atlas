@@ -262,23 +262,21 @@ export class InDevAtlasAPI implements IAtlasAPI {
         }
     }
 
-    importFiles(folderID: string, files: Array<File>) {
-        files.forEach(async (file, index, array) => {
+    async importFiles(folderID: string, files: Array<File>) {
+        await Promise.all(files.map(async (file) => {
             const path = ((file as any).path as string).match(/(.*\/)/g)?.[0]!.split("/")!.filter(s => s.trim().length > 0)!;
-
             let folder: Folder = this.getFolder(folderID);
             path?.forEach(elem => {
                 let element = folder.subFolderIDs
                     ?.map(sfID => this.getFolder(sfID))
-                    ?.filter(f => f !== undefined && f.title === elem)
-                    ?.[0] ?? undefined;
+                    ?.filter(f => f !== undefined && f.title === elem)?.[0] ?? undefined;
                 if (element === undefined) {
                     const newFolder: Folder = {
                         id: v4(),
                         title: elem,
                         categories: [],
                         parentFolder: folder.id
-                    }
+                    };
                     this.createSubFolder(folder.id, newFolder);
                     element = newFolder;
                 }
@@ -301,7 +299,7 @@ export class InDevAtlasAPI implements IAtlasAPI {
                     body: fileContent
                 } as GenericFileArchetype)
             });
-        });
+        }));
     }
 
     getFolderFromPath(baseFolderID: string, path: Array<string>): Folder {
@@ -346,7 +344,7 @@ export class InDevAtlasAPI implements IAtlasAPI {
      */
     recalculateStorageSummary(): void {
         const documents = this.getAllDocuments();
-        const usedBytes = documents.map(doc => new Blob([doc.body ?? ""]).size).reduceRight((pVal, cVal) => pVal + cVal);
+        const usedBytes = documents.length === 0 ? 0 : documents.map(doc => new Blob([doc.body ?? ""]).size).reduceRight((pVal, cVal) => pVal + cVal);
         const defaultArchetype = "default_archetype";
         const docsByArchetype = new Map<DocumentArchetype, Set<AtlasDocument>>();
 

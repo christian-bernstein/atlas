@@ -1,4 +1,4 @@
-import {BC} from "../../base/BernieComponent";
+import {BC, BernieComponent} from "../../base/BernieComponent";
 import {Themeable} from "../../base/logic/style/Themeable";
 import {Assembly} from "../../base/logic/assembly/Assembly";
 import {Screen} from "../../base/components/base/Page";
@@ -723,18 +723,30 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                                     }} promiseBasedOnClick={element => new Promise<void>((resolve, reject) => {
                                                         this.dialog(
                                                             <EntityImportDialog onCancel={() => this.closeLocalDialog()} onSubmit={files => {
-                                                                AtlasMain.atlas(atlas => {
-                                                                    atlas.api().importFiles(this.ls().currentFolderID!, files)
+                                                                AtlasMain.atlas(async atlas => {
+                                                                    await atlas.api().importFiles(this.ls().currentFolderID!, files);
                                                                     this.closeLocalDialog();
+
+                                                                    // TODO: Is not re-rendering the folder view
                                                                     this.reloadFolderView();
+
                                                                     resolve();
                                                                 });
                                                             }}/>,
                                                             () => resolve()
                                                         )
                                                     })}/>,
-                                                    <SettingsElement groupDisplayMode title={"1 Do something"}/>,
-                                                    <SettingsElement groupDisplayMode title={"2 Do something"}/>
+                                                    <SettingsElement groupDisplayMode title={"Delete all documents"} promiseBasedOnClick={element => new Promise<void>(resolve => {
+                                                        // TODO: Add confirmation dialog
+                                                        AtlasMain.atlas(atlas => {
+                                                            const api = atlas.api();
+                                                            const documentsIDs = this.getCurrentFolder().documentsIDs;
+                                                            if (documentsIDs === undefined) resolve();
+                                                            documentsIDs?.forEach(doc => api.deleteDocument(doc));
+                                                            resolve();
+                                                            this.reloadFolderView();
+                                                        });
+                                                    })}/>
                                                 ]}/>
                                             }/>,
 
