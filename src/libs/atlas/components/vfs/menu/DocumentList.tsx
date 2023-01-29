@@ -85,7 +85,11 @@ export class DocumentList extends BernieComponent<DocumentListProps, any, any> {
                                                                             view.local.state.viewMultiplexers.forEach(mux => {
                                                                                 view.closeAndRemoveDocumentFromMultiplexer(mux.groupID, doc.id);
                                                                             })
+
+                                                                            // TODO: Make better version
+                                                                            view.reloadFolderView();
                                                                             this.rerender("document-view", view.toDocumentSpecificChannel(doc.id, "meta-updated"));
+
                                                                         }
                                                                     });
                                                                 },

@@ -88,8 +88,6 @@ export class FolderList extends BernieComponent<FolderListProps, any, FolderList
                                 }, ["selection-state"])
                                 return;
                             }
-
-
                             view.changeCurrentFolder(data.id, "down");
                         })}/>
                     );

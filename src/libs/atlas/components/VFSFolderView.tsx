@@ -707,8 +707,8 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                             <Icon tooltip={"Import"} icon={<UploadRounded/>} onClick={() => {
                                                 this.dialog(
                                                     <EntityImportDialog onCancel={() => this.closeLocalDialog()} onSubmit={files => {
-                                                        AtlasMain.atlas(atlas => {
-                                                            atlas.api().importFiles(this.ls().currentFolderID!, files)
+                                                        AtlasMain.atlas(async (atlas) => {
+                                                            await atlas.api().importFiles(this.ls().currentFolderID!, files)
                                                             this.closeLocalDialog();
                                                             this.ls().currentFolderData.query();
                                                         });
@@ -726,10 +726,7 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                                                 AtlasMain.atlas(async atlas => {
                                                                     await atlas.api().importFiles(this.ls().currentFolderID!, files);
                                                                     this.closeLocalDialog();
-
-                                                                    // TODO: Is not re-rendering the folder view
                                                                     this.reloadFolderView();
-
                                                                     resolve();
                                                                 });
                                                             }}/>,
@@ -744,6 +741,14 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                                             if (documentsIDs === undefined) resolve();
                                                             documentsIDs?.forEach(doc => api.deleteDocument(doc));
                                                             resolve();
+
+                                                            // Close view, if opened in a multiplexer
+                                                            documentsIDs?.forEach(docID => {
+                                                                this.ls().viewMultiplexers.forEach(mux => {
+                                                                    this.closeAndRemoveDocumentFromMultiplexer(mux.groupID, docID);
+                                                                });
+                                                            });
+
                                                             this.reloadFolderView();
                                                         });
                                                     })}/>
