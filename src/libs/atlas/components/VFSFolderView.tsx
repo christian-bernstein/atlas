@@ -746,11 +746,11 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                             }}/>,
                                             <ContextCompound wrapMenu={false} children={<Icon tooltip={"Actions"} icon={<MoreVertRounded/>}/>} menu={
                                                 <SettingsGroup elements={[
-                                                    <SettingsElement groupDisplayMode title={"Upload & import"} iconConfig={{
+                                                    <SettingsElement forceRenderSubpageIcon groupDisplayMode title={"Upload & import"} iconConfig={{
                                                         iconGenerator: element => <UploadRounded/>,
                                                         enable: true
                                                     }} promiseBasedOnClick={element => new Promise<void>((resolve, reject) => {
-                                                        this.dialog(
+                                                        element.dialog(
                                                             <EntityImportDialog onCancel={() => this.closeLocalDialog()} onSubmit={files => {
                                                                 AtlasMain.atlas(atlas => {
                                                                     atlas.api().importFiles(this.ls().currentFolderID!, files)
