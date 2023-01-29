@@ -746,24 +746,22 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                             }}/>,
                                             <ContextCompound wrapMenu={false} children={<Icon tooltip={"Actions"} icon={<MoreVertRounded/>}/>} menu={
                                                 <SettingsGroup elements={[
-                                                    <HOCWrapper body={wrapper => (
-                                                        <SettingsElement forceRenderSubpageIcon groupDisplayMode title={"Upload & import"} iconConfig={{
-                                                            iconGenerator: element => <UploadRounded/>,
-                                                            enable: true
-                                                        }} promiseBasedOnClick={element => new Promise<void>((resolve, reject) => {
-                                                            wrapper.dialog(
-                                                                <EntityImportDialog onCancel={() => this.closeLocalDialog()} onSubmit={files => {
-                                                                    AtlasMain.atlas(atlas => {
-                                                                        atlas.api().importFiles(this.ls().currentFolderID!, files)
-                                                                        this.closeLocalDialog();
-                                                                        this.ls().currentFolderData.query();
-                                                                        resolve();
-                                                                    });
-                                                                }}/>,
-                                                                () => resolve()
-                                                            )
-                                                        })}/>
-                                                    )}/>,
+                                                    <SettingsElement forceRenderSubpageIcon groupDisplayMode title={"Upload & import"} iconConfig={{
+                                                        iconGenerator: element => <UploadRounded/>,
+                                                        enable: true
+                                                    }} promiseBasedOnClick={element => new Promise<void>((resolve, reject) => {
+                                                        this.dialog(
+                                                            <EntityImportDialog onCancel={() => this.closeLocalDialog()} onSubmit={files => {
+                                                                AtlasMain.atlas(atlas => {
+                                                                    atlas.api().importFiles(this.ls().currentFolderID!, files)
+                                                                    this.closeLocalDialog();
+                                                                    this.ls().currentFolderData.query();
+                                                                    resolve();
+                                                                });
+                                                            }}/>,
+                                                            () => resolve()
+                                                        )
+                                                    })}/>,
                                                     <SettingsElement groupDisplayMode title={"1 Do something"}/>,
                                                     <SettingsElement groupDisplayMode title={"2 Do something"}/>
                                                 ]}/>
