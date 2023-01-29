@@ -119,7 +119,6 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                 process: (resolve, reject) => {
                     const rootFolderID: string = this.local.state.currentFolderID ?? props.initialFolderID ?? "root";
                     let currentFolder: Folder | undefined = AtlasMain.atlas().api().getFolder(rootFolderID);
-
                     if (currentFolder === undefined) {
                         currentFolder = {
                             categories: new Array<string>(),
@@ -252,7 +251,6 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                             }, 1);
                             this.closeLocalDialog();
                             this.reloadFolderView();
-
                             return true;
                         } catch (e) {
                             return false;
@@ -369,7 +367,6 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
     public closeMultiplexer(groupID: string) {
         let muxers = this.local.state.viewMultiplexers;
         muxers = muxers.filter(config => config.groupID !== groupID);
-
         this.local.setStateWithChannels({
             viewMultiplexers: muxers
         }, ["multiplexer-removed"]);
@@ -386,16 +383,11 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
 
     public updateMultiplexer(multiplexerID: string, updateChannels: Array<string>, updater: (multiplexer: DocumentViewMultiplexerControlConfig) => DocumentViewMultiplexerControlConfig) {
         const multiplexerControlConfigs: DocumentViewMultiplexerControlConfig[] = this.local.state.viewMultiplexers.filter(mux => mux.groupID === multiplexerID);
-        if (multiplexerControlConfigs.length === 0) {
-            console.error("no multiplexer found")
-            return;
-        }
-
+        if (multiplexerControlConfigs.length === 0) return;
         let multiplexer = multiplexerControlConfigs[0];
         multiplexer = updater(multiplexer);
         const updatedMultiplexers = this.local.state.viewMultiplexers.filter(mux => mux.groupID !== multiplexerID);
         updatedMultiplexers.push(multiplexer);
-
         this.local.setState({
             viewMultiplexers: updatedMultiplexers
         }, new Map<string, any>(), () => {
@@ -425,7 +417,6 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
             this.openDocumentInMobileMode(data);
             return;
         }
-
         // Document can only be opened once (overarching all multiplexers)
         // TODO: Allow a document to be opened once in every multiplexer -> Sync edits
         if (this.isDocumentOpened(data.id)) {
@@ -444,13 +435,10 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                 this.getDocumentState(data.id).saveState = DocumentSaveState.SAVED;
                 this.rerender(this.toDocumentSpecificChannel(data.id, "persistence-sync-state"));
             }, 1000));
-
             this.local.state.documentStates.set(data.id, {
                 saveState: DocumentSaveState.SAVED
             });
-
             this.rerender(this.toDocumentSpecificChannel(data.id, "opened"));
-
             this.updateMultiplexer(muxID, ["main"], multiplexer => {
                 const documents = multiplexer.documents;
                 documents.push(data);
@@ -475,25 +463,12 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
 
     public closeAndRemoveDocumentFromMultiplexer(multiplexerID: string, documentID: string) {
         const mux: DocumentViewMultiplexerControlConfig = this.local.state.viewMultiplexers.filter(mux => mux.groupID === multiplexerID)[0] ?? undefined;
-
-        if (mux === undefined) {
-            return;
-        }
-
-        if (mux.activeDocumentID === documentID) {
-            mux.activeDocumentID = undefined;
-        }
-
+        if (mux === undefined) return;
+        if (mux.activeDocumentID === documentID) mux.activeDocumentID = undefined;
         this.rerender(this.toDocumentSpecificChannel(documentID, "closed"));
-
         this.updateMultiplexer(multiplexerID, ["main"], multiplexer => {
             multiplexer.documents = multiplexer.documents.filter(doc => doc.id !== documentID);
-
-            if (multiplexer.documents.length > 0) {
-                multiplexer.activeDocumentID = multiplexer.documents[0]?.id ?? undefined;
-            }
-
-
+            if (multiplexer.documents.length > 0) multiplexer.activeDocumentID = multiplexer.documents[0]?.id ?? undefined;
             return multiplexer;
         });
     }
@@ -541,9 +516,7 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                 this.getDocumentState(documentID).saveState = DocumentSaveState.PENDING;
                 this.rerender(this.toDocumentSpecificChannel(documentID, "persistence-sync-state"));
             }
-
             const updater = this.local.state.documentBodyUpdaters.get(documentID);
-
             if (updater !== undefined) {
                 updater(newBody);
             } else {
@@ -753,7 +726,7 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                                                 AtlasMain.atlas(atlas => {
                                                                     atlas.api().importFiles(this.ls().currentFolderID!, files)
                                                                     this.closeLocalDialog();
-                                                                    this.ls().currentFolderData.query();
+                                                                    this.reloadFolderView();
                                                                     resolve();
                                                                 });
                                                             }}/>,
@@ -767,7 +740,6 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
 
                                         ]}/>
                                     ]}/>,
-
                                     this.component(() => (
                                         <QueryDisplay<Folder | undefined> q={this.local.state.currentFolderData} renderer={{
                                             processing(q: Queryable<Folder | undefined>): JSX.Element {
