@@ -24,7 +24,7 @@ import {EntityMovePromptComponent} from "./EntityMovePromptComponent";
 import {Description} from "../../base/components/base/Description";
 import {Checkbox} from "@mui/material";
 import {FolderEditDialog} from "./FolderEditDialog";
-import {Badge} from "../../base/components/base/Badge";
+import {Cursor} from "../../base/logic/style/Cursor";
 
 export type FolderProps = {
     data: Folder,
@@ -295,6 +295,8 @@ export class FolderComponent extends BC<FolderProps, any, any> {
                 forceRenderSubpageIcon={!this.props.inSelectionMode}
                 groupDisplayMode
 
+
+
                 // title={getOr(p.data.title, "N/A")}
                 // title={`${parentFolder !== undefined ? `${parentFolder.title} / ` : ""}${getOr(p.data.title, "N/A")}`}
 
@@ -306,7 +308,7 @@ export class FolderComponent extends BC<FolderProps, any, any> {
                             <FlexRow align={Align.CENTER} gap={px()} elements={[
                                 // <Description visualMeaning={VM.WARNING} coloredText text={parentFolder.title ?? "N/A"}/>,
                                 // <Description visualMeaning={VM.UI_NO_HIGHLIGHT} coloredText text={"/"}/>,
-                                <Description renderMarkdown={false} text={p.data.title ?? "N/A"}/>
+                                <Description cursor={Cursor.pointer} renderMarkdown={false} text={p.data.title ?? "N/A"}/>
                             ]}/>
                         );
                     }
