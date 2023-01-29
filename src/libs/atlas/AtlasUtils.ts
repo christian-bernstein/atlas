@@ -1,3 +1,5 @@
+import {Buffer} from "buffer";
+
 export namespace AtlasUtils {
 
     export function dataURItoBlob(dataURI: string) {
