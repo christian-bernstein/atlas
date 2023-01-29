@@ -286,8 +286,9 @@ export class InDevAtlasAPI implements IAtlasAPI {
             });
 
             const fileContent = await new Promise(resolve => {
-                // TODO: This creates a cached blob -> does not really store the data..
-                resolve(URL.createObjectURL(file));
+                const reader = new FileReader();
+                reader.onload = ev => resolve(ev.target?.result);
+                reader.readAsDataURL(file);
             });
 
             this.createDocumentInFolder(this.getFolderFromPath(folderID, path).id, {
