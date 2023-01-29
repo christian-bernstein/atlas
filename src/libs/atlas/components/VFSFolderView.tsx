@@ -728,8 +728,6 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                         }} overflowContainer={{
                             elements: [
                                 <Flex height={px(50)} fw fh padding style={{ backgroundColor: t.colors.backgroundHighlightColor.css() }} elements={[
-                                    // this.component(() => this.a("folder-level-view"), "current-folder"),
-
                                     <FlexRow fw justifyContent={Justify.SPACE_BETWEEN} align={Align.CENTER} elements={[
                                         this.component(() => this.a("folder-level-view"), "current-folder"),
                                         <FlexRow align={Align.CENTER} elements={[
@@ -778,7 +776,6 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                                 );
                                             },
                                             success: (q: Queryable<Folder | undefined>, data: Folder | undefined) => {
-
                                                 const FolderSlider = React.forwardRef((props, ref) => {
                                                     return (
                                                         <div ref={ref as any} {...props} style={{ width: "100%" }} children={
@@ -789,15 +786,12 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                                         }/>
                                                     );
                                                 });
-
                                                 const animate = this.ls().animateFolderSlider;
-
                                                 if (this.ls().animateFolderSlider) {
                                                     this.local.setState({
                                                         animateFolderSlider: false
                                                     });
                                                 }
-
                                                 return (
                                                     <Flex fw fh overflowYBehaviour={OverflowBehaviour.SCROLL} elements={[
                                                         <DrawerHeader
@@ -807,8 +801,6 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                                             badgeVM={ObjectVisualMeaning.UI_NO_HIGHLIGHT}
                                                             description={this.getCurrentFolder().description}
                                                         />,
-
-
                                                         <Flex fw margin={createMargin(0, 0, 40, 0)} align={Align.CENTER} elements={[
                                                             <Flex wrap={FlexWrap.WRAP} flexDir={FlexDirection.ROW} fw gap={t.gaps.smallGab} align={Align.CENTER} justifyContent={Justify.CENTER} elements={
                                                                 this.getCurrentFolder().tags?.map(s => (
@@ -818,13 +810,9 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                                                 ))
                                                             }/>,
                                                         ]}/>,
-
-
                                                         this.a("menu-filter"),
-
                                                         // this.component(() => this.a("folder-view"), "folder-view"),
                                                         // this.component(() => this.a("document-view"), "document-view", "search-filter-state"),
-
                                                         <If condition={animate} ifTrue={
                                                             <Slide in id={v4()} key={v4()} direction={this.ls().folderSliderAnimationDirection} children={
                                                                 <FolderSlider/>
