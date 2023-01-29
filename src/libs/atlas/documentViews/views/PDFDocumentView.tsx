@@ -32,6 +32,7 @@ class PDFDocumentView extends BC<PDFDocumentViewProps, any, any> {
         try {
             dataURL = (JSON.parse(document.body as string) as PDFDocumentArchetype).dataURL ?? "Cannot load..";
         } catch (e) {
+
             console.error(e);
         }
 

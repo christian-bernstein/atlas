@@ -31,6 +31,7 @@ import {GenericFileArchetype} from "../data/documentArchetypes/GenericFileArchet
 import {DocumentView} from "./DocumentView";
 import {imageDocumentView} from "./views/ImageDocumentView";
 import {AtlasUtils} from "../AtlasUtils";
+import React from "react";
 
 export type DocumentViewControllerProps = {
     view: VFSFolderView,
@@ -143,6 +144,19 @@ export class DocumentViewController extends BC<DocumentViewControllerProps, any,
                     case "image/jpg": return renderDocumentView(imageDocumentView);
                     case "image/gif": return renderDocumentView(imageDocumentView);
                     case "image/webp": return renderDocumentView(imageDocumentView);
+
+
+
+                    case "application/pdf": return <iframe
+                        title={document.title}
+                        src={body.body}
+                        width={"100%"}
+                        height={"100%"}
+                        style={{ border: "none" }}
+                    />
+
+
+
                     // TODO: Implement
                     case "text/plain": {
 
