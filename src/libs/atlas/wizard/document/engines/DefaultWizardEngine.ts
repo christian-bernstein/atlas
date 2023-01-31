@@ -25,9 +25,6 @@ export class DefaultWizardEngine implements IWizardEngine {
                 })
             };
         }
-
-        console.log("after meta wizard", document);
-
         for (const sub of instruction.subRoutines ?? []) {
             document = {
                 ...document,
@@ -39,21 +36,18 @@ export class DefaultWizardEngine implements IWizardEngine {
                     view: instruction.view
                 })
             };
-
-
         }
-
         const finalized = document as AtlasDocument;
-
-        console.log("finalized", document);
-
         try {
-            AtlasMain.atlas().api().createDocumentInFolder(instruction.currentFolder.id, finalized);
-            console.log("Created document", finalized, "successfully");
+            AtlasMain.atlas(atlas => {
+                const api = atlas.api();
+                const docID = instruction.currentFolder.id;
+                api.createDocumentInFolder(docID, finalized);
+                api.overwriteDocumentBody(docID, "");
+            });
             instruction.onSetupComplete?.(finalized);
         } catch (e) {
             console.error(e);
-            console.error("Cannot create document", finalized);
         }
     }
 }

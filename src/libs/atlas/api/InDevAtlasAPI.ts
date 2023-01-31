@@ -14,7 +14,7 @@ import {GenericFileArchetype} from "../data/documentArchetypes/GenericFileArchet
 import {DocumentType} from "../data/DocumentType";
 import {UnaryFunction} from "../utils/UnaryFunction";
 import {DBDocumentBody} from "../data/db/DBDocumentBody";
-import {partialize} from "../Lang";
+import {as, partialize} from "../Lang";
 
 enum DBAddresses {
     DOCUMENTS = "documents",
@@ -254,7 +254,7 @@ export class InDevAtlasAPI implements IAtlasAPI {
         }
     }
 
-    createDocumentInFolder(folderID: string, data: AtlasDocument) {
+    async createDocumentInFolder(folderID: string, data: AtlasDocument) {
         if (this.createDocument(data)) {
             this.updateFolder(folderID, folder => {
                 const docs = folder.documentsIDs ?? new Array<string>();
@@ -292,17 +292,27 @@ export class InDevAtlasAPI implements IAtlasAPI {
                 reader.readAsDataURL(file);
             });
 
-            this.createDocumentInFolder(this.getFolderFromPath(folderID, path).id, {
-                id: v4(),
+            const documentID = v4();
+
+            await this.createDocumentInFolder(this.getFolderFromPath(folderID, path).id, {
+                id: documentID,
                 title: file.name,
                 documentType: DocumentType.GENERIC_FILE,
-                // bodyID: v4(),
-                body: JSON.stringify({
+                bodyID: v4(),
+
+                // TODO: Remove -> Is being replaced by code below
+                body: JSON.stringify(as<GenericFileArchetype>({
                     filename: file.name,
                     filetype: file.type,
-                    body: fileContent
-                } as GenericFileArchetype)
+                    body: fileContent as string
+                }))
             });
+
+            await this.overwriteDocumentBody(documentID, JSON.stringify(as<GenericFileArchetype>({
+                filename: file.name,
+                filetype: file.type,
+                body: fileContent as string
+            })));
         }));
     }
 
@@ -378,14 +388,14 @@ export class InDevAtlasAPI implements IAtlasAPI {
 
     async getDocumentBody(documentID: string): Promise<{ value: string; code: number; success: boolean }> {
         const document = this.getDocument(documentID);
-        const body: DBDocumentBody | undefined = await this.persistentDB().documentBodies.get(document.bodyID);
+        const body: DBDocumentBody | undefined = await this.persistentDB().documentBodies.get(document.bodyID!);
         if (body === undefined) return Promise.resolve({code: -1, success: false, value: ""});
         return Promise.resolve({code: 0, success: true, value: body.value});
     }
 
     async overwriteDocumentBody(documentID: string, newDocumentBody: string): Promise<void> {
         const document = this.getDocument(documentID);
-        await this.persistentDB().documentBodies.update(document.bodyID, partialize<DBDocumentBody>({
+        await this.persistentDB().documentBodies.update(document.bodyID!, partialize<DBDocumentBody>({
             value: newDocumentBody
         }));
         return Promise.resolve(undefined);

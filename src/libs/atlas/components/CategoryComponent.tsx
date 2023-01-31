@@ -42,9 +42,12 @@ export class CategoryComponent extends BC<CategoryComponentProps, any, any> {
                                     onSubmit: document => {
                                         const success = AtlasMain.atlas().api().createDocument(document);
                                         if (success) {
-                                            AtlasMain.atlas().api().linkDocumentToCategory(document.id, p.data.id);
+                                            AtlasMain.atlas(async atlas => {
+                                                const api = atlas.api();
+                                                api.linkDocumentToCategory(document.id, p.data.id);
+                                                await api.overwriteDocumentBody(document.id, "");
+                                            })
                                         }
-
                                         setTimeout(() => {
                                             this.closeLocalDialog();
                                             this.rerender("documents");
