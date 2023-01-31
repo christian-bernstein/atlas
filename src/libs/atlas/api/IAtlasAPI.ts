@@ -7,6 +7,8 @@ import {AtlasDB} from "./AtlasDB";
 import {IISOAdapter} from "../iso/IISOAdapter";
 import {StorageSummary} from "./StorageSummary";
 import {DocumentArchetype} from "./DocumentArchetype";
+import {IUpdater} from "../utils/IUpdater";
+import {UnaryFunction} from "../utils/UnaryFunction";
 
 export interface IAtlasAPI {
     getFolder(id: string): Folder;
@@ -44,4 +46,33 @@ export interface IAtlasAPI {
 
     getStorageSummary(recalculate: boolean): StorageSummary;
     recalculateStorageSummary(): void;
+
+
+    /**
+     * Load a document body.
+     *
+     * @param documentID The documents id, who's corresponding document's body will be loaded.
+     */
+    getDocumentBody(documentID: string): Promise<{
+        // The documents body -> If error or N/A: Empty string
+        value: string,
+        // A number representation of the success/error code of the operation
+        code: number
+        // A fast way to determine if a query was successful and returned an immediately usable value or not
+        success: boolean
+    }>;
+
+    updateDocumentBody(documentID: string, updater: UnaryFunction<string>): Promise<void>;
+
+    /**
+     * Overwrites a documents body value.
+     * The main difference to updateDocumentBody(..) is that this overwriteDocumentBody(..) doesn't query
+     * the documents body before updating it.
+     * If the value will just be overwritten, use overwriteDocumentBody(..) it's the fastest way to update
+     * a documents body.
+     *
+     * @param documentID
+     * @param newDocumentBody
+     */
+    overwriteDocumentBody(documentID: string, newDocumentBody: string): Promise<void>;
 }
