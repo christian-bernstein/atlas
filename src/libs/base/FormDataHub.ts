@@ -33,7 +33,6 @@ export class FormDataHub {
     }
 
     public set(key: string, value: any, save: boolean = false) {
-
         let updated = false;
         this.data.forEach((kv) => {
             if (kv.key === key) {
@@ -54,7 +53,6 @@ export class FormDataHub {
 
     public get(key: string, def?: any): any {
         const filtered = this.data.filter(kv => kv.key === key);
-        // console.log("get", key, "result", filtered);
         if (filtered.length === 0) {
             return def;
         } else {
