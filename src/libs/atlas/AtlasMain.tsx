@@ -57,9 +57,6 @@ import {Blueprint} from "../base/components/Blueprint";
 import {Img} from "react-image";
 import TestBlueprint from "../../assets/development/blueprints/test_blueprint.png";
 import {HyperionImageProducer} from "./hyperion/producers/HyperionImageProducer";
-import {StorageInformationPanel} from "./components/panels/StorageInformationPanel";
-import {DocumentType} from "./data/DocumentType";
-import {FileDropzone} from "./components/FileDropzone";
 
 export type AtlasMainProps = {
     api: IAtlasAPI
