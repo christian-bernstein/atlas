@@ -1,7 +1,7 @@
 import {Folder} from "../../data/Folder";
 import {Category} from "../../data/Category";
 import {AtlasDocument} from "../../data/AtlasDocument";
-import {DBDocumentAttachment} from "../../data/DBDocumentAttachment";
+import {DBDocumentAttachment} from "../../data/db/DBDocumentAttachment";
 
 export type ISOV1Data = {
     folders: Array<Folder>,

@@ -12,6 +12,9 @@ import {StorageSummary} from "./StorageSummary";
 import {DocumentArchetype} from "./DocumentArchetype";
 import {GenericFileArchetype} from "../data/documentArchetypes/GenericFileArchetype";
 import {DocumentType} from "../data/DocumentType";
+import {UnaryFunction} from "../utils/UnaryFunction";
+import {DBDocumentBody} from "../data/db/DBDocumentBody";
+import {partialize} from "../Lang";
 
 enum DBAddresses {
     DOCUMENTS = "documents",
@@ -293,6 +296,7 @@ export class InDevAtlasAPI implements IAtlasAPI {
                 id: v4(),
                 title: file.name,
                 documentType: DocumentType.GENERIC_FILE,
+                // bodyID: v4(),
                 body: JSON.stringify({
                     filename: file.name,
                     filetype: file.type,
@@ -370,5 +374,28 @@ export class InDevAtlasAPI implements IAtlasAPI {
                 });
             })
         } as StorageSummary);
+    }
+
+    async getDocumentBody(documentID: string): Promise<{ value: string; code: number; success: boolean }> {
+        const document = this.getDocument(documentID);
+        const body: DBDocumentBody | undefined = await this.persistentDB().documentBodies.get(document.bodyID);
+        if (body === undefined) return Promise.resolve({code: -1, success: false, value: ""});
+        return Promise.resolve({code: 0, success: true, value: body.value});
+    }
+
+    async overwriteDocumentBody(documentID: string, newDocumentBody: string): Promise<void> {
+        const document = this.getDocument(documentID);
+        await this.persistentDB().documentBodies.update(document.bodyID, partialize<DBDocumentBody>({
+            value: newDocumentBody
+        }));
+        return Promise.resolve(undefined);
+    }
+
+    async updateDocumentBody(documentID: string, updater: UnaryFunction<string>): Promise<void> {
+        const body = await this.getDocumentBody(documentID);
+        if (!body.success) return Promise.reject(new Error(`Error cannot retrieve document body for '${documentID}'`));
+        const newBody = updater(body.value);
+        await this.overwriteDocumentBody(documentID, newBody);
+        return Promise.resolve(undefined);
     }
 }

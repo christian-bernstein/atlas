@@ -21,7 +21,7 @@ export type AtlasDocument = AtlasEntity & Identifiable & {
     body?: string,
 
     // Contains a link to documents body -> Typically used to quarry the indexedID
-    bodyID?: string,
+    bodyID: string,
 
     // TODO: Implement
     archetypeID?: string

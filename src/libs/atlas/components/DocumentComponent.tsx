@@ -7,7 +7,7 @@ import {getOr} from "../../base/Utils";
 import {StaticDrawerMenu} from "../../base/components/base/StaticDrawerMenu";
 import {DocumentPreview} from "./DocumentPreview";
 import {AtlasMain} from "../AtlasMain";
-import {percent, px} from "../../base/logic/style/DimensionalMeasured";
+import {percent} from "../../base/logic/style/DimensionalMeasured";
 import {Color} from "../../base/logic/style/Color";
 import {FlexRow} from "../../base/components/base/FlexBox";
 import {Align} from "../../base/logic/style/Align";
@@ -138,7 +138,7 @@ export class DocumentComponent extends BC<DocumentComponentProps, any, DocumentC
                 title={""}
                 alternateTitleRenderer={element => {
                     return (
-                        <Description renderMarkdown={false} text={getOr(p.data.title, "N/A")}/>
+                        <Description renderMarkdown={false} cursor={Cursor.pointer} text={getOr(p.data.title, "N/A")}/>
                     );
                 }}
                 iconConfig={{

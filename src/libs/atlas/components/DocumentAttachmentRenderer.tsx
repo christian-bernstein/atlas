@@ -2,7 +2,7 @@ import {BC} from "../../base/BernieComponent";
 import {Assembly} from "../../base/logic/assembly/Assembly";
 import {Themeable} from "../../base/logic/style/Themeable";
 import {Q, Queryable} from "../../base/logic/query/Queryable";
-import {DBDocumentAttachment} from "../data/DBDocumentAttachment";
+import {DBDocumentAttachment} from "../data/db/DBDocumentAttachment";
 import {AtlasMain} from "../AtlasMain";
 import {QueryDisplay} from "../../base/components/logic/QueryDisplay";
 import {QueryError} from "../../base/logic/query/QueryError";
