@@ -12,9 +12,13 @@ import {DBDocumentAttachment} from "../../data/db/DBDocumentAttachment";
 import {FormDataHub} from "../../../base/FormDataHub";
 import {ISOV1Data} from "./ISOV1Data";
 import {GenericBC} from "../../../base/BernieComponent";
+import {DBDocumentBody} from "../../data/db/DBDocumentBody";
 
 export class ISOAdapterV1 implements IISOAdapter {
 
+    /**
+     * TODO: Add document bodies to the ISO image
+     */
     async createISO(): Promise<ISOBase> {
         const api: IAtlasAPI = AtlasMain.atlas().api();
 
@@ -27,12 +31,14 @@ export class ISOAdapterV1 implements IISOAdapter {
         // Load all data from indexeddb
         const persistentDB: AtlasDB = api.persistentDB();
         const documentAttachments: Array<DBDocumentAttachment> = await persistentDB.documentAttachments.toArray();
+        const documentBodies: Array<DBDocumentBody> = await persistentDB.documentBodies.toArray();
 
         const v1: ISOV1Data = {
             folders: folders,
             documents: documents,
             categories: categories,
-            documentAttachments: documentAttachments
+            documentAttachments: documentAttachments,
+            documentBodies: documentBodies
         }
 
         return {
@@ -45,6 +51,7 @@ export class ISOAdapterV1 implements IISOAdapter {
 
     /**
      * TODO: If folder is present -> Merge the new folder into the old one -> especially the sub-folder-ids
+     * TODO: Load document bodies to the database -> dexie bulk_add
      */
     install(method: ISOInstallMethod, iso: ISOBase, dialogDOMEntry: GenericBC): void {
         const api: IAtlasAPI = AtlasMain.atlas().api();
@@ -84,11 +91,9 @@ export class ISOAdapterV1 implements IISOAdapter {
                 api.updateFolder(newFolder.id, apiFolder => {
                     if (apiFolder.subFolderIDs === undefined) apiFolder.subFolderIDs = [];
                     if (apiFolder.documentsIDs === undefined) apiFolder.documentsIDs = [];
-
                     if (newFolder.subFolderIDs !== undefined) {
                         newFolder.subFolderIDs.forEach(subFolderID => apiFolder.subFolderIDs!.push(subFolderID));
                     }
-
                     if (newFolder.documentsIDs !== undefined) {
                         newFolder.documentsIDs.forEach(subFolderID => apiFolder.documentsIDs!.push(subFolderID));
                     }
@@ -104,6 +109,7 @@ export class ISOAdapterV1 implements IISOAdapter {
             // Install data to indexeddb (persistent store)
             const persistentDB: AtlasDB = api.persistentDB();
             persistentDB.documentAttachments.bulkAdd(data.documentAttachments);
+            persistentDB.documentBodies.bulkAdd(data.documentBodies);
         }
 
         switch (method) {

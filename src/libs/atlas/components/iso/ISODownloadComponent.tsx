@@ -1,25 +1,25 @@
-import {BC} from "../../base/BernieComponent";
-import {Themeable} from "../../base/logic/style/Themeable";
-import {Assembly} from "../../base/logic/assembly/Assembly";
-import {AtlasMain} from "../AtlasMain";
-import {Flex} from "../../base/components/base/FlexBox";
-import {StaticDrawerMenu} from "../../base/components/base/StaticDrawerMenu";
+import {BC} from "../../../base/BernieComponent";
+import {Themeable} from "../../../base/logic/style/Themeable";
+import {Assembly} from "../../../base/logic/assembly/Assembly";
+import {AtlasMain} from "../../AtlasMain";
+import {Flex} from "../../../base/components/base/FlexBox";
+import {StaticDrawerMenu} from "../../../base/components/base/StaticDrawerMenu";
 import React from "react";
 import fileDownload from 'js-file-download';
-import {Button} from "../../base/components/base/Button";
-import {DrawerHeader} from "../../base/components/base/DrawerHeader";
-import {ObjectVisualMeaning, VM} from "../../base/logic/style/ObjectVisualMeaning";
-import {percent, px} from "../../base/logic/style/DimensionalMeasured";
-import {Align} from "../../base/logic/style/Align";
-import {Text, TextType} from "../../base/components/base/Text";
-import {Badge} from "../../base/components/base/Badge";
-import {createMargin} from "../../base/logic/style/Margin";
-import {CodeDisplay} from "../../base/components/base/CodeDisplay";
-import {Screen} from "../../base/components/base/Page";
-import {OverflowBehaviour} from "../../base/logic/style/OverflowBehaviour";
-import {ISOBase} from "../iso/ISOBase";
-import {Q, Queryable} from "../../base/logic/query/Queryable";
-import {QueryDisplay} from "../../base/components/logic/QueryDisplay";
+import {Button} from "../../../base/components/base/Button";
+import {DrawerHeader} from "../../../base/components/base/DrawerHeader";
+import {ObjectVisualMeaning, VM} from "../../../base/logic/style/ObjectVisualMeaning";
+import {percent, px} from "../../../base/logic/style/DimensionalMeasured";
+import {Align} from "../../../base/logic/style/Align";
+import {Text, TextType} from "../../../base/components/base/Text";
+import {Badge} from "../../../base/components/base/Badge";
+import {createMargin} from "../../../base/logic/style/Margin";
+import {CodeDisplay} from "../../../base/components/base/CodeDisplay";
+import {Screen} from "../../../base/components/base/Page";
+import {OverflowBehaviour} from "../../../base/logic/style/OverflowBehaviour";
+import {ISOBase} from "../../iso/ISOBase";
+import {Q, Queryable} from "../../../base/logic/query/Queryable";
+import {QueryDisplay} from "../../../base/components/logic/QueryDisplay";
 
 export type ISODownloadComponentLocalState = {
     iso: Q<ISOBase | undefined>,

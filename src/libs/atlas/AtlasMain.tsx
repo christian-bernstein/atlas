@@ -18,7 +18,7 @@ import {StaticDrawerMenu} from "../base/components/base/StaticDrawerMenu";
 import {SearchDialog} from "./components/SearchDialog";
 import React from "react";
 import {Text, TextType} from "../base/components/base/Text";
-import {ISOHubComponent} from "./components/ISOHubComponent";
+import {ISOHubComponent} from "./components/iso/ISOHubComponent";
 import {SettingsElement} from "../base/components/base/SettingsElement";
 import {ReactComponent as DeleteIcon} from "../../assets/icons/ic-20/ic20-delete.svg";
 import {ReactComponent as SettingsIcon} from "../../assets/icons/ic-20/ic20-settings.svg";

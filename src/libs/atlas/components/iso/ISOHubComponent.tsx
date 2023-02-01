@@ -1,22 +1,22 @@
-import {BC} from "../../base/BernieComponent";
-import {Assembly} from "../../base/logic/assembly/Assembly";
-import {Themeable} from "../../base/logic/style/Themeable";
-import {Flex} from "../../base/components/base/FlexBox";
-import {DrawerHeader} from "../../base/components/base/DrawerHeader";
-import {VM} from "../../base/logic/style/ObjectVisualMeaning";
-import {percent, px} from "../../base/logic/style/DimensionalMeasured";
-import {Button} from "../../base/components/base/Button";
-import {Align} from "../../base/logic/style/Align";
-import {Text, TextType} from "../../base/components/base/Text";
-import {StaticDrawerMenu} from "../../base/components/base/StaticDrawerMenu";
+import {BC} from "../../../base/BernieComponent";
+import {Assembly} from "../../../base/logic/assembly/Assembly";
+import {Themeable} from "../../../base/logic/style/Themeable";
+import {Flex} from "../../../base/components/base/FlexBox";
+import {DrawerHeader} from "../../../base/components/base/DrawerHeader";
+import {VM} from "../../../base/logic/style/ObjectVisualMeaning";
+import {percent, px} from "../../../base/logic/style/DimensionalMeasured";
+import {Button} from "../../../base/components/base/Button";
+import {Align} from "../../../base/logic/style/Align";
+import {Text, TextType} from "../../../base/components/base/Text";
+import {StaticDrawerMenu} from "../../../base/components/base/StaticDrawerMenu";
 import React from "react";
 import {ISODownloadComponent} from "./ISODownloadComponent";
 import {ISOUploadComponent} from "./ISOUploadComponent";
 import {Download, ImportExportRounded, Upload} from "@mui/icons-material";
-import {Icon} from "../../base/components/base/Icon";
-import {LiteGrid} from "../../base/components/base/LiteGrid";
-import {AF} from "../../base/components/logic/ArrayFragment";
-import {Tooltip} from "../../base/components/base/Tooltip";
+import {Icon} from "../../../base/components/base/Icon";
+import {LiteGrid} from "../../../base/components/base/LiteGrid";
+import {AF} from "../../../base/components/logic/ArrayFragment";
+import {Tooltip} from "../../../base/components/base/Tooltip";
 
 export class ISOHubComponent extends BC<any, any, any> {
 
