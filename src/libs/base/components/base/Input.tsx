@@ -110,7 +110,7 @@ export class Input extends React.Component<InputProps, InputState> {
             border: none;
             color: ${theme.colors.fontPrimaryColor.css()};
             font-family: "${theme.texts.fontFamily}", "Consolas", monospace !important;
-            font-weight: ${getOr(this.props.fontWeight, "normal")};
+            font-weight: ${getOr(this.props.fontWeight, "lighter")};
             font-size: ${getOr(this.props.fontSize, px(12)).css()};
             position: absolute;
             top: 0;

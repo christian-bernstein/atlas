@@ -59,7 +59,7 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
           font-family: "${theme.texts.fontFamily}", "Consolas", monospace !important;
           font-variant-ligatures: common-ligatures;
           min-height: 3.5rem;
-          font-weight: ${getOr(this.props.fontWeight, "normal")};
+          font-weight: ${getOr(this.props.fontWeight, "lighter")};
           resize: vertical;  
           font-size: 12px;
           
@@ -70,6 +70,7 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
           }
 
           &:focus {
+            outline: none;
             box-shadow: 0 0 0 4px ${meaningfulColors.shadowColor.css()};
           }
         `;

@@ -8,7 +8,7 @@ export class AtlasDB extends Dexie {
 
     public documentBodies!: Table<DBDocumentBody>
 
-    constructor(id: string, version: number = 1) {
+    constructor(id: string, version: number = 2) {
         super(id);
         this.version(version).stores({
             documentAttachments: "id,type,src",

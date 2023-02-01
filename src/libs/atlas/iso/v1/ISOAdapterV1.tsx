@@ -33,6 +33,13 @@ export class ISOAdapterV1 implements IISOAdapter {
         const documentAttachments: Array<DBDocumentAttachment> = await persistentDB.documentAttachments.toArray();
         const documentBodies: Array<DBDocumentBody> = await persistentDB.documentBodies.toArray();
 
+        // await persistentDB.documentBodies.add({
+        //     id: v4(),
+        //     value: "test value"
+        // });
+
+        console.debug(await persistentDB.documentBodies.count())
+
         const v1: ISOV1Data = {
             folders: folders,
             documents: documents,
