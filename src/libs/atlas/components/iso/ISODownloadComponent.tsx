@@ -92,7 +92,7 @@ export class ISODownloadComponent extends BC<any, any, ISODownloadComponentLocal
                             const timestamp = new Date().toISOString();
                             return (
                                 <Flex fw elements={[
-                                    <Flex fw padding paddingX={px(25)} gap={t.gaps.smallGab} elements={[
+                                    <Flex fw padding={false} paddingY={px()} paddingX={px(25)} gap={t.gaps.smallGab} elements={[
                                         <FlexRow fw gap={t.gaps.smallGab} align={Align.CENTER} elements={[
                                             <Button tooltip={"Close"} opaque children={
                                                 <Icon icon={<CloseRounded/>}/>
@@ -144,7 +144,7 @@ export class ISODownloadComponent extends BC<any, any, ISODownloadComponentLocal
                                             });
                                         }}/>,
 
-                                        <Flex margin={createMargin(25, 0, 0, 0)} fw gap={px()} elements={[
+                                        <Flex margin={createMargin(10, 0, 0, 0)} fw gap={px()} elements={[
                                             <Text text={"Format"} bold/>,
                                             <Text text={"Choose a file format for the Atlas™-ISO-image-file"} type={TextType.secondaryDescription} fontSize={px(11)}/>
                                         ]}/>,
