@@ -25,6 +25,9 @@ export class Driver {
 
     public static boot(): void {
 
+        // TODO: Add again
+        console.warn = () => {}
+
         /**
          * Root website, this is the portfolio website
          * <AtlasMain api={new InDevAtlasAPI()}/>
