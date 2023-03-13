@@ -13,11 +13,13 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
+// <React.StrictMode>
+//     <DriverReactBridge />
+// </React.StrictMode>
+
 // <DriverReactBridge />
 root.render(
-  <React.StrictMode>
-      <DriverReactBridge />
-  </React.StrictMode>
+    <DriverReactBridge />
 );
 
 /**

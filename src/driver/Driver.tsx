@@ -5,6 +5,7 @@ import React from "react";
 import {InDevAtlasAPI} from "../libs/atlas/api/InDevAtlasAPI";
 import {AtlasMain} from "../libs/atlas/AtlasMain";
 import {Screen} from "../libs/base/components/base/Page";
+import {DnDTestMain} from "../libs/dnd/DnDTestMain";
 
 export class Driver {
 
@@ -26,7 +27,7 @@ export class Driver {
     public static boot(): void {
 
         // TODO: Add again
-        console.warn = () => {}
+        // console.warn = () => {}
 
         /**
          * Root website, this is the portfolio website
@@ -42,14 +43,24 @@ export class Driver {
             )
         });
 
-        this.registerGlobal404Page({
+        this.programRegistry.set("dnd", {
+            path: "dnd/",
+            exact: true,
             render: () => (
-                // TODO: Add 404 page
                 <Screen children={
-                    <AtlasMain api={new InDevAtlasAPI()}/>
+                    <DnDTestMain/>
                 }/>
             )
         });
+
+        // this.registerGlobal404Page({
+        //     render: () => (
+        //         // TODO: Add 404 page
+        //         <Screen children={
+        //             <AtlasMain api={new InDevAtlasAPI()}/>
+        //         }/>
+        //     )
+        // });
     }
 
     public static registerGlobal404Page(program: Program): void {
