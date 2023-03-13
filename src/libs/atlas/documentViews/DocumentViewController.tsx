@@ -32,6 +32,10 @@ import {DocumentView} from "./DocumentView";
 import {imageDocumentView} from "./views/ImageDocumentView";
 import {AtlasUtils} from "../AtlasUtils";
 import React from "react";
+import {boardDocumentView} from "./views/BoardDocumentView";
+import {HTML5Backend} from "react-dnd-html5-backend";
+import {Board} from "../../dnd/DnDTestMain";
+import {DndProvider} from "react-dnd";
 
 export type DocumentViewControllerProps = {
     view: VFSFolderView,
@@ -71,8 +75,19 @@ export class DocumentViewController extends BC<DocumentViewControllerProps, any,
             );
         } else {
             const computedDocID = p.document?.id ?? "special@fallback";
+            console.log("Document type is:", p.document.documentType)
 
             // TODO: MAKE BETTER!!!
+
+            if (p.document.documentType === DocumentType.ATLAS_BOARD) {
+                console.log("executing atlas board renderer")
+
+                return (
+                    <DndProvider backend={HTML5Backend} children={
+                        <Board/>
+                    }/>
+                );
+            }
 
             if (p.document.documentType === DocumentType.PDF) {
                 return pdfDocumentView.renderer(new DocumentViewRenderContext({
@@ -144,7 +159,7 @@ export class DocumentViewController extends BC<DocumentViewControllerProps, any,
                     case "image/jpg": return renderDocumentView(imageDocumentView);
                     case "image/gif": return renderDocumentView(imageDocumentView);
                     case "image/webp": return renderDocumentView(imageDocumentView);
-                    
+
                     case "application/pdf": return <iframe
                         title={document.title}
                         src={body.body}

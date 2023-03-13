@@ -4,5 +4,6 @@ export enum DocumentType {
     NOTE,
     WEBSITE,
     PDF,
-    GENERIC_FILE
+    GENERIC_FILE,
+    ATLAS_BOARD
 }

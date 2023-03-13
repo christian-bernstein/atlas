@@ -53,14 +53,14 @@ export class Driver {
             )
         });
 
-        // this.registerGlobal404Page({
-        //     render: () => (
-        //         // TODO: Add 404 page
-        //         <Screen children={
-        //             <AtlasMain api={new InDevAtlasAPI()}/>
-        //         }/>
-        //     )
-        // });
+        this.registerGlobal404Page({
+            render: () => (
+                // TODO: Add 404 page
+                <Screen children={
+                    <AtlasMain api={new InDevAtlasAPI()}/>
+                }/>
+            )
+        });
     }
 
     public static registerGlobal404Page(program: Program): void {
