@@ -996,7 +996,16 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
     private desktopMainAssembly() {
         this.assembly.assembly("desktop-main", theme => {
             return (
-                <Screen deactivatePadding children={
+                <Screen
+
+                    // TODO: Remove
+                    style={{
+                        width: "100vw",
+                        overflow: "hidden"
+                    }}
+
+
+                    deactivatePadding children={
                     <OverflowWithHeader dir={FlexDirection.COLUMN_REVERSE} staticContainer={{ gap: px(), elements: [] }} overflowContainer={{
                         elements: [
                             <Flex fh fw gap={px()} flexDir={FlexDirection.ROW} elements={[
@@ -1007,7 +1016,14 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                 // Main view - Flexing middle section
                                 this.component(local => {
                                     return (
-                                        <LiteGrid style={{ width: "100%" }} columns={local.state.viewMultiplexers.length} children={
+                                        <LiteGrid
+
+                                            style={{
+                                                width: "100%",
+                                                overflowX: "hidden"
+                                            }}
+
+                                            columns={local.state.viewMultiplexers.length} children={
                                             <AF elements={
                                                 local.state.viewMultiplexers.map(config => (
                                                     <DocumentViewMultiplexer

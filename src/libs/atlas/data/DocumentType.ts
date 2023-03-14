@@ -1,9 +1,9 @@
 export enum DocumentType {
-    MARKDOWN,
-    UNSPECIFIED,
-    NOTE,
-    WEBSITE,
-    PDF,
-    GENERIC_FILE,
-    ATLAS_BOARD
+    MARKDOWN = "MARKDOWN",
+    UNSPECIFIED = "UNSPECIFIED",
+    NOTE = "NOTE",
+    WEBSITE = "WEBSITE",
+    PDF = "PDF",
+    GENERIC_FILE = "GENERIC_FILE",
+    ATLAS_BOARD = "ATLAS_BOARD"
 }

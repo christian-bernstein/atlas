@@ -6,7 +6,7 @@ import {inDevDocumentView} from "./views/InDevDocumentView";
 import {Centered} from "../../base/components/base/PosInCenter";
 import {Text, TextType} from "../../base/components/base/Text";
 import {Flex} from "../../base/components/base/FlexBox";
-import {px} from "../../base/logic/style/DimensionalMeasured";
+import {percent, px} from "../../base/logic/style/DimensionalMeasured";
 import {Align} from "../../base/logic/style/Align";
 import {Justify} from "../../base/logic/style/Justify";
 import {VFSFolderView} from "../components/VFSFolderView";
@@ -18,24 +18,16 @@ import {markdownDocumentView} from "./views/MarkdownDocumentView";
 import {websiteDocumentView} from "./views/WebsiteDocumentView";
 import {pdfDocumentView} from "./views/PDFDocumentView";
 import {AF} from "../../base/components/logic/ArrayFragment";
-import {Q, Queryable} from "../../base/logic/query/Queryable";
-import {Optional} from "../../base/Optional";
-import {HyperionStorableEntry} from "../hyperion/HyperionStorableEntry";
-import {HyperionAPI} from "../hyperion/HyperionAPI";
-import {Description} from "../../base/components/base/Description";
-import {QueryError} from "../../base/logic/query/QueryError";
-import {QueryDisplay} from "../../base/components/logic/QueryDisplay";
-import {HyperionIndexedDBStreamAdapter} from "../hyperion/HyperionIndexedDBStreamAdapter";
 import {HyperionImageSubscriber} from "../hyperion/subscribers/HyperionImageSubscriber";
 import {GenericFileArchetype} from "../data/documentArchetypes/GenericFileArchetype";
 import {DocumentView} from "./DocumentView";
 import {imageDocumentView} from "./views/ImageDocumentView";
 import {AtlasUtils} from "../AtlasUtils";
 import React from "react";
-import {boardDocumentView} from "./views/BoardDocumentView";
 import {HTML5Backend} from "react-dnd-html5-backend";
 import {Board} from "../../dnd/DnDTestMain";
 import {DndProvider} from "react-dnd";
+import {OverflowBehaviour} from "../../base/logic/style/OverflowBehaviour";
 
 export type DocumentViewControllerProps = {
     view: VFSFolderView,
@@ -179,6 +171,8 @@ export class DocumentViewController extends BC<DocumentViewControllerProps, any,
                     }
                 }
             }
+
+            console.log("Rendering 'inDevDocumentView'")
 
             return inDevDocumentView.renderer(new DocumentViewRenderContext({
                 view: p.view,
