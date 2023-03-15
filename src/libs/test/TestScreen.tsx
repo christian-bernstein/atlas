@@ -6,7 +6,7 @@ import React, {useState} from "react";
 import {Button} from "../base/components/base/Button";
 import {Description} from "../base/components/base/Description";
 import {Screen} from "../base/components/base/Page";
-import {Field, Formik} from "formik";
+import {Field, Formik, FormikProps} from "formik";
 import styled from "styled-components";
 import {Flex} from "../base/components/base/FlexBox";
 import {MainTypography} from "./tests/MainTypography";
@@ -75,6 +75,25 @@ function ModalTest(): JSX.Element {
       gap: 4px;
     `;
 
+    function FormikTextArea(props: { name: string, formikProps: FormikProps<any> }): JSX.Element {
+        return (
+            <FormikInput children={
+                <textarea
+                    className={"input"}
+                    name={props.name}
+                    style={{
+                        height: "140px",
+                        padding: "12px",
+                        resize: "vertical"
+                    }}
+                    onChange={props.formikProps.handleChange}
+                    onBlur={props.formikProps.handleBlur}
+                    value={props.formikProps.values[props.name]}
+                />
+            }/>
+        );
+    }
+
     return (
         <>
             <Modal title={"Add record"} open={open} onClose={() => setOpen(false)} footer={
@@ -134,6 +153,12 @@ function ModalTest(): JSX.Element {
                                     value={props.values.description}
                                 />
                             }/>
+                            <DescriptiveTypography text={"Visible in record headers and value pickers"}/>
+                        </InputGroup>
+
+                        <InputGroup>
+                            <MainTypography text={"Description"}/>
+                            <FormikTextArea name={"description"} formikProps={props}/>
                             <DescriptiveTypography text={"Visible in record headers and value pickers"}/>
                         </InputGroup>
                     </>
