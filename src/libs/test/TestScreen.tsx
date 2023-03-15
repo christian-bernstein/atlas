@@ -93,16 +93,16 @@ function FormikSingleLineInput(props: { name: string }): JSX.Element {
     );
 }
 
+const InputGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+`;
+
 function FormElement(props: PropsWithChildren<{
     title?: string,
     caption?: string
 }>): JSX.Element {
-    const InputGroup = styled.div`
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    `;
-
     return (
         <InputGroup>
             { props.title && (
@@ -120,15 +120,6 @@ function FormElement(props: PropsWithChildren<{
 
 function ModalTest(): JSX.Element {
     const [open, setOpen] = useState(false);
-
-
-    const InputGroup = styled.div`
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    `;
-
-
 
     return (
         <>
@@ -165,7 +156,7 @@ function ModalTest(): JSX.Element {
                             }/>
                         </InputGroup>
 
-
+                        <FormikSingleLineInput name={"title"}/>
 
                         <FormElement title={"Record name"} caption={"This is visible to all board members"} children={
                             <FormikSingleLineInput name={"title"}/>
