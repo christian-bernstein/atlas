@@ -6,6 +6,7 @@ import {InDevAtlasAPI} from "../libs/atlas/api/InDevAtlasAPI";
 import {AtlasMain} from "../libs/atlas/AtlasMain";
 import {Screen} from "../libs/base/components/base/Page";
 import {DnDTestMain} from "../libs/dnd/DnDTestMain";
+import {TestScreen} from "../libs/test/TestScreen";
 
 export class Driver {
 
@@ -40,6 +41,14 @@ export class Driver {
                 <Screen children={
                     <AtlasMain api={new InDevAtlasAPI()}/>
                 }/>
+            )
+        });
+
+        this.programRegistry.set("test", {
+            path: "test/",
+            exact: true,
+            render: () => (
+                <TestScreen/>
             )
         });
 

@@ -1016,14 +1016,7 @@ export class VFSFolderView extends BC<VFSFolderViewProps, any, VFSFolderViewLoca
                                 // Main view - Flexing middle section
                                 this.component(local => {
                                     return (
-                                        <LiteGrid
-
-                                            style={{
-                                                width: "100%",
-                                                overflowX: "hidden"
-                                            }}
-
-                                            columns={local.state.viewMultiplexers.length} children={
+                                        <LiteGrid style={{ width: "100%", overflowX: "hidden" }} columns={local.state.viewMultiplexers.length} children={
                                             <AF elements={
                                                 local.state.viewMultiplexers.map(config => (
                                                     <DocumentViewMultiplexer
