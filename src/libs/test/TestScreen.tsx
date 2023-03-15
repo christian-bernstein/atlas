@@ -149,32 +149,17 @@ function ModalTest(): JSX.Element {
                     alert(values)
                 }} children={props => (
                     <>
-                        <InputGroup>
-                            <MainTypography text={"Record name"}/>
-                            <FormikInput children={
-                                <Field class={"input"} name="title" />
-                            }/>
-                        </InputGroup>
-
-                        <FormikSingleLineInput name={"title"}/>
-
                         <FormElement title={"Record name"} caption={"This is visible to all board members"} children={
                             <FormikSingleLineInput name={"title"}/>
                         }/>
 
-                        <InputGroup>
-                            <MainTypography text={"Issuer"}/>
-                            <FormikInput children={
-                                <Field class={"input"} name="issuer" />
-                            }/>
-                            <DescriptiveTypography text={"Visible in group headers and value pickers"}/>
-                        </InputGroup>
+                        <FormElement title={"Issuer"} children={
+                            <FormikSingleLineInput name={"issuer"}/>
+                        }/>
 
-                        <InputGroup>
-                            <MainTypography text={"Description"}/>
+                        <FormElement title={"Description"} caption={"Visible in record headers and value pickers"} children={
                             <FormikTextArea name={"description"} formikProps={props}/>
-                            <DescriptiveTypography text={"Visible in record headers and value pickers"}/>
-                        </InputGroup>
+                        }/>
                     </>
                 )}/>
             }/>
