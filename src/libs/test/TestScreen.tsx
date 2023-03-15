@@ -2,7 +2,7 @@ import {BC} from "../base/BernieComponent";
 import {Assembly} from "../base/logic/assembly/Assembly";
 import {Themeable} from "../base/logic/style/Themeable";
 import {Modal} from "./tests/Modal";
-import React, {useState} from "react";
+import React, {PropsWithChildren, useState} from "react";
 import {Button} from "../base/components/base/Button";
 import {Description} from "../base/components/base/Description";
 import {Screen} from "../base/components/base/Page";
@@ -26,48 +26,101 @@ export class TestScreen extends BC<any, any, any> {
     }
 }
 
+const FormikInput = styled.span`
+  font-size: 14px;
+  line-height: 20px;
+  color: rgb(201, 209, 217);
+  vertical-align: middle;
+  background-color: rgb(13, 17, 23);
+  border: 1px solid rgb(48, 54, 61);
+  border-radius: 6px;
+  outline: none;
+  box-shadow: transparent 0 0;
+  -webkit-box-align: stretch;
+  align-items: stretch;
+  min-height: 32px;
+  width: 100%;
+  display: flex;
+
+  &:focus-within {
+    border-color: rgb(88, 166, 255);
+    outline: none;
+    box-shadow: rgb(88, 166, 255) 0 0 0 1px inset;
+  }
+      
+  .input {
+    padding-left: 12px;
+    padding-right: 12px;
+    cursor: text;
+    border: 0;
+    font-size: inherit;
+    font-family: inherit;
+    background-color: transparent;
+    appearance: none;
+    color: inherit;
+    width: 100%; 
+        
+    &:focus {
+      outline: 0;
+    }
+  }
+`;
+
+function FormikTextArea(props: { name: string, formikProps: FormikProps<any> }): JSX.Element {
+    return (
+        <FormikInput children={
+            <textarea
+                className={"input"}
+                name={props.name}
+                style={{
+                    height: "140px",
+                    padding: "12px",
+                    resize: "vertical"
+                }}
+                onChange={props.formikProps.handleChange}
+                onBlur={props.formikProps.handleBlur}
+                value={props.formikProps.values[props.name]}
+            />
+        }/>
+    );
+}
+
+function FormikSingleLineInput(props: { name: string }): JSX.Element {
+    return (
+        <FormikInput children={
+            <Field class={"input"} name={props.name} />
+        }/>
+    );
+}
+
+function FormElement(props: PropsWithChildren<{
+    title?: string,
+    caption?: string
+}>): JSX.Element {
+    const InputGroup = styled.div`
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    `;
+
+    return (
+        <InputGroup>
+            { props.title && (
+                <MainTypography text={props.title}/>
+            ) }
+
+            { props.children }
+
+            { props.caption && (
+                <DescriptiveTypography text={props.caption}/>
+            ) }
+        </InputGroup>
+    );
+}
+
 function ModalTest(): JSX.Element {
     const [open, setOpen] = useState(false);
 
-    const FormikInput = styled.span`
-      font-size: 14px;
-      line-height: 20px;
-      color: rgb(201, 209, 217);
-      vertical-align: middle;
-      background-color: rgb(13, 17, 23);
-      border: 1px solid rgb(48, 54, 61);
-      border-radius: 6px;
-      outline: none;
-      box-shadow: transparent 0 0;
-      -webkit-box-align: stretch;
-      align-items: stretch;
-      min-height: 32px;
-      width: 100%;
-      display: flex;
-
-      &:focus-within {
-        border-color: rgb(88, 166, 255);
-        outline: none;
-        box-shadow: rgb(88, 166, 255) 0 0 0 1px inset;
-      }
-      
-      .input {
-        padding-left: 12px;
-        padding-right: 12px;
-        cursor: text;
-        border: 0;
-        font-size: inherit;
-        font-family: inherit;
-        background-color: transparent;
-        appearance: none;
-        color: inherit;
-        width: 100%; 
-        
-        &:focus {
-          outline: 0;
-        }
-      }
-    `;
 
     const InputGroup = styled.div`
       display: flex;
@@ -75,24 +128,7 @@ function ModalTest(): JSX.Element {
       gap: 4px;
     `;
 
-    function FormikTextArea(props: { name: string, formikProps: FormikProps<any> }): JSX.Element {
-        return (
-            <FormikInput children={
-                <textarea
-                    className={"input"}
-                    name={props.name}
-                    style={{
-                        height: "140px",
-                        padding: "12px",
-                        resize: "vertical"
-                    }}
-                    onChange={props.formikProps.handleChange}
-                    onBlur={props.formikProps.handleBlur}
-                    value={props.formikProps.values[props.name]}
-                />
-            }/>
-        );
-    }
+
 
     return (
         <>
@@ -129,31 +165,18 @@ function ModalTest(): JSX.Element {
                             }/>
                         </InputGroup>
 
+
+
+                        <FormElement title={"Record name"} caption={"This is visible to all board members"} children={
+                            <FormikSingleLineInput name={"title"}/>
+                        }/>
+
                         <InputGroup>
                             <MainTypography text={"Issuer"}/>
                             <FormikInput children={
                                 <Field class={"input"} name="issuer" />
                             }/>
                             <DescriptiveTypography text={"Visible in group headers and value pickers"}/>
-                        </InputGroup>
-
-                        <InputGroup>
-                            <MainTypography text={"Description"}/>
-                            <FormikInput children={
-                                <textarea
-                                    className={"input"}
-                                    name="description"
-                                    style={{
-                                        height: "140px",
-                                        padding: "12px",
-                                        resize: "vertical"
-                                    }}
-                                    onChange={props.handleChange}
-                                    onBlur={props.handleBlur}
-                                    value={props.values.description}
-                                />
-                            }/>
-                            <DescriptiveTypography text={"Visible in record headers and value pickers"}/>
                         </InputGroup>
 
                         <InputGroup>
