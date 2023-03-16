@@ -50,7 +50,6 @@ const StyledInput = styled.input`
 
 export function Input(props: InputProps): JSX.Element {
 
-
     return (
         <StyledInputWrapper key={"input-abc"} children={
             <StyledInput
