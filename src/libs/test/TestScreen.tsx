@@ -77,29 +77,12 @@ function RecordDialog(props: { open: boolean, onCreate: (record: Record) => void
             } children={
                 <>
                     <FormElement title={"Record name"} caption={"This is visible to all board members"} children={
-                        <FormikSingleLineInput name={"title"} formikProps={formikProps}/>
-                    }/>
-
-                    <FormikInput children={
-                        <input
-                            className={"input"}
-                            name="title"
-                            onChange={formikProps.handleChange}
-                            onBlur={event => {
-                                // formikProps.handleBlur(event)
-                                event.preventDefault();
-                                event.stopPropagation();
-                            }}
-                            value={formikProps.values.title}
-                            placeholder={"Record name"}
-                        />
+                        <FormikSingleLineInput name={"title"} formikProps={formikProps} autoFocus/>
                     }/>
 
                     <FormElement title={"Issuer"} children={
                         <FormikSingleLineInput name={"issuer"} formikProps={formikProps}/>
                     }/>
-
-
 
                     <FormElement title={"Description"} caption={"Visible in record headers and value pickers"} children={
                         <FormikTextArea name={"description"} formikProps={formikProps}/>

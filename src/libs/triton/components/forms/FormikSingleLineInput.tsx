@@ -4,7 +4,8 @@ import React from "react";
 
 export function FormikSingleLineInput(props: {
     name: string,
-    formikProps: FormikProps<any>
+    formikProps: FormikProps<any>,
+    autoFocus?: boolean
 }): JSX.Element {
     return (
         <FormikInput children={
@@ -12,10 +13,11 @@ export function FormikSingleLineInput(props: {
             // <Field class={"input"} name={props.name}/>
 
             <input
+                autoFocus={props.autoFocus}
                 className={"input"}
-                name="title"
+                name={props.name}
                 onChange={props.formikProps.handleChange}
-                value={props.formikProps.values.title}
+                value={props.formikProps.values[props.name]}
                 onBlur={event => {
                     // TODO: Investigate double-click to submit
                     // TODO: Check importance of calling formik's handleBlur
