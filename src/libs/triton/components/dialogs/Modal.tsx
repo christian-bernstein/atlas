@@ -12,7 +12,7 @@ export type ModalProps = PropsWithChildren<{
     onClose: () => void,
     footer?: JSX.Element,
     w?: DimensionalMeasured | string,
-    onSubmit?: () => void
+    onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void
 }>;
 
 const Transition = React.forwardRef(function Transition(
@@ -142,7 +142,7 @@ export const Modal: FC<ModalProps> = props => {
                             }/>
                         </div>
                     }/>
-                    <StyledModalBodyForm onSubmit={() => props.onSubmit?.()}>
+                    <StyledModalBodyForm onSubmit={(event) => props.onSubmit?.(event)}>
                         <StyledModalBody children={props.children}/>
                         { props.footer && (
                             <StyledModalFooter children={props.footer}/>

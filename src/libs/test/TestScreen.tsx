@@ -15,6 +15,7 @@ import {ModalFormBody} from "../triton/components/dialogs/ModalFormBody";
 import {FormElement} from "../triton/components/forms/FormElement";
 import {FormikTextArea} from "../triton/components/forms/FormikTextArea";
 import {FormikSingleLineInput} from "../triton/components/forms/FormikSingleLineInput";
+import {FormikInput} from "../triton/components/forms/FormikInput";
 
 export class TestScreen extends BC<any, any, any> {
 
@@ -49,26 +50,26 @@ function RecordDialog(props: { open: boolean, onCreate: (record: Record) => void
             });
             formikHelpers.setSubmitting(false)
         }} children={formikProps => (
-            <Modal title={"Add record"} open={props.open} onClose={() => props.onClose()} footer={
+            <Modal title={"Add record"} open={props.open} onClose={() => props.onClose()} onSubmit={(e) => formikProps.handleSubmit(e)} footer={
                 <div style={{
                     display: "flex",
                     flexDirection: "row",
                     gap: "4px"
                 }} children={
                     <>
-                        <Button type={"button"} style={{
+                        <Button style={{
                             padding: "6px 16px"
                         }} children={
                             <MainTypography text={"Cancel"}/>
                         } onClick={() => {
                             props.onClose()
                         }}/>
-                        <Button type={"submit"} style={{
+                        <Button type={"button"} style={{
                             padding: "6px 16px"
                         }} visualMeaning={formikProps.isSubmitting ? VM.UI_NO_HIGHLIGHT : VM.SUCCESS} children={
                             <MainTypography style={{ color: "white" }} text={formikProps.isSubmitting ? "Processing" : "Add record"}/>
                         } onClick={(e) => {
-                            e.preventDefault();
+                            console.log("Clicked on submit button")
                             formikProps.handleSubmit()
                         }}/>
                     </>
@@ -76,12 +77,29 @@ function RecordDialog(props: { open: boolean, onCreate: (record: Record) => void
             } children={
                 <>
                     <FormElement title={"Record name"} caption={"This is visible to all board members"} children={
-                        <FormikSingleLineInput name={"title"}/>
+                        <FormikSingleLineInput name={"title"} formikProps={formikProps}/>
+                    }/>
+
+                    <FormikInput children={
+                        <input
+                            className={"input"}
+                            name="title"
+                            onChange={formikProps.handleChange}
+                            onBlur={event => {
+                                // formikProps.handleBlur(event)
+                                event.preventDefault();
+                                event.stopPropagation();
+                            }}
+                            value={formikProps.values.title}
+                            placeholder={"Record name"}
+                        />
                     }/>
 
                     <FormElement title={"Issuer"} children={
-                        <FormikSingleLineInput name={"issuer"}/>
+                        <FormikSingleLineInput name={"issuer"} formikProps={formikProps}/>
                     }/>
+
+
 
                     <FormElement title={"Description"} caption={"Visible in record headers and value pickers"} children={
                         <FormikTextArea name={"description"} formikProps={formikProps}/>

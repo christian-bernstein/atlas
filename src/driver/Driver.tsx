@@ -67,10 +67,13 @@ export class Driver {
 
         this.registerGlobal404Page({
             render: () => (
+                // TODO: Remove :>
+                <TestScreen/>
+
                 // TODO: Add 404 page
-                <Screen children={
-                    <AtlasMain api={new InDevAtlasAPI()}/>
-                }/>
+                // <Screen children={
+                //     <AtlasMain api={new InDevAtlasAPI()}/>
+                // }/>
             )
         });
     }
