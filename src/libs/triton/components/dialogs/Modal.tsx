@@ -4,7 +4,7 @@ import {TransitionProps} from "react-transition-group/Transition";
 import Grow from "@mui/material/Grow";
 import styled from "styled-components";
 import {CloseRounded} from "@mui/icons-material";
-import {DimensionalMeasured} from "../../base/logic/style/DimensionalMeasured";
+import {DimensionalMeasured} from "../../../base/logic/style/DimensionalMeasured";
 
 export type ModalProps = PropsWithChildren<{
     open: boolean,

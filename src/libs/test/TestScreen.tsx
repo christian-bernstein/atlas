@@ -1,20 +1,20 @@
 import {BC} from "../base/BernieComponent";
 import {Assembly} from "../base/logic/assembly/Assembly";
 import {Themeable} from "../base/logic/style/Themeable";
-import {Modal} from "./tests/Modal";
+import {Modal} from "../triton/components/dialogs/Modal";
 import React, {useState} from "react";
 import {Button} from "../base/components/base/Button";
 import {Description} from "../base/components/base/Description";
 import {Screen} from "../base/components/base/Page";
 import {Formik} from "formik";
-import {MainTypography} from "./tests/MainTypography";
-import {DescriptiveTypography} from "./tests/DescriptiveTypography";
+import {MainTypography} from "../triton/components/typography/MainTypography";
+import {DescriptiveTypography} from "../triton/components/typography/DescriptiveTypography";
 import {VM} from "../base/logic/style/ObjectVisualMeaning";
 import {v4} from "uuid";
-import {ModalFormBody} from "./tests/ModalFormBody";
-import {FormElement} from "./tests/FormElement";
-import {FormikTextArea} from "./tests/FormikTextArea";
-import {FormikSingleLineInput} from "./tests/FormikSingleLineInput";
+import {ModalFormBody} from "../triton/components/dialogs/ModalFormBody";
+import {FormElement} from "../triton/components/forms/FormElement";
+import {FormikTextArea} from "../triton/components/forms/FormikTextArea";
+import {FormikSingleLineInput} from "../triton/components/forms/FormikSingleLineInput";
 
 export class TestScreen extends BC<any, any, any> {
 

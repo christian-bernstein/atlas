@@ -1,7 +1,7 @@
 import React, {PropsWithChildren} from "react";
 import {InputGroup} from "./InputGroup";
-import {MainTypography} from "./MainTypography";
-import {DescriptiveTypography} from "./DescriptiveTypography";
+import {MainTypography} from "../typography/MainTypography";
+import {DescriptiveTypography} from "../typography/DescriptiveTypography";
 
 export function FormElement(props: PropsWithChildren<{
     title?: string,
