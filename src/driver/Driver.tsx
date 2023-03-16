@@ -38,15 +38,18 @@ export class Driver {
             path: "/",
             exact: true,
             render: () => (
-                <Screen children={
-                    <AtlasMain api={new InDevAtlasAPI()}/>
-                }/>
+                // TODO: Remove :>
+                <TestScreen/>
+
+                // <Screen children={
+                //     <AtlasMain api={new InDevAtlasAPI()}/>
+                // }/>
             )
         });
 
         this.programRegistry.set("test", {
             path: "test/",
-            exact: false,
+            exact: true,
             render: () => (
                 <TestScreen/>
             )
@@ -54,7 +57,7 @@ export class Driver {
 
         this.programRegistry.set("dnd", {
             path: "dnd/",
-            exact: false,
+            exact: true,
             render: () => (
                 <Screen children={
                     <DnDTestMain/>
