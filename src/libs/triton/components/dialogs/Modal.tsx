@@ -115,7 +115,7 @@ export const Modal: FC<ModalProps> = props => {
         <Dialog
             onClose={() => props.onClose()}
             TransitionComponent={Transition}
-            keepMounted
+            keepMounted={false}
             open={props.open}
             sx={{
                 ".MuiPaper-root": {
