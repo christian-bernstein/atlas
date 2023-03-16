@@ -110,7 +110,7 @@ function ModalTest(): JSX.Element {
             <Button text={"Open modal"} onClick={() => setOpen(true)}/>
             {
                 records.map(rec => (
-                    <DescriptiveTypography text={JSON.stringify(rec)}/>
+                    <DescriptiveTypography key={rec.id} text={JSON.stringify(rec)}/>
                 ))
             }
         </>

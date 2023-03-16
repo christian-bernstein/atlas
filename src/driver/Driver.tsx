@@ -46,7 +46,7 @@ export class Driver {
 
         this.programRegistry.set("test", {
             path: "test/",
-            exact: true,
+            exact: false,
             render: () => (
                 <TestScreen/>
             )
@@ -54,7 +54,7 @@ export class Driver {
 
         this.programRegistry.set("dnd", {
             path: "dnd/",
-            exact: true,
+            exact: false,
             render: () => (
                 <Screen children={
                     <DnDTestMain/>
