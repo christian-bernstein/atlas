@@ -6,7 +6,7 @@ import React, {useState} from "react";
 import {Button} from "../base/components/base/Button";
 import {Description} from "../base/components/base/Description";
 import {Screen} from "../base/components/base/Page";
-import {Formik} from "formik";
+import {ErrorMessage, Formik} from "formik";
 import {MainTypography} from "../triton/components/typography/MainTypography";
 import {DescriptiveTypography} from "../triton/components/typography/DescriptiveTypography";
 import {VM} from "../base/logic/style/ObjectVisualMeaning";
@@ -34,74 +34,78 @@ export type Record = {
     description: string
 }
 
+function RecordDialog(props: { open: boolean, onCreate: (record: Record) => void, onClose: () => void }): JSX.Element {
+    return (
+        <Formik initialValues={{
+            title: "",
+            issuer: "",
+            description: ""
+        }} onSubmit={(values, formikHelpers) => {
+            props.onCreate({
+                id: v4(),
+                title: values.title,
+                issuer: values.issuer,
+                description: values.description
+            });
+            formikHelpers.setSubmitting(false)
+        }} children={formikProps => (
+            <Modal title={"Add record"} open={props.open} onClose={() => props.onClose()} footer={
+                <div style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: "4px"
+                }} children={
+                    <>
+                        <Button type={"button"} style={{
+                            padding: "6px 16px"
+                        }} children={
+                            <MainTypography text={"Cancel"}/>
+                        } onClick={() => {
+                            props.onClose()
+                        }}/>
+                        <Button type={"submit"} style={{
+                            padding: "6px 16px"
+                        }} visualMeaning={formikProps.isSubmitting ? VM.UI_NO_HIGHLIGHT : VM.SUCCESS} children={
+                            <MainTypography style={{ color: "white" }} text={formikProps.isSubmitting ? "Processing" : "Add record"}/>
+                        } onClick={(e) => {
+                            e.preventDefault();
+                            formikProps.handleSubmit()
+                        }}/>
+                    </>
+                }/>
+            } children={
+                <>
+                    <FormElement title={"Record name"} caption={"This is visible to all board members"} children={
+                        <FormikSingleLineInput name={"title"}/>
+                    }/>
+
+                    <FormElement title={"Issuer"} children={
+                        <FormikSingleLineInput name={"issuer"}/>
+                    }/>
+
+                    <FormElement title={"Description"} caption={"Visible in record headers and value pickers"} children={
+                        <FormikTextArea name={"description"} formikProps={formikProps}/>
+                    }/>
+                </>
+            }/>
+        )}/>
+    );
+}
+
 function ModalTest(): JSX.Element {
     const [open, setOpen] = useState(false);
     const [records, setRecords] = useState<Record[]>([]);
 
     return (
         <>
-            <Modal open={open} onClose={() => setOpen(false)} children={
-                <Formik initialValues={{
-                    title: "",
-                    issuer: "",
-                    description: ""
-                }} onSubmit={(values, formikHelpers) => {
-                    setTimeout(() => {
-                        setRecords([...records, {
-                            id: v4(),
-                            title: values.title,
-                            issuer: values.issuer,
-                            description: values.description
-                        }])
-                        formikHelpers.setSubmitting(false)
-                    }, 2000)
-                }} children={props => (
-                    <ModalFormBody
-                        onSubmit={event => props.handleSubmit(event)}
-                        children={
-                            <>
-                                <FormElement title={"Record name"} caption={"This is visible to all board members"} children={
-                                    <FormikSingleLineInput name={"title"}/>
-                                }/>
-
-                                <FormElement title={"Issuer"} children={
-                                    <FormikSingleLineInput name={"issuer"}/>
-                                }/>
-
-                                <FormElement title={"Description"} caption={"Visible in record headers and value pickers"} children={
-                                    <FormikTextArea name={"description"} formikProps={props}/>
-                                }/>
-                            </>
-                        }
-                        footer={
-                            <div style={{
-                                display: "flex",
-                                flexDirection: "row",
-                                gap: "4px"
-                            }} children={
-                                <>
-                                    <Button type={"button"} style={{
-                                        padding: "6px 16px"
-                                    }} children={
-                                        <MainTypography text={"Cancel"}/>
-                                    } onClick={() => {
-                                        setOpen(false)
-                                    }}/>
-                                    <Button type={"submit"} style={{
-                                        padding: "6px 16px"
-                                    }} visualMeaning={props.isSubmitting ? VM.UI_NO_HIGHLIGHT : VM.SUCCESS} children={
-                                        <MainTypography style={{ color: "white" }} text={props.isSubmitting ? "Processing" : "Add record"}/>
-                                    } onClick={(e) => {
-                                        e.preventDefault();
-                                        props.handleSubmit()
-                                    }}/>
-                                </>
-                            }/>
-                        }
-                    />
-                )}/>
-            }/>
-
+            <RecordDialog
+                open={open}
+                onClose={() => setOpen(false)}
+                onCreate={record => {
+                    setRecords([...records, record]);
+                    setOpen(false);
+                }}
+            />
 
             <Button text={"Open modal"} onClick={() => setOpen(true)}/>
             {
