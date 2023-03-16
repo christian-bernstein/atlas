@@ -23,13 +23,7 @@ const Transition = React.forwardRef(function Transition(
 ) {
     return <Grow ref={ref} {...props} />;
 });
-
-export const Modal: FC<ModalProps> = props => {
-    const width: string = props.w === undefined ? "320px" : (
-        typeof props.w === "string" ? props.w : props.w.css()
-    )
-
-    const StyledModal = styled.div`
+const StyledModal = styled.div`
       display: flex;
       flex-direction: column;
       background-color: rgb(22, 27, 34);
@@ -37,13 +31,12 @@ export const Modal: FC<ModalProps> = props => {
       min-width: 296px;
       max-width: calc(100vw - 64px);
       max-height: calc(100vh - 64px);
-      width: ${width};
       height: auto;
       border-radius: 12px;
       opacity: 1;
     `;
 
-    const StyledModalHeader = styled.div`
+const StyledModalHeader = styled.div`
       box-shadow: rgb(48, 54, 61) 0 1px 0;
       padding: 8px;
       z-index: 1;
@@ -86,32 +79,37 @@ export const Modal: FC<ModalProps> = props => {
       }
     `;
 
-    const StyledModalBodyForm = styled.form`
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    `;
+const StyledModalBodyForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+`;
 
-    const StyledModalBody = styled.div`
-      -webkit-box-flex: 1;
-      flex-grow: 1;
-      overflow: auto;
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    `;
+const StyledModalBody = styled.div`
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+  overflow: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
 
-    const StyledModalFooter = styled.div`
-      box-shadow: rgb(48, 54, 61) 0px -1px 0px;
-      padding: 16px;
-      display: flex;
-      flex-flow: wrap;
-      -webkit-box-pack: end;
-      justify-content: flex-end;
-      z-index: 1;
-      flex-shrink: 0;
-    `;
+const StyledModalFooter = styled.div`
+  box-shadow: rgb(48, 54, 61) 0px -1px 0px;
+  padding: 16px;
+  display: flex;
+  flex-flow: wrap;
+  -webkit-box-pack: end;
+  justify-content: flex-end;
+  z-index: 1;
+  flex-shrink: 0;
+`;
+
+export const Modal: FC<ModalProps> = props => {
+    const width: string = props.w === undefined ? "320px" : (
+        typeof props.w === "string" ? props.w : props.w.css()
+    )
 
     return (
         <Dialog
@@ -127,7 +125,7 @@ export const Modal: FC<ModalProps> = props => {
                 }
             }}
             children={
-                <StyledModal>
+                <StyledModal style={{ width: width }}>
                     <StyledModalHeader children={
                         <div className={"dialog-header"}>
                             <div className={"dialog-header-title"}>

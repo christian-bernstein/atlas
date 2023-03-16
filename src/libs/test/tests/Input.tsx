@@ -8,8 +8,7 @@ export type InputProps = {
     value?: string
 }
 
-export function Input(props: InputProps): JSX.Element {
-    const StyledInputWrapper = styled.span`
+const StyledInputWrapper = styled.span`
       font-size: 14px;
       line-height: 20px;
       color: rgb(201, 209, 217);
@@ -30,9 +29,9 @@ export function Input(props: InputProps): JSX.Element {
         outline: none;
         box-shadow: rgb(88, 166, 255) 0 0 0 1px inset;
       }
-    `;
+`;
 
-    const StyledInput = styled.input`
+const StyledInput = styled.input`
       padding-left: 12px;
       padding-right: 12px;
       cursor: text;
@@ -47,7 +46,10 @@ export function Input(props: InputProps): JSX.Element {
       &:focus {
         outline: 0;
       }
-    `;
+`;
+
+export function Input(props: InputProps): JSX.Element {
+
 
     return (
         <StyledInputWrapper key={"input-abc"} children={

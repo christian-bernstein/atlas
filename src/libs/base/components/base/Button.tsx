@@ -12,13 +12,14 @@ import {BackgroundColorProps} from "../props/BackgroundColorProps";
 import {Tooltip} from "./Tooltip";
 
 export type ButtonProps = PropsWithChildren<{
+    type?:  "button" | "submit" | "reset",
     style?: CSSProperties,
     visualMeaning?: ObjectVisualMeaning,
     opaque?: boolean,
     opaqueValue?: number,
-    onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void,
-    onDoubleClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void,
-    onContextMenu?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void,
+    onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
+    onDoubleClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
+    onContextMenu?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
     shrinkOnClick?: boolean,
     width?: DimensionalMeasured,
     height?: DimensionalMeasured,
@@ -50,7 +51,7 @@ export class Button extends React.Component<ButtonProps, any> {
         super(props);
     }
 
-    private onClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    private onClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
         if (this.props.vibrateOnClick && window.navigator.vibrate !== undefined) {
             window.navigator.vibrate(getOr(this.props.vibrationPattern, [1]));
         }
@@ -59,7 +60,7 @@ export class Button extends React.Component<ButtonProps, any> {
         }
     }
 
-    private onDoubleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    private onDoubleClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
         if (this.props.vibrateOnClick && window.navigator.vibrate !== undefined) {
             window.navigator.vibrate(getOr(this.props.vibrationPattern, [1]));
         }
@@ -68,7 +69,7 @@ export class Button extends React.Component<ButtonProps, any> {
         }
     }
 
-    private onContextMenu(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    private onContextMenu(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
         if (this.props.vibrateOnClick && window.navigator.vibrate !== undefined) {
             window.navigator.vibrate(getOr(this.props.vibrationPattern, [1]));
         }
@@ -94,7 +95,7 @@ export class Button extends React.Component<ButtonProps, any> {
         const meaningfulColors: MeaningfulColors = getMeaningfulColors(getOr(this.props.visualMeaning, ObjectVisualMeaning.UI_NO_HIGHLIGHT), theme);
         const bgColor: Color = this.getBackgroundColor();
 
-        const Button = styled.div`
+        const Button = styled.button`
           border-radius: ${theme.radii.defaultObjectRadius.css()};
           background-color: ${getOr(this.props.bgColorOnDefault, true) ? bgColor.css() : "transparent"};
           border: ${getOr(this.props.border, true) ? `1px solid ${meaningfulColors.lighter.css()}` : "none"};
@@ -148,6 +149,13 @@ export class Button extends React.Component<ButtonProps, any> {
             filter: brightness(${theme.hovers.clickLightFilter.css()});
           }
           
+          &:focus-visible {
+            outline: 2px solid var(--color-accent-fg);
+            
+            outline-offset: -2px;
+            box-shadow: none;
+          }
+          
           @keyframes hover-repeat {
             0%, 100% {
               box-shadow: 0 0 0 0 ${meaningfulColors.lighter.withAlpha(.13).css()};
@@ -161,6 +169,7 @@ export class Button extends React.Component<ButtonProps, any> {
 
         const buttonRenderer = () => (
             <Button
+                type={this.props.type}
                 onClick={event => this.onClick(event)}
                 style={getOr(this.props.style, {} as CSSProperties)}
                 onDoubleClick={event => this.onDoubleClick(event)}
