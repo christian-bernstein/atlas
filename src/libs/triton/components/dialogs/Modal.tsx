@@ -23,61 +23,63 @@ const Transition = React.forwardRef(function Transition(
 ) {
     return <Grow ref={ref} {...props} />;
 });
+
 const StyledModal = styled.div`
-      display: flex;
-      flex-direction: column;
-      background-color: rgb(22, 27, 34);
-      color: rgb(201, 209, 217);
-      min-width: 296px;
-      max-width: calc(100vw - 64px);
-      max-height: calc(100vh - 64px);
-      height: auto;
-      border-radius: 12px;
-      opacity: 1;
-    `;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(22, 27, 34);
+  color: rgb(201, 209, 217);
+  min-width: 296px;
+  max-width: calc(100vw - 64px);
+  max-height: calc(100vh - 64px);
+  height: auto;
+  border-radius: 12px;
+  opacity: 1;
+`;
 
 const StyledModalHeader = styled.div`
-      box-shadow: rgb(48, 54, 61) 0 1px 0;
-      padding: 8px;
-      z-index: 1;
-      flex-shrink: 0;
+  box-shadow: rgb(48, 54, 61) 0 1px 0;
+  padding: 8px;
+  z-index: 1;
+  flex-shrink: 0;
       
-      .dialog-header {
-        display: flex;
+  .dialog-header {
+    display: flex;
         
-        .dialog-header-title {
-          padding: 6px 8px;
-          display: flex;
-          flex-direction: column;
-          -webkit-box-flex: 1;
-          flex-grow: 1;
+    .dialog-header-title {
+      padding: 6px 8px;
+      display: flex;
+      flex-direction: column;
+      -webkit-box-flex: 1;
+      flex-grow: 1;
           
-          h1 {
-            font-size: 14px;
-            font-weight: 600;
-            margin: 0;
-          }
-        }
-        
-        .dialog-close-button {
-          border-radius: 4px;
-          background: transparent;
-          border: 0;
-          vertical-align: middle;
-          color: rgb(139, 148, 158);
-          padding: 8px;
-          align-self: flex-start;
-          line-height: normal;
-          box-shadow: none;
-          cursor: pointer;
-          
-          &:hover {
-            background-color: rgb(48, 54, 61);
-            border-color: rgb(139, 148, 158);
-          }
-        }
+      h1 {
+        font-size: 14px;
+        font-weight: 600;
+        margin: 0;
+        user-select: none;
       }
-    `;
+    }
+        
+    .dialog-close-button {
+      border-radius: 4px;
+      background: transparent;
+      border: 0;
+      vertical-align: middle;
+      color: rgb(139, 148, 158);
+      padding: 8px;
+      align-self: flex-start;
+      line-height: normal;
+      box-shadow: none;
+      cursor: pointer;
+          
+      &:hover {
+        background-color: rgb(48, 54, 61);
+        border-color: rgb(139, 148, 158);
+      }
+    }
+  }
+`;
 
 const StyledModalBodyForm = styled.form`
   display: flex;
