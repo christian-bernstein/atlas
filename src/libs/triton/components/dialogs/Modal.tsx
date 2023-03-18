@@ -10,9 +10,12 @@ export type ModalProps = PropsWithChildren<{
     open: boolean,
     title?: string,
     onClose: () => void,
+    onUnsuccessfulClosingAttempt?: () => void,
     footer?: JSX.Element,
     w?: DimensionalMeasured | string,
-    onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void
+    onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void,
+    preventClosingOnBackdropClick?: boolean,
+    preventClosingMasterSwitch?: boolean
 }>;
 
 const Transition = React.forwardRef(function Transition(
@@ -60,7 +63,7 @@ const StyledModalHeader = styled.div`
         user-select: none;
       }
     }
-        
+    
     .dialog-close-button {
       border-radius: 4px;
       background: transparent;
@@ -71,11 +74,19 @@ const StyledModalHeader = styled.div`
       align-self: flex-start;
       line-height: normal;
       box-shadow: none;
-      cursor: pointer;
-          
-      &:hover {
-        background-color: rgb(48, 54, 61);
-        border-color: rgb(139, 148, 158);
+      
+      
+      &:disabled {
+        cursor: not-allowed;
+      }
+      
+      &:not(:disabled) {
+        cursor: pointer;
+        
+        &:hover {
+          background-color: rgb(48, 54, 61);
+          border-color: rgb(139, 148, 158);
+        }
       }
     }
   }
@@ -115,7 +126,18 @@ export const Modal: FC<ModalProps> = props => {
 
     return (
         <Dialog
-            onClose={() => props.onClose()}
+            onClose={(event, reason: "backdropClick" | "escapeKeyDown") => {
+                if (props.preventClosingMasterSwitch ?? false) {
+                    props.onUnsuccessfulClosingAttempt?.();
+                    return;
+                }
+
+                if (reason === "backdropClick" && (props.preventClosingOnBackdropClick ?? false)) {
+                    props.onUnsuccessfulClosingAttempt?.();
+                    return;
+                }
+                props.onClose()
+            }}
             TransitionComponent={Transition}
             keepMounted={false}
             open={props.open}
@@ -133,7 +155,15 @@ export const Modal: FC<ModalProps> = props => {
                             <div className={"dialog-header-title"}>
                                 <h1 children={props.title}/>
                             </div>
-                            <button className={"dialog-close-button"} onClick={() => props.onClose()} children={
+
+                            <button className={"dialog-close-button"} disabled={props.preventClosingMasterSwitch ?? false} onClick={() => {
+                                if (props.preventClosingMasterSwitch ?? false) {
+                                    props.onUnsuccessfulClosingAttempt?.();
+                                    return;
+                                }
+
+                                props.onClose();
+                            }} children={
                                 <CloseRounded sx={{
                                     width: "16px",
                                     height: "16px",
@@ -142,6 +172,7 @@ export const Modal: FC<ModalProps> = props => {
                                     verticalAlign: "text-bottom"
                                 }}/>
                             }/>
+
                         </div>
                     }/>
                     <StyledModalBodyForm onSubmit={(event) => props.onSubmit?.(event)}>

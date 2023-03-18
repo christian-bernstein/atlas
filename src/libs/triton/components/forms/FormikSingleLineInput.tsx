@@ -5,10 +5,11 @@ import React from "react";
 export function FormikSingleLineInput(props: {
     name: string,
     formikProps: FormikProps<any>,
-    autoFocus?: boolean
+    autoFocus?: boolean,
+    renderError?: boolean
 }): JSX.Element {
     return (
-        <FormikInput children={
+        <FormikInput className={(props.formikProps.errors[props.name] && props.formikProps.touched[props.name] && (props.renderError ?? true)) ? "error" : ""} children={
             // TODO: Remove or reactivate -> Depends on onBlur 'problem'
             // <Field class={"input"} name={props.name}/>
 

@@ -15,7 +15,11 @@ export const FormikInput = styled.span`
   min-height: 32px;
   width: 100%;
   display: flex;
-
+  
+  &.error {
+    border: 1px solid rgb(218, 54, 51);
+  }
+  
   &:focus-within {
     border-color: rgb(88, 166, 255);
     outline: none;
