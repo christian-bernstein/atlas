@@ -1,4 +1,4 @@
-import {ButtonHTMLAttributes, DetailedHTMLProps, FC, PropsWithChildren} from "react";
+import React, {ButtonHTMLAttributes, DetailedHTMLProps, FC, PropsWithChildren} from "react";
 import styled from "styled-components";
 import {StyledMixinProps} from "../StyledMixinProps";
 import {ColorMixin} from "../ColorMixin";

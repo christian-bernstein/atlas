@@ -1,12 +1,14 @@
 import {FormikInput} from "./FormikInput";
 import {FormikProps} from "formik";
-import React from "react";
+import React, {ButtonHTMLAttributes, InputHTMLAttributes} from "react";
 
 export function FormikSingleLineInput(props: {
     name: string,
     formikProps: FormikProps<any>,
     autoFocus?: boolean,
-    renderError?: boolean
+    renderError?: boolean,
+    placeholder?: string,
+    baseProps?: InputHTMLAttributes<any>,
 }): JSX.Element {
     return (
         <FormikInput className={(props.formikProps.errors[props.name] && props.formikProps.touched[props.name] && (props.renderError ?? true)) ? "error" : ""} children={
@@ -14,9 +16,12 @@ export function FormikSingleLineInput(props: {
             // <Field class={"input"} name={props.name}/>
 
             <input
+                {...props.baseProps}
                 autoFocus={props.autoFocus}
                 className={"input"}
+                placeholder={props.placeholder}
                 name={props.name}
+                autoComplete={"off"}
                 onChange={props.formikProps.handleChange}
                 value={props.formikProps.values[props.name]}
                 onBlur={event => {
