@@ -22,7 +22,9 @@ export type FormikSingleSelectInputProps = {
     formikProps: FormikProps<any>,
     name: string,
     title?: string,
-    options: Array<SingleSelectOption>
+    options: Array<SingleSelectOption>,
+
+    disableSearchbar?: boolean
 }
 
 export const GenericInputContainer = styled.button`
@@ -143,53 +145,55 @@ export const FormikSingleSelectInput: React.FC<FormikSingleSelectInputProps> = p
                             display: "flex",
                             flexDirection: "column"
                         }}>
-                            <div style={{
-                                padding: "8px",
-                                boxShadow: "rgb(48, 54, 61) 0px 1px 0px"
-                            }}>
-                                <FormElement children={
-                                    <>
-                                        <FormikSingleLineInput ref={inputRef} baseProps={{
-                                            onKeyDown: event => {
-                                                const getElement: (dir: "up" | "down") => (SingleSelectOption | undefined) = dir => {
-                                                    const selection = currentSelection;
-                                                    const currentIndex = selection.findIndex(ee => ee.text === searchFormikProps.values.pointed);
-                                                    let newPos = currentIndex + (dir === "up" ? -1 : 1);
-                                                    // "Clip" position
-                                                    if (newPos >= selection.length) newPos = 0;
-                                                    if (newPos < 0) newPos = selection.length - 1;
-                                                    return selection[newPos];
-                                                }
+                            { !(props.disableSearchbar ?? false) && (
+                                <div style={{
+                                    padding: "8px",
+                                    boxShadow: "rgb(48, 54, 61) 0px 1px 0px"
+                                }}>
+                                    <FormElement children={
+                                        <>
+                                            <FormikSingleLineInput ref={inputRef} baseProps={{
+                                                onKeyDown: event => {
+                                                    const getElement: (dir: "up" | "down") => (SingleSelectOption | undefined) = dir => {
+                                                        const selection = currentSelection;
+                                                        const currentIndex = selection.findIndex(ee => ee.text === searchFormikProps.values.pointed);
+                                                        let newPos = currentIndex + (dir === "up" ? -1 : 1);
+                                                        // "Clip" position
+                                                        if (newPos >= selection.length) newPos = 0;
+                                                        if (newPos < 0) newPos = selection.length - 1;
+                                                        return selection[newPos];
+                                                    }
 
-                                                if (event.key === "Enter") {
-                                                    event.preventDefault();
-                                                    searchFormikProps.setFieldValue("val", searchFormikProps.values.pointed)
-                                                    searchFormikProps.handleSubmit()
-                                                    toggleMenu(false);
-                                                    return;
-                                                }
+                                                    if (event.key === "Enter") {
+                                                        event.preventDefault();
+                                                        searchFormikProps.setFieldValue("val", searchFormikProps.values.pointed)
+                                                        searchFormikProps.handleSubmit()
+                                                        toggleMenu(false);
+                                                        return;
+                                                    }
 
-                                                if (event.key === "ArrowUp") {
-                                                    event.preventDefault();
-                                                    event.stopPropagation();
-                                                    const newVal = getElement("up")?.text;
-                                                    searchFormikProps.setFieldValue("pointed", newVal);
-                                                    return;
-                                                }
+                                                    if (event.key === "ArrowUp") {
+                                                        event.preventDefault();
+                                                        event.stopPropagation();
+                                                        const newVal = getElement("up")?.text;
+                                                        searchFormikProps.setFieldValue("pointed", newVal);
+                                                        return;
+                                                    }
 
-                                                if (event.key === "ArrowDown") {
-                                                    event.preventDefault();
-                                                    event.stopPropagation();
-                                                    const newVal = getElement("down")?.text;
-                                                    searchFormikProps.setFieldValue("pointed", newVal);
-                                                    return;
+                                                    if (event.key === "ArrowDown") {
+                                                        event.preventDefault();
+                                                        event.stopPropagation();
+                                                        const newVal = getElement("down")?.text;
+                                                        searchFormikProps.setFieldValue("pointed", newVal);
+                                                        return;
+                                                    }
                                                 }
-                                            }
-                                        }} autoFocus placeholder={"Filter options"} name={"search"} formikProps={searchFormikProps}/>
-                                        <ErrorMessage name={"search"} formikProps={formikProps}/>
-                                    </>
-                                }/>
-                            </div>
+                                            }} autoFocus placeholder={"Filter options"} name={"search"} formikProps={searchFormikProps}/>
+                                            <ErrorMessage name={"search"} formikProps={formikProps}/>
+                                        </>
+                                    }/>
+                                </div>
+                            ) }
 
                             <div style={{
                                 padding: "8px",

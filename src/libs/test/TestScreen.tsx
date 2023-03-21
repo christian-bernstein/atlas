@@ -175,7 +175,7 @@ function RecordDialog(props: { open: boolean, onCreate: (record: Record) => void
                         { text: "Low" }
                     ]}/>
 
-                    <FormikSingleSelectInput formikProps={formikProps} name={"taskType"} title={"Task type"} options={[
+                    <FormikSingleSelectInput disableSearchbar formikProps={formikProps} name={"taskType"} title={"Task type"} options={[
                         { text: "Recurring" },
                         { text: "Onetime" }
                     ]}/>
