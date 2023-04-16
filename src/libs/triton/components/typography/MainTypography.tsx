@@ -3,7 +3,8 @@ import styled from "styled-components";
 
 export type MainTypographyProps = {
     text?: string,
-    style?: CSSProperties
+    style?: CSSProperties,
+    id?: string
 }
 
 export const MainTypography: React.FC<MainTypographyProps> = props => {
@@ -17,6 +18,6 @@ export const MainTypography: React.FC<MainTypographyProps> = props => {
     `;
 
     return (
-        <StyledTypography style={props.style} children={props.text}/>
+        <StyledTypography id={props.id} style={props.style} children={props.text}/>
     );
 }

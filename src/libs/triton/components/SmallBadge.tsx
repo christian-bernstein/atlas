@@ -4,7 +4,7 @@ import styled from "styled-components";
 export type SmallBadgeProps = {
     color?: Color,
     text: string,
-    highlightOnHover?: boolean
+    highlightOnHover?: boolean,
 }
 
 const StyledSmallBadge = styled.span<{
@@ -23,7 +23,7 @@ const StyledSmallBadge = styled.span<{
       position: relative;
       max-width: 100%;
       width: fit-content;
-
+  
       .label {
         -webkit-box-align: center;
         align-items: center;

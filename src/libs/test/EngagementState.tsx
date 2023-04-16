@@ -1,0 +1,3 @@
+export enum EngagementState {
+    ENGAGED = "ENGAGED", DISENGAGED = "DISENGAGED", "ENGAGING" = "ENGAGING", "DISENGAGING" = "DISENGAGING"
+}

@@ -14,8 +14,6 @@ const StyledEnumElement = styled.span`
   color: rgb(201, 209, 217);
   transition: background 33.333ms linear 0s;
   text-decoration: none;
-  // margin-left: 8px;
-  // margin-right: 8px;
   gap: 8px;
 
   &:active, &:focus {
@@ -40,8 +38,7 @@ export type EnumElementProps = {
 export const EnumElement: React.FC<EnumElementProps> = props => {
     const iconSize = "16px"
     return (
-        <StyledEnumElement className={props.isPointedTo ? "pointed" : ""} onMouseEnter={() => props.onHover?.()}
-                           onClick={() => props.onSelect?.()}>
+        <StyledEnumElement className={props.isPointedTo ? "pointed" : ""} onMouseEnter={() => props.onHover?.()} onClick={() => props.onSelect?.()}>
             <span style={{
                 width: iconSize,
                 height: iconSize,

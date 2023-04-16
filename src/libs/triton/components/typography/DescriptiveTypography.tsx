@@ -1,9 +1,10 @@
-import React, {CSSProperties} from "react";
+import React, {ButtonHTMLAttributes, CSSProperties, HTMLAttributes} from "react";
 import styled from "styled-components";
 
 export type DescriptiveTypographyProps = {
     text?: string,
-    style?: CSSProperties
+    style?: CSSProperties,
+    baseProps?: HTMLAttributes<any>,
 }
 
 export const DescriptiveTypography: React.FC<DescriptiveTypographyProps> = props => {
@@ -17,6 +18,6 @@ export const DescriptiveTypography: React.FC<DescriptiveTypographyProps> = props
     `;
 
     return (
-        <StyledDescriptiveTypography style={props.style} children={props.text}/>
+        <StyledDescriptiveTypography {...props.baseProps} style={props.style} children={props.text}/>
     );
 }

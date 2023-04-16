@@ -65,47 +65,6 @@ export const CopyIcon: React.FC<ContextMenuCopyButtonProps> = props => {
             }/>
         }/>
     );
-
-    // return (
-    //     <Button onClick={() => setCopied(true)}>
-    //         <div style={{position: "relative", height: 16, width: 16}}>
-    //             <Clippy style={{color: theme.colors.iconColor.css(), position: "absolute", top: 0, left: 0, strokeDasharray: 50, strokeDashoffset: copied ? -50 : 0, transition: "all 300ms ease-in-out"}}/>
-    //             <Check isVisible={copied} style={{color: theme.colors.primaryHighlightColor.css(), position: "absolute", top: 0, left: 0, strokeDasharray: 50, strokeDashoffset: copied ? 0 : -50, transition: "all 300ms ease-in-out"}}/>
-    //         </div>
-    //     </Button>
-    // );
-
-    // return (
-    //     <Button bgColorOnDefault={false} border={false} visualMeaning={ObjectVisualMeaning.ERROR} width={percent(100)} onClick={() => setCopied(true)}>
-    //         <FlexBox flexDir={FlexDirection.ROW} align={Align.CENTER} justifyContent={Justify.SPACE_BETWEEN} width={percent(100)}>
-    //             <Text text={`Copy project ID`}/>
-    //             <div style={{
-    //                     position: "relative",
-    //                     height: 16,
-    //                     width: 16
-    //                 }}>
-    //                 <Clippy style={{
-    //                         color: "red",
-    //                         position: "absolute",
-    //                         top: 0,
-    //                         left: 0,
-    //                         strokeDasharray: 50,
-    //                         strokeDashoffset: copied ? -50 : 0,
-    //                         transition: "all 300ms ease-in-out"
-    //                     }}/>
-    //                 <Check isVisible={copied} style={{
-    //                         color: "green",
-    //                         position: "absolute",
-    //                         top: 0,
-    //                         left: 0,
-    //                         strokeDasharray: 50,
-    //                         strokeDashoffset: copied ? 0 : -50,
-    //                         transition: "all 300ms ease-in-out"
-    //                     }}/>
-    //             </div>
-    //         </FlexBox>
-    //     </Button>
-    // );
 }
 
 export const Clippy: React.FC<any> = props => {

@@ -45,7 +45,9 @@ const StyledModalHeader = styled.div`
   padding: 8px;
   z-index: 1;
   flex-shrink: 0;
-      
+  
+  
+  
   .dialog-header {
     display: flex;
         
@@ -95,7 +97,7 @@ const StyledModalHeader = styled.div`
 const StyledModalBodyForm = styled.form`
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+   overflow: hidden;
 `;
 
 const StyledModalBody = styled.div`
@@ -161,7 +163,6 @@ export const Modal: FC<ModalProps> = props => {
                                     props.onUnsuccessfulClosingAttempt?.();
                                     return;
                                 }
-
                                 props.onClose();
                             }} children={
                                 <CloseRounded sx={{

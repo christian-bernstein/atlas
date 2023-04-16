@@ -9,11 +9,11 @@ import Collapse from "@mui/material/Collapse";
 import {Color} from "../../../base/logic/style/Color";
 import {EnumElement} from "../../../test/EnumElement";
 import {SmallBadge} from "../SmallBadge";
-import {ButtonBase} from "../buttons/ButtonBase";
 import styled from "styled-components";
 import {DescriptiveTypography} from "../typography/DescriptiveTypography";
 
 export type SingleSelectOption = {
+    id?: string,
     text: string,
     color?: Color,
 }
@@ -23,11 +23,16 @@ export type FormikSingleSelectInputProps = {
     name: string,
     title?: string,
     options: Array<SingleSelectOption>,
-
-    disableSearchbar?: boolean
+    disableSearchbar?: boolean,
+    placeholder?: string,
+    onPreSubmit?: (value: string) => void,
+    centerSelectedElementBadge?: boolean,
+    onMenuButtonClick?: () => void
 }
 
-export const GenericInputContainer = styled.button`
+export const GenericInputContainer = styled.button<{
+    disableHighlightFocus?: boolean
+}>`
   cursor: pointer;
   font-size: 14px;
   line-height: 20px;
@@ -45,12 +50,16 @@ export const GenericInputContainer = styled.button`
   padding-right: 12px;
   align-items: center;
   
-  &:focus-within {
-    border-color: rgb(88,166,255);
-    outline: none;
-    box-shadow: rgb(88,166,255) 0 0 0 1px inset;
-  }
+  ${props => !(props.disableHighlightFocus ?? false) && `
+    &:focus-within {
+      border-color: rgb(88,166,255);
+      outline: none;
+      box-shadow: rgb(88,166,255) 0 0 0 1px inset;
+    }
+  `}
 `;
+
+const clickSound = new Audio(require("../../../../assets/sound/click.mp3"));
 
 export const FormikSingleSelectInput: React.FC<FormikSingleSelectInputProps> = props => {
     const urgencyButtonRef = useRef<null | HTMLSpanElement>(null);
@@ -60,40 +69,41 @@ export const FormikSingleSelectInput: React.FC<FormikSingleSelectInputProps> = p
     const formikProps = props.formikProps;
     const selectedOption = props.options.find(e => e.text === formikProps.values[props.name]);
 
-    inputRef.current?.focus()
-
     return (
         <>
             <FormElement title={props.title} children={
                 <span ref={urgencyButtonRef}>
-
-                    <GenericInputContainer type={"button"} {...anchorProps} children={
-                        (selectedOption && <SmallBadge highlightOnHover={false} text={selectedOption.text} color={selectedOption.color}/>) ?? (
-                            <DescriptiveTypography text={"Choose an option..."} style={{
+                    <GenericInputContainer onMouseDownCapture={() => {
+                        clickSound.play().then(() => {});
+                        props.onMenuButtonClick?.()
+                    }} type={"button"} {...anchorProps} children={
+                        (selectedOption && (
+                            (props.centerSelectedElementBadge ?? false) ? (
+                                <span style={{
+                                    marginLeft: "auto",
+                                    marginRight: "auto"
+                                }} children={
+                                    <SmallBadge highlightOnHover={false} text={selectedOption.text} color={selectedOption.color}/>
+                                }/>
+                            ): (
+                                <SmallBadge highlightOnHover={false} text={selectedOption.text} color={selectedOption.color}/>
+                            )
+                        )) ?? (
+                            <DescriptiveTypography text={props.placeholder ?? "Choose an option..."} style={{
                                 color: "rgb(110, 118, 129)",
                                 cursor: "inherit"
                             }}/>
                         )
                     }/>
-
-                    {/*
-                    <FormikSingleLineInput name={props.name} formikProps={formikProps} baseProps={{
-                        ...anchorProps,
-                        readOnly: true,
-                        onKeyDown: e => {
-                            if (e.key === "Enter") {
-                                toggleMenu()
-                            }
-                        },
-                        style: {
-                            cursor: "pointer"
-                        }
-                    }}/>
-                    */}
                </span>
             }/>
 
             <ControlledMenu
+                portal={{
+                    target: urgencyButtonRef.current,
+                    stablePosition: true
+                }}
+
                 {...menuState}
                 anchorRef={urgencyButtonRef}
                 onClose={() => toggleMenu(false)}
@@ -124,6 +134,7 @@ export const FormikSingleSelectInput: React.FC<FormikSingleSelectInputProps> = p
                     val: "",
                     pointed: ""
                 }} onSubmit={values => {
+                    props.onPreSubmit?.(values.val);
                     formikProps.setFieldValue(props.name, values.val);
                 }} children={searchFormikProps => {
 
@@ -213,6 +224,7 @@ export const FormikSingleSelectInput: React.FC<FormikSingleSelectInputProps> = p
                                                 <EnumElement {...e} isPointedTo={searchFormikProps.values.pointed === e.text} onHover={() => {
                                                     searchFormikProps.setFieldValue("pointed", e.text)
                                                 }} text={e.text} selected={formikProps.values[props.name] === e.text} onSelect={() => {
+                                                    clickSound.play().then(() => {});
                                                     searchFormikProps.setFieldValue("val", e.text)
                                                     searchFormikProps.handleSubmit()
                                                 }}/>

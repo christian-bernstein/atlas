@@ -62,13 +62,13 @@ export const ButtonContent = styled.span`
   align-content: center;
 `
 
-export type ButtonBaseProps = {
+export type ButtonBaseProps = PropsWithChildren<{
     baseProps?: ButtonHTMLAttributes<any>,
     text?: string
     leadingVisual?: JSX.Element,
     trailingVisual?: JSX.Element,
     variant?: ButtonVariant
-}
+}>
 
 export const defaultColorMixin: ColorMixin = new ColorMixin(new Map<string, Color | string>([
     ["main-color", "rgb(201, 209, 217)"],
@@ -129,6 +129,14 @@ export const ButtonBase: FC<ButtonBaseProps> = props => {
                 { props.leadingVisual && (
                     <span children={props.leadingVisual} style={{
                         gridArea: "leadingVisual"
+                    }}/>
+                ) }
+
+                {/* TODO: Implement better solution... */}
+                { props.children && (
+                    <span children={props.children} style={{
+                        gridArea: "text",
+                        whiteSpace: "nowrap"
                     }}/>
                 ) }
 

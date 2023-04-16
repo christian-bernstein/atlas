@@ -47,3 +47,11 @@ export class TimeMeasured implements IToCSSConvertable  {
 export function time(measurand: number, unit: TimeUnit): TimeMeasured {
     return new TimeMeasured(measurand, unit);
 }
+
+export function ms(measurand: number): TimeMeasured {
+    return new TimeMeasured(measurand, TimeUnit.ms);
+}
+
+export function s(measurand: number): TimeMeasured {
+    return new TimeMeasured(measurand, TimeUnit.s);
+}
