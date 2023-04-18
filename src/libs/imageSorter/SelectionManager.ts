@@ -33,4 +33,12 @@ export class SelectionManager extends APIShard {
             }));
         }
     }
+
+    public select(imageIDs: Array<string>) {
+        this.api().setState(prevState => ({
+            ...prevState,
+            selectedImages: Array.from(new Set([...imageIDs, ...prevState.selectedImages])),
+            selectionMode: true
+        }));
+    }
 }

@@ -13,6 +13,7 @@ import {IconButton} from "./IconButton";
 import styled from "styled-components";
 import {DefaultButton} from "./DefaultButton";
 import {ExportConfigDialog} from "./ExportConfigDialog";
+import {SelectionPreviewImage} from "./SelectionPreviewImage";
 
 const StyledSelectionTray = styled.span`
   display: block;
@@ -75,14 +76,7 @@ export const SelectionView: React.FC = props => {
                                                 }} children={
                                                     images?.map(i => (
                                                         <Collapse orientation={"horizontal"} key={i.id} children={
-                                                            <img alt={i.id} src={URL.createObjectURL(i.data)} style={{
-                                                                height: "80px",
-                                                                width: "80px",
-                                                                aspectRatio: "1 / 1",
-                                                                borderRadius: "8px",
-                                                                objectPosition: "center",
-                                                                objectFit: "cover"
-                                                            }}/>
+                                                            <SelectionPreviewImage for={i} onClick={() => api.selectImageByID(i.id)}/>
                                                         }/>
                                                     ))
                                                 }/>

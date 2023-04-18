@@ -5,7 +5,7 @@ import {DescriptiveTypography} from "../triton/components/typography/Descriptive
 import {ImageSorterAPIContext} from "./ImageSorterAPI";
 
 export type ImageHubBrandingProps = {
-
+    centerLayout?: boolean
 }
 
 export const ImageHubBranding: React.FC<ImageHubBrandingProps> = props => {
@@ -14,7 +14,7 @@ export const ImageHubBranding: React.FC<ImageHubBrandingProps> = props => {
     return (
         <div style={{
             display: "flex",
-            flexDirection: "row",
+            flexDirection: props.centerLayout ?? false ? "column" : "row",
             alignItems: "center",
             gap: ".7rem",
             paddingLeft: ".5rem"

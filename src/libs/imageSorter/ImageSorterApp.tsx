@@ -12,6 +12,7 @@ import {VFSViewOptions} from "./VFSViewOptions";
 import {ProjectHeaderView} from "./ProjectHeaderView";
 import {MetadataView} from "./MetadataView";
 import {SelectionView} from "./SelectionView";
+import {ScreenSaver} from "./ScreenSaver";
 
 export type ImageSorterAppState = {
     fvsPath: Array<string>,
@@ -22,7 +23,7 @@ export type ImageSorterAppState = {
     selectedImageId?: string,
     selectedImages: Array<string>,
     selectionMode: boolean,
-    selectionPreview: boolean
+    selectionPreview: boolean,
 }
 
 function generateAppState(): ImageSorterAppState {
@@ -33,7 +34,7 @@ function generateAppState(): ImageSorterAppState {
         projects: [],
         fvsPath: [],
         selectionMode: false,
-        selectionPreview: true
+        selectionPreview: true,
     });
 }
 
@@ -46,7 +47,6 @@ export const ImageSorterApp: React.FC = props => {
         <ImageSorterAPIStateContext.Provider value={state} children={
             <ImageSorterMaster children={
                 <ImageSorterAPIContext.Provider value={api.current}>
-
                     <Mobile children={
                         <div style={{
                             display: "grid",
@@ -93,6 +93,10 @@ export const ImageSorterApp: React.FC = props => {
                             width: "calc(100vw + 0px)",
                             height: "calc(100vh - 0.3rem)"
                         }}>
+                            {/* MOVE TO MORE APPROPRIATE PLACE */}
+                            <ScreenSaver/>
+
+
                             <AppHeader/>
                             <div style={{
                                 width: "100%",
