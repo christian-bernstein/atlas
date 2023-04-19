@@ -46,9 +46,7 @@ export const ScreenSaver: React.FC = props => {
 
     useEffect(() => {
         idleRef.current = setInterval(() => {
-            console.log("idle runner!")
-
-            if (data.current.idle > 60_000) {
+            if (data.current.idle > (60_000 * 10)) {
                 if (!state.active) {
                     setState(prevState => ({
                         ...prevState,
@@ -79,7 +77,6 @@ export const ScreenSaver: React.FC = props => {
             data.current.idle = 0;
         },
         keyboardIdleListener: (event: KeyboardEvent) => {
-            console.log("keyboardIdleListener fired!")
             data.current.idle = 0;
         },
     });
@@ -139,10 +136,7 @@ export const ScreenSaver: React.FC = props => {
                                         }} text={"Screen saver turned on due to inactivity of at least one minute. "}/>
                                     ) : undefined}
 
-
-
                                     <Formik initialValues={{ passcode: "" }} validate={values => {
-                                        console.warn("validate")
                                         if (values.passcode.length >= 3 || values.passcode !== "123") {
                                             return {
                                                 passcode: "Incorrect passcode"

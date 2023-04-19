@@ -34,8 +34,22 @@ export const ImageView: React.FC = props => {
                 borderRadius: ".5rem",
                 padding: "1rem",
                 backgroundColor: "#101016",
+                flexDirection: "column"
             }}>
                 <DescriptiveTypography text={"Select an image"}/>
+
+                {/*
+                <iframe
+                    title={"SD"}
+                    width={"100%"}
+                    height={"100%"}
+                    src={"http://localhost:7860/"}
+                    style={{
+                        border: "none",
+                        scrollbarWidth: "none"
+                    }}
+                />
+                */}
             </div>
         );
     }

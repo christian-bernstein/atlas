@@ -61,7 +61,8 @@ export function VFSFolderContentViewer() {
                     display: "grid",
                     gap: "8px",
                     // gridTemplateColumns: "repeat(3, 1fr)",
-                    gridTemplateColumns: "repeat(auto-fill, minmax(64px, auto))",
+                    // gridTemplateColumns: "repeat(auto-fill, minmax(64px, auto))",
+                    gridTemplateColumns: "repeat(auto-fit, minmax(64px, 1fr))",
                     height: "min-content"
                 }}>{
                     projects.map(e => (

@@ -1,13 +1,16 @@
 import React, {useContext, useEffect, useState} from "react";
 import {VFSElement} from "./VFSElement";
 import {DescriptiveTypography} from "../triton/components/typography/DescriptiveTypography";
-import {FolderRounded, ImageRounded, MoreVertRounded} from "@mui/icons-material";
+import {DownloadRounded, FolderRounded, ImageRounded, MoreVertRounded, SelectAllRounded} from "@mui/icons-material";
 import styled from "styled-components";
 import {Project} from "./Project";
 import {useLiveQuery} from "dexie-react-hooks";
 import {isaDB} from "./ImageSorterAppDB";
 import {BooleanContext} from "../test/BooleanContext";
 import {ImageSorterAPIContext} from "./ImageSorterAPI";
+import {MenuButton} from "./MenuButton";
+import {DuplexEventRelay} from "./DuplexEventRelay";
+import {Menu} from "./Menu";
 
 export const StyledVFSElementCard = styled.button`
   position: relative;
@@ -124,7 +127,13 @@ const VFSProjectCard: React.FC<{
                     )
                 }
 
-                <MoreVertRounded className={"context-icon"}/>
+
+                {/*
+                <MoreVertRounded className={"context-icon"} onClick={event => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }}/>
+                */}
 
             </StyledVFSProjectCard>
 
@@ -211,12 +220,6 @@ export const VFSElementCard: React.FC<{
                 whiteSpace: "nowrap",
                 width: "calc(80px - 24px)"
             }}/>
-
-
-
-
         </StyledVFSElementCard>
     );
-
-
 }

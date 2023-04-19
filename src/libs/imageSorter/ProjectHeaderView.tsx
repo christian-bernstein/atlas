@@ -4,10 +4,18 @@ import {ImageSorterAPIStateContext} from "./ImageSorterApp";
 import {Project} from "./Project";
 import {DescriptiveTypography} from "../triton/components/typography/DescriptiveTypography";
 import {MainTypography} from "../triton/components/typography/MainTypography";
-import {CloseRounded, DownloadRounded, EditRounded, MoreVertRounded} from "@mui/icons-material";
+import {CloseRounded, DownloadRounded, EditRounded, MoreVertRounded, SelectAllRounded} from "@mui/icons-material";
 import {IconButton} from "./IconButton";
 import {Tag} from "./Tag";
 import {DuplexEventRelay} from "./DuplexEventRelay";
+import {Menu} from "./Menu";
+import {MenuButton} from "./MenuButton";
+import {Color} from "../base/logic/style/Color";
+import {MenuDivider, MenuItem, SubMenu} from "@szhsin/react-menu";
+import {EnumSelector} from "../base/components/logic/EnumSelector";
+import {ImagePosition} from "../atlas/hyperion/datatypes/ImagePosition";
+import {EnumElement} from "../test/EnumElement";
+import {BasicSingleSelect} from "../triton/components/forms/BasicSingleSelect";
 
 export const ProjectHeaderView: React.FC = props =>  {
     const api = useContext(ImageSorterAPIContext);
@@ -47,11 +55,18 @@ export const ProjectHeaderView: React.FC = props =>  {
                         gap: "4px"
                     }}>
                         <IconButton size={"small"} tooltip={"Edit"} children={<EditRounded/>} onClick={() => {}}/>
-                        <IconButton size={"small"} tooltip={"More"} children={<MoreVertRounded/>} onClick={() => {}}/>
-                        <IconButton size={"small"} children={<DownloadRounded/>} onClick={() => {
-                            if (currentProject?.id === undefined) return;
-                            api.downloadManager.downloadProject(currentProject.id, new DuplexEventRelay()).then(() => {});
-                        }}/>
+
+                        <Menu>
+                            <MenuButton text={"Select all"} icon={<SelectAllRounded/>} onSelect={() => {
+                                api.selectionManager.select(currentProject?.resources ?? []);
+                            }}/>
+
+                            <MenuButton text={"Download images"} icon={<DownloadRounded/>} onSelect={() => {
+                                if (currentProject?.id === undefined) return;
+                                api.downloadManager.downloadProject(currentProject.id, new DuplexEventRelay()).then(() => {});
+                            }}/>
+                        </Menu>
+
                         <IconButton size={"small"} tooltip={"Close"} children={<CloseRounded/>} onClick={() => api.closeProject()}/>
                     </div>
                 </div>

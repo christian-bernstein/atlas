@@ -108,8 +108,9 @@ export const Searchbar: React.FC = props => {
                             tokenizer: {
                                 root: [
                                     [/:limit/, "macro"],
+                                    [/\{.*}/, "macro"],
                                     [/!/, "symbol"],
-                                    [/:\w+/, "keyword"],
+                                    [/:[\w<>=]+/, "keyword"],
                                     [/#\w+/, "tag"],
                                     [/-\w+/, "param"],
                                     [/->/, "arrow-right"],

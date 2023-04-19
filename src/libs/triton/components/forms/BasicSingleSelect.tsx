@@ -5,7 +5,6 @@ import {SmallBadge} from "../SmallBadge";
 import {DescriptiveTypography} from "../typography/DescriptiveTypography";
 import {Formik, FormikProps} from "formik";
 import {FormikSingleLineInput} from "./FormikSingleLineInput";
-import {ErrorMessage} from "./ErrorMessage";
 import {TransitionGroup} from "react-transition-group";
 import Collapse from "@mui/material/Collapse";
 import {EnumElement} from "../../../test/EnumElement";

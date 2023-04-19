@@ -43,7 +43,10 @@ export const SelectionView: React.FC = props => {
         return isaDB.images
             .where("id")
             .anyOfIgnoreCase(state.selectedImages)
-            // .limit(16)
+
+            // TODO: remove limit
+            .limit(16)
+
             .toArray();
     }, [state.selectedImages]);
 

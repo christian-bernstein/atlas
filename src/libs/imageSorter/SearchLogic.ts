@@ -1,7 +1,7 @@
 import {Image} from "./Image";
 import {evaluate} from "mathjs";
-import {getMetadata} from "meta-png";
 import {ImageSorterAPI} from "./ImageSorterAPI";
+import {isaDB} from "./ImageSorterAppDB";
 
 type FuncContext = {
     api: ImageSorterAPI,
@@ -10,7 +10,6 @@ type FuncContext = {
 }
 
 type Func = (ctx: FuncContext, images: Array<Image>) => Promise<Array<Image>> | Array<Image>
-
 
 export class SearchLogic {
 
@@ -57,6 +56,18 @@ export class SearchLogic {
                 if (idx < 0 || idx >= images.length) return [];
                 return [images[idx]];
             }
+        }],
+        ["flt", param => {
+            return (ctx, images) => {
+                const minByteSize = param === undefined ? 0 : evaluate(param, { gb: 1e+9, mb: 1e+6 }) as number;
+                return images.filter(i => i.data.size >= minByteSize);
+            }
+        }],
+        ["fst", param => {
+            return (ctx, images) => {
+                const maxByteSize = param === undefined ? 0 : evaluate(param, { gb: 1e+9, mb: 1e+6 }) as number;
+                return images.filter(i => i.data.size <= maxByteSize);
+            }
         }]
     ]);
 
@@ -102,7 +113,7 @@ export class SearchLogic {
 
             else if (s.startsWith(":")) {
                 next();
-                const fName = read(c => /^[a-zA-Z0-9_$]$/.test(c));
+                const fName = read(c => /^[a-zA-Z0-9_$>=<]$/.test(c));
                 let param: string | undefined = undefined;
                 if (s.startsWith("(")) param = this.enclosing(s, ['(', ')']);
                 predicates.push(this.funcGenerators.get(fName)!.call(this, param))
@@ -123,20 +134,28 @@ export class SearchLogic {
         });
 
         return images => new Promise<Array<Image>>(async (resolve, reject) => {
-            for (let t of tags) images = images.filter(i => i.tags.includes(t));
+            for (const t of tags) images = images.filter(i => i.tags.includes(t));
 
-            for (let p of predicates) {
-                images = await p({
-                    tags: tags,
-                    args: args,
-                    api: api
-                }, images);
+            for (const p of predicates) {
+                images = await p({ tags: tags, args: args, api: api }, images);
                 if (images.length === 0) break;
             }
 
+            // select images
             if (args.includes("s")) api.selectionManager.select(images.map(i => i.id));
+            // open images
             if (args.includes("o") && images.length > 0) api.selectImageByID(images[0].id, false);
+            // clear the searchbar image selection
             if (args.includes("v")) images = [];
+
+            // TODO: move to function dict
+            // delete all images from the current selection
+            if (args.includes("db_purge")) {
+                if (window.confirm(`Do you want to delete ${images.length} images?`)) {
+                    isaDB.images.bulkDelete(images.map(i => i.id));
+                }
+                images = [];
+            }
 
             return resolve(images);
         })
