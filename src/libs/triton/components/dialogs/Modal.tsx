@@ -5,6 +5,7 @@ import Grow from "@mui/material/Grow";
 import styled from "styled-components";
 import {CloseRounded} from "@mui/icons-material";
 import {DimensionalMeasured} from "../../../base/logic/style/DimensionalMeasured";
+import {CircularProgress} from "@mui/material";
 
 export type ModalProps = PropsWithChildren<{
     open: boolean,
@@ -15,7 +16,9 @@ export type ModalProps = PropsWithChildren<{
     w?: DimensionalMeasured | string,
     onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void,
     preventClosingOnBackdropClick?: boolean,
-    preventClosingMasterSwitch?: boolean
+    preventClosingMasterSwitch?: boolean,
+    icon?: React.ReactElement,
+    loading?: boolean
 }>;
 
 const Transition = React.forwardRef(function Transition(
@@ -46,18 +49,23 @@ const StyledModalHeader = styled.div`
   z-index: 1;
   flex-shrink: 0;
   
-  
-  
   .dialog-header {
     display: flex;
         
     .dialog-header-title {
       padding: 6px 8px;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
+      align-items: center;
+      gap: 6px;
       -webkit-box-flex: 1;
       flex-grow: 1;
-          
+      
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+      
       h1 {
         font-size: 14px;
         font-weight: 600;
@@ -76,7 +84,6 @@ const StyledModalHeader = styled.div`
       align-self: flex-start;
       line-height: normal;
       box-shadow: none;
-      
       
       &:disabled {
         cursor: not-allowed;
@@ -124,7 +131,7 @@ const StyledModalFooter = styled.div`
 export const Modal: FC<ModalProps> = props => {
     const width: string = props.w === undefined ? "320px" : (
         typeof props.w === "string" ? props.w : props.w.css()
-    )
+    );
 
     return (
         <Dialog
@@ -155,6 +162,13 @@ export const Modal: FC<ModalProps> = props => {
                     <StyledModalHeader children={
                         <div className={"dialog-header"}>
                             <div className={"dialog-header-title"}>
+
+                                { props.loading ? (
+                                    <CircularProgress size={16} color={"inherit"}/>
+                                ) : (
+                                    props.icon === undefined ? undefined : props.icon
+                                ) }
+
                                 <h1 children={props.title}/>
                             </div>
 
@@ -173,11 +187,14 @@ export const Modal: FC<ModalProps> = props => {
                                     verticalAlign: "text-bottom"
                                 }}/>
                             }/>
-
                         </div>
                     }/>
                     <StyledModalBodyForm onSubmit={(event) => props.onSubmit?.(event)}>
-                        <StyledModalBody children={props.children}/>
+
+                        { props.children && (
+                            <StyledModalBody children={props.children}/>
+                        ) }
+
                         { props.footer && (
                             <StyledModalFooter children={props.footer}/>
                         ) }

@@ -4,6 +4,7 @@ import {MainTypography} from "../triton/components/typography/MainTypography";
 import {Color} from "../base/logic/style/Color";
 import {DescriptiveTypography} from "../triton/components/typography/DescriptiveTypography";
 import {MenuItem} from "@szhsin/react-menu";
+import {CheckRounded} from "@mui/icons-material";
 
 const StyledMenuButton = styled.span`
   padding: 6px 8px;
@@ -92,5 +93,17 @@ export const MenuButton: React.FC<MenuButtonProps> = props => {
             </StyledMenuButton>
         }/>
 
+    );
+}
+
+export const CheckMenuButton: React.FC<MenuButtonProps & {
+    checked?: boolean
+}> = props => {
+    return (
+        <MenuButton {...props} selected={props.checked} icon={
+            !props.checked ? undefined : (
+                <CheckRounded/>
+            )
+        }/>
     );
 }

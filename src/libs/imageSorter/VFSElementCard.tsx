@@ -11,6 +11,8 @@ import {ImageSorterAPIContext} from "./ImageSorterAPI";
 import {MenuButton} from "./MenuButton";
 import {DuplexEventRelay} from "./DuplexEventRelay";
 import {Menu} from "./Menu";
+import {VFSViewSettingsContext} from "./VFSView";
+import {ISAImage} from "./ISAImage";
 
 export const StyledVFSElementCard = styled.button`
   position: relative;
@@ -83,6 +85,7 @@ const VFSProjectCard: React.FC<{
     onSelect: () => void
 }> = props => {
     const api = useContext(ImageSorterAPIContext);
+    const vfsViewSettings = useContext(VFSViewSettingsContext);
     const [project, setProject] = useState<Project | undefined>(undefined);
 
     useEffect(() => {
@@ -123,7 +126,25 @@ const VFSProjectCard: React.FC<{
                             }}
                         />
                     ) : (
-                        <ImageRounded/>
+                        vfsViewSettings.defaultPreview && project !== undefined && project.resources.length > 0 ? (
+                            // Load the first image of the project
+                            <ISAImage imageID={project.resources[0]} imageRenderer={i => (
+                                <img
+                                    src={URL.createObjectURL(i.data)}
+                                    alt={"Project default preview"}
+                                    style={{
+                                        objectFit: "cover",
+                                        objectPosition: "center",
+                                        maxWidth: "100%",
+                                        width: "100%",
+                                        maxHeight: "100%",
+                                        height: "auto",
+                                    }}
+                                />
+                            )}/>
+                        ) : (
+                            <ImageRounded/>
+                        )
                     )
                 }
 
@@ -178,10 +199,7 @@ const VFSProjectCard: React.FC<{
                 } else {
                     return (
                         <DescriptiveTypography baseProps={{
-                            onClick: () => {
-                                console.log("Hello")
-                                setBool(true)
-                            }
+                            onClick: () => setBool(true)
                         }} text={props.for.title.trim().length === 0 ? "Add title" : props.for.title} style={{
                             textAlign: "center",
                             textOverflow: "ellipsis",

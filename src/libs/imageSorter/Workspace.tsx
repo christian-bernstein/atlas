@@ -57,9 +57,7 @@ export const Workspace: React.FC<WorkspaceProps> = props => {
             <div style={{
                 height: "100%",
                 width: "100%",
-
                 overflow: "scroll",
-
                 backgroundColor: "#101016",
                 borderRadius: ".5rem",
                 padding: "1rem",

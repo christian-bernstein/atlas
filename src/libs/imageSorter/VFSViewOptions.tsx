@@ -2,7 +2,7 @@ import React, {useContext} from "react";
 import {ImageSorterAPIContext} from "./ImageSorterAPI";
 import {FileStructureImportModal} from "./FileStructureImportModal";
 import {BooleanContext} from "../test/BooleanContext";
-import {CreateNewFolderRounded, SelectAllOutlined, UploadRounded} from "@mui/icons-material";
+import {CreateNewFolderRounded, MoreVertRounded, SelectAllOutlined, UploadRounded} from "@mui/icons-material";
 import {IconButton} from "./IconButton";
 import {MainTypography} from "../triton/components/typography/MainTypography";
 import {ProjectCreationDialog} from "./ProjectCreationDialog";
@@ -18,7 +18,7 @@ export const VFSViewOptions: React.FC = props => {
 
             <div style={{
                 display: "grid",
-                gridTemplateColumns: "auto repeat(3, min-content)",
+                gridTemplateColumns: "auto repeat(2, min-content)",
                 gap: "8px"
             }}>
                 <IconButton variant={"primary"} fullwidth children={<MainTypography text={"Create project"} style={{
@@ -32,11 +32,6 @@ export const VFSViewOptions: React.FC = props => {
                     api.toggleProjectCreationDialog(true);
                 }}/>
 
-                <IconButton tooltip={"Create folder"} children={<CreateNewFolderRounded/>} onClick={() => {
-                    api.toggleFolderCreationDialog(true);
-                }}/>
-
-
                 <IconButton variant={api.state.selectionMode ? "primary" : "default"} children={<SelectAllOutlined/>} onClick={() => {
                     api.setState(prevState => ({
                         ...prevState,
@@ -44,15 +39,7 @@ export const VFSViewOptions: React.FC = props => {
                     }));
                 }}/>
 
-
-                <BooleanContext children={(bool, setBool) => (
-                    <>
-                        <FileStructureImportModal open={bool} onClose={() => setBool(false)}/>
-                        <IconButton tooltip={"Import"} children={<UploadRounded/>} onClick={() => {
-                            setBool(true)
-                        }}/>
-                    </>
-                )}/>
+                <IconButton children={<MoreVertRounded/>}/>
             </div>
         </>
     );

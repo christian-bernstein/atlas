@@ -1,14 +1,11 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Image} from "./Image";
 import {TransitionGroup} from "react-transition-group";
 import Collapse from "@mui/material/Collapse";
 import {DescriptiveTypography} from "../triton/components/typography/DescriptiveTypography";
-import {ImageMetaData} from "./ImageMetaData";
-import {getMetadata} from "meta-png";
 import {Utils} from "../base/Utils";
-import * as ExifReader from 'exifreader';
 import {Tag} from "./Tag";
-import {TagRounded} from "@mui/icons-material";
+import {StarRounded, TagRounded} from "@mui/icons-material";
 import {TagEditor} from "./TagEditor";
 import {isaDB} from "./ImageSorterAppDB";
 import {IconButton} from "./IconButton";
@@ -60,6 +57,11 @@ export const ImageViewFooter: React.FC<ImageViewFooterProps> = props => {
                             gap: "8px",
                             alignItems: "center",
                         }}>
+                            <IconButton size={"small"} children={<StarRounded sx={{ transition: "color 50ms", color: image?.favourite ? "gold" : "inherit" }}/>} onClick={() => {
+                                isaDB.images.update(image?.id!, {
+                                    "favourite": !image?.favourite ?? true
+                                });
+                            }}/>
                             <IconButton size={"small"} tooltip={"Edit tags"} children={<TagRounded/>} onClick={() => {
                                 setLocalState(prevState => ({
                                     ...prevState,

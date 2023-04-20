@@ -4,26 +4,32 @@ import {ImageSorterAPIStateContext} from "./ImageSorterApp";
 import {Project} from "./Project";
 import {DescriptiveTypography} from "../triton/components/typography/DescriptiveTypography";
 import {MainTypography} from "../triton/components/typography/MainTypography";
-import {CloseRounded, DownloadRounded, EditRounded, MoreVertRounded, SelectAllRounded} from "@mui/icons-material";
+import {CloseRounded, DownloadRounded, EditRounded, SelectAllRounded} from "@mui/icons-material";
 import {IconButton} from "./IconButton";
 import {Tag} from "./Tag";
 import {DuplexEventRelay} from "./DuplexEventRelay";
 import {Menu} from "./Menu";
 import {MenuButton} from "./MenuButton";
-import {Color} from "../base/logic/style/Color";
-import {MenuDivider, MenuItem, SubMenu} from "@szhsin/react-menu";
-import {EnumSelector} from "../base/components/logic/EnumSelector";
-import {ImagePosition} from "../atlas/hyperion/datatypes/ImagePosition";
-import {EnumElement} from "../test/EnumElement";
-import {BasicSingleSelect} from "../triton/components/forms/BasicSingleSelect";
+import {MenuDivider} from "@szhsin/react-menu";
+import {BooleanContext} from "../test/BooleanContext";
+import {ProjectEditDialog, ProjectEditDialogProps} from "./ProjectEditDialog";
+
+export type ProjectHeaderViewState = {
+    editDialogOpened: boolean
+}
 
 export const ProjectHeaderView: React.FC = props =>  {
     const api = useContext(ImageSorterAPIContext);
     const state = useContext(ImageSorterAPIStateContext);
+    const [localState, setLocalState] = useState<ProjectHeaderViewState>({
+        editDialogOpened: false
+    });
     const [currentProject, setCurrentProject] = useState<Project | undefined>(undefined);
     useEffect(() => {
         api.getCurrentProject().then(cp => setCurrentProject(cp));
     }, [api, state]);
+
+    console.log("rendering ProjectHeaderView")
 
     return (
         state.selectedProject === undefined ? (
@@ -36,57 +42,90 @@ export const ProjectHeaderView: React.FC = props =>  {
                 <DescriptiveTypography text={"Select a project"}/>
             </div>
         ) : (
-            <div style={{
-                display: "grid",
-                gap: "8px"
-            }}>
+            <>
+                { localState.editDialogOpened && (
+                    <ProjectEditDialog
+                        open={localState.editDialogOpened}
+                        for={currentProject?.id!}
+                        onSave={project => {}}
+                        onCancel={() => {
+                            setLocalState(prevState => ({ ...prevState, editDialogOpened: false }))
+                        }}
+                    />
+                ) }
+
                 <div style={{
                     display: "grid",
-                    alignItems: "center",
-                    gridTemplateColumns: "auto min-content"
+                    gap: "8px"
                 }}>
-                    <MainTypography text={currentProject?.title!}/>
-
                     <div style={{
-                        display: "flex",
-                        flexDirection: "row",
+                        display: "grid",
                         alignItems: "center",
-                        height: "100%",
-                        gap: "4px"
+                        gridTemplateColumns: "auto min-content"
                     }}>
-                        <IconButton size={"small"} tooltip={"Edit"} children={<EditRounded/>} onClick={() => {}}/>
+                        <MainTypography text={currentProject?.title!}/>
 
-                        <Menu>
-                            <MenuButton text={"Select all"} icon={<SelectAllRounded/>} onSelect={() => {
-                                api.selectionManager.select(currentProject?.resources ?? []);
-                            }}/>
+                        <div style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            alignItems: "center",
+                            height: "100%",
+                            gap: "4px"
+                        }}>
+                            <Menu>
+                                <MenuButton text={"Edit"} icon={<EditRounded/>} appendix={"Ctrl+E"} onSelect={() => {
+                                    setLocalState(prevState => ({ ...prevState, editDialogOpened: true }))
+                                }}/>
 
-                            <MenuButton text={"Download images"} icon={<DownloadRounded/>} onSelect={() => {
-                                if (currentProject?.id === undefined) return;
-                                api.downloadManager.downloadProject(currentProject.id, new DuplexEventRelay()).then(() => {});
-                            }}/>
-                        </Menu>
+                                <MenuButton text={"Select all"} icon={<SelectAllRounded/>} onSelect={() => {
+                                    api.selectionManager.select(currentProject?.resources ?? []);
+                                }}/>
 
-                        <IconButton size={"small"} tooltip={"Close"} children={<CloseRounded/>} onClick={() => api.closeProject()}/>
+                                <MenuButton text={"Download images"} icon={<DownloadRounded/>} onSelect={() => {
+                                    if (currentProject?.id === undefined) return;
+                                    api.downloadManager.downloadProject(currentProject.id, new DuplexEventRelay()).then(() => {});
+                                }}/>
+
+                                <MenuDivider/>
+
+                                <MenuButton text={"Remove cover image"} onSelect={() => {
+                                    api.getProjectContext().setPreviewImage(undefined);
+                                }}/>
+
+                                {
+                                    currentProject?.previewImageID === undefined ? undefined : (
+                                        <MenuButton text={"Open cover image"} onSelect={() => {
+                                            api.selectImageByID(currentProject?.previewImageID!, false)
+                                        }}/>
+                                    )
+                                }
+                            </Menu>
+
+                            <IconButton size={"small"} tooltip={"Close"} children={<CloseRounded/>} onClick={() => api.closeProject()}/>
+                        </div>
                     </div>
-                </div>
 
-                <DescriptiveTypography text={currentProject?.description}/>
+                    { currentProject?.description && (
+                        <DescriptiveTypography text={currentProject?.description}/>
+                    ) }
 
-                <div style={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    flexDirection: "row",
-                    gap: "4px",
-                    width: "100%"
-                }}>
-                    { currentProject?.tags.map(tag => (
-                        <Tag key={tag} tag={tag} onClick={() => {
-                            // TODO: Search for all images with this tag
-                        }}/>
-                    ))}
+                    { currentProject?.tags && currentProject.tags.length > 0 && (
+                        <div style={{
+                            display: "flex",
+                            flexWrap: "wrap",
+                            flexDirection: "row",
+                            gap: "4px",
+                            width: "100%"
+                        }}>
+                            { currentProject?.tags.map(tag => (
+                                <Tag key={tag} tag={tag} onClick={() => {
+                                    // TODO: Search for all images with this tag
+                                }}/>
+                            ))}
+                        </div>
+                    ) }
                 </div>
-            </div>
+            </>
         )
     );
 }

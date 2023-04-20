@@ -65,8 +65,10 @@ export const Menu: React.FC<MenuProps> = props => {
                     minWidth: urgencyButtonRef.current?.offsetWidth ?? "auto",
                     borderRadius: "12px",
                     backgroundColor: "rgb(22, 27, 34)",
-                    boxShadow: "rgb(48, 54, 61) 0px 0px 0px 1px, rgba(1, 4, 9, 0.85) 0px 16px 32px",
-                    border: "none",
+                    // boxShadow: "rgb(48, 54, 61) 0px 0px 0px 1px, rgba(1, 4, 9, 0.85) 0px 16px 32px",
+                    boxShadow: "rgba(1, 4, 9, 0.85) 0px 16px 32px",
+                    // border: "none",
+                    border: "1px solid rgb(48, 54, 61)",
                     padding: "8px"
                 }}
                 arrowStyle={{
@@ -74,7 +76,7 @@ export const Menu: React.FC<MenuProps> = props => {
                     borderTopColor: "rgb(48, 54, 61)",
                     backgroundColor: "rgb(22, 27, 34)"
                 }}
-                direction={"top"}
+                direction={"bottom"}
                 align={"center"}
                 theming={"dark"}
                 transition={true}

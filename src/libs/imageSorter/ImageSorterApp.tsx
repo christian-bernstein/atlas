@@ -13,6 +13,7 @@ import {ProjectHeaderView} from "./ProjectHeaderView";
 import {MetadataView} from "./MetadataView";
 import {SelectionView} from "./SelectionView";
 import {ScreenSaver} from "./ScreenSaver";
+import {LayoutManagerView} from "./layout/LayoutManagerView";
 
 export type ImageSorterAppState = {
     fvsPath: Array<string>,
@@ -84,6 +85,34 @@ export const ImageSorterApp: React.FC = props => {
                         </div>
                     }/>
 
+                    <LayoutManagerView
+                        layout={{
+                            occupancy: new Map<string, string | undefined>([
+                                ["left", "alpha"],
+                                ["main", "beta"],
+                                ["right", "gamma"],
+                                ["bottom", "delta"],
+                            ]),
+                            trayOpenStates: new Map<string, boolean>([
+                                ["left", true],
+                                ["main", true],
+                                ["right", true],
+                                ["bottom", true],
+                            ])
+                        }}
+                        trayRenderers={new Map<string, () => React.ReactNode>([
+                            ["alpha", () => "Alpha"],
+                            ["beta", () => "Beta"],
+                            ["gamma", () => "gamma"],
+                            ["delta", () => "Delta"],
+                            ["theta", () => "Theta"],
+                            ["phy", () => "Phy"],
+                            ["omega", () => "Omega"],
+                            ["_empty", () => "EMPTY"],
+                        ])}
+                    />
+
+                    {/*
                     <Default children={
                         <div style={{
                             display: "grid",
@@ -93,7 +122,6 @@ export const ImageSorterApp: React.FC = props => {
                             width: "calc(100vw + 0px)",
                             height: "calc(100vh - 0.3rem)"
                         }}>
-                            {/* MOVE TO MORE APPROPRIATE PLACE */}
                             <ScreenSaver/>
 
 
@@ -140,8 +168,6 @@ export const ImageSorterApp: React.FC = props => {
                                     <SelectionView/>
                                 </div>
 
-
-
                                 <div style={{
                                     display: "grid",
                                     gridTemplateRows: "min-content auto min-content",
@@ -172,6 +198,7 @@ export const ImageSorterApp: React.FC = props => {
                             </div>
                         </div>
                     }/>
+                    */}
                 </ImageSorterAPIContext.Provider>
             }/>
         }/>

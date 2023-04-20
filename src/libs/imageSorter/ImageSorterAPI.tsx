@@ -11,6 +11,7 @@ import {ImportManager} from "./ImportManager";
 import {DownloadManager} from "./DownloadManager";
 import {SelectionManager} from "./SelectionManager";
 import {ExportManager} from "./ExportManager";
+import {SettingsManager} from "./SettingsManager";
 
 export class ImageSorterAPI {
 
@@ -26,6 +27,8 @@ export class ImageSorterAPI {
 
     private readonly _exportManager: ExportManager;
 
+    private readonly _settingsManager: SettingsManager;
+
     constructor(state?: ImageSorterAppState, setState?: StateDispatcher<ImageSorterAppState>) {
         this._state = state;
         this._setState = setState;
@@ -37,6 +40,8 @@ export class ImageSorterAPI {
         this._selectionManager.setApi(this);
         this._exportManager = new ExportManager();
         this._exportManager.setApi(this);
+        this._settingsManager = new SettingsManager();
+        this._settingsManager.setApi(this);
     }
 
     public getVersionString(): string {
@@ -109,7 +114,8 @@ export class ImageSorterAPI {
             return ({
                 data: f.slice(),
                 id: id,
-                tags: []
+                tags: [],
+                favourite: false
             });
         }));
         const project = await this.getCurrentProject();
@@ -187,7 +193,8 @@ export class ImageSorterAPI {
             return ({
                 data: f.slice(),
                 id: id,
-                tags: []
+                tags: [],
+                favourite: false
             });
         }));
 
@@ -377,6 +384,10 @@ export class ImageSorterAPI {
 
     get exportManager(): ExportManager {
         return this._exportManager;
+    }
+
+    get settingsManager(): SettingsManager {
+        return this._settingsManager;
     }
 }
 
