@@ -41,9 +41,9 @@ export const ImageView: React.FC = props => {
                 <DescriptiveTypography text={"Select an image"}/>
 
                 <ButtonModalCompound
-                    button={<IconButton children={<FileOpenRounded/>}/>}
-                    preventClosingOnBackdropClick
                     preventClosingMasterSwitch
+                    preventClosingOnBackdropClick
+                    button={<IconButton children={<FileOpenRounded/>}/>}
                     modalContent={(ctx) => (
                         <DefaultButton onClick={() => ctx.close()}/>
                     )}
