@@ -14,6 +14,9 @@ import {MetadataView} from "./MetadataView";
 import {SelectionView} from "./SelectionView";
 import {ScreenSaver} from "./ScreenSaver";
 import {LayoutManagerView} from "./layout/LayoutManagerView";
+import {SidePanel} from "./SidePanel";
+import {LayoutTabButton} from "./LayoutTabButton";
+import {CodeRounded, FolderRounded, ImageRounded, ImageSearchRounded} from "@mui/icons-material";
 
 export type ImageSorterAppState = {
     fvsPath: Array<string>,
@@ -25,6 +28,8 @@ export type ImageSorterAppState = {
     selectedImages: Array<string>,
     selectionMode: boolean,
     selectionPreview: boolean,
+    openedTrays: Array<string>,
+    trayOccupancy: {[K in string | "left" | "main" | "right" | "bottom"]: string | undefined}
 }
 
 function generateAppState(): ImageSorterAppState {
@@ -36,6 +41,13 @@ function generateAppState(): ImageSorterAppState {
         fvsPath: [],
         selectionMode: false,
         selectionPreview: true,
+        openedTrays: ["left", "main", "right"],
+        trayOccupancy: {
+            left: "vfs-view",
+            main: "image-view",
+            right: "project-view",
+            bottom: "delta",
+        }
     });
 }
 
@@ -85,32 +97,115 @@ export const ImageSorterApp: React.FC = props => {
                         </div>
                     }/>
 
-                    <LayoutManagerView
-                        layout={{
-                            occupancy: new Map<string, string | undefined>([
-                                ["left", "alpha"],
-                                ["main", "beta"],
-                                ["right", "gamma"],
-                                ["bottom", "delta"],
-                            ]),
-                            trayOpenStates: new Map<string, boolean>([
-                                ["left", true],
-                                ["main", true],
-                                ["right", true],
-                                ["bottom", true],
-                            ])
-                        }}
-                        trayRenderers={new Map<string, () => React.ReactNode>([
-                            ["alpha", () => "Alpha"],
-                            ["beta", () => "Beta"],
-                            ["gamma", () => "gamma"],
-                            ["delta", () => "Delta"],
-                            ["theta", () => "Theta"],
-                            ["phy", () => "Phy"],
-                            ["omega", () => "Omega"],
-                            ["_empty", () => "EMPTY"],
-                        ])}
-                    />
+                    <Default children={
+                        <div style={{
+                            display: "grid",
+                            rowGap: "1rem",
+                            // padding: "1rem",
+                            padding: "8px",
+                            gridAutoRows: "min-content auto",
+                            width: "calc(100vw + 0px)",
+                            height: "calc(100vh - 0.3rem)",
+                            maxHeight: "calc(100vh - 0.3rem)",
+                            overflow: "hidden"
+
+                        }}>
+                            <ScreenSaver/>
+                            <AppHeader/>
+
+                            <div style={{
+                                display: "grid",
+                                gap: "8px",
+                                // padding: "8px",
+                                gridTemplateColumns: "min-content auto min-content",
+                                height: "100%",
+                                width: "100%"
+                            }}>
+                                <SidePanel start={
+                                    <>
+                                        <LayoutTabButton targetTray={"left"} programKey={"vfs-view"} children={<FolderRounded/>}/>
+                                    </>
+                                } end={
+                                    <>
+                                        <LayoutTabButton targetTray={"bottom"} programKey={"gamma"} children={<CodeRounded/>}/>
+                                    </>
+                                }/>
+
+                                <LayoutManagerView
+                                    layout={{
+                                        trayOpenStates: new Map<string, boolean>(["left", "main", "right", "bottom"].map(tray => [tray, state.openedTrays.includes(tray)])),
+                                        occupancy: new Map<string, string | undefined>(Object.entries(state.trayOccupancy))
+                                    }}
+                                    trayRenderers={new Map<string, () => React.ReactNode>([
+                                        ["vfs-view", () => (
+                                            <div style={{
+                                                display: "grid",
+                                                height: "100%",
+                                                gridTemplateRows: "min-content auto",
+                                                rowGap: "8px"
+                                            }}>
+                                                <Workspace children={<VFSViewOptions/>} config={{
+                                                    mode: "desktop",
+                                                    name: "vfs-options"
+                                                }}/>
+
+                                                <Workspace children={<VFSView/>} config={{
+                                                    mode: "desktop",
+                                                    name: "vfs"
+                                                }}/>
+                                            </div>
+                                        )],
+
+                                        ["image-view", () => (
+                                            <div style={{
+                                                display: "grid",
+                                                height: "100%",
+                                                gridTemplateRows: "auto min-content"
+                                            }}>
+                                                <ImageView/>
+
+                                                <SelectionView/>
+                                            </div>
+                                        )],
+
+                                        ["project-view", () => (
+                                            <div style={{
+                                                display: "grid",
+                                                gridTemplateRows: "min-content auto min-content",
+                                                rowGap: "8px",
+                                                height: "100%"
+                                            }}>
+                                                <Workspace children={<ProjectHeaderView/>} config={{
+                                                    mode: "desktop",
+                                                    name: "project-title"
+                                                }}/>
+
+                                                <Workspace children={<ProjectView/>} config={{
+                                                    mode: "desktop",
+                                                    name: "project"
+                                                }}/>
+
+                                                <Workspace children={<MetadataView/>} config={{
+                                                    mode: "desktop",
+                                                    name: "project-metadata"
+                                                }}/>
+                                            </div>
+                                        )]
+                                    ])}
+                                />
+
+                                <SidePanel start={
+                                    <>
+                                        <LayoutTabButton targetTray={"right"} programKey={"project-view"} children={<ImageRounded/>}/>
+                                    </>
+                                }/>
+                            </div>
+                        </div>
+                    }/>
+
+
+
+
 
                     {/*
                     <Default children={

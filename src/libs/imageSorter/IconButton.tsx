@@ -1,6 +1,6 @@
 import React, {PropsWithChildren, useRef} from "react";
 import styled from "styled-components";
-import {Tooltip} from "react-tooltip";
+import {ITooltipWrapper, PlacesType, Tooltip} from "react-tooltip";
 import {v4} from "uuid";
 import {sizeToCssDict, variantToCssDict, variantToHoverCssDict} from "./DefaultButton";
 
@@ -38,7 +38,9 @@ export type IconButtonProps = PropsWithChildren<{
     deactivated?: boolean,
     size?: "small" | "medium",
     fullwidth?: boolean,
-    variant?: "default" | "primary"
+    variant?: "default" | "primary",
+    tooltipProps?: ITooltipWrapper,
+    tooltipPlace?: PlacesType
 }>
 
 export const IconButton: React.FC<IconButtonProps> = props => {
@@ -52,8 +54,9 @@ export const IconButton: React.FC<IconButtonProps> = props => {
             }/>
             {
                 props.tooltip && (
-                    <Tooltip className={"tooltip"} clickable={props.clickableTooltip ?? false} style={{
+                    <Tooltip place={props.tooltipPlace ?? "top"} {...props.tooltipProps} className={"tooltip"} clickable={props.clickableTooltip ?? false} style={{
                         fontSize: "12px",
+                        zIndex: 2,
                         fontFamily: "-apple-system,BlinkMacSystemFont,Segoe UI,Noto Sans,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji",
                         lineHeight: 1.5,
                         backgroundColor: "#1a1a20"

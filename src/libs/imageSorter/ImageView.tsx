@@ -5,9 +5,11 @@ import {ImageSorterAPIStateContext} from "./ImageSorterApp";
 import {DescriptiveTypography} from "../triton/components/typography/DescriptiveTypography";
 import {ImageSorterAPIContext} from "./ImageSorterAPI";
 import {IconButton} from "./IconButton";
-import {CloseRounded, DownloadRounded, InfoRounded, PreviewRounded} from "@mui/icons-material";
+import {CloseRounded, DownloadRounded, FileOpenRounded, InfoRounded, PreviewRounded} from "@mui/icons-material";
 import {ButtonGroup} from "./ButtonGroup";
 import {ImageViewFooter} from "./ImageViewFooter";
+import {ButtonModalCompound} from "./ButtonModalCompound";
+import {DefaultButton} from "./DefaultButton";
 
 export const ImageView: React.FC = props => {
     const state = useContext(ImageSorterAPIStateContext);
@@ -37,6 +39,15 @@ export const ImageView: React.FC = props => {
                 flexDirection: "column"
             }}>
                 <DescriptiveTypography text={"Select an image"}/>
+
+                <ButtonModalCompound
+                    button={<IconButton children={<FileOpenRounded/>}/>}
+                    preventClosingOnBackdropClick
+                    preventClosingMasterSwitch
+                    modalContent={(ctx) => (
+                        <DefaultButton onClick={() => ctx.close()}/>
+                    )}
+                />
 
                 {/*
                 <iframe

@@ -44,8 +44,6 @@ export const StyledAdvancedISAImage = styled.div`
     display: flex;
     justify-content: space-between;
   }
-  
-  
 `;
 
 export type AdvancedISAImageProps = {

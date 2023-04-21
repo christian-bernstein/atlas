@@ -8,12 +8,24 @@ import {MainTypography} from "../triton/components/typography/MainTypography";
 import {DescriptiveTypography} from "../triton/components/typography/DescriptiveTypography";
 import {useLiveQuery} from "dexie-react-hooks";
 import {isaDB} from "./ImageSorterAppDB";
-import {ChevronRightRounded, CloseRounded} from "@mui/icons-material";
+import {
+    ChevronRightRounded,
+    CloseRounded,
+    CreateNewFolderRounded,
+    CreateRounded, DeleteForeverRounded, DeleteRounded, FilterRounded, ManageSearchRounded,
+    MoreVertRounded, StarRounded, TagRounded, UploadRounded
+} from "@mui/icons-material";
 import {IconButton} from "./IconButton";
 import styled from "styled-components";
 import {DefaultButton} from "./DefaultButton";
 import {ExportConfigDialog} from "./ExportConfigDialog";
 import {SelectionPreviewImage} from "./SelectionPreviewImage";
+import {CheckMenuButton, MenuButton} from "./MenuButton";
+import {BooleanContext} from "../test/BooleanContext";
+import {FileStructureImportModal} from "./FileStructureImportModal";
+import {MenuDivider} from "@szhsin/react-menu";
+import {VFSViewSettings} from "./VFSViewSettings";
+import {Menu} from "./Menu";
 
 const StyledSelectionTray = styled.span`
   display: block;
@@ -128,6 +140,13 @@ export const SelectionView: React.FC = props => {
                                         }} children={
                                             <MainTypography text={"Submit"}/>
                                         }/>
+
+                                        <Menu opener={<IconButton size={"small"} children={<MoreVertRounded/>}/>}>
+                                            <MenuButton text={"Filter"} icon={<ManageSearchRounded/>} onSelect={() => {}}/>
+                                            <MenuButton text={"Add tag"} icon={<TagRounded/>} onSelect={() => {}}/>
+                                            <MenuButton text={"Mark as favourites"} icon={<StarRounded/>} onSelect={() => {}}/>
+                                            <MenuButton text={"Delete selection"} icon={<DeleteRounded/>} onSelect={() => {}}/>
+                                        </Menu>
 
                                         <IconButton tooltip={"Clear & close"} size={"small"} onClick={() => {
                                             api.selectionManager.clearAndCloseSelection();

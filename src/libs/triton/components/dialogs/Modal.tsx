@@ -12,11 +12,11 @@ export type ModalProps = PropsWithChildren<{
     title?: string,
     onClose: () => void,
     onUnsuccessfulClosingAttempt?: () => void,
+    preventClosingOnBackdropClick?: boolean,
+    preventClosingMasterSwitch?: boolean,
     footer?: JSX.Element,
     w?: DimensionalMeasured | string,
     onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void,
-    preventClosingOnBackdropClick?: boolean,
-    preventClosingMasterSwitch?: boolean,
     icon?: React.ReactElement,
     loading?: boolean
 }>;

@@ -1,9 +1,10 @@
-import React, {PropsWithChildren} from "react";
+import React, {CSSProperties, PropsWithChildren} from "react";
 import {ResizableBox} from "react-resizable";
 import {TrayConfig} from "./TrayConfig";
 
 export type TrayProps = PropsWithChildren<{
-    config: TrayConfig
+    config: TrayConfig,
+    style?: CSSProperties
 }>
 
 export const Tray: React.FC<TrayProps> = props => {
@@ -20,8 +21,10 @@ export const Tray: React.FC<TrayProps> = props => {
                     height={350}
                     axis={"y"}
                     style={{
+                        ...props.style,
                         borderRadius: ".5rem",
-                        overflow: "hidden"
+                        overflow: "hidden",
+                        height: "100% !important",
                     }}
                     handle={(h, ref) => (
                         <span
@@ -43,11 +46,11 @@ export const Tray: React.FC<TrayProps> = props => {
                     maxConstraints={[0, 600]}
                     children={
                         <div style={{
-                            height: "100%",
+                            // height: "100%",
                             width: "100%",
-                            backgroundColor: "crimson",
+                            // backgroundColor: "crimson",
                             borderRadius: ".5rem",
-                            padding: "1rem",
+                            // padding: "1rem",
                             overflow: "scroll"
                         }} children={props.children}/>
                     }
@@ -63,6 +66,9 @@ export const Tray: React.FC<TrayProps> = props => {
                 width={350}
                 axis={"x"}
                 style={{
+                    ...props.style,
+                    // height: "100%",
+                    height: "100% !important",
                     borderRadius: ".5rem",
                     overflow: "hidden"
                 }}
@@ -86,11 +92,11 @@ export const Tray: React.FC<TrayProps> = props => {
                 children={
                     <div style={{
                         height: "100%",
-                        width: "100%",
-                        backgroundColor: "crimson",
                         borderRadius: ".5rem",
-                        padding: "1rem",
-                        overflow: "scroll"
+                        // backgroundColor: "crimson",
+                        overflow: "scroll",
+                        // padding: "1rem",
+                        width: "100%"
                     }} children={props.children}/>
                 }
             />
@@ -100,13 +106,14 @@ export const Tray: React.FC<TrayProps> = props => {
     return (
         <TrayContext.Provider value={props.config}>
             <div style={{
+                ...props.style,
                 height: "100%",
                 width: "100%",
                 overflow: "scroll",
                 // backgroundColor: "#101016",
-                backgroundColor: "crimson",
+                // backgroundColor: "crimson",
                 borderRadius: ".5rem",
-                padding: "1rem",
+                // padding: "1rem",
             }} children={props.children}/>
         </TrayContext.Provider>
     );
