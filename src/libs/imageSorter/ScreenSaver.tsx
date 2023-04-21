@@ -46,7 +46,7 @@ export const ScreenSaver: React.FC = props => {
 
     useEffect(() => {
         idleRef.current = setInterval(() => {
-            if (data.current.idle > (60_000 * 10)) {
+            if (data.current.idle > (60e3 * 3)) {
                 if (!state.active) {
                     setState(prevState => ({
                         ...prevState,
@@ -55,9 +55,9 @@ export const ScreenSaver: React.FC = props => {
                     }));
                 }
             } else {
-                data.current.idle += 5000;
+                data.current.idle += 5e3;
             }
-        }, 5000);
+        }, 5e3);
 
         return () => clearInterval(idleRef.current);
     }, []);

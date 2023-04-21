@@ -18,6 +18,10 @@ const StyledMenuButton = styled.span`
   justify-content: space-between;
   gap: 8px;
   
+  &[data-disabled=true] {
+    opacity: .3;
+  }
+  
   .menu-main {
     display: flex;
     align-items: center;
@@ -25,12 +29,15 @@ const StyledMenuButton = styled.span`
     gap: 8px;
   }
   
-  &:active, &:focus {
+  &[data-disabled=false]:active, &:focus {
     background: rgba(177, 186, 196, 0.2) !important;
   }
 
-  &:hover, &.pointed {
+  &[data-disabled=false]:hover, &.pointed {
     background: rgba(177, 186, 196, 0.12);
+  }
+  
+  &:hover, &.pointed {
     cursor: pointer;
   }
   
@@ -53,17 +60,22 @@ export type MenuButtonProps = {
     isPointedTo?: boolean,
     onSelect?: () => void,
     onHover?: () => void,
-
     icon?: React.ReactNode,
-    appendix?: React.ReactNode
+    appendix?: React.ReactNode,
+
+    disabled?: boolean
 }
 
 export const MenuButton: React.FC<MenuButtonProps> = props => {
     const iconSize = "16px"
+    const disabled = props.disabled ?? false;
+    const mainClassName = `${props.isPointedTo ? "pointed" : ""}`;
 
     return (
-        <MenuItem children={
-            <StyledMenuButton className={props.isPointedTo ? "pointed" : ""} onMouseEnter={() => props.onHover?.()} onClick={() => props.onSelect?.()}>
+        <MenuItem disabled={disabled} children={
+            <StyledMenuButton data-disabled={disabled} className={mainClassName} onMouseEnter={() => props.onHover?.()} onClick={() => {
+                if (!disabled) props.onSelect?.()
+            }}>
                 <div className={"menu-main"}>
                 <span className={"menu-icon-tray"} style={{
                     width: iconSize,

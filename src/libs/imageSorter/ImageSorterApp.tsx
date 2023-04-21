@@ -17,6 +17,7 @@ import {LayoutManagerView} from "./layout/LayoutManagerView";
 import {SidePanel} from "./SidePanel";
 import {LayoutTabButton} from "./LayoutTabButton";
 import {CodeRounded, FolderRounded, ImageRounded, ImageSearchRounded} from "@mui/icons-material";
+import {BottomPanel} from "./BottomPanel";
 
 export type ImageSorterAppState = {
     fvsPath: Array<string>,
@@ -200,6 +201,10 @@ export const ImageSorterApp: React.FC = props => {
                                     </>
                                 }/>
                             </div>
+
+                            {/*
+                            <BottomPanel/>
+                            */}
                         </div>
                     }/>
 

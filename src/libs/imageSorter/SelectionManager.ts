@@ -17,6 +17,10 @@ export class SelectionManager extends APIShard {
         }));
     }
 
+    public isSelected(imageID: string) {
+        return this.api().state.selectedImages.includes(imageID);
+    }
+
     public toggleSelection(imageID: string) {
         if (this.api().state.selectedImages.includes(imageID)) {
             const empty = this.api().state.selectedImages.length - 1 === 0;

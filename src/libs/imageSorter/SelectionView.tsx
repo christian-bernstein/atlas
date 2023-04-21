@@ -33,6 +33,7 @@ import {ButtonModalCompound} from "./ButtonModalCompound";
 import {Image} from "./Image";
 import {ButtonBase} from "../triton/components/buttons/ButtonBase";
 import {ControlModalCompound, ModalCompoundContext, ModalPolicy} from "./ControlModalCompound";
+import {ButtonGroup} from "./ButtonGroup";
 
 const StyledSelectionTray = styled.span`
   display: block;
@@ -135,10 +136,6 @@ export const SelectionView: React.FC = props => {
                                     }}>
                                         <DescriptiveTypography text={`${state.selectedImages.length} selected`}/>
 
-                                        <DefaultButton size={"small"} children={
-                                            <MainTypography text={"Select action"}/>
-                                        }/>
-
                                         <DefaultButton variant={"primary"} size={"small"} onClick={() => {
                                             setLocalState(prevState => ({
                                                 ...prevState,
@@ -148,8 +145,8 @@ export const SelectionView: React.FC = props => {
                                             <MainTypography text={"Submit"}/>
                                         }/>
 
-                                        <Menu opener={<IconButton size={"small"} children={<MoreVertRounded/>}/>}>
-                                            <MenuButton text={"Filter"} icon={<ManageSearchRounded/>} onSelect={() => {}}/>
+                                        <Menu menuProps={{ direction: "top" }} opener={<IconButton size={"small"} children={<MoreVertRounded/>}/>}>
+                                            <MenuButton disabled text={"Filter"} icon={<ManageSearchRounded/>} onSelect={() => {}}/>
 
                                             <ButtonModalCompound
                                                 preventClosingMasterSwitch
@@ -246,8 +243,9 @@ export const SelectionView: React.FC = props => {
                                                 ])}
                                             />
 
-                                            <MenuButton text={"Delete selection"} icon={<DeleteRounded/>} onSelect={() => {}}/>
+                                            <MenuButton disabled text={"Delete selection"} icon={<DeleteRounded/>} onSelect={() => {}}/>
                                         </Menu>
+
 
                                         <IconButton tooltip={"Clear & close"} size={"small"} onClick={() => {
                                             api.selectionManager.clearAndCloseSelection();

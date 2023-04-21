@@ -1,5 +1,5 @@
 import React, {PropsWithChildren, useRef} from "react";
-import {ControlledMenu, MenuItem, useClick, useMenuState} from "@szhsin/react-menu";
+import {ControlledMenu, ControlledMenuProps, MenuItem, useClick, useMenuState} from "@szhsin/react-menu";
 import {IconButton} from "./IconButton";
 import {MoreVertRounded} from "@mui/icons-material";
 import styled from "styled-components";
@@ -17,7 +17,8 @@ import styled from "styled-components";
 // </MenuItem>
 
 export type MenuProps = PropsWithChildren<{
-    opener?: React.ReactNode
+    opener?: React.ReactNode,
+    menuProps?: ControlledMenuProps
 }>;
 
 const StyledMenu = styled.div`
@@ -52,6 +53,7 @@ export const Menu: React.FC<MenuProps> = props => {
             }/>
 
             <ControlledMenu
+                {...props.menuProps}
                 portal={{
                     target: urgencyButtonRef.current,
                     stablePosition: true
@@ -61,22 +63,22 @@ export const Menu: React.FC<MenuProps> = props => {
                 onClose={() => toggleMenu(false)}
                 key={"top"}
                 menuStyle={{
-                    // width: urgencyButtonRef.current?.offsetWidth ?? "auto",
-                    minWidth: urgencyButtonRef.current?.offsetWidth ?? "auto",
-                    borderRadius: "12px",
-                    backgroundColor: "rgb(22, 27, 34)",
                     // boxShadow: "rgb(48, 54, 61) 0px 0px 0px 1px, rgba(1, 4, 9, 0.85) 0px 16px 32px",
-                    boxShadow: "rgba(1, 4, 9, 0.85) 0px 16px 32px",
+                    // width: urgencyButtonRef.current?.offsetWidth ?? "auto",
                     // border: "none",
-                    border: "1px solid rgb(48, 54, 61)",
-                    padding: "8px"
+                    backgroundColor: "rgb(22, 27, 34)",
+                    borderRadius: "12px",
+                    boxShadow: "rgba(1, 4, 9, 0.85) 0px 16px 32px",
+                    minWidth: urgencyButtonRef.current?.offsetWidth ?? "auto",
+                    padding: "8px",
+                    border: "1px solid rgb(48, 54, 61)"
                 }}
                 arrowStyle={{
                     borderLeftColor: "rgb(48, 54, 61)",
                     borderTopColor: "rgb(48, 54, 61)",
                     backgroundColor: "rgb(22, 27, 34)"
                 }}
-                direction={"bottom"}
+                // direction={"bottom"}
                 align={"center"}
                 theming={"dark"}
                 transition={true}

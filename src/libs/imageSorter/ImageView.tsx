@@ -5,7 +5,14 @@ import {ImageSorterAPIStateContext} from "./ImageSorterApp";
 import {DescriptiveTypography} from "../triton/components/typography/DescriptiveTypography";
 import {ImageSorterAPIContext} from "./ImageSorterAPI";
 import {IconButton} from "./IconButton";
-import {CloseRounded, DownloadRounded, FileOpenRounded, InfoRounded, PreviewRounded} from "@mui/icons-material";
+import {
+    CloseRounded,
+    DownloadRounded,
+    FileOpenRounded,
+    InfoRounded,
+    PreviewRounded,
+    SelectAllRounded
+} from "@mui/icons-material";
 import {ButtonGroup} from "./ButtonGroup";
 import {ImageViewFooter} from "./ImageViewFooter";
 import {ButtonModalCompound} from "./ButtonModalCompound";
@@ -43,21 +50,6 @@ export const ImageView: React.FC = props => {
                 flexDirection: "column"
             }}>
                 <DescriptiveTypography text={"Select an image"}/>
-
-                <ButtonModalCompound
-                    preventClosingMasterSwitch
-                    preventClosingOnBackdropClick
-                    button={<IconButton children={<FileOpenRounded/>}/>}
-                    modalContent={(ctx) => (
-                        <StyledModal onClose={() => ctx.close()} children={
-                            <Formik initialValues={{ tags: [], tagPrompt: "" }} onSubmit={values => {}} children={fp => (
-                                <TagListConfigurator formik={fp}/>
-                            )}/>
-                        }/>
-                    )}
-                />
-
-
                 {/*
                 <iframe
                     title={"SD"}
@@ -91,6 +83,11 @@ export const ImageView: React.FC = props => {
                 flexDirection: "row",
                 gap: ".5rem"
             }}>
+                <IconButton variant={api.selectionManager.isSelected(image?.id) ? "primary" : "default"} tooltip={"Select"} children={<SelectAllRounded/>} onClick={() => {
+                    api.selectionManager.toggleSelection(image?.id);
+                }}/>
+
+                {/* TODO Deactivate if prev of current project */}
                 <IconButton tooltip={"Set as cover"} children={<PreviewRounded/>} onClick={() => {
                     api.getProjectContext().setPreviewImage(image?.id);
                 }}/>
