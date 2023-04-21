@@ -12,7 +12,7 @@ import {
     ChevronRightRounded,
     CloseRounded,
     CreateNewFolderRounded,
-    CreateRounded, DeleteForeverRounded, DeleteRounded, FilterRounded, ManageSearchRounded,
+    CreateRounded, DeleteForeverRounded, DeleteRounded, FileOpenRounded, FilterRounded, ManageSearchRounded,
     MoreVertRounded, StarRounded, TagRounded, UploadRounded
 } from "@mui/icons-material";
 import {IconButton} from "./IconButton";
@@ -26,6 +26,13 @@ import {FileStructureImportModal} from "./FileStructureImportModal";
 import {MenuDivider} from "@szhsin/react-menu";
 import {VFSViewSettings} from "./VFSViewSettings";
 import {Menu} from "./Menu";
+import {StyledModal} from "./StyledModal";
+import {Formik} from "formik";
+import {TagListConfigurator} from "./TagListConfigurator";
+import {ButtonModalCompound} from "./ButtonModalCompound";
+import {Image} from "./Image";
+import {ButtonBase} from "../triton/components/buttons/ButtonBase";
+import {ControlModalCompound, ModalCompoundContext, ModalPolicy} from "./ControlModalCompound";
 
 const StyledSelectionTray = styled.span`
   display: block;
@@ -143,8 +150,102 @@ export const SelectionView: React.FC = props => {
 
                                         <Menu opener={<IconButton size={"small"} children={<MoreVertRounded/>}/>}>
                                             <MenuButton text={"Filter"} icon={<ManageSearchRounded/>} onSelect={() => {}}/>
-                                            <MenuButton text={"Add tag"} icon={<TagRounded/>} onSelect={() => {}}/>
-                                            <MenuButton text={"Mark as favourites"} icon={<StarRounded/>} onSelect={() => {}}/>
+
+                                            <ButtonModalCompound
+                                                preventClosingMasterSwitch
+                                                preventClosingOnBackdropClick
+                                                button={<MenuButton text={"Add tags"} icon={<TagRounded/>}/>}
+                                                modalContent={(ctx) => (
+                                                    <Formik initialValues={{ tags: [], tagPrompt: "" }} onSubmit={(values, formikHelpers) => {
+                                                        isaDB.images.where("id").anyOfIgnoreCase(state.selectedImages).toArray().then(images => {
+                                                            images.forEach((i, n, arr) => {
+                                                                const newTags = Array.from<string>(new Set<string>([...i.tags, ...values.tags]))
+                                                                isaDB.images.update(i.id, {
+                                                                    tags: newTags
+                                                                }).then(() => {
+                                                                    if (n === arr.length - 1) {
+                                                                        // Update finished
+                                                                        formikHelpers.setSubmitting(false);
+                                                                        ctx.close();
+                                                                    }
+                                                                }).catch(reason => {
+                                                                    formikHelpers.setSubmitting(false);
+                                                                    alert(reason);
+                                                                    ctx.close();
+                                                                });
+                                                            });
+                                                        }).catch(reason => {
+                                                            formikHelpers.setSubmitting(false);
+                                                            alert(reason);
+                                                            ctx.close();
+                                                        });
+                                                    }} children={fp => (
+                                                        <StyledModal icon={<TagRounded/>} title={"Add tags"} onClose={() => ctx.close()} children={
+                                                            <TagListConfigurator formik={fp}/>
+                                                        } footer={
+                                                            <div style={{
+                                                                display: "grid",
+                                                                gap: "8px",
+                                                                width: "100%",
+                                                                gridTemplateColumns: "repeat(2, 1fr)"
+                                                            }}>
+                                                                <ButtonBase text={"Add tags"} baseProps={{
+                                                                    onClick: (e) => fp.handleSubmit(e)
+                                                                }}/>
+                                                                <ButtonBase text={"Cancel"} baseProps={{
+                                                                    onClick: () => ctx.close()
+                                                                }}/>
+                                                            </div>
+                                                        }/>
+                                                    )}/>
+                                                )}
+                                            />
+
+                                            <ControlModalCompound
+                                                controller={ctx => (
+                                                    <MenuButton text={"Mark as favourites"} icon={<StarRounded/>} onSelect={() => {
+                                                        ctx.open("process", undefined);
+                                                        state.selectedImages.forEach((iID, i, arr) => {
+                                                            isaDB.images.update(iID, {
+                                                                favourite: true
+                                                            }).then(() => {
+                                                                if (i === arr.length - 1) {
+                                                                    // Update finished
+                                                                    ctx.open("success", arr.length);
+                                                                }
+                                                            }).catch(reason => {
+                                                                alert(reason);
+                                                                ctx.close();
+                                                            });
+                                                        });
+                                                    }}/>
+                                                )}
+                                                modals={new Map<string, (ctx: ModalCompoundContext, param: any) => React.ReactNode | [React.ReactNode, ModalPolicy]>([
+                                                    ["success", (ctx, param) => {
+                                                        const isNum = typeof param === "number";
+                                                        const pNum = param as number;
+                                                        const text = !isNum ? "" : (pNum === 1 ? "One image marked as favourite" : `${pNum} images marked as favourites`);
+                                                        return (
+                                                            <StyledModal closeDisplayMode={"hidden"} icon={<StarRounded/>} title={text} onClose={() => ctx.close()} children={
+                                                                <div style={{
+                                                                    display: "grid",
+                                                                    width: "100%",
+                                                                    gridTemplateColumns: "repeat(1, 1fr)"
+                                                                }}>
+                                                                    <ButtonBase text={"OK"} baseProps={{
+                                                                        onClick: () => ctx.close()
+                                                                    }}/>
+                                                                </div>
+                                                            }/>
+                                                        );
+
+                                                    }],
+                                                    ["process", ctx => (
+                                                        <StyledModal closeDisplayMode={"hidden"} loading title={"Marking as favourites"} onClose={() => ctx.close()}/>
+                                                    )]
+                                                ])}
+                                            />
+
                                             <MenuButton text={"Delete selection"} icon={<DeleteRounded/>} onSelect={() => {}}/>
                                         </Menu>
 

@@ -2,13 +2,10 @@ import React, {useState} from "react";
 import {TransitionProps} from "react-transition-group/Transition";
 import Grow from "@mui/material/Grow";
 import Dialog from "@mui/material/Dialog";
-import {CircularProgress} from "@mui/material";
-import {CloseRounded} from "@mui/icons-material";
 
 export type ButtonModalCompoundProps = {
     button: React.ReactNode,
     modalContent: (ctx: ModalCompoundContext) => React.ReactNode,
-
     onPreModalClose?: () => void,
     onUnsuccessfulClosingAttempt?: () => void,
     preventClosingOnBackdropClick?: boolean,
@@ -21,6 +18,7 @@ const Transition = React.forwardRef(function Transition(
     },
     ref: React.Ref<unknown>,
 ) {
+    // noinspection RequiredAttributes
     return <Grow ref={ref} {...props} />;
 });
 
