@@ -10,6 +10,10 @@ import {ButtonGroup} from "./ButtonGroup";
 import {ImageViewFooter} from "./ImageViewFooter";
 import {ButtonModalCompound} from "./ButtonModalCompound";
 import {DefaultButton} from "./DefaultButton";
+import {StyledModal} from "./StyledModal";
+import {TagEditor} from "./TagEditor";
+import {Formik} from "formik";
+import {TagListConfigurator} from "./TagListConfigurator";
 
 export const ImageView: React.FC = props => {
     const state = useContext(ImageSorterAPIStateContext);
@@ -45,9 +49,14 @@ export const ImageView: React.FC = props => {
                     preventClosingOnBackdropClick
                     button={<IconButton children={<FileOpenRounded/>}/>}
                     modalContent={(ctx) => (
-                        <DefaultButton onClick={() => ctx.close()}/>
+                        <StyledModal onClose={() => ctx.close()} children={
+                            <Formik initialValues={{ tags: [], tagPrompt: "" }} onSubmit={values => {}} children={fp => (
+                                <TagListConfigurator formik={fp}/>
+                            )}/>
+                        }/>
                     )}
                 />
+
 
                 {/*
                 <iframe

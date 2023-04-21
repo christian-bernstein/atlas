@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import {FormikSingleLineInput} from "../triton/components/forms/FormikSingleLineInput";
 import {FormikProps} from "formik";
 import {IconButton} from "./IconButton";
@@ -13,7 +13,7 @@ export type TagListConfiguratorProps = {
 
 export const TagListConfigurator: React.FC<TagListConfiguratorProps> = props => {
     const flushTagPrompt = () => {
-        const newTags = [...props.formik.values.tags as string[]];
+        const newTags = [...(props.formik.values.tags as string[] ?? [])];
         const tagPrompt = props.formik.values.tagPrompt as string;
         newTags.push(...tagPrompt
             .split(",")
@@ -58,7 +58,7 @@ export const TagListConfigurator: React.FC<TagListConfiguratorProps> = props => 
                 </div>
 
                 <TransitionGroup>
-                    { ((props.formik.values.tags as Array<string>).length > 0) ? (
+                    { ((props.formik.values.tags as Array<string> ?? []).length > 0) ? (
                         <Collapse sx={{
                             marginLeft: "8px"
                         }} orientation={"horizontal"} key={"clear-icon"}>
@@ -79,7 +79,7 @@ export const TagListConfigurator: React.FC<TagListConfiguratorProps> = props => 
                 width: "100%"
             }}>
                 <TransitionGroup>
-                    { (props.formik.values.tags as Array<string>).map(tag => (
+                    { (props.formik.values.tags as Array<string> ?? []).map(tag => (
                         <Collapse key={tag}>
                             <div style={{
                                 display: "grid",
