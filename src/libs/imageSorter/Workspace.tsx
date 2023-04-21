@@ -1,9 +1,10 @@
-import React, {PropsWithChildren} from "react";
+import React, {CSSProperties, PropsWithChildren} from "react";
 import {WorkspaceConfig} from "./WorkspaceConfig";
 import {ResizableBox} from "react-resizable";
 
 export type WorkspaceProps = PropsWithChildren<{
-    config: WorkspaceConfig
+    config: WorkspaceConfig,
+    style?: CSSProperties
 }>
 
 export const Workspace: React.FC<WorkspaceProps> = props => {
@@ -19,7 +20,8 @@ export const Workspace: React.FC<WorkspaceProps> = props => {
                 axis={"x"}
                 style={{
                     borderRadius: ".5rem",
-                    overflow: "hidden"
+                    overflow: "hidden",
+                    ...props.style
                 }}
                 handle={(h, ref) => (
                     <span
@@ -61,6 +63,7 @@ export const Workspace: React.FC<WorkspaceProps> = props => {
                 backgroundColor: "#101016",
                 borderRadius: ".5rem",
                 padding: "1rem",
+                ...props.style
             }} children={props.children}/>
         </WorkspaceContext.Provider>
     );

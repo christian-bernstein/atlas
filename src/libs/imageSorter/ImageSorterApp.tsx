@@ -119,8 +119,13 @@ export const ImageSorterApp: React.FC = props => {
                                 gap: "8px",
                                 // padding: "8px",
                                 gridTemplateColumns: "min-content auto min-content",
-                                height: "100%",
-                                width: "100%"
+
+                                // height: "100%",
+                                height: "calc(100% - 0.3rem)",
+                                maxHeight: "calc(100% - 0.3rem)",
+
+                                width: "100%",
+                                overflow: "scroll"
                             }}>
                                 <SidePanel start={
                                     <>
@@ -171,22 +176,34 @@ export const ImageSorterApp: React.FC = props => {
 
                                         ["project-view", () => (
                                             <div style={{
-                                                display: "grid",
-                                                gridTemplateRows: "min-content auto min-content",
+                                                // display: "grid",
+                                                // gridTemplateRows: "min-content auto min-content",
+
+                                                display: "flex",
+                                                flexDirection: "column",
+
                                                 rowGap: "8px",
-                                                height: "100%"
+                                                height: "calc(100% - 0px)"
                                             }}>
-                                                <Workspace children={<ProjectHeaderView/>} config={{
+                                                <Workspace style={{
+                                                    flexShrink: 0,
+                                                    height: "min-content"
+                                                }} children={<ProjectHeaderView/>} config={{
                                                     mode: "desktop",
                                                     name: "project-title"
                                                 }}/>
 
-                                                <Workspace children={<ProjectView/>} config={{
+                                                <Workspace style={{
+                                                    flexShrink: 2
+                                                }} children={<ProjectView/>} config={{
                                                     mode: "desktop",
                                                     name: "project"
                                                 }}/>
 
-                                                <Workspace children={<MetadataView/>} config={{
+                                                <Workspace style={{
+                                                    flexShrink: 0,
+                                                    height: "min-content"
+                                                }} children={<MetadataView/>} config={{
                                                     mode: "desktop",
                                                     name: "project-metadata"
                                                 }}/>

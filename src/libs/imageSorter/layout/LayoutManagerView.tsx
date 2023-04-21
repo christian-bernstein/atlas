@@ -31,12 +31,17 @@ export const LayoutManagerView: React.FC<LayoutManagerViewProps> = props => {
             // TODO: Maybe fixed calc() sizes
             width: "100%",
             height: "100%",
-            // gap: "8px"
+            overflow: "scroll"
         }}>
             <div style={{
                 display: "grid",
                 gridTemplateColumns: "min-content auto min-content",
                 // gap: "8px"
+
+                overflow: "hidden",
+
+                height: "calc(100% - 0px)",
+                maxHeight: "calc(100% - 0px)"
             }}>
                 {
                     (isOpen("left") && (

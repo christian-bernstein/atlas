@@ -52,8 +52,12 @@ export const ProjectView: React.FC = props => {
                     </div>
                 ) : (
                     <div style={{
+                        flexShrink: 2,
+                        // overflowY: "scroll",
+                        // overflowX: "visible",
+
                         display: "grid",
-                        gridTemplateRows: "min-content auto min-content",
+                        gridTemplateRows: "min-content auto",
                         height: "100%",
                         gap: "8px",
                     }}>
@@ -104,9 +108,7 @@ export const ProjectView: React.FC = props => {
                                                 api.selectionManager.toggleSelection(data.id);
                                                 return;
                                             }
-
                                             api.selectImageByID(data.id);
-
                                             if (workspace.mode === "mobile") {
                                                 wrapper.dialog(
                                                     <Screen style={{ backgroundColor: "#1a1a20" }} children={
@@ -129,11 +131,6 @@ export const ProjectView: React.FC = props => {
                                     <DescriptiveTypography text={"No images"}/>
                                 ) : undefined
                             }
-                        </div>
-
-                        <div>
-                            <DescriptiveTypography text={"Metadata"}/>
-                            <MetaDisplay metadata={currentProject?.meta ?? "{}"}/>
                         </div>
                     </div>
                 )

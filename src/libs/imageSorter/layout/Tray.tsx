@@ -25,6 +25,8 @@ export const Tray: React.FC<TrayProps> = props => {
                         borderRadius: ".5rem",
                         overflow: "hidden",
                         height: "100% !important",
+
+
                     }}
                     handle={(h, ref) => (
                         <span
@@ -38,7 +40,7 @@ export const Tray: React.FC<TrayProps> = props => {
                                 margin: 0,
                                 transformOrigin: 0,
                                 transform: "none",
-                                width: "100%"
+                                width: "100%",
                             }}
                         />
                     )}
