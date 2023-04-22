@@ -13,15 +13,22 @@ type Func = (ctx: FuncContext, images: Array<Image>) => Promise<Array<Image>> | 
 
 export class SearchLogic {
 
-    private readonly funcGenerators: Map<string, (param?: string) => Func> = new Map<string, (param?: string) => Func>([
-        ["limit", param => {
-            return (ctx, images) => {
-                const limit = param === undefined ? 0 : evaluate(param, {
-                    l: images.length
-                }) as number;
-                return images.splice(0, limit);
-            }
-        }],
+    private evalNumber(ctx: FuncContext, images: Image[], param: any, def: number = 0) {
+        return param === undefined ? def : evaluate(param, {
+            l: images.length,
+            gb: 1e+9,
+            mb: 1e+6
+        }) as number;
+    }
+
+    private readonly baseFuncGenerators: Map<string, (param?: string) => Func> = new Map<string, (param?: string) => Func>([
+        ["limit", param => (ctx, images) => images.splice(0, this.evalNumber(ctx, images, param, 1))],
+        ["random", param => (ctx, images) => images.sort(() => .5 - Math.random()).slice(0, this.evalNumber(ctx, images, param, 1))],
+        ["r18", param => (ctx, images) => images.filter(i => i.tags.includes("r18"))],
+        ["unreleased", param => (ctx, images) => images.filter(i => !i.tags.includes("submitted"))],
+        ["released", param => (ctx, images) => images.filter(i => i.tags.includes("submitted"))],
+        ["flt", param => (ctx, images) => images.filter(i => i.data.size >= this.evalNumber(ctx, images, param))],
+        ["fst", param => (ctx, images) => images.filter(i => i.data.size <= this.evalNumber(ctx, images, param))],
         ["not", param => {
             return async (ctx, images) => {
                 const matchingInnerExpression = await this.parseImageQuery(param ?? "", ctx.api)(images);
@@ -30,46 +37,21 @@ export class SearchLogic {
                 });
             }
         }],
-        ["random", param => {
-            return (ctx, images) => {
-                const selectCount = param === undefined ? 1 : evaluate(param, {
-                    l: images.length
-                }) as number;
-                return images.sort(() => .5 - Math.random()).slice(0, selectCount);
-            }
+        ["nth", param => (ctx, images) => {
+            const idx = this.evalNumber(ctx, images, param);
+            if (idx < 0 || idx >= images.length) return [];
+            return [images[idx]];
         }],
-        ["unreleased", param => {
-            return (ctx, images) => {
-                return images.filter(i => !i.tags.includes("submitted"));
-            }
-        }],
-        ["released", param => {
-            return (ctx, images) => {
-                return images.filter(i => i.tags.includes("submitted"));
-            }
-        }],
-        ["nth", param => {
-            return (ctx, images) => {
-                const idx = param === undefined ? 0 : evaluate(param, {
-                    l: images.length
-                }) as number;
-                if (idx < 0 || idx >= images.length) return [];
-                return [images[idx]];
-            }
-        }],
-        ["flt", param => {
-            return (ctx, images) => {
-                const minByteSize = param === undefined ? 0 : evaluate(param, { gb: 1e+9, mb: 1e+6 }) as number;
-                return images.filter(i => i.data.size >= minByteSize);
-            }
-        }],
-        ["fst", param => {
-            return (ctx, images) => {
-                const maxByteSize = param === undefined ? 0 : evaluate(param, { gb: 1e+9, mb: 1e+6 }) as number;
-                return images.filter(i => i.data.size <= maxByteSize);
-            }
-        }]
     ]);
+
+    private readonly funcGenerators: Map<string, (param?: string) => Func> = new Map<string, (param?: string) => Func>([
+        ...Array.from(this.baseFuncGenerators.entries()),
+        this.alias("rnd", "random")
+    ]);
+
+    public alias(alias: string, original: string): [string, (param?: string) => Func] {
+        return [alias, this.baseFuncGenerators.get(original)!];
+    }
 
     /**
      * Primary tokens:

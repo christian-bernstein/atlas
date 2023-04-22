@@ -4,8 +4,13 @@ import {isaDB} from "./ImageSorterAppDB";
 import {DescriptiveTypography} from "../triton/components/typography/DescriptiveTypography";
 import {ButtonBase} from "../triton/components/buttons/ButtonBase";
 import {Image} from "./Image";
-import {ArrowLeftRounded, ArrowRightRounded} from "@mui/icons-material";
+import {ArrowLeftRounded, ArrowRightRounded, RefreshRounded} from "@mui/icons-material";
 import {IconButton} from "./IconButton";
+import {Menu} from "./Menu";
+import {MenuButton} from "./MenuButton";
+import {FormikSingleSelectInput} from "../triton/components/forms/FormikSingleSelectInput";
+import {Formik} from "formik";
+import {MenuDivider} from "@szhsin/react-menu";
 
 export type ImageGridProps = {
     imageIDs: Array<string>,
@@ -28,9 +33,11 @@ export const ISADBImageGrid: React.FC<ImageGridProps> = props => {
             .where("id")
             .anyOfIgnoreCase(props.imageIDs)
             .offset(state.itemsPerPage === undefined ? 0 : ((state.page - 1) * state.itemsPerPage))
-            .limit(state.itemsPerPage ?? props.imageIDs.length)
+            .limit( state.itemsPerPage === -1 ? props.imageIDs.length : (state.itemsPerPage ?? props.imageIDs.length))
             .toArray();
     }, [props, state]);
+
+    console.log("rendering image grid..");
 
     return (
         <div style={{
@@ -41,9 +48,32 @@ export const ISADBImageGrid: React.FC<ImageGridProps> = props => {
             gap: "8px"
         }}>
             <div style={{
-
+                width: "100%",
+                display: "grid",
+                alignItems: "center",
+                gridTemplateColumns: "32px auto min-content"
             }}>
-                <DescriptiveTypography text={`${props.imageIDs.length} images / ${images?.length ?? "0"} loaded`}/>
+                <span/>
+                <DescriptiveTypography style={{ textAlign: "center" }} text={`${props.imageIDs.length} images / ${images?.length ?? "0"} loaded`}/>
+                <Menu>
+                    <MenuButton text={"Refresh"} appendix={"Ctrl+F5"} disabled icon={<RefreshRounded/>}/>
+
+                    <Formik initialValues={{ itemsPerPage: state.itemsPerPage }} onSubmit={values => {
+                        setState(prevState => ({ ...prevState, itemsPerPage: Number(values.itemsPerPage) ?? 16 }))
+                    }} children={fp => (
+                        <FormikSingleSelectInput centerSelectedElementBadge placeholder={"Items per page"} disableSearchbar onPreSubmit={val => {
+                            fp.setFieldValue("itemsPerPage", val);
+                            fp.handleSubmit();
+                        }} formikProps={fp} name={"itemsPerPage"} options={[
+                            { id: "8", text: "8" },
+                            { id: "16", text: "16" },
+                            { id: "32", text: "32" },
+                            { id: "48", text: "48" },
+                            { id: "64", text: "64" },
+                            { id: "-1", text: "All" },
+                        ]}/>
+                    )}/>
+                </Menu>
             </div>
 
             {

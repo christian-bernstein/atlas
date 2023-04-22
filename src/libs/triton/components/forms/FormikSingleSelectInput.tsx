@@ -74,8 +74,8 @@ export const FormikSingleSelectInput: React.FC<FormikSingleSelectInputProps> = p
             <FormElement title={props.title} children={
                 <span ref={urgencyButtonRef}>
                     <GenericInputContainer onMouseDownCapture={() => {
-                        clickSound.play().then(() => {});
-                        props.onMenuButtonClick?.()
+                        // clickSound.play().then(() => {});
+                        // props.onMenuButtonClick?.()
                     }} type={"button"} {...anchorProps} children={
                         (selectedOption && (
                             (props.centerSelectedElementBadge ?? false) ? (
@@ -224,7 +224,7 @@ export const FormikSingleSelectInput: React.FC<FormikSingleSelectInputProps> = p
                                                 <EnumElement {...e} isPointedTo={searchFormikProps.values.pointed === e.text} onHover={() => {
                                                     searchFormikProps.setFieldValue("pointed", e.text)
                                                 }} text={e.text} selected={formikProps.values[props.name] === e.text} onSelect={() => {
-                                                    clickSound.play().then(() => {});
+                                                    // clickSound.play().then(() => {});
                                                     searchFormikProps.setFieldValue("val", e.text)
                                                     searchFormikProps.handleSubmit()
                                                 }}/>

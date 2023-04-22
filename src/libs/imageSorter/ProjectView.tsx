@@ -53,9 +53,6 @@ export const ProjectView: React.FC = props => {
                 ) : (
                     <div style={{
                         flexShrink: 2,
-                        // overflowY: "scroll",
-                        // overflowX: "visible",
-
                         display: "grid",
                         gridTemplateRows: "min-content auto",
                         height: "100%",

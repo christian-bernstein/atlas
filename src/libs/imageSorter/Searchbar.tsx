@@ -11,8 +11,6 @@ import {DescriptiveTypography} from "../triton/components/typography/Descriptive
 import {MainTypography} from "../triton/components/typography/MainTypography";
 import {IconButton} from "./IconButton";
 import {CloseRounded, MoreVertRounded, SelectAllRounded} from "@mui/icons-material";
-import {Screen} from "../base/components/base/Page";
-import {ImageView} from "./ImageView";
 import {ImagePreview} from "./ImagePreview";
 import {ImageSorterAPIContext} from "./ImageSorterAPI";
 
@@ -107,19 +105,27 @@ export const Searchbar: React.FC = props => {
                         monaco.languages.setMonarchTokensProvider("notes-lang", {
                             tokenizer: {
                                 root: [
+                                    // function sugar
                                     [/:limit/, "macro"],
+                                    // Keywords & base highlighting
                                     [/\{.*}/, "macro"],
                                     [/!/, "symbol"],
                                     [/:[\w<>=]+/, "keyword"],
                                     [/#\w+/, "tag"],
                                     [/-\w+/, "param"],
+                                    [/\$\w+/, "variable"],
+                                    [/@\w+/, "annotation"],
                                     [/->/, "arrow-right"],
                                     [/=>/, "arrow-right"],
                                     [/-/, "bullet-point"],
                                     [/:/, "double-point"],
                                     [/;/, "semicolon"],
+                                    [/(\d*\.?\d+|\d{1,3}(,\d{3})*(\.\d+)?)/, "number"],
                                     [/".*"/, "string"],
                                     [/'.*'/, "string"],
+                                    // units
+                                    [/mb/, "unit"],
+                                    [/gb/, "unit"],
                                 ]
                             }
                         });
@@ -129,6 +135,7 @@ export const Searchbar: React.FC = props => {
                             inherit: true,
                             rules: [
                                 { token: "arrow-right", foreground: "#A782BB" },
+                                { token: "unit", foreground: "#A782BB" },
                                 { token: "bullet-point", foreground: "#585858" },
                                 { token: "double-point", foreground: "#585858" },
                                 { token: "param", foreground: "#585858" },
@@ -138,8 +145,12 @@ export const Searchbar: React.FC = props => {
                                 { token: "method", foreground: "#FFC66D" },
                                 { token: "tag", foreground: "#FFC66D" },
                                 { token: "macro", foreground: "#FFC66D" },
-                                { token: "number", foreground: "#5028c8" },
-                                { token: "string", foreground: "#5028c8" },
+                                { token: "variable", foreground: "#FFC66D" },
+                                { token: "annotation", foreground: "#FFC66D" },
+                                // { token: "number", foreground: "#5028c8" },
+                                { token: "number", foreground: "#A782BB" },
+                                // { token: "string", foreground: "#5028c8" },
+                                { token: "string", foreground: "#A782BB" },
                             ],
                             colors: {
                                 "editor.background": "#101016",
