@@ -122,7 +122,8 @@ const VFSProjectCard: React.FC<{
                                 maxWidth: "100%",
                                 width: "100%",
                                 maxHeight: "100%",
-                                height: "auto",
+                                // height: "auto",
+                                height: "100%",
                             }}
                         />
                     ) : (
@@ -138,7 +139,8 @@ const VFSProjectCard: React.FC<{
                                         maxWidth: "100%",
                                         width: "100%",
                                         maxHeight: "100%",
-                                        height: "auto",
+                                        // height: "auto",
+                                        height: "100%",
                                     }}
                                 />
                             )}/>

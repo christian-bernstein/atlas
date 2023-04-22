@@ -18,6 +18,7 @@ import {SidePanel} from "./SidePanel";
 import {LayoutTabButton} from "./LayoutTabButton";
 import {CodeRounded, FolderRounded, ImageRounded, ImageSearchRounded} from "@mui/icons-material";
 import {BottomPanel} from "./BottomPanel";
+import {MobileMainView} from "./mobile/MobileMainView";
 
 export type ImageSorterAppState = {
     fvsPath: Array<string>,
@@ -62,40 +63,7 @@ export const ImageSorterApp: React.FC = props => {
             <ImageSorterMaster children={
                 <ImageSorterAPIContext.Provider value={api.current}>
                     <Mobile children={
-                        <div style={{
-                            display: "grid",
-                            rowGap: "1rem",
-                            padding: "1rem",
-                            gridAutoRows: "min-content auto",
-                            width: "calc(100vw + 0px)",
-                            height: "calc(100vh - 0.3rem)"
-                        }}>
-                            <AppHeader/>
-                            <div style={{
-                                width: "100%",
-                                height: "100%",
-                                overflow: "hidden",
-                                display: "grid",
-                                // gridTemplateColumns: "min-content auto min-content",
-                                gap: "8px"
-                            }}>
-                                <div style={{
-                                    display: "grid",
-                                    gridTemplateRows: "min-content auto",
-                                    rowGap: "8px"
-                                }}>
-                                    <Workspace children={<VFSViewOptions/>} config={{
-                                        mode: "mobile",
-                                        name: "vfs-options",
-                                    }}/>
-
-                                    <Workspace children={<VFSView/>} config={{
-                                        mode: "mobile",
-                                        name: "vfs"
-                                    }}/>
-                                </div>
-                            </div>
-                        </div>
+                        <MobileMainView/>
                     }/>
 
                     <Default children={
