@@ -81,6 +81,11 @@ export const ProjectHeaderView: React.FC = props =>  {
                                     api.selectionManager.select(currentProject?.resources ?? []);
                                 }}/>
 
+                                <MenuButton text={"Select duplicates"} icon={<SelectAllRounded/>} onSelect={() => {
+                                    api.selectionManager.selectDuplicates(currentProject?.resources ?? []);
+                                }}/>
+
+
                                 <MenuButton text={"Download images"} icon={<DownloadRounded/>} onSelect={() => {
                                     if (currentProject?.id === undefined) return;
                                     api.downloadManager.downloadProject(currentProject.id, new DuplexEventRelay()).then(() => {});

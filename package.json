@@ -21,6 +21,7 @@
     "@types/react-dom": "^18.0.10",
     "@uiw/react-codemirror": "^4.19.7",
     "@uiw/react-md-editor": "^3.20.2",
+    "blob-compare": "^1.1.0",
     "buffer": "^6.0.3",
     "dexie": "^3.2.3",
     "dexie-react-hooks": "^1.1.3",

@@ -23,7 +23,6 @@ export const MobileMainView: React.FC = props => {
             height: "calc(100vh - 0.3rem)",
             overflow: "hidden"
         }}>
-
             <Modal open={api.state.selectedImageId !== undefined} onClose={() => api.unselectImage()} children={
                 <ISAImage imageID={api.state.selectedImageId ?? "_fallback"}/>
             }/>

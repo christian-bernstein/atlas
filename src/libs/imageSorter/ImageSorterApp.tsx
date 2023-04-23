@@ -85,13 +85,9 @@ export const ImageSorterApp: React.FC = props => {
                             <div style={{
                                 display: "grid",
                                 gap: "8px",
-                                // padding: "8px",
                                 gridTemplateColumns: "min-content auto min-content",
-
-                                // height: "100%",
                                 height: "calc(100% - 0.3rem)",
                                 maxHeight: "calc(100% - 0.3rem)",
-
                                 width: "100%",
                                 overflow: "scroll"
                             }}>
