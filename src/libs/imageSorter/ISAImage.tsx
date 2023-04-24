@@ -8,7 +8,8 @@ export type ISAImageProps = {
     imageID: string,
     imageRenderer?: (i: Image) => React.ReactElement,
     noImageComponent?: React.ReactElement,
-    style?: CSSProperties
+    style?: CSSProperties,
+    onClick?: (event: React.MouseEvent<HTMLImageElement, MouseEvent>) => void
 }
 
 export const ISAImage: React.FC<ISAImageProps> = props => {
@@ -26,6 +27,6 @@ export const ISAImage: React.FC<ISAImageProps> = props => {
     }
 
     return props.imageRenderer !== undefined ? props.imageRenderer(image) : (
-        <img style={props.style} src={URL.createObjectURL(image.data)} alt={image.id}/>
+        <img style={props.style} src={URL.createObjectURL(image.data)} alt={image.id} onClick={event => props.onClick?.(event)}/>
     )
 }

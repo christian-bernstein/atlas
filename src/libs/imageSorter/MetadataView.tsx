@@ -125,27 +125,9 @@ export const MetadataView: React.FC = props => {
                                 flexDirection: "column",
                             }}>
                                 <MainTypography text={"Prompt"}/>
-                                {/*
-                                <div children={currentImageMeta?.promptShards.map(pS => <Tag tag={pS}/>)} style={{
-                                    display: "flex",
-                                    flexDirection: "row",
-                                    gap: "4px",
-                                    flexWrap: "wrap"
-                                }}/>
-                                */}
                                 <DescriptiveTypography text={currentImageMeta?.prompt ?? "No prompt available"}/>
-
                                 <MainTypography text={"Negative prompt"}/>
-                                {/*
-                                <div children={currentImageMeta?.negativePromptShards.map(pS => <Tag tag={pS}/>)} style={{
-                                    display: "flex",
-                                    flexDirection: "row",
-                                    gap: "4px",
-                                    flexWrap: "wrap"
-                                }}/>
-                                */}
                                 <DescriptiveTypography text={currentImageMeta?.negativePrompt ?? "No negative prompt available"}/>
-
                                 <div style={{
                                     display: "grid",
                                     gap: "8px"
