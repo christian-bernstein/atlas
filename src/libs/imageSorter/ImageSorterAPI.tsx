@@ -161,6 +161,13 @@ export class ImageSorterAPI {
         }));
     }
 
+    public selectStyleByID(styleID: string) {
+        this.setState(prevState => ({
+            ...prevState,
+            selectedStyleId: styleID
+        }));
+    }
+
     public unselectImage() {
         if (this.state.selectedImageId === undefined) return;
         this.setState(prevState => ({

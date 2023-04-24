@@ -33,7 +33,8 @@ export type ImageSorterAppState = {
     selectionMode: boolean,
     selectionPreview: boolean,
     openedTrays: Array<string>,
-    trayOccupancy: {[K in string | "left" | "main" | "right" | "bottom"]: string | undefined}
+    trayOccupancy: {[K in string | "left" | "main" | "right" | "bottom"]: string | undefined},
+    selectedStyleId?: string
 }
 
 function generateAppState(): ImageSorterAppState {

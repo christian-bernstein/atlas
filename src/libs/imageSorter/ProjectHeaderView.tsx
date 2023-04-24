@@ -29,8 +29,6 @@ export const ProjectHeaderView: React.FC = props =>  {
         api.getCurrentProject().then(cp => setCurrentProject(cp));
     }, [api, state]);
 
-    console.log("rendering ProjectHeaderView")
-
     return (
         state.selectedProject === undefined ? (
             <div style={{

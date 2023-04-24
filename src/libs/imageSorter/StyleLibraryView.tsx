@@ -1,11 +1,17 @@
 import React from "react";
 import {Formik} from "formik";
-import {BasicSingleSelect} from "../triton/components/forms/BasicSingleSelect";
-import {FormikInput} from "../triton/components/forms/FormikInput";
 import {FormikSingleLineInput} from "../triton/components/forms/FormikSingleLineInput";
 import {StyleDataCardPreview} from "./StyleDataCardPreview";
+import {useLiveQuery} from "dexie-react-hooks";
+import {isaDB} from "./ImageSorterAppDB";
+import {DescriptiveTypography} from "../triton/components/typography/DescriptiveTypography";
+import {TransitionGroup} from "react-transition-group";
+import Collapse from "@mui/material/Collapse";
 
 export const StyleLibraryView: React.FC = props => {
+    const styles = useLiveQuery(() => {
+        return isaDB.styles.toArray()
+    });
 
     return (
         <div style={{
@@ -20,8 +26,19 @@ export const StyleLibraryView: React.FC = props => {
                 <FormikSingleLineInput name={"search"} formikProps={fp}/>
             )}/>
 
-            <StyleDataCardPreview/>
-            <StyleDataCardPreview/>
+            { styles !== undefined && (
+                <TransitionGroup children={
+                    styles.map(style => (
+                        <Collapse key={style.id} children={
+                            <StyleDataCardPreview data={style}/>
+                        }/>
+                    ))
+                }/>
+            ) }
+
+            { (styles === undefined || styles.length === 0) && (
+                <DescriptiveTypography text={"No styles"}/>
+            ) }
         </div>
     );
 }

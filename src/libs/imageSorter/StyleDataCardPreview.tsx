@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import {StyleData} from "./StyleData";
 import {ISAImage} from "./ISAImage";
 import {MainTypography} from "../triton/components/typography/MainTypography";
@@ -7,35 +7,38 @@ import {DeleteRounded, EditRounded, FileOpenRounded, MoreHorizOutlined, SelectAl
 import {DescriptiveTypography} from "../triton/components/typography/DescriptiveTypography";
 import {Menu} from "./Menu";
 import {MenuButton} from "./MenuButton";
-import {MenuDivider} from "@szhsin/react-menu";
+import {isaDB} from "./ImageSorterAppDB";
+import {ImageSorterAPIContext} from "./ImageSorterAPI";
 
-export const StyleDataCardPreview: React.FC = props => {
-    const data: StyleData = {
-        title: "Sample title",
-        description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-        id: "d2996bb6-5247-48b7-b3ef-28af0183dd91",
-        meta: "",
-        previewID: "",
-        additionalPreviewIDs: []
-    };
+export type StyleDataCardPreviewProps = {
+    data: StyleData
+}
+
+export const StyleDataCardPreview: React.FC<StyleDataCardPreviewProps> = props => {
+    const api = useContext(ImageSorterAPIContext);
 
     return (
         <div style={{
             width: "100%",
             overflow: "hidden",
             display: "flex",
-            flexDirection: "row",
+            flexDirection: "column",
             borderRadius: "8px",
             backgroundColor: "#1e202a",
-            // backgroundColor: "crimson",
             alignItems: "center"
         }}>
-            <ISAImage imageID={data.id} style={{
-                height: "80px",
-                objectFit: "cover",
-                objectPosition: "top",
-                aspectRatio: "1 / 1"
-            }}/>
+            { props.data.previewID && (
+                <span style={{ height: "150px", width: "100%" }} children={
+                    <ISAImage imageID={props.data.previewID} style={{
+                        // height: "80px",
+                        height: "150px",
+                        width: "100%",
+                        objectFit: "cover",
+                        objectPosition: "top",
+                        aspectRatio: "1 / 1"
+                    }}/>
+                }/>
+            ) }
 
             <div style={{
                 width: "100%",
@@ -43,7 +46,7 @@ export const StyleDataCardPreview: React.FC = props => {
                 display: "flex",
                 flexDirection: "column",
                 gap: "8px",
-                padding: "1rem"
+                padding: "1rem",
             }}>
                 <div style={{
                     display: "flex",
@@ -51,7 +54,7 @@ export const StyleDataCardPreview: React.FC = props => {
                     width: "100%",
                     justifyContent: "space-between"
                 }}>
-                    <MainTypography text={data.title} style={{
+                    <MainTypography text={props.data.title} style={{
                         cursor: "pointer"
                     }}/>
 
@@ -61,23 +64,32 @@ export const StyleDataCardPreview: React.FC = props => {
                         gap: "8px",
                         flexDirection: "row"
                     }}>
-                        <IconButton size={"small"} children={<SelectAllRounded/>}/>
+                        <IconButton size={"small"} children={<SelectAllRounded/>} onClick={() => {
+                            api.selectStyleByID(props.data.id);
+                        }}/>
 
 
                         <Menu opener={<IconButton size={"small"} children={<MoreHorizOutlined/>}/>} menuProps={{ direction: "top" }}>
-                            <MenuButton icon={<FileOpenRounded/>} text={"Open"} appendix={"Ctrl+O"}/>
+                            <MenuButton icon={<FileOpenRounded/>} text={"Open"} appendix={"Ctrl+O"} onSelect={() => {
+                                api.selectStyleByID(props.data.id);
+                            }}/>
                             <MenuButton icon={<EditRounded/>} text={"Edit"} appendix={"Ctrl+E"}/>
-                            <MenuButton icon={<DeleteRounded/>} text={"Delete"}/>
-                            <MenuDivider/>
-                            <MenuButton text={"Open preview image"}/>
-                        </Menu>
+                            <MenuButton icon={<DeleteRounded/>} text={"Delete"} onSelect={() => {
+                                isaDB.styles.delete(props.data.id);
+                            }}/>
 
+                            { props.data.previewID && (
+                                <MenuButton text={"Open preview image"} onSelect={() => {
+                                    api.selectImageByID(props.data.previewID!, false)
+                                }}/>
+                            ) }
+                        </Menu>
                     </div>
                 </div>
 
 
-                { data.description && (
-                    <DescriptiveTypography text={data.description} style={{
+                { props.data.description && (
+                    <DescriptiveTypography text={props.data.description} style={{
                         width: "calc(100% - 0px)",
                         overflow: "hidden",
                         whiteSpace: "nowrap",

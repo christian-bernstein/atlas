@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import {TransitionGroup} from "react-transition-group";
 import Collapse from "@mui/material/Collapse";
 import {MainTypography} from "../triton/components/typography/MainTypography";
@@ -19,17 +19,18 @@ import {ISAImage} from "./ISAImage";
 import {Menu} from "./Menu";
 import {MenuButton} from "./MenuButton";
 import {MenuDivider} from "@szhsin/react-menu";
+import {ImageSorterAPI, ImageSorterAPIContext} from "./ImageSorterAPI";
+import {useLiveQuery} from "dexie-react-hooks";
+import {isaDB} from "./ImageSorterAppDB";
 
 export const StyleDataDisplay: React.FC = props => {
 
-    const data: StyleData = {
-        title: "Sample title",
-        description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-        id: "d2996bb6-5247-48b7-b3ef-28af0183dd91",
-        meta: "",
-        previewID: "",
-        additionalPreviewIDs: []
-    };
+    const api = useContext(ImageSorterAPIContext);
+
+    const style = useLiveQuery(() => {
+        return isaDB.styles.get(api.state.selectedStyleId ?? "");
+    }, [api.state.selectedStyleId]);
+
 
     const [viewState, setViewState] = useState<MetadataViewState>({
         expanded: false
@@ -51,57 +52,50 @@ export const StyleDataDisplay: React.FC = props => {
                             gap: "8px",
                             marginBottom: "8px"
                         }}>
-                            <span style={{ height: "300px", width: "100%" }} children={
-                                <ISAImage imageID={data.id} style={{
-                                    height: "300px",
-                                    objectFit: "cover",
-                                    objectPosition: "top",
-                                    width: "100%"
-                                }}/>
-                            }/>
 
-                            <div style={{
-                                width: "100%",
-                                overflow: "hidden",
-                                display: "flex",
-                                flexDirection: "column",
-                                gap: "8px"
-                            }}>
-                                <div style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                    width: "100%",
-                                    justifyContent: "space-between"
-                                }}>
-                                    <MainTypography text={data.title}/>
+                            { style && (
+                                <>
+                                    <span style={{ height: "300px", width: "100%" }} children={
+                                        <ISAImage imageID={style.previewID ?? ""} style={{
+                                            height: "300px",
+                                            objectFit: "cover",
+                                            objectPosition: "top",
+                                            width: "100%"
+                                        }}/>
+                                    }/>
 
                                     <div style={{
+                                        width: "100%",
+                                        // overflow: "hidden",
                                         display: "flex",
-                                        alignItems: "center",
-                                        gap: "8px",
-                                        flexDirection: "row"
+                                        flexDirection: "column",
+                                        gap: "8px"
                                     }}>
-                                        <IconButton size={"small"} children={<SelectAllRounded/>}/>
+                                        <div style={{
+                                            display: "flex",
+                                            alignItems: "center",
+                                            width: "100%",
+                                            justifyContent: "space-between"
+                                        }}>
+                                            <MainTypography text={style.title}/>
+
+                                            <div style={{
+                                                display: "flex",
+                                                alignItems: "center",
+                                                gap: "8px",
+                                                flexDirection: "row"
+                                            }}>
+                                                { /* TODO: Add something here... */ }
+                                            </div>
+                                        </div>
 
 
-                                        <Menu opener={<IconButton size={"small"} children={<MoreHorizOutlined/>}/>} menuProps={{ direction: "top" }}>
-                                            <MenuButton icon={<FileOpenRounded/>} text={"Open"} appendix={"Ctrl+O"}/>
-                                            <MenuButton icon={<EditRounded/>} text={"Edit"} appendix={"Ctrl+E"}/>
-                                            <MenuButton icon={<DeleteRounded/>} text={"Delete"}/>
-                                            <MenuDivider/>
-                                            <MenuButton text={"Open preview image"}/>
-                                        </Menu>
-
+                                        { style.description && (
+                                            <DescriptiveTypography text={style.description}/>
+                                        ) }
                                     </div>
-                                </div>
-
-
-                                { data.description && (
-                                    <DescriptiveTypography text={data.description}/>
-                                ) }
-                            </div>
-
-
+                                </>
+                            ) }
                         </div>
                     </Collapse>
                 ) }
@@ -116,17 +110,37 @@ export const StyleDataDisplay: React.FC = props => {
                 justifyContent: "space-between",
                 width: "100%"
             }}>
-                <MainTypography text={data.title}/>
+                { style ? (
+                    <MainTypography text={style.title}/>
+                ) : (
+                    <DescriptiveTypography text={"select a style"}/>
+                )}
+
+
                 <div style={{
                     display: "flex",
                     flexDirection: "row",
                     alignItems: "center",
                     gap: "4px"
                 }}>
-                    <IconButton onClick={() => {
-                        setViewState(prevState => ({
-                            expanded: !prevState.expanded
-                        }));
+
+                    { style && (
+                        <Menu opener={<IconButton size={"small"} children={<MoreHorizOutlined/>}/>} menuProps={{ direction: "top" }}>
+                            <MenuButton icon={<EditRounded/>} text={"Edit"} appendix={"Ctrl+E"}/>
+                            <MenuButton icon={<DeleteRounded/>} text={"Delete style"} />
+                            <MenuDivider/>
+                            <MenuButton text={"Open preview image"}/>
+                        </Menu>
+                    ) }
+
+
+
+                    <IconButton deactivated={style === undefined} onClick={() => {
+                        if (style !== undefined) {
+                            setViewState(prevState => ({
+                                expanded: !prevState.expanded
+                            }));
+                        }
                     }} size={"small"} children={
                         <ChevronRightRounded
                             data-opened={viewState.expanded}

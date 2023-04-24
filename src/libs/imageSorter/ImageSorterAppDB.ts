@@ -3,6 +3,7 @@ import {Project} from "./Project";
 import {VFSElement} from "./VFSElement";
 import {Image} from "./Image";
 import {ISADBSettingsEntry} from "./ISADBSettingsEntry";
+import {StyleData} from "./StyleData";
 
 export class ImageSorterAppDB extends Dexie {
 
@@ -14,13 +15,16 @@ export class ImageSorterAppDB extends Dexie {
 
     settings!: Table<ISADBSettingsEntry>;
 
+    styles!: Table<StyleData>
+
     constructor() {
         super("ImageSorterAppDB");
-        this.version(6).stores({
+        this.version(7).stores({
             projects: 'id, title, tags, resources, meta, previewImageID, description',
             vfsElements: 'id, parentID, title, targetID, subElements, projects, type, path, fullPath',
             images: 'id, data, tags',
-            settings: 'id, value'
+            settings: 'id, value',
+            styles: 'id, title, description, meta, previewID, additionalPreviewIDs'
         });
 
         this.vfsElements.add({
