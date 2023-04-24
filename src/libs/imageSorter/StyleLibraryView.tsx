@@ -29,7 +29,7 @@ export const StyleLibraryView: React.FC = props => {
             { styles !== undefined && (
                 <TransitionGroup children={
                     styles.map(style => (
-                        <Collapse key={style.id} children={
+                        <Collapse key={style.id} style={{ marginBottom: "8px" }} children={
                             <StyleDataCardPreview data={style}/>
                         }/>
                     ))

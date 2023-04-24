@@ -23,6 +23,9 @@ import {ImageSorterAPI, ImageSorterAPIContext} from "./ImageSorterAPI";
 import {useLiveQuery} from "dexie-react-hooks";
 import {isaDB} from "./ImageSorterAppDB";
 import {ImageMetaData} from "./ImageMetaData";
+import {ButtonModalCompound} from "./ButtonModalCompound";
+import {StyleDataEditDialog} from "./StyleDataEditDialog";
+import {InlineEditableDescriptiveTextArea} from "./InlineEditableDescriptiveTextArea";
 
 export const StyleDataDisplay: React.FC = props => {
 
@@ -120,8 +123,11 @@ export const StyleDataDisplay: React.FC = props => {
 
 
                                         { style.description && (
-                                            <DescriptiveTypography text={style.description}/>
+                                            <InlineEditableDescriptiveTextArea initialText={style.description} onSave={s => isaDB.styles.update(style?.id!, {
+                                                "description": s
+                                            })}/>
                                         ) }
+
 
                                         <MainTypography text={"Prompt"}/>
 
@@ -173,7 +179,20 @@ export const StyleDataDisplay: React.FC = props => {
 
                     { style && (
                         <Menu opener={<IconButton size={"small"} children={<MoreHorizOutlined/>}/>} menuProps={{ direction: "top" }}>
-                            <MenuButton icon={<EditRounded/>} text={"Edit"} appendix={"Ctrl+E"}/>
+                            <ButtonModalCompound
+                                button={<MenuButton icon={<EditRounded/>} text={"Edit"} appendix={"Ctrl+E"}/>}
+                                modalContent={ctx => (
+                                    <StyleDataEditDialog
+                                        data={style}
+                                        onClose={() => ctx.close()}
+                                        onSave={d => {
+                                            isaDB.styles.update(style?.id!, d);
+                                            ctx.close();
+                                        }}
+                                    />
+                                )}
+                            />
+
                             <MenuButton icon={<DeleteRounded/>} text={"Delete style"} onSelect={() => {
                                 isaDB.styles.delete(style?.id);
                             }}/>

@@ -19,12 +19,12 @@ export class ImageSorterAppDB extends Dexie {
 
     constructor() {
         super("ImageSorterAppDB");
-        this.version(7).stores({
+        this.version(8).stores({
             projects: 'id, title, tags, resources, meta, previewImageID, description',
             vfsElements: 'id, parentID, title, targetID, subElements, projects, type, path, fullPath',
             images: 'id, data, tags',
             settings: 'id, value',
-            styles: 'id, title, description, meta, previewID, additionalPreviewIDs'
+            styles: 'id, title, description, meta, previewID, additionalPreviewIDs, note'
         });
 
         this.vfsElements.add({

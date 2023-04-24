@@ -4,5 +4,6 @@ export type StyleData = {
     description?: string,
     meta?: string,
     previewID?: string,
-    additionalPreviewIDs?: Array<string>
+    additionalPreviewIDs?: Array<string>,
+    note?: string
 }

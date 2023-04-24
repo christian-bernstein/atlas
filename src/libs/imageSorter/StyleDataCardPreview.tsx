@@ -29,8 +29,9 @@ export const StyleDataCardPreview: React.FC<StyleDataCardPreviewProps> = props =
         }}>
             { props.data.previewID && (
                 <span style={{ height: "150px", width: "100%" }} children={
-                    <ISAImage imageID={props.data.previewID} style={{
+                    <ISAImage imageID={props.data.previewID} onClick={() => api.selectStyleByID(props.data.id)} style={{
                         // height: "80px",
+                        cursor: "pointer",
                         height: "150px",
                         width: "100%",
                         objectFit: "cover",
@@ -54,7 +55,7 @@ export const StyleDataCardPreview: React.FC<StyleDataCardPreviewProps> = props =
                     width: "100%",
                     justifyContent: "space-between"
                 }}>
-                    <MainTypography text={props.data.title} style={{
+                    <MainTypography text={props.data.title} onClick={() => api.selectStyleByID(props.data.id)} style={{
                         cursor: "pointer"
                     }}/>
 
@@ -64,11 +65,6 @@ export const StyleDataCardPreview: React.FC<StyleDataCardPreviewProps> = props =
                         gap: "8px",
                         flexDirection: "row"
                     }}>
-                        <IconButton size={"small"} children={<SelectAllRounded/>} onClick={() => {
-                            api.selectStyleByID(props.data.id);
-                        }}/>
-
-
                         <Menu opener={<IconButton size={"small"} children={<MoreHorizOutlined/>}/>} menuProps={{ direction: "top" }}>
                             <MenuButton icon={<FileOpenRounded/>} text={"Open"} appendix={"Ctrl+O"} onSelect={() => {
                                 api.selectStyleByID(props.data.id);
@@ -77,7 +73,6 @@ export const StyleDataCardPreview: React.FC<StyleDataCardPreviewProps> = props =
                             <MenuButton icon={<DeleteRounded/>} text={"Delete"} onSelect={() => {
                                 isaDB.styles.delete(props.data.id);
                             }}/>
-
                             { props.data.previewID && (
                                 <MenuButton text={"Open preview image"} onSelect={() => {
                                     api.selectImageByID(props.data.previewID!, false)
