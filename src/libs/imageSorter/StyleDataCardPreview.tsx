@@ -11,7 +11,8 @@ import {isaDB} from "./ImageSorterAppDB";
 import {ImageSorterAPIContext} from "./ImageSorterAPI";
 
 export type StyleDataCardPreviewProps = {
-    data: StyleData
+    data: StyleData,
+    showPreviewImage?: boolean
 }
 
 export const StyleDataCardPreview: React.FC<StyleDataCardPreviewProps> = props => {
@@ -27,7 +28,7 @@ export const StyleDataCardPreview: React.FC<StyleDataCardPreviewProps> = props =
             backgroundColor: "#1e202a",
             alignItems: "center"
         }}>
-            { props.data.previewID && (
+            { (props.showPreviewImage ?? true) && props.data.previewID && (
                 <span style={{ height: "150px", width: "100%" }} children={
                     <ISAImage imageID={props.data.previewID} onClick={() => api.selectStyleByID(props.data.id)} style={{
                         // height: "80px",

@@ -1,6 +1,7 @@
 import {APIShard} from "./APIShard";
 import {isaDB} from "./ImageSorterAppDB";
 import {VFSViewSettings} from "./VFSViewSettings";
+import {StyleLibrarySettings} from "./StyleLibrarySettings";
 
 export class SettingsManager extends APIShard {
 
@@ -8,6 +9,10 @@ export class SettingsManager extends APIShard {
         super();
         this.initSettingsObject<VFSViewSettings>("VFSViewSettings", {
             defaultPreview: false
+        });
+
+        this.initSettingsObject<StyleLibrarySettings>("StyleLibrarySettings", {
+            previewImage: true
         });
     }
 

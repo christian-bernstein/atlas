@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import {Formik} from "formik";
 import {FormikSingleLineInput} from "../triton/components/forms/FormikSingleLineInput";
 import {StyleDataCardPreview} from "./StyleDataCardPreview";
@@ -7,11 +7,23 @@ import {isaDB} from "./ImageSorterAppDB";
 import {DescriptiveTypography} from "../triton/components/typography/DescriptiveTypography";
 import {TransitionGroup} from "react-transition-group";
 import Collapse from "@mui/material/Collapse";
+import {Menu} from "./Menu";
+import {CheckMenuButton, MenuButton} from "./MenuButton";
+import {VFSViewSettings} from "./VFSViewSettings";
+import {ImageSorterAPIContext} from "./ImageSorterAPI";
+import {StyleLibrarySettings} from "./StyleLibrarySettings";
+import {useSettings} from "./SettingsHook";
 
 export const StyleLibraryView: React.FC = props => {
+    const api = useContext(ImageSorterAPIContext);
+
     const styles = useLiveQuery(() => {
         return isaDB.styles.toArray()
     });
+
+    const settings = useSettings<StyleLibrarySettings>("StyleLibrarySettings") ?? {
+        previewImage: true
+    };
 
     return (
         <div style={{
@@ -22,15 +34,31 @@ export const StyleLibraryView: React.FC = props => {
             overflowX: "hidden",
             width: "100%"
         }}>
-            <Formik initialValues={{}} onSubmit={values => {}} children={fp => (
-                <FormikSingleLineInput name={"search"} formikProps={fp}/>
-            )}/>
+            <div style={{
+                display: "grid",
+                gridTemplateColumns: "auto min-content",
+                gap: "8px",
+                alignItems: "center"
+            }}>
+                <Formik initialValues={{}} onSubmit={values => {}} children={fp => (
+                    <FormikSingleLineInput name={"search"} formikProps={fp}/>
+                )}/>
+
+                <Menu>
+                    <CheckMenuButton text={"Style image preview"} checked={settings.previewImage} onSelect={() => {
+                        api.settingsManager.updateSettingsObject<StyleLibrarySettings>("StyleLibrarySettings", prev => ({
+                            ...prev,
+                            previewImage: !prev.previewImage
+                        })).then(() => {});
+                    }}/>
+                </Menu>
+            </div>
 
             { styles !== undefined && (
                 <TransitionGroup children={
                     styles.map(style => (
                         <Collapse key={style.id} style={{ marginBottom: "8px" }} children={
-                            <StyleDataCardPreview data={style}/>
+                            <StyleDataCardPreview showPreviewImage={settings.previewImage} data={style}/>
                         }/>
                     ))
                 }/>
