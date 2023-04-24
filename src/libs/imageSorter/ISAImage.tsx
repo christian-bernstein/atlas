@@ -1,4 +1,4 @@
-import React from "react";
+import React, {CSSProperties} from "react";
 import {Image} from "./Image";
 import {useLiveQuery} from "dexie-react-hooks";
 import {isaDB} from "./ImageSorterAppDB";
@@ -7,7 +7,8 @@ import {ImageRounded} from "@mui/icons-material";
 export type ISAImageProps = {
     imageID: string,
     imageRenderer?: (i: Image) => React.ReactElement,
-    noImageComponent?: React.ReactElement
+    noImageComponent?: React.ReactElement,
+    style?: CSSProperties
 }
 
 export const ISAImage: React.FC<ISAImageProps> = props => {
@@ -25,6 +26,6 @@ export const ISAImage: React.FC<ISAImageProps> = props => {
     }
 
     return props.imageRenderer !== undefined ? props.imageRenderer(image) : (
-        <img src={URL.createObjectURL(image.data)} alt={image.id}/>
+        <img style={props.style} src={URL.createObjectURL(image.data)} alt={image.id}/>
     )
 }

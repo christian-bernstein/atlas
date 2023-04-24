@@ -16,9 +16,10 @@ import {ScreenSaver} from "./ScreenSaver";
 import {LayoutManagerView} from "./layout/LayoutManagerView";
 import {SidePanel} from "./SidePanel";
 import {LayoutTabButton} from "./LayoutTabButton";
-import {CodeRounded, FolderRounded, ImageRounded, ImageSearchRounded} from "@mui/icons-material";
+import {CodeRounded, FolderRounded, ImageRounded, ImageSearchRounded, StyleRounded} from "@mui/icons-material";
 import {BottomPanel} from "./BottomPanel";
 import {MobileMainView} from "./mobile/MobileMainView";
+import {StyleLibraryView} from "./StyleLibraryView";
 
 export type ImageSorterAppState = {
     fvsPath: Array<string>,
@@ -94,6 +95,7 @@ export const ImageSorterApp: React.FC = props => {
                                 <SidePanel start={
                                     <>
                                         <LayoutTabButton targetTray={"left"} programKey={"vfs-view"} children={<FolderRounded/>}/>
+                                        <LayoutTabButton targetTray={"left"} programKey={"style-view"} children={<StyleRounded/>}/>
                                     </>
                                 } end={
                                     <>
@@ -122,6 +124,20 @@ export const ImageSorterApp: React.FC = props => {
                                                 <Workspace children={<VFSView/>} config={{
                                                     mode: "desktop",
                                                     name: "vfs"
+                                                }}/>
+                                            </div>
+                                        )],
+
+                                        ["style-view", () => (
+                                            <div style={{
+                                                display: "grid",
+                                                height: "100%",
+                                                gridTemplateRows: "repeat(2, 1fr)",
+                                                rowGap: "8px"
+                                            }}>
+                                                <Workspace children={<StyleLibraryView/>} config={{
+                                                    mode: "desktop",
+                                                    name: "style-library"
                                                 }}/>
                                             </div>
                                         )],
