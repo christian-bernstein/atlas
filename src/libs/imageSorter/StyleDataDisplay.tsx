@@ -84,7 +84,7 @@ export const StyleDataDisplay: React.FC = props => {
                             { style && (
                                 <>
                                     <span style={{ height: "300px", width: "100%" }} children={
-                                        <ISAImage onClick={() => api.selectImageByID(style.previewID!, false)} imageID={style.previewID ?? ""} style={{
+                                        <ISAImage noImageComponent={<></>} onClick={() => api.selectImageByID(style.previewID!, false)} imageID={style.previewID ?? ""} style={{
                                             height: "300px",
                                             cursor: "pointer",
                                             objectFit: "cover",
@@ -178,6 +178,18 @@ export const StyleDataDisplay: React.FC = props => {
                             <MenuButton icon={<DeleteRounded/>} text={"Delete style"} />
                             <MenuDivider/>
                             <MenuButton text={"Open preview image"}/>
+                            <MenuButton disabled={style.previewID === undefined} text={"Remove preview image"} onSelect={() => {
+                                isaDB.styles.update(style?.id, {
+                                    previewID: undefined
+                                });
+                            }}/>
+                            <MenuButton disabled={style.previewID !== undefined || api.state.selectedImageId === undefined} text={"Set opened image as preview"} onSelect={() => {
+                                if (api.state.selectedImageId !== undefined) {
+                                    isaDB.styles.update(style?.id, {
+                                        previewID: api.state.selectedImageId
+                                    });
+                                }
+                            }}/>
                         </Menu>
                     ) }
 
