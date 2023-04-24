@@ -41,15 +41,12 @@ export type MetadataViewState = {
 }
 
 export const MetadataView: React.FC = props => {
-    console.debug("Rendering metadata view")
-
     const api = useContext(ImageSorterAPIContext);
     const state = useContext(ImageSorterAPIStateContext);
     const [currentProject, setCurrentProject] = useState<Project | undefined>(undefined);
     useEffect(() => {
         api.getCurrentProject().then(cp => setCurrentProject(cp));
     }, [api, state]);
-
 
     const currentImage = useLiveQuery(async () => {
         return isaDB.images

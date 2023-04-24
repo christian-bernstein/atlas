@@ -20,6 +20,7 @@ import {CodeRounded, FolderRounded, ImageRounded, ImageSearchRounded, StyleRound
 import {BottomPanel} from "./BottomPanel";
 import {MobileMainView} from "./mobile/MobileMainView";
 import {StyleLibraryView} from "./StyleLibraryView";
+import {StyleDataDisplay} from "./StyleDataDisplay";
 
 export type ImageSorterAppState = {
     fvsPath: Array<string>,
@@ -130,14 +131,22 @@ export const ImageSorterApp: React.FC = props => {
 
                                         ["style-view", () => (
                                             <div style={{
-                                                display: "grid",
-                                                height: "100%",
-                                                gridTemplateRows: "repeat(2, 1fr)",
-                                                rowGap: "8px"
+                                                display: "flex",
+                                                flexDirection: "column",
+                                                rowGap: "8px",
+                                                height: "calc(100% - 0px)"
                                             }}>
                                                 <Workspace children={<StyleLibraryView/>} config={{
                                                     mode: "desktop",
                                                     name: "style-library"
+                                                }}/>
+
+                                                <Workspace style={{
+                                                    flexShrink: 0,
+                                                    height: "min-content"
+                                                }} children={<StyleDataDisplay/>} config={{
+                                                    mode: "desktop",
+                                                    name: "project-metadata"
                                                 }}/>
                                             </div>
                                         )],
@@ -156,12 +165,8 @@ export const ImageSorterApp: React.FC = props => {
 
                                         ["project-view", () => (
                                             <div style={{
-                                                // display: "grid",
-                                                // gridTemplateRows: "min-content auto min-content",
-
                                                 display: "flex",
                                                 flexDirection: "column",
-
                                                 rowGap: "8px",
                                                 height: "calc(100% - 0px)"
                                             }}>
