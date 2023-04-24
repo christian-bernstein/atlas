@@ -164,7 +164,6 @@ export const StyleDataDisplay: React.FC = props => {
                     <DescriptiveTypography text={"select a style"}/>
                 )}
 
-
                 <div style={{
                     display: "flex",
                     flexDirection: "row",
@@ -175,9 +174,13 @@ export const StyleDataDisplay: React.FC = props => {
                     { style && (
                         <Menu opener={<IconButton size={"small"} children={<MoreHorizOutlined/>}/>} menuProps={{ direction: "top" }}>
                             <MenuButton icon={<EditRounded/>} text={"Edit"} appendix={"Ctrl+E"}/>
-                            <MenuButton icon={<DeleteRounded/>} text={"Delete style"} />
+                            <MenuButton icon={<DeleteRounded/>} text={"Delete style"} onSelect={() => {
+                                isaDB.styles.delete(style?.id);
+                            }}/>
                             <MenuDivider/>
-                            <MenuButton text={"Open preview image"}/>
+                            <MenuButton disabled={style.previewID === undefined} text={"Open preview image"} onSelect={() => {
+                                if (style?.previewID !== undefined) api.selectImageByID(style.previewID);
+                            }}/>
                             <MenuButton disabled={style.previewID === undefined} text={"Remove preview image"} onSelect={() => {
                                 isaDB.styles.update(style?.id, {
                                     previewID: undefined
