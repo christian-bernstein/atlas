@@ -1,8 +1,8 @@
-import React, {useRef, useState} from "react";
+import React, {useContext, useRef, useState} from "react";
 import {DuplexEventRelay} from "./DuplexEventRelay";
 import {StyledModal} from "./StyledModal";
 import {
-    ApiRounded,
+    ApiRounded, BugReportRounded,
     CloseRounded,
     DownloadRounded,
     ImageRounded,
@@ -19,6 +19,13 @@ import {ButtonModalCompound} from "./ButtonModalCompound";
 import {Formik} from "formik";
 import {FormElement} from "../triton/components/forms/FormElement";
 import {Slider} from "@mui/material";
+import {useAutoSettings} from "./SettingsHook";
+import {SDAPIRequestData} from "./SDAPIRequestData";
+import _ from "lodash";
+import {ImageSorterAPIContext} from "./ImageSorterAPI";
+import {LanguageParserPipeline} from "./LanguageParserPipeline";
+import {SDPromptEngine} from "./SDPromptEngine";
+import {SDPromptField} from "./SDPromptField";
 
 export type SDRequestDialogProps = {
     bus: DuplexEventRelay,
@@ -29,22 +36,38 @@ export type SDRequestDialogState = {
     phase: "generating" | "default",
     resultImage?: string,
     previewImage?: string,
-    progress?: any
+    progress?: any,
+    debouncedRequestSaver: (req: SDAPIRequestData) => void
 }
 
 export const SDRequestDialog: React.FC<SDRequestDialogProps> = props => {
+    const api = useContext(ImageSorterAPIContext);
 
     const [state, setState] = useState<SDRequestDialogState>({
-        phase: "default"
+        phase: "default",
+        debouncedRequestSaver: _.debounce((req: SDAPIRequestData) => {
+            api.settingsManager.updateSettingsObject("SDAPIRequestData", () => req).then(() => {
+                // TODO mark as saved
+                console.log("sd request state saved")
+            });
+        }, 2e3)
     });
 
-    const promptData = useRef<{
-        prompt: string,
-        negativePrompt: string
-    }>({
+    const sdRequestData = useAutoSettings<SDAPIRequestData>("SDAPIRequestData", {
         prompt: "",
         negativePrompt: ""
-    })
+    });
+
+    const promptDelta = useRef<SDAPIRequestData>({
+        prompt: "",
+        negativePrompt: ""
+    });
+
+    const updateRequest = (delta: Partial<SDAPIRequestData>) => {
+        const newRequest: SDAPIRequestData = { ...promptDelta.current, ...delta };
+        promptDelta.current = newRequest;
+        state.debouncedRequestSaver(newRequest);
+    }
 
     const generate = () => {
         setState(prevState => ({ ...prevState, phase: "generating" }));
@@ -60,8 +83,8 @@ export const SDRequestDialog: React.FC<SDRequestDialogProps> = props => {
         }, 500);
 
         const conf = {
-            prompt: promptData.current.prompt,
-            negative_prompt: promptData.current.negativePrompt,
+            prompt: promptDelta.current.prompt,
+            negative_prompt: promptDelta.current.negativePrompt,
             steps: 50,
             sampler_index: "Euler",
             cfg_scale: 7,
@@ -114,20 +137,30 @@ export const SDRequestDialog: React.FC<SDRequestDialogProps> = props => {
                 display: "grid",
                 gridTemplateColumns: "repeat(2, 1fr)",
                 gap: "1rem",
-                maxHeight: "70vh",
-                // overflow: "hidden"
+                maxHeight: "70vh"
             }}>
                 <div style={{
                     display: "flex",
                     flexDirection: "column",
                     gap: "8px"
                 }}>
-
-                    <DescriptiveTypography text={"Prompt"}/>
+                    <div style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: "8px",
+                        width: "100%",
+                        alignItems: "center",
+                        justifyContent: "space-between"
+                    }}>
+                        <DescriptiveTypography text={"Prompt"}/>
+                        <IconButton size={"small"} children={<BugReportRounded/>} onClick={() => {
+                            const ctx = new SDPromptEngine().parse(promptDelta.current.prompt);
+                            alert(JSON.stringify(ctx));
+                        }}/>
+                    </div>
 
                     <div style={{
                         width: "100%",
-                        // height: "60px",
                         backgroundColor: "#101016",
                         paddingTop: "1rem",
                         paddingBottom: "1rem",
@@ -141,6 +174,7 @@ export const SDRequestDialog: React.FC<SDRequestDialogProps> = props => {
                             height={"150px"}
                             width={"100%"}
                             saveViewState
+                            value={sdRequestData?.prompt ?? ""}
                             options={{
                                 fontSize: 14,
                                 fontLigatures: true,
@@ -165,7 +199,9 @@ export const SDRequestDialog: React.FC<SDRequestDialogProps> = props => {
                                 },
                             }}
                             onChange={(value, ev) => {
-                                promptData.current.prompt = value ?? "";
+                                updateRequest({
+                                    prompt: value ?? ""
+                                });
                             }}
                             beforeMount={monaco => {
                                 monaco.languages.register({ id: "sd-prompt" });
@@ -232,122 +268,12 @@ export const SDRequestDialog: React.FC<SDRequestDialogProps> = props => {
 
                     <DescriptiveTypography text={"Negative prompt"}/>
 
-                    <div style={{
-                        width: "100%",
-                        // height: "60px",
-                        backgroundColor: "#101016",
-                        paddingTop: "1rem",
-                        paddingBottom: "1rem",
-                        borderRadius: "8px",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                    }} children={
-                        <Editor
-                            className={"searchbar-input"}
-                            height={"150px"}
-                            width={"100%"}
-                            saveViewState
-                            options={{
-                                fontSize: 14,
-                                fontLigatures: true,
-                                lineNumbers: "off",
-                                autoIndent: "full",
-                                codeLens: false,
-                                autoClosingBrackets: "always",
-                                autoClosingQuotes: "always",
-                                hideCursorInOverviewRuler: true,
-                                lineDecorationsWidth: 0,
-                                renderValidationDecorations: "off",
-                                overviewRulerBorder: false,
-                                renderLineHighlight: "none",
-                                cursorStyle: "underline",
-                                matchBrackets: "always",
-                                scrollbar: {
-                                    vertical: "hidden",
-                                    horizontal: "hidden"
-                                },
-                                minimap: {
-                                    enabled: false
-                                },
-                            }}
-                            onChange={(value, ev) => {
-                                promptData.current.negativePrompt = value ?? "";
-                            }}
-                            beforeMount={monaco => {
-                                monaco.languages.register({ id: "sd-prompt" });
-
-                                monaco.languages.setMonarchTokensProvider("sd-prompt", {
-                                    tokenizer: {
-                                        root: [
-                                            [/\([\w,\s]+:(\d|(\d.\d))\)/, "full-keyword"],
-                                            [/!/, "symbol"],
-                                            [/:[\w<>=]+/, "keyword"],
-                                            [/#[\s\w]+/, "comment"],
-                                            [/\/\*.*\*\//, "comment"],
-                                            [/-\w+/, "param"],
-                                            [/\$\w+/, "variable"],
-                                            [/@\w+/, "annotation"],
-                                            [/->/, "arrow-right"],
-                                            [/=>/, "arrow-right"],
-                                            [/-/, "bullet-point"],
-                                            [/:/, "double-point"],
-                                            [/,/, "symbol"],
-                                            [/(\d*\.?\d+|\d{1,3}(,\d{3})*(\.\d+)?)/, "number"],
-                                            [/\w+/, "string"],
-                                            // units
-                                            [/'.*'/, "string"],
-                                            [/mb/, "unit"],
-
-                                            [/gb/, "unit"]
-                                        ]
-                                    }
-                                });
-
-                                monaco.editor.defineTheme("ses-x-dark-tritanopia-notes", {
-                                    base: "vs-dark",
-                                    inherit: true,
-                                    rules: [
-                                        { token: "full-keyword", foreground: "#CA7732" },
-                                        { token: "arrow-right", foreground: "#A782BB" },
-                                        { token: "unit", foreground: "#A782BB" },
-                                        { token: "bullet-point", foreground: "#585858" },
-                                        { token: "double-point", foreground: "#585858" },
-                                        { token: "comment", foreground: "#585858" },
-                                        { token: "param", foreground: "#585858" },
-                                        { token: "symbol", foreground: "#CA7732" },
-                                        { token: "keyword", foreground: "#CA7732" },
-                                        { token: "semicolon", foreground: "#CA7732" },
-                                        { token: "method", foreground: "#FFC66D" },
-                                        { token: "tag", foreground: "#FFC66D" },
-                                        { token: "macro", foreground: "#FFC66D" },
-                                        { token: "variable", foreground: "#FFC66D" },
-                                        { token: "annotation", foreground: "#FFC66D" },
-                                        { token: "number", foreground: "#A782BB" },
-                                        { token: "string", foreground: "#FFC66D" },
-                                    ],
-                                    colors: {
-                                        "editor.background": "#101016",
-                                        "editor.lineHighlightBackground":  "#101016",
-                                    }
-                                });
-                            }}
-                            theme={"ses-x-dark-tritanopia-notes"}
-                            language={"sd-prompt"}
-                        />
-                    }/>
-
-
-
-
-
-
-
-
-
-
-
-
+                    <SDPromptField
+                        value={sdRequestData?.negativePrompt ?? ""}
+                        onChange={value => updateRequest({
+                            negativePrompt: value ?? ""
+                        })}
+                    />
 
 
                     <Formik initialValues={{

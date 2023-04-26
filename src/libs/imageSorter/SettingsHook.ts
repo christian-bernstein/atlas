@@ -19,7 +19,7 @@ export function useAutoSettings<T = any>(key: string, def: T | undefined = undef
         return isaDB.settings.get(key)
             .then(val => val?.value)
             .then(val => val === undefined ? (() => {
-                if (autoInit) api.settingsManager.initSettingsObject<T>("key", def!);
+                if (autoInit) api.settingsManager.initSettingsObject<T>(key, def!);
                 return def;
             })() : JSON.parse(val!) as T)
     });
