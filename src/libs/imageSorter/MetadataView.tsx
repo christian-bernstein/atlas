@@ -7,7 +7,7 @@ import styled from "styled-components";
 import {TransitionGroup} from "react-transition-group";
 import {MainTypography} from "../triton/components/typography/MainTypography";
 import {IconButton} from "./IconButton";
-import {ChevronRightRounded, InfoRounded, OpenInFull} from "@mui/icons-material";
+import {ChevronRightRounded, InfoRounded, OpenInFull, PlayArrowRounded} from "@mui/icons-material";
 import Collapse from "@mui/material/Collapse";
 import {MetaBasicEntry} from "./MetaBasicEntry";
 import userEvent from "@testing-library/user-event";
@@ -16,6 +16,12 @@ import {useLiveQuery} from "dexie-react-hooks";
 import {isaDB} from "./ImageSorterAppDB";
 import {getMetadata} from "meta-png";
 import {ImageMetaData} from "./ImageMetaData";
+import axios from "axios";
+import {ControlModalCompound, ModalCompoundContext, ModalPolicy} from "./ControlModalCompound";
+import {SDRequestDialog} from "./SDRequestDialog";
+import {DuplexEventRelay} from "./DuplexEventRelay";
+import {Menu} from "./Menu";
+import {MenuButton} from "./MenuButton";
 
 export const StyledMetadataView = styled.section`
   width: 100%;
@@ -160,6 +166,49 @@ export const MetadataView: React.FC = props => {
                     alignItems: "center",
                     gap: "4px"
                 }}>
+                    <Menu menuProps={{ direction: "top" }}>
+                        <ControlModalCompound controller={ctx => (
+                            <MenuButton disabled={currentImageMeta === undefined} icon={<PlayArrowRounded style={{ color: "mediumseagreen" }}/>} text={"Recreate"} onSelect={async () => {
+                                const conf = {
+                                    prompt: currentImageMeta?.prompt ?? "",
+                                    negative_prompt: currentImageMeta?.negativePrompt ?? "",
+                                    seed: currentImageMeta?.meta.get("Seed") ?? -1,
+                                    steps: currentImageMeta?.meta.get("Steps") ?? 50,
+                                    sampler_index: currentImageMeta?.meta.get("Sampler") ?? "Euler",
+                                    cfg_scale: currentImageMeta?.meta.get("CFG scale") ?? 7,
+                                    width: currentImageMeta?.meta?.get("Size")?.split("x")[0] ?? 512,
+                                    height: currentImageMeta?.meta?.get("Size")?.split("x")[1] ?? 512,
+                                    denoising_strength: currentImageMeta?.meta.get("Denoising strength") ?? 0,
+                                    enable_hr: currentImageMeta?.meta.get("Hires upscaler") !== undefined,
+                                    hr_scale: currentImageMeta?.meta.get("Hires upscale") ?? 1.5,
+                                    hr_upscaler: currentImageMeta?.meta.get("Hires upscaler") ?? "R-ESRGAN 4x+ Anime6B",
+                                    hr_second_pass_steps: currentImageMeta?.meta.get("Hires steps") ?? 0,
+                                };
+
+                                axios.post("http://127.0.0.1:7860/sdapi/v1/txt2img", conf).then(res => {
+                                    ctx.open("img-res", res.data.images);
+                                });
+                            }}/>
+                        )} modals={new Map<string, (ctx: ModalCompoundContext, param: any) => (React.ReactNode | [React.ReactNode, ModalPolicy])>([
+                            ["img-res", (ctx, param) => (
+                                <img
+                                    alt={"stable diffusion result"}
+                                    src={`data:image/png;base64,${param}`}
+                                />
+                            )]
+                        ])}/>
+                        <MenuButton disabled={currentImageMeta === undefined} text={"Get raw metadata"} onSelect={() => {
+                            currentImage?.data.arrayBuffer().then(r => {
+                                const meta = getMetadata(new Uint8Array(r), "parameters")!;
+                                alert(meta);
+                            });
+                        }}/>
+                    </Menu>
+
+
+
+
+
                     <IconButton onClick={() => {
                         setViewState(prevState => ({
                             expanded: !prevState.expanded
@@ -169,15 +218,6 @@ export const MetadataView: React.FC = props => {
                             data-opened={viewState.expanded}
                             className={"view-opener"}
                         />
-                    }/>
-                    <IconButton onClick={() => {
-                        currentImage?.data.arrayBuffer().then(r => {
-                            const meta = getMetadata(new Uint8Array(r), "parameters")!;
-                            alert(meta);
-                        });
-
-                    }} size={"small"} children={
-                        <InfoRounded/>
                     }/>
                 </div>
             </div>

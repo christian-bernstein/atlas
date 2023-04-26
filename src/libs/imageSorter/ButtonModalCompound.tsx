@@ -54,6 +54,7 @@ export const ButtonModalCompound: React.FC<ButtonModalCompoundProps> = props => 
                 children={props.modalContent({
                     close: () => setState(prevState => ({ ...prevState, open: false }))
                 })}
+                maxWidth={false}
                 keepMounted={false}
                 open={state.open}
                 sx={{

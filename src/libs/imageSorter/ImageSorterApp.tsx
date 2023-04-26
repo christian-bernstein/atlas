@@ -16,11 +16,23 @@ import {ScreenSaver} from "./ScreenSaver";
 import {LayoutManagerView} from "./layout/LayoutManagerView";
 import {SidePanel} from "./SidePanel";
 import {LayoutTabButton} from "./LayoutTabButton";
-import {CodeRounded, FolderRounded, ImageRounded, ImageSearchRounded, StyleRounded} from "@mui/icons-material";
+import {
+    ApiRounded,
+    CodeRounded,
+    FolderRounded,
+    HttpRounded,
+    ImageRounded,
+    ImageSearchRounded,
+    StyleRounded
+} from "@mui/icons-material";
 import {BottomPanel} from "./BottomPanel";
 import {MobileMainView} from "./mobile/MobileMainView";
 import {StyleLibraryView} from "./StyleLibraryView";
 import {StyleDataDisplay} from "./StyleDataDisplay";
+import {IconButton} from "./IconButton";
+import {ButtonModalCompound} from "./ButtonModalCompound";
+import {DuplexEventRelay} from "./DuplexEventRelay";
+import {SDRequestDialog} from "./SDRequestDialog";
 
 export type ImageSorterAppState = {
     fvsPath: Array<string>,
@@ -201,6 +213,12 @@ export const ImageSorterApp: React.FC = props => {
                                 <SidePanel start={
                                     <>
                                         <LayoutTabButton targetTray={"right"} programKey={"project-view"} children={<ImageRounded/>}/>
+                                    </>
+                                } end={
+                                    <>
+                                        <ButtonModalCompound button={<IconButton size={"small"} children={<ApiRounded/>}/>} modalContent={ctx => (
+                                            <SDRequestDialog bus={new DuplexEventRelay()} onClose={() => ctx.close()}/>
+                                        )}/>
                                     </>
                                 }/>
                             </div>

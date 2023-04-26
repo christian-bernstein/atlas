@@ -19,7 +19,7 @@ import {DescriptiveTypography} from "../triton/components/typography/Descriptive
 import {Menu} from "./Menu";
 import {MenuDivider} from "@szhsin/react-menu";
 import {VFSViewSettings} from "./VFSViewSettings";
-import {useSettings} from "./SettingsHook";
+import {useAutoSettings, useSettings} from "./SettingsHook";
 import {FileStructureImportModal} from "./FileStructureImportModal";
 import {BooleanContext} from "../test/BooleanContext";
 
@@ -35,7 +35,7 @@ export const VFSView: React.FC = props => {
         });
     }, [api, state]);
 
-    const settings = useSettings<VFSViewSettings>("VFSViewSettings") ?? {
+    const settings = useAutoSettings<VFSViewSettings>("VFSViewSettings") ?? {
         defaultPreview: false
     };
 

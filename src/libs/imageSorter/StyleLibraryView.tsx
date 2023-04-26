@@ -12,7 +12,7 @@ import {CheckMenuButton, MenuButton} from "./MenuButton";
 import {VFSViewSettings} from "./VFSViewSettings";
 import {ImageSorterAPIContext} from "./ImageSorterAPI";
 import {StyleLibrarySettings} from "./StyleLibrarySettings";
-import {useSettings} from "./SettingsHook";
+import {useAutoSettings, useSettings} from "./SettingsHook";
 
 export const StyleLibraryView: React.FC = props => {
     const api = useContext(ImageSorterAPIContext);
@@ -21,7 +21,7 @@ export const StyleLibraryView: React.FC = props => {
         return isaDB.styles.toArray()
     });
 
-    const settings = useSettings<StyleLibrarySettings>("StyleLibrarySettings") ?? {
+    const settings = useAutoSettings<StyleLibrarySettings>("StyleLibrarySettings") ?? {
         previewImage: true
     };
 
