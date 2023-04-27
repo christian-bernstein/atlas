@@ -38,6 +38,7 @@ import {LanguageParserPipeline} from "./LanguageParserPipeline";
 import {SDPromptEngine} from "./SDPromptEngine";
 import {SDPromptField} from "./SDPromptField";
 import {TabBar} from "./TabBar";
+import {TabBodyRenderer} from "./TabBodyRenderer";
 
 export type SDRequestDialogProps = {
     bus: DuplexEventRelay,
@@ -60,10 +61,7 @@ export const SDRequestDialog: React.FC<SDRequestDialogProps> = props => {
         phase: "default",
         activeTab: "main",
         debouncedRequestSaver: _.debounce((req: SDAPIRequestData) => {
-            api.settingsManager.updateSettingsObject("SDAPIRequestData", () => req).then(() => {
-                // TODO mark as saved
-                console.log("sd request state saved")
-            });
+            api.settingsManager.updateSettingsObject("SDAPIRequestData", () => req).then(() => {});
         }, 2e3)
     });
 
@@ -178,6 +176,15 @@ export const SDRequestDialog: React.FC<SDRequestDialogProps> = props => {
                             icon: <HistoryRounded/>
                         }
                     ]}
+                />
+
+                <TabBodyRenderer
+                    active={state.activeTab}
+                    tabs={new Map<string, () => React.ReactElement>([
+                        ["main", () => <>main</>],
+                        ["config", () => <>config</>],
+                        ["mixins", () => <>mixins</>],
+                    ])}
                 />
 
                 <div style={{
@@ -314,7 +321,6 @@ export const SDRequestDialog: React.FC<SDRequestDialogProps> = props => {
                         }/>
 
                         <DescriptiveTypography text={"Negative prompt"}/>
-
                         <SDPromptField
                             value={sdRequestData?.negativePrompt ?? ""}
                             onChange={value => updateRequest({

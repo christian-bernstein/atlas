@@ -240,6 +240,7 @@ export const ImageSorterMaster: React.FC<PropsWithChildren> = (props) => {
     const api = useContext(ImageSorterAPIContext);
     const state = useContext(ImageSorterAPIStateContext);
     api.updateState(state);
+
     return (
         <>{ props.children }</>
     );
