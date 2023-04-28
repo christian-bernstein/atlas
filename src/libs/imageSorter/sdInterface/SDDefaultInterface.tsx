@@ -21,6 +21,7 @@ import {Workspace} from "../Workspace";
 import {ButtonModalCompound} from "../ButtonModalCompound";
 import {SDInterfaceStateContext} from "./SDInterfaceMain";
 import {MainTab} from "./MainTab";
+import {MixinTab} from "./MixinTab";
 
 export type SDDefaultInterfaceProps = {
     bus: DuplexEventRelay,
@@ -69,8 +70,7 @@ export const SDDefaultInterface: React.FC<SDDefaultInterfaceProps> = props => {
                             active={state.activeTab}
                             tabs={new Map<string, () => React.ReactElement>([
                                 ["main", () => <MainTab/>],
-                                ["config", () => <>config</>],
-                                ["mixins", () => <>mixins</>],
+                                ["mixins", () => <MixinTab/>]
                             ])}
                         />
                     }/>
