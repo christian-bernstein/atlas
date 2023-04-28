@@ -1,8 +1,7 @@
-import {ImageSorterAppState} from "../ImageSorterApp";
 import {StateDispatcher} from "../../ship/test/core/StateDispatcher";
 import {SDInterfaceState} from "./SDInterfaceState";
 import React from "react";
-import {ImageSorterAPI} from "../ImageSorterAPI";
+import axios from "axios";
 
 export class SDInterfaceAPI {
 
@@ -17,6 +16,17 @@ export class SDInterfaceAPI {
 
     public updateState(state: SDInterfaceState) {
         this._state = state;
+    }
+
+    public interruptImageGeneration() {
+        axios.post("http://127.0.0.1:7860/sdapi/v1/interrupt").then(res => {
+            this.setState(prevState => ({
+                ...prevState,
+                phase: "default",
+                resultImage: res.data,
+                previewImage: undefined
+            }));
+        });
     }
 
     get setState(): StateDispatcher<SDInterfaceState> {

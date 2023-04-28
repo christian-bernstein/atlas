@@ -65,19 +65,22 @@ export const SDRequestDialog: React.FC<SDRequestDialogProps> = props => {
         }, 2e3)
     });
 
-    const sdRequestData = useAutoSettings<SDAPIRequestData>("SDAPIRequestData", {
+    // Initial state -> Retrieved from the local database
+    const initialRequestData = useAutoSettings<SDAPIRequestData>("SDAPIRequestData", {
         prompt: "",
         negativePrompt: ""
     });
 
-    const promptDelta = useRef<SDAPIRequestData>({
+    // Local updates -> Get mixed in to the database mirror
+    const deltaRequestData = useRef<SDAPIRequestData>({
         prompt: "",
         negativePrompt: ""
     });
 
+    //
     const updateRequest = (delta: Partial<SDAPIRequestData>) => {
-        const newRequest: SDAPIRequestData = { ...promptDelta.current, ...delta };
-        promptDelta.current = newRequest;
+        const newRequest: SDAPIRequestData = { ...deltaRequestData.current, ...delta };
+        deltaRequestData.current = newRequest;
         state.debouncedRequestSaver(newRequest);
     }
 
@@ -95,8 +98,8 @@ export const SDRequestDialog: React.FC<SDRequestDialogProps> = props => {
         }, 500);
 
         const conf = {
-            prompt: promptDelta.current.prompt,
-            negative_prompt: promptDelta.current.negativePrompt,
+            prompt: deltaRequestData.current.prompt,
+            negative_prompt: deltaRequestData.current.negativePrompt,
             steps: 50,
             sampler_index: "Euler",
             cfg_scale: 7,
@@ -151,33 +154,19 @@ export const SDRequestDialog: React.FC<SDRequestDialogProps> = props => {
                 gap: "1rem",
                 maxHeight: "70vh"
             }}>
+                {/* HEADER */}
                 <TabBar
                     activeBar={state.activeTab}
                     onTabChange={tab => setState(prevState => ({ ...prevState, activeTab: tab }))}
                     tabs={[
-                        {
-                            id: "main",
-                            title: "SD Prompt",
-                            icon: <CodeRounded/>
-                        },
-                        {
-                            id: "config",
-                            title: "Generation config",
-                            icon: <SettingsApplicationsRounded/>
-                        },
-                        {
-                            id: "mixins",
-                            title: "Mixins",
-                            icon: <CommitRounded/>
-                        },
-                        {
-                            id: "history",
-                            title: "History",
-                            icon: <HistoryRounded/>
-                        }
+                        { id: "main", title: "SD Prompt", icon: <CodeRounded/> },
+                        { id: "config", title: "Generation config", icon: <SettingsApplicationsRounded/> },
+                        { id: "mixins", title: "Mixins", icon: <CommitRounded/> },
+                        { id: "history", title: "History", icon: <HistoryRounded/> }
                     ]}
                 />
 
+                {/* TAB BODY RENDERERS */}
                 <TabBodyRenderer
                     active={state.activeTab}
                     tabs={new Map<string, () => React.ReactElement>([
@@ -208,121 +197,34 @@ export const SDRequestDialog: React.FC<SDRequestDialogProps> = props => {
                         }}>
                             <DescriptiveTypography text={"Prompt"}/>
                             <IconButton size={"small"} children={<BugReportRounded/>} onClick={() => {
-                                const ctx = new SDPromptEngine().parse(promptDelta.current.prompt);
+                                const ctx = new SDPromptEngine().parse(deltaRequestData.current.prompt);
                                 alert(JSON.stringify(ctx));
                             }}/>
                         </div>
 
-                        <div style={{
-                            width: "100%",
-                            backgroundColor: "#101016",
-                            paddingTop: "1rem",
-                            paddingBottom: "1rem",
-                            borderRadius: "8px",
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                        }} children={
-                            <Editor
-                                className={"searchbar-input"}
-                                height={"150px"}
-                                width={"100%"}
-                                saveViewState
-                                value={sdRequestData?.prompt ?? ""}
-                                options={{
-                                    fontSize: 14,
-                                    fontLigatures: true,
-                                    lineNumbers: "off",
-                                    autoIndent: "full",
-                                    codeLens: false,
-                                    autoClosingBrackets: "always",
-                                    autoClosingQuotes: "always",
-                                    hideCursorInOverviewRuler: true,
-                                    lineDecorationsWidth: 0,
-                                    renderValidationDecorations: "off",
-                                    overviewRulerBorder: false,
-                                    renderLineHighlight: "none",
-                                    cursorStyle: "underline",
-                                    matchBrackets: "always",
-                                    scrollbar: {
-                                        vertical: "hidden",
-                                        horizontal: "hidden"
-                                    },
-                                    minimap: {
-                                        enabled: false
-                                    },
-                                }}
-                                onChange={(value, ev) => {
-                                    updateRequest({
-                                        prompt: value ?? ""
-                                    });
-                                }}
-                                beforeMount={monaco => {
-                                    monaco.languages.register({ id: "sd-prompt" });
-
-                                    monaco.languages.setMonarchTokensProvider("sd-prompt", {
-                                        tokenizer: {
-                                            root: [
-                                                [/\([\w,\s@]+:(\d|(\d.\d))\)/, "full-keyword"],
-                                                [/!/, "symbol"],
-                                                [/:[\w<>=]+/, "keyword"],
-                                                [/#[\s\w]+/, "comment"],
-                                                [/\/\*.*\*\//, "comment"],
-                                                [/-\w+/, "param"],
-                                                [/\$\w+/, "variable"],
-                                                [/@\w+/, "annotation"],
-                                                [/->/, "arrow-right"],
-                                                [/=>/, "arrow-right"],
-                                                [/-/, "bullet-point"],
-                                                [/:/, "double-point"],
-                                                [/,/, "symbol"],
-                                                [/(\d*\.?\d+|\d{1,3}(,\d{3})*(\.\d+)?)/, "number"],
-                                                [/\w+/, "string"],
-                                                // units
-                                                [/'.*'/, "string"],
-                                                [/mb/, "unit"],
-
-                                                [/gb/, "unit"]
-                                            ]
-                                        }
-                                    });
-
-                                    monaco.editor.defineTheme("ses-x-dark-tritanopia-notes", {
-                                        base: "vs-dark",
-                                        inherit: true,
-                                        rules: [
-                                            { token: "full-keyword", foreground: "#CA7732" },
-                                            { token: "arrow-right", foreground: "#A782BB" },
-                                            { token: "unit", foreground: "#A782BB" },
-                                            { token: "bullet-point", foreground: "#585858" },
-                                            { token: "double-point", foreground: "#585858" },
-                                            { token: "comment", foreground: "#585858" },
-                                            { token: "param", foreground: "#585858" },
-                                            { token: "symbol", foreground: "#CA7732" },
-                                            { token: "keyword", foreground: "#CA7732" },
-                                            { token: "semicolon", foreground: "#CA7732" },
-                                            { token: "method", foreground: "#FFC66D" },
-                                            { token: "tag", foreground: "#FFC66D" },
-                                            { token: "macro", foreground: "#FFC66D" },
-                                            { token: "variable", foreground: "#FFC66D" },
-                                            { token: "annotation", foreground: "#FFC66D" },
-                                            { token: "number", foreground: "#A782BB" },
-                                            { token: "string", foreground: "#FFC66D" },
-                                        ],
-                                        colors: {
-                                            "editor.background": "#101016",
-                                            "editor.lineHighlightBackground":  "#101016",
-                                        }
-                                    });
-                                }}
-                                theme={"ses-x-dark-tritanopia-notes"}
-                                language={"sd-prompt"}
-                            />
-                        }/>
-
-                        <DescriptiveTypography text={"Negative prompt"}/>
                         <SDPromptField
-                            value={sdRequestData?.negativePrompt ?? ""}
+                            value={initialRequestData?.prompt ?? ""}
+                            onChange={value => updateRequest({
+                                prompt: value ?? ""
+                            })}
+                        />
+
+                        <div style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            gap: "8px",
+                            width: "100%",
+                            alignItems: "center",
+                            justifyContent: "space-between"
+                        }}>
+                            <DescriptiveTypography text={"Negative prompt"}/>
+                            <IconButton size={"small"} children={<BugReportRounded/>} onClick={() => {
+                                const ctx = new SDPromptEngine().parse(deltaRequestData.current.negativePrompt);
+                                alert(JSON.stringify(ctx));
+                            }}/>
+                        </div>
+                        <SDPromptField
+                            value={initialRequestData?.negativePrompt ?? ""}
                             onChange={value => updateRequest({
                                 negativePrompt: value ?? ""
                             })}
@@ -334,7 +236,6 @@ export const SDRequestDialog: React.FC<SDRequestDialogProps> = props => {
                             height: "100%",
                             maxHeight: "calc(100% - 0px)",
                             overflow: "scroll",
-
                             display: "grid",
                             gap: "8px",
                             justifyContent: "center",
