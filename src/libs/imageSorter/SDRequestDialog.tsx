@@ -77,7 +77,6 @@ export const SDRequestDialog: React.FC<SDRequestDialogProps> = props => {
         negativePrompt: ""
     });
 
-    //
     const updateRequest = (delta: Partial<SDAPIRequestData>) => {
         const newRequest: SDAPIRequestData = { ...deltaRequestData.current, ...delta };
         deltaRequestData.current = newRequest;

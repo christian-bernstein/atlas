@@ -33,6 +33,8 @@ import {IconButton} from "./IconButton";
 import {ButtonModalCompound} from "./ButtonModalCompound";
 import {DuplexEventRelay} from "./DuplexEventRelay";
 import {SDRequestDialog} from "./SDRequestDialog";
+import {SDDefaultInterface} from "./sdInterface/SDDefaultInterface";
+import {SDInterfaceMain} from "./sdInterface/SDInterfaceMain";
 
 export type ImageSorterAppState = {
     fvsPath: Array<string>,
@@ -216,8 +218,14 @@ export const ImageSorterApp: React.FC = props => {
                                     </>
                                 } end={
                                     <>
-                                        <ButtonModalCompound button={<IconButton size={"small"} children={<ApiRounded/>}/>} modalContent={ctx => (
+                                        <ButtonModalCompound button={<IconButton size={"small"} tooltip={"V1"} children={<ApiRounded/>}/>} modalContent={ctx => (
                                             <SDRequestDialog bus={new DuplexEventRelay()} onClose={() => ctx.close()}/>
+                                        )}/>
+
+                                        <ButtonModalCompound button={<IconButton size={"small"} tooltip={"V2"} children={<ApiRounded/>}/>} modalContent={ctx => (
+                                            <SDInterfaceMain children={
+                                                <SDDefaultInterface bus={new DuplexEventRelay()} onClose={() => ctx.close()}/>
+                                            }/>
                                         )}/>
                                     </>
                                 }/>
