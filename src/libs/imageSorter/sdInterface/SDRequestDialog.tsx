@@ -1,6 +1,6 @@
 import React, {useContext, useRef, useState} from "react";
-import {DuplexEventRelay} from "./DuplexEventRelay";
-import {StyledModal} from "./StyledModal";
+import {DuplexEventRelay} from "../DuplexEventRelay";
+import {StyledModal} from "../StyledModal";
 import {
     ApiRounded,
     BugReportRounded,
@@ -20,25 +20,25 @@ import {
     SettingsInputComponentRounded,
     StopRounded
 } from "@mui/icons-material";
-import {px, vw} from "../base/logic/style/DimensionalMeasured";
+import {px, vw} from "../../base/logic/style/DimensionalMeasured";
 import Editor from "@monaco-editor/react";
-import {DescriptiveTypography} from "../triton/components/typography/DescriptiveTypography";
-import {IconButton} from "./IconButton";
+import {DescriptiveTypography} from "../../triton/components/typography/DescriptiveTypography";
+import {IconButton} from "../IconButton";
 import axios from "axios";
-import {Workspace} from "./Workspace";
-import {ButtonModalCompound} from "./ButtonModalCompound";
+import {Workspace} from "../Workspace";
+import {ButtonModalCompound} from "../ButtonModalCompound";
 import {Formik} from "formik";
-import {FormElement} from "../triton/components/forms/FormElement";
+import {FormElement} from "../../triton/components/forms/FormElement";
 import {Slider} from "@mui/material";
-import {useAutoSettings} from "./SettingsHook";
+import {useAutoSettings} from "../SettingsHook";
 import {SDAPIRequestData} from "./SDAPIRequestData";
 import _ from "lodash";
-import {ImageSorterAPIContext} from "./ImageSorterAPI";
-import {LanguageParserPipeline} from "./LanguageParserPipeline";
+import {ImageSorterAPIContext} from "../ImageSorterAPI";
+import {LanguageParserPipeline} from "../LanguageParserPipeline";
 import {SDPromptEngine} from "./SDPromptEngine";
 import {SDPromptField} from "./SDPromptField";
-import {TabBar} from "./TabBar";
-import {TabBodyRenderer} from "./TabBodyRenderer";
+import {TabBar} from "../TabBar";
+import {TabBodyRenderer} from "../TabBodyRenderer";
 
 export type SDRequestDialogProps = {
     bus: DuplexEventRelay,

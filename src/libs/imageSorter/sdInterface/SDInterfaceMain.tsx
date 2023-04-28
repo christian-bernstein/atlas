@@ -3,7 +3,7 @@ import {SDInterfaceState} from "./SDInterfaceState";
 import {SDInterfaceAPI, SDInterfaceAPIContext} from "./SDInterfaceAPI";
 import {SDInterfaceMaster} from "./SDInterfaceMaster";
 import {Mobile} from "../../base/components/logic/Media";
-import {SDAPIRequestData} from "../SDAPIRequestData";
+import {SDAPIRequestData} from "./SDAPIRequestData";
 import _ from "lodash";
 import {ImageSorterAPIContext} from "../ImageSorterAPI";
 import {useAutoSettings} from "../SettingsHook";

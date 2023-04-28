@@ -32,7 +32,7 @@ import {StyleDataDisplay} from "./StyleDataDisplay";
 import {IconButton} from "./IconButton";
 import {ButtonModalCompound} from "./ButtonModalCompound";
 import {DuplexEventRelay} from "./DuplexEventRelay";
-import {SDRequestDialog} from "./SDRequestDialog";
+import {SDRequestDialog} from "./sdInterface/SDRequestDialog";
 import {SDDefaultInterface} from "./sdInterface/SDDefaultInterface";
 import {SDInterfaceMain} from "./sdInterface/SDInterfaceMain";
 

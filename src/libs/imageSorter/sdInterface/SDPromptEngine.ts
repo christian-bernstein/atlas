@@ -1,4 +1,4 @@
-import {LanguageParserPipeline} from "./LanguageParserPipeline";
+import {LanguageParserPipeline} from "../LanguageParserPipeline";
 import {SDPromptMixin} from "./SDPromptMixin";
 
 export class SDPromptEngine extends LanguageParserPipeline {

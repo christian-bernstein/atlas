@@ -1,4 +1,4 @@
-import {LanguageParserContext} from "./LanguageParserContext";
+import {LanguageParserContext} from "../LanguageParserContext";
 
 export type SDPromptMixin = {
     key: string,

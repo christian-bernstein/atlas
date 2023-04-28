@@ -1,4 +1,4 @@
-import {SDAPIRequestData} from "../SDAPIRequestData";
+import {SDAPIRequestData} from "./SDAPIRequestData";
 
 export type SDInterfaceState = {
     phase: "generating" | "default",

@@ -3,7 +3,7 @@ import {SDInterfaceState} from "./SDInterfaceState";
 import React from "react";
 import axios from "axios";
 import {SDInterfaceRequestContextData} from "./SDInterfaceMain";
-import {SDAPIRequestData} from "../SDAPIRequestData";
+import {SDAPIRequestData} from "./SDAPIRequestData";
 
 export class SDInterfaceAPI {
 

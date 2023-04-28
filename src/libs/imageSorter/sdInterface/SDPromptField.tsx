@@ -1,6 +1,6 @@
 import React from "react";
 import Editor from "@monaco-editor/react";
-import {DimensionalMeasured} from "../base/logic/style/DimensionalMeasured";
+import {DimensionalMeasured} from "../../base/logic/style/DimensionalMeasured";
 
 export type SDPromptFieldProps = {
     onChange: (value: string | undefined, ev: any) => void,
