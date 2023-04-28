@@ -2,7 +2,7 @@ import React, {CSSProperties} from "react";
 import styled from "styled-components";
 
 export type MainTypographyProps = {
-    text?: string,
+    text?: React.ReactNode,
     style?: CSSProperties,
     id?: string,
     onClick?: (event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => void

@@ -4,6 +4,7 @@ import {VFSElement} from "./VFSElement";
 import {Image} from "./Image";
 import {ISADBSettingsEntry} from "./ISADBSettingsEntry";
 import {StyleData} from "./StyleData";
+import {MixinData} from "./sdInterface/MixinData";
 
 export class ImageSorterAppDB extends Dexie {
 
@@ -17,6 +18,8 @@ export class ImageSorterAppDB extends Dexie {
 
     styles!: Table<StyleData>
 
+    mixins!: Table<MixinData>
+
     constructor() {
         super("ImageSorterAppDB");
         this.version(8).stores({
@@ -24,7 +27,8 @@ export class ImageSorterAppDB extends Dexie {
             vfsElements: 'id, parentID, title, targetID, subElements, projects, type, path, fullPath',
             images: 'id, data, tags',
             settings: 'id, value',
-            styles: 'id, title, description, meta, previewID, additionalPreviewIDs, note'
+            styles: 'id, title, description, meta, previewID, additionalPreviewIDs, note',
+            mixins: 'id, key, type, target'
         });
 
         this.vfsElements.add({
