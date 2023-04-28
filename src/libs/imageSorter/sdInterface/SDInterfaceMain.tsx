@@ -17,14 +17,14 @@ export const SDInterfaceMain: React.FC<SDInterfaceMainProps> = props => {
 
     // Initial state -> Retrieved from the local database
     const initialRequestData = useAutoSettings<SDAPIRequestData>("SDAPIRequestData", {
-        prompt: "settings def",
-        negativePrompt: "settings def"
+        prompt: "",
+        negativePrompt: ""
     });
 
     // Local updates -> Get mixed in to the database mirror
     const deltaRequestData: React.MutableRefObject<SDAPIRequestData> = useRef<SDAPIRequestData>({
-        prompt: "delta def",
-        negativePrompt: "delta def"
+        prompt: "",
+        negativePrompt: ""
     });
 
     const [state, setState] = useState<SDInterfaceState>({

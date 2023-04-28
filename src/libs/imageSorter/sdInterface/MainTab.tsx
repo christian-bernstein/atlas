@@ -12,9 +12,7 @@ import {SDInterfaceRequestContext, SDInterfaceStateContext} from "./SDInterfaceM
 export const MainTab: React.FC = props => {
     const sdApi = useContext(SDInterfaceAPIContext);
     const state = useContext(SDInterfaceStateContext);
-    // const state = sdApi.state!;
     const requestContextData = useContext(SDInterfaceRequestContext);
-    // const requestContextData = sdApi.requestContextData;
     const initialRequestData = requestContextData?.initialRequestData!;
     const deltaRequestData = requestContextData?.deltaRequestData!;
 
