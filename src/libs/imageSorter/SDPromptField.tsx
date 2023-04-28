@@ -1,9 +1,11 @@
 import React from "react";
 import Editor from "@monaco-editor/react";
+import {DimensionalMeasured} from "../base/logic/style/DimensionalMeasured";
 
 export type SDPromptFieldProps = {
     onChange: (value: string | undefined, ev: any) => void,
-    value?: string
+    value?: string,
+    h?: string | DimensionalMeasured
 }
 
 export const SDPromptField: React.FC<SDPromptFieldProps> = props => {
@@ -11,6 +13,7 @@ export const SDPromptField: React.FC<SDPromptFieldProps> = props => {
     return (
         <div style={{
             width: "100%",
+            height: props.h === undefined ? "100%" : (typeof props.h === "string" ? props.h : props.h.css()),
             backgroundColor: "#101016",
             paddingTop: "1rem",
             paddingBottom: "1rem",
@@ -21,7 +24,8 @@ export const SDPromptField: React.FC<SDPromptFieldProps> = props => {
         }} children={
             <Editor
                 className={"searchbar-input"}
-                height={"150px"}
+                // height={"150px"}
+                // height={"calc(100% - 0px)"}
                 width={"100%"}
                 saveViewState
                 value={props.value ?? ""}

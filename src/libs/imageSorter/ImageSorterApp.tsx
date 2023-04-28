@@ -94,7 +94,6 @@ export const ImageSorterApp: React.FC = props => {
                             height: "calc(100vh - 0.3rem)",
                             maxHeight: "calc(100vh - 0.3rem)",
                             overflow: "hidden"
-
                         }}>
                             <ScreenSaver/>
                             <AppHeader/>

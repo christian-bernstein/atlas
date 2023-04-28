@@ -6,5 +6,7 @@ export type SDInterfaceState = {
     previewImage?: string,
     progress?: any,
     debouncedRequestSaver: (req: SDAPIRequestData) => void,
-    activeTab: string
+    activeTab: string,
+
+    updateRequest?: (delta: Partial<SDAPIRequestData>) => void
 }

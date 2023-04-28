@@ -7,25 +7,32 @@ import {SDPromptField} from "../SDPromptField";
 import {Workspace} from "../Workspace";
 import {ButtonModalCompound} from "../ButtonModalCompound";
 import {SDInterfaceAPIContext} from "./SDInterfaceAPI";
+import {SDInterfaceRequestContext, SDInterfaceStateContext} from "./SDInterfaceMain";
 
 export const MainTab: React.FC = props => {
     const sdApi = useContext(SDInterfaceAPIContext);
-    const state = sdApi.state!;
-    const requestContextData = sdApi.requestContextData;
-    const initialRequestData = requestContextData.initialRequestData!;
-    const deltaRequestData = requestContextData.deltaRequestData!;
+    const state = useContext(SDInterfaceStateContext);
+    // const state = sdApi.state!;
+    const requestContextData = useContext(SDInterfaceRequestContext);
+    // const requestContextData = sdApi.requestContextData;
+    const initialRequestData = requestContextData?.initialRequestData!;
+    const deltaRequestData = requestContextData?.deltaRequestData!;
+
+    if (requestContextData === undefined) return <>RCD not available</>
 
     return (
         <div style={{
             display: "grid",
             gridTemplateColumns: "repeat(2, 1fr)",
             gap: "1rem",
+            height: "100%",
             maxHeight: "100%"
         }}>
             <div style={{
                 display: "flex",
                 flexDirection: "column",
-                gap: "8px"
+                gap: "8px",
+                height: "100%"
             }}>
                 <div style={{
                     display: "flex",

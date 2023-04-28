@@ -19,6 +19,8 @@ import {SDPromptEngine} from "../SDPromptEngine";
 import {SDPromptField} from "../SDPromptField";
 import {Workspace} from "../Workspace";
 import {ButtonModalCompound} from "../ButtonModalCompound";
+import {SDInterfaceStateContext} from "./SDInterfaceMain";
+import {MainTab} from "./MainTab";
 
 export type SDDefaultInterfaceProps = {
     bus: DuplexEventRelay,
@@ -27,15 +29,15 @@ export type SDDefaultInterfaceProps = {
 
 export const SDDefaultInterface: React.FC<SDDefaultInterfaceProps> = props => {
     const sdApi = useContext(SDInterfaceAPIContext);
-    const state = sdApi.state;
+    const state = useContext(SDInterfaceStateContext);
 
     console.log("[SDDefaultInterface] sd api:", sdApi, "state", state);
 
     return (
         <StyledModal
             onClose={() => props.onClose()}
-            loading={sdApi.state.phase === "generating"}
-            title={"SD API UI"}
+            loading={state.phase === "generating"}
+            title={`SD API UI [Active tab (hot state): '${state.activeTab}', Active tab (api state): '${sdApi.state.activeTab}']`}
             w={vw(60)}
             icon={<ApiRounded/>}
             children={
@@ -58,14 +60,20 @@ export const SDDefaultInterface: React.FC<SDDefaultInterfaceProps> = props => {
                     />
 
                     {/* TAB BODY RENDERERS */}
-                    <TabBodyRenderer
-                        active={state.activeTab}
-                        tabs={new Map<string, () => React.ReactElement>([
-                            ["main", () => <>main</>],
-                            ["config", () => <>config</>],
-                            ["mixins", () => <>mixins</>],
-                        ])}
-                    />
+                    <div style={{
+                        width: "100%",
+                        overflow: "hidden",
+                        height: "50vh"
+                    }} children={
+                        <TabBodyRenderer
+                            active={state.activeTab}
+                            tabs={new Map<string, () => React.ReactElement>([
+                                ["main", () => <MainTab/>],
+                                ["config", () => <>config</>],
+                                ["mixins", () => <>mixins</>],
+                            ])}
+                        />
+                    }/>
                 </div>
             }
         />
