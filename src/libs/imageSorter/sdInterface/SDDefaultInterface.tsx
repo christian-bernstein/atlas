@@ -37,7 +37,7 @@ export const SDDefaultInterface: React.FC<SDDefaultInterfaceProps> = props => {
         <StyledModal
             onClose={() => props.onClose()}
             loading={state.phase === "generating"}
-            title={`SD API UI [Active tab (hot state): '${state.activeTab}', Active tab (api state): '${sdApi.state.activeTab}']`}
+            title={`SD API UI`}
             w={vw(60)}
             icon={<ApiRounded/>}
             children={
