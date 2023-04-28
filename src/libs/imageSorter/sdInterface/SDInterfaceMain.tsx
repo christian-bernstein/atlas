@@ -32,7 +32,7 @@ export const SDInterfaceMain: React.FC<SDInterfaceMainProps> = props => {
         activeTab: "main",
         debouncedRequestSaver: _.debounce((req: SDAPIRequestData) => {
             api.settingsManager.updateSettingsObject("SDAPIRequestData", () => req).then(() => {});
-        }, 2e3),
+        }, 1e3),
         updateRequest: delta => {
             const newRequest: SDAPIRequestData = { ...deltaRequestData.current, ...delta };
             deltaRequestData.current = newRequest;
