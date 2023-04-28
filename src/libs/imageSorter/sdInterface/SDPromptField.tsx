@@ -9,6 +9,7 @@ export type SDPromptFieldProps = {
 }
 
 export const SDPromptField: React.FC<SDPromptFieldProps> = props => {
+    console.log("rendering prompt field")
 
     return (
         <div style={{

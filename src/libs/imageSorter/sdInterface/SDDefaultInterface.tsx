@@ -7,7 +7,7 @@ import {
     CodeRounded,
     CommitRounded, DownloadRounded,
     HistoryRounded, ImageRounded,
-    SettingsApplicationsRounded
+    SettingsApplicationsRounded, TokenRounded
 } from "@mui/icons-material";
 import {StyledModal} from "../StyledModal";
 import {SDInterfaceAPIContext} from "./SDInterfaceAPI";
@@ -55,7 +55,7 @@ export const SDDefaultInterface: React.FC<SDDefaultInterfaceProps> = props => {
                         tabs={[
                             { id: "main", title: "SD Prompt", icon: <CodeRounded/> },
                             { id: "config", title: "Generation config", icon: <SettingsApplicationsRounded/> },
-                            { id: "mixins", title: "Mixins", icon: <CommitRounded/> },
+                            { id: "mixins", title: "Mixins", icon: <TokenRounded/> },
                             { id: "history", title: "History", icon: <HistoryRounded/> }
                         ]}
                     />

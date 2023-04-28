@@ -4,9 +4,17 @@ import {Menu} from "../Menu";
 import {Tag} from "../Tag";
 import {ColorableTag} from "../ColorableTag";
 import {Color} from "../../base/logic/style/Color";
+import {useLiveQuery} from "dexie-react-hooks";
+import {isaDB} from "../ImageSorterAppDB";
+import {MixinData} from "./MixinData";
+import {MenuButton} from "../MenuButton";
+import {DeleteRounded} from "@mui/icons-material";
 
-export const MixinCard: React.FC = props => {
+export type MixinCardProps = {
+    for: MixinData
+}
 
+export const MixinCard: React.FC<MixinCardProps> = props => {
     return (
         <div style={{
             padding: "1rem",
@@ -23,7 +31,7 @@ export const MixinCard: React.FC = props => {
                 gap: "8px"
             }}>
                 <MainTypography text={
-                    <>@<strong style={{ color: "#ffc66d" }} children={"test"}/></>
+                    <>@<strong style={{ color: "#ffc66d" }} children={props.for.key}/></>
                 } style={{
                     fontFamily: "Consolas, Courier New, monospace"
                 }}/>
@@ -33,6 +41,7 @@ export const MixinCard: React.FC = props => {
                     alignItems: "center",
                     gap: "8px"
                 }}>
+                    {/*}
                     <ColorableTag
                         tag={"link"}
                         c={Color.ofHex("#ffc66d")}
@@ -41,12 +50,17 @@ export const MixinCard: React.FC = props => {
                         tag={"func"}
                         c={Color.ofHex("#d2a8ff")}
                     />
+                    */}
                     <ColorableTag
                         tag={"constant"}
                         c={Color.ofHex("#79c0ff")}
                     />
 
-                    <Menu/>
+                    <Menu>
+                        <MenuButton text={"Delete"} icon={<DeleteRounded/>} onSelect={() => {
+                            isaDB.mixins.delete(props.for.id);
+                        }}/>
+                    </Menu>
                 </div>
             </div>
         </div>

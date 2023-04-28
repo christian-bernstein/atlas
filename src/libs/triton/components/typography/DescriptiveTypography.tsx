@@ -2,7 +2,7 @@ import React, {ButtonHTMLAttributes, CSSProperties, HTMLAttributes} from "react"
 import styled from "styled-components";
 
 export type DescriptiveTypographyProps = {
-    text?: string,
+    text?: React.ReactNode,
     style?: CSSProperties,
     baseProps?: HTMLAttributes<any>,
 }
