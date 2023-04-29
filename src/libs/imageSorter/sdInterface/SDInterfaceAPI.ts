@@ -71,18 +71,18 @@ export class SDInterfaceAPI {
             prompt: compiledPromptData.cmd,
             // negative_prompt: deltaRequestData.current.negativePrompt,
             negative_prompt: compiledNegativePromptData.cmd,
-            steps: 20,
+            steps: 60,
             sampler_index: "DPM++ 2M Karras",
-            cfg_scale: 7,
+            cfg_scale: 9,
             // width: 600,
-            width: 512,
+            width: 600,
             // height: 960,
-            height: 512,
+            height: 960,
             denoising_strength: 0.4,
             enable_hr: true,
             hr_scale: 1.5,
             hr_upscaler: "R-ESRGAN 4x+ Anime6B",
-            hr_second_pass_steps: 50,
+            hr_second_pass_steps: 100,
         };
 
         axios.post("http://127.0.0.1:7860/sdapi/v1/txt2img", conf).then(res => {
