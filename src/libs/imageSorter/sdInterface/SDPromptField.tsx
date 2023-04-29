@@ -1,21 +1,24 @@
 import React from "react";
 import Editor from "@monaco-editor/react";
 import {DimensionalMeasured} from "../../base/logic/style/DimensionalMeasured";
+import {Color} from "../../base/logic/style/Color";
 
 export type SDPromptFieldProps = {
-    onChange: (value: string | undefined, ev: any) => void,
+    onChange?: (value: string | undefined, ev: any) => void,
     value?: string,
-    h?: string | DimensionalMeasured
+    h?: string | DimensionalMeasured,
+    readonly?: boolean,
+    backgroundColor?: Color
 }
 
 export const SDPromptField: React.FC<SDPromptFieldProps> = props => {
-    console.log("rendering prompt field")
+    const bg = props.backgroundColor?.toHex() ?? "#101016";
 
     return (
         <div style={{
             width: "100%",
             height: props.h === undefined ? "100%" : (typeof props.h === "string" ? props.h : props.h.css()),
-            backgroundColor: "#101016",
+            backgroundColor: bg,
             paddingTop: "1rem",
             paddingBottom: "1rem",
             borderRadius: "8px",
@@ -31,6 +34,7 @@ export const SDPromptField: React.FC<SDPromptFieldProps> = props => {
                 saveViewState
                 value={props.value ?? ""}
                 options={{
+                    readOnly: props.readonly ?? false,
                     fontSize: 14,
                     fontLigatures: true,
                     lineNumbers: "off",
@@ -54,7 +58,7 @@ export const SDPromptField: React.FC<SDPromptFieldProps> = props => {
                     },
                 }}
                 onChange={(value, ev) => {
-                    props.onChange(value, ev)
+                    props.onChange?.(value, ev);
                 }}
                 beforeMount={monaco => {
                     monaco.languages.register({ id: "sd-prompt" });
@@ -109,8 +113,8 @@ export const SDPromptField: React.FC<SDPromptFieldProps> = props => {
                             { token: "string", foreground: "#FFC66D" },
                         ],
                         colors: {
-                            "editor.background": "#101016",
-                            "editor.lineHighlightBackground":  "#101016",
+                            "editor.background": bg,
+                            "editor.lineHighlightBackground":  bg,
                         }
                     });
                 }}

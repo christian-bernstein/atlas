@@ -15,7 +15,7 @@ import {DeleteRounded} from "@mui/icons-material";
 import {StyledModal} from "../StyledModal";
 import {DescriptiveTypography} from "../../triton/components/typography/DescriptiveTypography";
 import {ButtonBase, ButtonVariant} from "../../triton/components/buttons/ButtonBase";
-import {stat} from "fs";
+import {MixinDisplay} from "./MixinDisplay";
 
 export type MixinTabState = {
     selectedMixinID?: string
@@ -23,10 +23,6 @@ export type MixinTabState = {
 
 export const MixinTab: React.FC = props => {
     const [state, setState] = useState<MixinTabState>({});
-
-    const selectedMixin = useLiveQuery(() => {
-        return isaDB.mixins.get(state.selectedMixinID ?? "");
-    })
 
     const mixins = useLiveQuery(() => {
         return isaDB.mixins.toArray();
@@ -144,15 +140,14 @@ export const MixinTab: React.FC = props => {
                         <DescriptiveTypography text={"Select a mixin"}/>
                     }/>
                 ) : (
-                    <div>
-                        <div>
-                            <MainTypography text={
-                                <>@<strong style={{ color: "#ffc66d" }} children={selectedMixin?.key}/></>
-                            } style={{
-                                fontFamily: "Consolas, Courier New, monospace"
-                            }}/>
-                        </div>
-                    </div>
+                    <MixinDisplay mixinID={state.selectedMixinID} onClose={() => {
+                        setState(prevState => ({ ...prevState, selectedMixinID: undefined }));
+                    }} onDeleteRequest={() => {
+                        const mixinToDelete = state.selectedMixinID;
+                        if (mixinToDelete === undefined) return;
+                        setState(prevState => ({ ...prevState, selectedMixinID: undefined }));
+                        isaDB.mixins.delete(mixinToDelete);
+                    }}/>
                 )
             }/>
         </div>
