@@ -4,6 +4,7 @@ import React from "react";
 import axios from "axios";
 import {SDInterfaceRequestContextData} from "./SDInterfaceMain";
 import {SDAPIRequestData} from "./SDAPIRequestData";
+import {SDPromptEngine} from "./SDPromptEngine";
 
 export class SDInterfaceAPI {
 
@@ -45,6 +46,63 @@ export class SDInterfaceAPI {
                 resultImage: res.data,
                 previewImage: undefined
             }));
+        });
+    }
+
+    public async generate() {
+        this.setState(prevState => ({ ...prevState, phase: "generating" }));
+
+        let progressRetriever = setInterval(() => {
+            axios.get("http://127.0.0.1:7860/sdapi/v1/progress").then(res => {
+                this.setState(prevState => ({
+                    ...prevState,
+                    progress: res.data,
+                    previewImage: res.data.current_image
+                }));
+            });
+        }, 500);
+
+        const compiler = await new SDPromptEngine().initUserMixins();
+        const compiledPromptData = compiler.parse(this.requestContextData.deltaRequestData?.prompt ?? "");
+        const compiledNegativePromptData = compiler.parse(this.requestContextData.deltaRequestData?.negativePrompt ?? "");
+
+        const conf = {
+            // prompt: deltaRequestData.current.prompt,
+            prompt: compiledPromptData.cmd,
+            // negative_prompt: deltaRequestData.current.negativePrompt,
+            negative_prompt: compiledNegativePromptData.cmd,
+            steps: 20,
+            sampler_index: "DPM++ 2M Karras",
+            cfg_scale: 7,
+            // width: 600,
+            width: 512,
+            // height: 960,
+            height: 512,
+            denoising_strength: 0.4,
+            enable_hr: true,
+            hr_scale: 1.5,
+            hr_upscaler: "R-ESRGAN 4x+ Anime6B",
+            hr_second_pass_steps: 50,
+        };
+
+        axios.post("http://127.0.0.1:7860/sdapi/v1/txt2img", conf).then(res => {
+            clearInterval(progressRetriever);
+            this.setState(prevState => ({
+                ...prevState,
+                phase: "default",
+                resultImage: res.data.images,
+                previewImage: undefined,
+                progress: undefined
+            }));
+        }).catch(reason => {
+            clearInterval(progressRetriever);
+            this.setState(prevState => ({
+                ...prevState,
+                phase: "default",
+                resultImage: prevState.previewImage ?? prevState.resultImage,
+                progress: undefined
+            }));
+            alert("ERROR! " + reason);
         });
     }
 

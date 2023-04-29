@@ -123,8 +123,6 @@ export const MixinTab: React.FC = props => {
                 }/>
             </div>
 
-
-
             <Workspace config={{
                 mode: "desktop",
                 name: "mixin-view"

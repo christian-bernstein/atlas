@@ -25,17 +25,14 @@ export class LanguageParserPipeline {
             params: new Map<string, any>(),
             pragmaParams: new Map<string, any>()
         };
-
         this.segments.forEach((segment, index) => {
             try {
                 if (segment.skip && segment.skip(ctx)) return;
                 segment.func(ctx);
             } catch (e) {
-                // TODO: Handle error
                 console.error("Language parser pipeline error:", e);
             }
-        })
-
+        });
         return ctx;
     }
 }

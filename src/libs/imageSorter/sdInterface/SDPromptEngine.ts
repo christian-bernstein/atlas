@@ -1,5 +1,6 @@
 import {LanguageParserPipeline} from "../LanguageParserPipeline";
 import {SDPromptMixin} from "./SDPromptMixin";
+import {isaDB} from "../ImageSorterAppDB";
 
 export class SDPromptEngine extends LanguageParserPipeline {
 
@@ -16,6 +17,17 @@ export class SDPromptEngine extends LanguageParserPipeline {
             key: "void",
             func: () => "HELLO_WORLD"
         })
+    }
+
+    public async initUserMixins(): Promise<SDPromptEngine> {
+        await isaDB.mixins.each((data, cursor) => {
+            this.mixin({
+                key: data.key,
+                // TODO: Add support for LINK & FUNC mixins
+                func: () => data.target
+            });
+        });
+        return this;
     }
 
     private initPipeline() {
@@ -44,7 +56,10 @@ export class SDPromptEngine extends LanguageParserPipeline {
                         ctx.cmd = ctx.cmd.replace(fullTerm, "");
                         return;
                     }
+
+                    // TODO: Make recursive call if 'generated'-value contains mixins itself
                     const generated = mixin.func(ctx, paramArray);
+
                     ctx.cmd = ctx.cmd.replace(fullTerm, generated);
 
                     console.log("key", key, "param", paramArray);

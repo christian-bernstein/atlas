@@ -6,8 +6,8 @@ import {
     BugReportRounded, CloseRounded,
     CodeRounded,
     CommitRounded, DownloadRounded,
-    HistoryRounded, ImageRounded,
-    SettingsApplicationsRounded, TokenRounded
+    HistoryRounded, ImageRounded, PlayArrowRounded,
+    SettingsApplicationsRounded, StopRounded, TokenRounded
 } from "@mui/icons-material";
 import {StyledModal} from "../StyledModal";
 import {SDInterfaceAPIContext} from "./SDInterfaceAPI";
@@ -74,6 +74,34 @@ export const SDDefaultInterface: React.FC<SDDefaultInterfaceProps> = props => {
                             ])}
                         />
                     }/>
+                </div>
+            }
+            footer={
+                <div style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    width: "100%",
+                    gap: "8px"
+                }}>
+                    <IconButton
+                        tooltip={state.phase === "default" ? "Generate" : "Interrupt"}
+                        onClick={() => {
+                            if (state.phase === "generating") sdApi.interruptImageGeneration();
+                            else if (state.phase === "default") sdApi.generate();
+                        }}
+                        size={"small"}
+                        children={state.phase === "default" ? (
+                            <PlayArrowRounded style={{ color: "mediumseagreen" }}/>
+                        ) : (
+                            <StopRounded style={{ color: "crimson" }}/>
+                        )}
+                    />
+
+
+                    { state.progress && (
+                        <DescriptiveTypography text={`${Math.ceil(state.progress.progress * 100)}% ETA: ${state.progress.eta_relative} STATE: ${state.progress.textinfo}`}/>
+                    ) }
                 </div>
             }
         />

@@ -41,8 +41,8 @@ export const MainTab: React.FC = props => {
                     justifyContent: "space-between"
                 }}>
                     <DescriptiveTypography text={"Prompt"}/>
-                    <IconButton size={"small"} children={<BugReportRounded/>} onClick={() => {
-                        const ctx = new SDPromptEngine().parse(deltaRequestData.prompt);
+                    <IconButton size={"small"} children={<BugReportRounded/>} onClick={async () => {
+                        const ctx = (await new SDPromptEngine().initUserMixins()).parse(deltaRequestData.prompt);
                         alert(JSON.stringify(ctx));
                     }}/>
                 </div>
@@ -63,8 +63,8 @@ export const MainTab: React.FC = props => {
                     justifyContent: "space-between"
                 }}>
                     <DescriptiveTypography text={"Negative prompt"}/>
-                    <IconButton size={"small"} children={<BugReportRounded/>} onClick={() => {
-                        const ctx = new SDPromptEngine().parse(deltaRequestData.negativePrompt);
+                    <IconButton size={"small"} children={<BugReportRounded/>} onClick={async () => {
+                        const ctx = (await new SDPromptEngine().initUserMixins()).parse(deltaRequestData.negativePrompt);
                         alert(JSON.stringify(ctx));
                     }}/>
                 </div>
