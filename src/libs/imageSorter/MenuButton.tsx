@@ -58,7 +58,7 @@ export type MenuButtonProps = {
     color?: Color | string,
     selected?: boolean,
     isPointedTo?: boolean,
-    onSelect?: () => void,
+    onSelect?: (e: React.MouseEvent<HTMLSpanElement>) => void,
     onHover?: () => void,
     icon?: React.ReactNode,
     appendix?: React.ReactNode,
@@ -73,8 +73,8 @@ export const MenuButton: React.FC<MenuButtonProps> = props => {
 
     return (
         <MenuItem disabled={disabled} children={
-            <StyledMenuButton data-disabled={disabled} className={mainClassName} onMouseEnter={() => props.onHover?.()} onClick={() => {
-                if (!disabled) props.onSelect?.()
+            <StyledMenuButton data-disabled={disabled} className={mainClassName} onMouseEnter={() => props.onHover?.()} onClick={(e: React.MouseEvent<HTMLSpanElement>) => {
+                if (!disabled) props.onSelect?.(e);
             }}>
                 <div className={"menu-main"}>
                 <span className={"menu-icon-tray"} style={{

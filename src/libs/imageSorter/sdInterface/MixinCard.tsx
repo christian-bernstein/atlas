@@ -11,12 +11,15 @@ import {MenuButton} from "../MenuButton";
 import {DeleteRounded} from "@mui/icons-material";
 
 export type MixinCardProps = {
-    for: MixinData
+    for: MixinData,
+    onSelect?: () => void,
 }
 
 export const MixinCard: React.FC<MixinCardProps> = props => {
     return (
-        <div style={{
+        <div onClick={() => {
+            props.onSelect?.();
+        }} style={{
             padding: "1rem",
             width: "100%",
             backgroundColor: "#1e202a",
@@ -57,7 +60,9 @@ export const MixinCard: React.FC<MixinCardProps> = props => {
                     />
 
                     <Menu>
-                        <MenuButton text={"Delete"} icon={<DeleteRounded/>} onSelect={() => {
+                        <MenuButton text={"Delete"} icon={<DeleteRounded/>} onSelect={(e) => {
+                            e.stopPropagation();
+                            e.preventDefault();
                             isaDB.mixins.delete(props.for.id);
                         }}/>
                     </Menu>

@@ -15,6 +15,7 @@ import {DeleteRounded} from "@mui/icons-material";
 import {StyledModal} from "../StyledModal";
 import {DescriptiveTypography} from "../../triton/components/typography/DescriptiveTypography";
 import {ButtonBase, ButtonVariant} from "../../triton/components/buttons/ButtonBase";
+import {stat} from "fs";
 
 export type MixinTabState = {
     selectedMixinID?: string
@@ -22,6 +23,10 @@ export type MixinTabState = {
 
 export const MixinTab: React.FC = props => {
     const [state, setState] = useState<MixinTabState>({});
+
+    const selectedMixin = useLiveQuery(() => {
+        return isaDB.mixins.get(state.selectedMixinID ?? "");
+    })
 
     const mixins = useLiveQuery(() => {
         return isaDB.mixins.toArray();
@@ -95,8 +100,6 @@ export const MixinTab: React.FC = props => {
                                     </StyledModal>
                                 )}
                             />
-
-
                         </Menu>
                     </div>
                 }/>
@@ -114,7 +117,9 @@ export const MixinTab: React.FC = props => {
                                     overflow: "scroll",
                                     paddingBottom: "8px"
                                 }} children={
-                                    <MixinCard for={md}/>
+                                    <MixinCard for={md} onSelect={() => {
+                                        setState(prevState => ({ ...prevState, selectedMixinID: md.id }))
+                                    }}/>
                                 }/>
                             }/>
                         ))
@@ -128,7 +133,27 @@ export const MixinTab: React.FC = props => {
                 mode: "desktop",
                 name: "mixin-view"
             }} children={
-                <></>
+                state.selectedMixinID === undefined ? (
+                    <span style={{
+                        width: "100%",
+                        height: "100%",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center"
+                    }} children={
+                        <DescriptiveTypography text={"Select a mixin"}/>
+                    }/>
+                ) : (
+                    <div>
+                        <div>
+                            <MainTypography text={
+                                <>@<strong style={{ color: "#ffc66d" }} children={selectedMixin?.key}/></>
+                            } style={{
+                                fontFamily: "Consolas, Courier New, monospace"
+                            }}/>
+                        </div>
+                    </div>
+                )
             }/>
         </div>
     );
