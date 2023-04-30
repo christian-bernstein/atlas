@@ -26,7 +26,6 @@ import {HistoryTab} from "./HistoryTab";
 import {Menu} from "../Menu";
 import {MenuButton} from "../MenuButton";
 import {LinearProgress, Zoom} from "@mui/material";
-import Collapse from "@mui/material/Collapse";
 import {TransitionGroup} from "react-transition-group";
 
 export type SDDefaultInterfaceProps = {
@@ -43,7 +42,7 @@ export const SDDefaultInterface: React.FC<SDDefaultInterfaceProps> = props => {
             onClose={() => props.onClose()}
             loading={state.phase === "generating"}
             title={`SD API UI`}
-            w={vw(60)}
+            w={vw(65)}
             icon={<ApiRounded/>}
             children={
                 <div style={{

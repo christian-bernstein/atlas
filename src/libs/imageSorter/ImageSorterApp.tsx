@@ -216,7 +216,7 @@ export const ImageSorterApp: React.FC = props => {
                                     </>
                                 } end={
                                     <>
-                                        <ButtonModalCompound button={<IconButton size={"small"} children={<ApiRounded/>}/>} modalContent={ctx => (
+                                        <ButtonModalCompound preventClosingOnBackdropClick button={<IconButton size={"small"} children={<ApiRounded/>}/>} modalContent={ctx => (
                                             <SDInterfaceMain children={
                                                 <SDDefaultInterface bus={new DuplexEventRelay()} onClose={() => ctx.close()}/>
                                             }/>
