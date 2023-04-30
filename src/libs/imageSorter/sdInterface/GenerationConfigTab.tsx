@@ -1,10 +1,4 @@
 import React from "react";
-import {FormElement} from "../../triton/components/forms/FormElement";
-import {Slider} from "@mui/material";
-import {DescriptiveTypography} from "../../triton/components/typography/DescriptiveTypography";
-import {IconButton} from "../IconButton";
-import {RefreshRounded} from "@mui/icons-material";
-import {Formik} from "formik";
 import {VariableSlider} from "./VariableSlider";
 
 export const GenerationConfigTab: React.FC = props => {
@@ -15,7 +9,12 @@ export const GenerationConfigTab: React.FC = props => {
             gap: "8px",
             gridTemplateColumns: "repeat(3, 1fr)"
         }}>
-            <VariableSlider/>
+            <VariableSlider
+                title={"Batch count"}
+                defaultValue={1}
+                minVal={1}
+                maxVal={100}
+            />
             <VariableSlider/>
             <VariableSlider/>
         </div>

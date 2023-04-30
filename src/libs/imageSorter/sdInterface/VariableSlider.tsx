@@ -38,7 +38,7 @@ export const VariableSlider: React.FC<VariableSliderProps> = props => {
             }} onSubmit={values => {}}>
                 {
                     fp => (
-                        <FormElement title={"Sampling steps"}>
+                        <FormElement title={props.title}>
                             <div style={{
                                 flexDirection: "row",
                                 alignItems: "center",
@@ -60,6 +60,7 @@ export const VariableSlider: React.FC<VariableSliderProps> = props => {
                                         onChange={(event, value) => fp.setFieldValue("samplingSteps", value)}
                                         value={fp.values.samplingSteps}
                                         valueLabelDisplay={"auto"}
+                                        min={props.minVal ?? 1}
                                         sx={{ color: "#5028c8" }}
                                         size={"small"}
                                         // marks={[
@@ -71,13 +72,13 @@ export const VariableSlider: React.FC<VariableSliderProps> = props => {
                                 </div>
 
 
-                                <input className={"number-input"} value={fp.values.samplingSteps} inputMode={"numeric"} min={0} max={100} type={"number"} step={1} onChange={event => {
+                                <input className={"number-input"} value={fp.values.samplingSteps} inputMode={"numeric"} min={props.minVal ?? 1} max={props.maxVal ?? 100} type={"number"} step={1} onChange={event => {
                                     fp.setFieldValue("samplingSteps", event.currentTarget.value)
                                 }}/>
-                                <IconButton tooltip={"Reset"} size={"small"} onClick={() => fp.setFieldValue("samplingSteps", 50)} children={
+                                <IconButton tooltip={"Reset"} size={"small"} onClick={() => fp.setFieldValue("samplingSteps", props.defaultValue ?? props.minVal ?? 1)} children={
                                     <RefreshRounded/>
                                 }/>
-                                <IconButton size={"small"} onClick={() => fp.setFieldValue("samplingSteps", 50)} children={
+                                <IconButton size={"small"} children={
                                     <InfoRounded/>
                                 }/>
                                 <Menu>

@@ -139,6 +139,7 @@ export const SDDefaultInterface: React.FC<SDDefaultInterfaceProps> = props => {
                                         value={Math.ceil(state.progress.progress * 100)}
                                         style={{ width: "100%", borderRadius: "50px", overflow: "hidden" }}
                                         variant={"determinate"}
+                                        // sx={{ color: "#5028c8" }}
                                         color={"error"}
                                     />
                                 }/>
