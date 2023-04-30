@@ -79,13 +79,13 @@ export const MainTab: React.FC = props => {
                     <SDPromptField
                         value={initialRequestData?.prompt ?? ""}
                         // onSubmit={() => {
-                        //     // if (state.phase === "generating") {
-                        //     //     console.log("ALREADY GENERATING");
-                        //     //     ctx.open("cancel-dialog", undefined);
-                        //     // } else {
-                        //     //     console.log("NOW GENERATING..");
-                        //     //     sdApi.generate().then(() => {});
-                        //     // }
+                        //     if (state.phase === "generating") {
+                        //         console.log("ALREADY GENERATING");
+                        //         ctx.open("cancel-dialog", undefined);
+                        //     } else {
+                        //         console.log("NOW GENERATING..");
+                        //         sdApi.generate().then(() => {});
+                        //     }
                         // }}
                         onChange={value => sdApi.updateRequestData({
                             prompt: value ?? ""
