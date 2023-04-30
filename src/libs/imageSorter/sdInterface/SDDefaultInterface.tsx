@@ -27,6 +27,7 @@ import {Menu} from "../Menu";
 import {MenuButton} from "../MenuButton";
 import {LinearProgress, Zoom} from "@mui/material";
 import {TransitionGroup} from "react-transition-group";
+import {GenerationConfigTab} from "./GenerationConfigTab";
 
 export type SDDefaultInterfaceProps = {
     bus: DuplexEventRelay,
@@ -66,7 +67,7 @@ export const SDDefaultInterface: React.FC<SDDefaultInterfaceProps> = props => {
                     {/* TAB BODY RENDERERS */}
                     <div style={{
                         width: "100%",
-                        overflow: "hidden",
+                        // overflow: "hidden",
                         height: "50vh"
                     }} children={
                         <TabBodyRenderer
@@ -75,6 +76,7 @@ export const SDDefaultInterface: React.FC<SDDefaultInterfaceProps> = props => {
                                 ["main", () => <MainTab/>],
                                 ["mixins", () => <MixinTab/>],
                                 ["history", () => <HistoryTab/>],
+                                ["config", () => <GenerationConfigTab/>],
                             ])}
                         />
                     }/>
