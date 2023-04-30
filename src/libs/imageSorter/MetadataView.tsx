@@ -18,8 +18,6 @@ import {getMetadata} from "meta-png";
 import {ImageMetaData} from "./ImageMetaData";
 import axios from "axios";
 import {ControlModalCompound, ModalCompoundContext, ModalPolicy} from "./ControlModalCompound";
-import {SDRequestDialog} from "./sdInterface/SDRequestDialog";
-import {DuplexEventRelay} from "./DuplexEventRelay";
 import {Menu} from "./Menu";
 import {MenuButton} from "./MenuButton";
 

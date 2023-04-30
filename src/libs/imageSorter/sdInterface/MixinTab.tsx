@@ -11,7 +11,7 @@ import {isaDB} from "../ImageSorterAppDB";
 import {TransitionGroup} from "react-transition-group";
 import Collapse from "@mui/material/Collapse";
 import {MenuButton} from "../MenuButton";
-import {DeleteRounded} from "@mui/icons-material";
+import {DeleteRounded, UploadRounded} from "@mui/icons-material";
 import {StyledModal} from "../StyledModal";
 import {DescriptiveTypography} from "../../triton/components/typography/DescriptiveTypography";
 import {ButtonBase, ButtonVariant} from "../../triton/components/buttons/ButtonBase";
@@ -31,7 +31,9 @@ export const MixinTab: React.FC = props => {
     return (
         <div style={{
             width: "100%",
-            height :"100%",
+            height: "100%",
+            maxHeight: "100%",
+            overflow: "hidden",
             display: "grid",
             gap: "8px",
             gridTemplateColumns: "min-content auto"
@@ -42,7 +44,9 @@ export const MixinTab: React.FC = props => {
                 height :"100%",
                 display: "grid",
                 gap: "8px",
-                gridTemplateRows: "min-content auto"
+                gridTemplateRows: "min-content auto",
+                overflow: "hidden",
+                maxHeight: "100%",
             }}>
                 <Workspace config={{
                     mode: "desktop",
@@ -68,6 +72,7 @@ export const MixinTab: React.FC = props => {
                         }/>
 
                         <Menu>
+                            <MenuButton text={"Import mixins"} icon={<UploadRounded/>}/>
                             <ButtonModalCompound
                                 button={
                                     <MenuButton text={"Delete all"} icon={<DeleteRounded/>} disabled={mixins === undefined || mixins?.length === 0}/>
@@ -103,6 +108,8 @@ export const MixinTab: React.FC = props => {
                     mode: "desktop",
                     name: "mixin-selector",
                     resizable: true
+                }} style={{
+                    overflow: "scroll"
                 }} children={
                     <TransitionGroup children={
                         mixins?.map(md => (

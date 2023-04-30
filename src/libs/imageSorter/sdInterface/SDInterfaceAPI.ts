@@ -8,6 +8,7 @@ import {SDPromptEngine} from "./SDPromptEngine";
 import {isaDB} from "../ImageSorterAppDB";
 import {v4} from "uuid";
 import {Buffer} from "buffer";
+import {Image} from "../Image";
 
 export class SDInterfaceAPI {
 
@@ -40,7 +41,11 @@ export class SDInterfaceAPI {
             this.setState(prevState => ({
                 ...prevState,
                 phase: "default",
+
+                // TODO: Multiple images handled differently?
                 resultImage: res.data,
+
+
                 previewImage: undefined
             }));
         });
@@ -87,27 +92,36 @@ export class SDInterfaceAPI {
             hr_second_pass_steps: 50,
         };
 
-        axios.post("http://127.0.0.1:7860/sdapi/v1/txt2img", conf).then(res => {
+        axios.post("http://127.0.0.1:7860/sdapi/v1/txt2img", conf).then(async res => {
             clearInterval(progressRetriever);
-            this.setState(prevState => ({
-                ...prevState,
-                phase: "default",
-                resultImage: res.data.images,
-                previewImage: undefined,
-                progress: undefined
-            }));
+            const ids: Array<string> = [];
 
-            console.trace(res.data.images);
+            const images: Array<any> = res.data.images as any[];
 
-            (res.data.images as any[]).forEach(img => {
-                const buffer = Buffer.from(img, 'base64');
-                isaDB.sdInterfaceResults.add({
-                    id: v4(),
+            const refinedImages: Array<Image> = images.map(rI => {
+                const buffer = Buffer.from(rI, 'base64');
+                const id = v4();
+                ids.push(id);
+                return ({
+                    id: id,
                     favourite: false,
                     tags: [],
                     data: new Blob([new Uint8Array(buffer, 0, buffer.length)])
-                })
+                });
             });
+
+            await isaDB.sdInterfaceResults.bulkAdd(refinedImages);
+
+            this.setState(prevState => ({
+                ...prevState,
+                phase: "default",
+                // TODO: Remove
+                resultImage: res.data.images,
+
+                previewImage: undefined,
+                progress: undefined,
+                currentGeneratedBatchIds: ids
+            }));
         }).catch(reason => {
             clearInterval(progressRetriever);
             this.setState(prevState => ({

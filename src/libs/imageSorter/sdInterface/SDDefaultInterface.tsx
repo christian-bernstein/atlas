@@ -38,8 +38,6 @@ export const SDDefaultInterface: React.FC<SDDefaultInterfaceProps> = props => {
     const sdApi = useContext(SDInterfaceAPIContext);
     const state = useContext(SDInterfaceStateContext);
 
-    console.log("[SDDefaultInterface] sd api:", sdApi, "state", state);
-
     return (
         <StyledModal
             onClose={() => props.onClose()}

@@ -8,5 +8,7 @@ export type SDInterfaceState = {
     debouncedRequestSaver: (req: SDAPIRequestData) => void,
     activeTab: string,
 
-    updateRequest?: (delta: Partial<SDAPIRequestData>) => void
+    updateRequest?: (delta: Partial<SDAPIRequestData>) => void,
+
+    currentGeneratedBatchIds?: Array<string>
 }

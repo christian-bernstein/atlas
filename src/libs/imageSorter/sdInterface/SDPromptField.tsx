@@ -66,6 +66,7 @@ export const SDPromptField: React.FC<SDPromptFieldProps> = props => {
                     monaco.languages.setMonarchTokensProvider("sd-prompt", {
                         tokenizer: {
                             root: [
+                                [/<lora:.+>/, "full-keyword"],
                                 [/\([\w,\s@]+:(\d|(\d.\d))\)/, "full-keyword"],
                                 [/!/, "symbol"],
                                 [/:[\w<>=]+/, "keyword"],

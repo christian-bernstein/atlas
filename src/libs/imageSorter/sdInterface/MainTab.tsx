@@ -1,13 +1,25 @@
 import React, {useContext} from "react";
 import {DescriptiveTypography} from "../../triton/components/typography/DescriptiveTypography";
 import {IconButton} from "../IconButton";
-import {BugReportRounded, CloseRounded, DownloadRounded, ImageRounded} from "@mui/icons-material";
+import {
+    BugReportRounded,
+    CloseRounded,
+    DeleteRounded,
+    DownloadRounded,
+    FullscreenRounded,
+    ImageRounded, InfoRounded
+} from "@mui/icons-material";
 import {SDPromptEngine} from "./SDPromptEngine";
 import {SDPromptField} from "./SDPromptField";
 import {Workspace} from "../Workspace";
 import {ButtonModalCompound} from "../ButtonModalCompound";
 import {SDInterfaceAPIContext} from "./SDInterfaceAPI";
 import {SDInterfaceRequestContext, SDInterfaceStateContext} from "./SDInterfaceMain";
+import {ISADBImageGrid} from "../ISADBImageGrid";
+import {SingleOutputImagePreview} from "./SingleOutputImagePreview";
+import {SDLivePreview} from "./SDLivePreview";
+import {Menu} from "../Menu";
+import {MenuButton} from "../MenuButton";
 
 export const MainTab: React.FC = props => {
     const sdApi = useContext(SDInterfaceAPIContext);
@@ -15,7 +27,6 @@ export const MainTab: React.FC = props => {
     const requestContextData = useContext(SDInterfaceRequestContext);
     const initialRequestData = requestContextData?.initialRequestData!;
     const deltaRequestData = requestContextData?.deltaRequestData!;
-
     if (requestContextData === undefined) return <>RCD not available</>
 
     return (
@@ -41,10 +52,19 @@ export const MainTab: React.FC = props => {
                     justifyContent: "space-between"
                 }}>
                     <DescriptiveTypography text={"Prompt"}/>
-                    <IconButton size={"small"} children={<BugReportRounded/>} onClick={async () => {
-                        const ctx = (await new SDPromptEngine().initUserMixins()).parse(deltaRequestData.prompt);
-                        alert(JSON.stringify(ctx));
-                    }}/>
+                    <div style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: "8px",
+                        alignItems: "center"
+                    }}>
+                        <Menu>
+                            <MenuButton icon={<BugReportRounded/>} text={"Try to compile prompt"} onSelect={async () => {
+                                const ctx = (await new SDPromptEngine().initUserMixins()).parse(deltaRequestData.prompt);
+                                alert(JSON.stringify(ctx));
+                            }}/>
+                        </Menu>
+                    </div>
                 </div>
 
                 <SDPromptField
@@ -63,10 +83,19 @@ export const MainTab: React.FC = props => {
                     justifyContent: "space-between"
                 }}>
                     <DescriptiveTypography text={"Negative prompt"}/>
-                    <IconButton size={"small"} children={<BugReportRounded/>} onClick={async () => {
-                        const ctx = (await new SDPromptEngine().initUserMixins()).parse(deltaRequestData.negativePrompt);
-                        alert(JSON.stringify(ctx));
-                    }}/>
+                    <div style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: "8px",
+                        alignItems: "center"
+                    }}>
+                        <Menu>
+                            <MenuButton icon={<BugReportRounded/>} text={"Try to compile prompt"} onSelect={async () => {
+                                const ctx = (await new SDPromptEngine().initUserMixins()).parse(deltaRequestData.negativePrompt);
+                                alert(JSON.stringify(ctx));
+                            }}/>
+                        </Menu>
+                    </div>
                 </div>
                 <SDPromptField
                     value={initialRequestData?.negativePrompt ?? ""}
@@ -77,73 +106,51 @@ export const MainTab: React.FC = props => {
             </div>
 
             <Workspace config={{ name: "sd-result-view", mode: "desktop" }} children={
-                <div style={{
-                    height: "100%",
-                    maxHeight: "calc(100% - 0px)",
-                    overflow: "scroll",
-                    display: "grid",
-                    gap: "8px",
-                    justifyContent: "center",
-                    gridTemplateRows: "min-content auto",
-                }}>
-                    <div style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        overflow: "hidden",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        gap: "8px"
-                    }}>
-                        <IconButton size={"small"} deactivated={state.resultImage === undefined} children={<CloseRounded/>} onClick={() => {
-                            sdApi.setState(prevState => ({
-                                ...prevState, resultImage: undefined
-                            }));
-                        }}/>
+                (() => {
+                    // Preview image present
+                    if (state.phase === "generating") {
+                        // TODO: Add preview display
+                        return (
+                            <SDLivePreview/>
+                        );
+                    }
 
-                        <IconButton size={"small"} deactivated={state.resultImage === undefined} children={<DownloadRounded/>} onClick={() => {
+                    // Not rendering && single result preview available
+                    else if (state.phase === "default" && state.currentGeneratedBatchIds !== undefined && state.currentGeneratedBatchIds.length === 1) {
+                        return (
+                            <SingleOutputImagePreview/>
+                        );
+                    }
 
-                        }}/>
-                    </div>
+                    // Not rendering && multiple result previews available
+                    else if (state.phase === "default" && state.currentGeneratedBatchIds !== undefined && state.currentGeneratedBatchIds.length > 1) {
+                        return (
+                            <ISADBImageGrid isaTable={"sdInterfaceResults"} imageIDs={state.currentGeneratedBatchIds}/>
+                        );
+                    }
 
-                    { (state.resultImage || state.previewImage) && (
-                        <ButtonModalCompound button={
-                            <img
-                                style={{
-                                    borderRadius: "8px",
+                    // Not rendering && No image available
+                    else if ((state.currentGeneratedBatchIds === undefined || state.currentGeneratedBatchIds.length === 0) && !state.previewImage) {
+                        return (
+                            <div style={{
+                                height: "100%",
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center"
+                            }} children={
+                                <span style={{
                                     height: "auto",
-                                    width: "auto",
-                                    maxHeight: "100%",
-                                    maxWidth: "100%",
-                                    cursor: "pointer"
-                                }}
-                                alt={"stable diffusion result"}
-                                src={`data:image/png;base64,${state.previewImage ?? state.resultImage}`}
-                            />
-                        } modalContent={() => (
-                            <img
-                                style={{
-                                    height: "100vh",
-                                    width: "auto",
-                                    maxWidth: "100vw",
-                                }}
-                                alt={"stable diffusion result"}
-                                src={`data:image/png;base64,${state.previewImage ?? state.resultImage}`}
-                            />
-                        )}/>
-                    ) }
-
-                    { !(state.resultImage || state.previewImage) && (
-                        <span style={{
-                            height: "auto",
-                            width: "100%",
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center"
-                        }} children={
-                            <ImageRounded/>
-                        }/>
-                    ) }
-                </div>
+                                    width: "100%",
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center"}
+                                } children={
+                                    <ImageRounded/>
+                                }/>
+                            }/>
+                        )
+                    }
+                })()
             }/>
         </div>
     );
