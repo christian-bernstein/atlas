@@ -1,7 +1,6 @@
 import React from "react";
 import {FormElement} from "../../triton/components/forms/FormElement";
 import {Slider} from "@mui/material";
-import {DescriptiveTypography} from "../../triton/components/typography/DescriptiveTypography";
 import {IconButton} from "../IconButton";
 import {InfoRounded, RefreshRounded} from "@mui/icons-material";
 import {Formik} from "formik";
@@ -22,7 +21,16 @@ export const StyledVariableSlider = styled.div`
   }
 `;
 
-export const VariableSlider: React.FC = props => {
+export type VariableSliderProps = {
+    title?: string,
+    shortInfoText?: string,
+    minVal?: number,
+    maxVal?: number,
+    value?: number,
+    defaultValue?: number
+}
+
+export const VariableSlider: React.FC<VariableSliderProps> = props => {
     return (
         <StyledVariableSlider>
             <Formik initialValues={{
