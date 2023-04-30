@@ -132,48 +132,35 @@ export const MainTab: React.FC = props => {
             <Workspace config={{ name: "sd-result-view", mode: "desktop" }} children={
                 (() => {
                     // Preview image present
-                    if (state.phase === "generating") {
-                        // TODO: Add preview display
-                        return (
-                            <SDLivePreview/>
-                        );
-                    }
+                    if (state.phase === "generating") return (<SDLivePreview/>);
 
                     // Not rendering && single result preview available
-                    else if (state.phase === "default" && state.currentGeneratedBatchIds !== undefined && state.currentGeneratedBatchIds.length === 1) {
-                        return (
-                            <SingleOutputImagePreview/>
-                        );
-                    }
+                    else if (state.phase === "default" && state.currentGeneratedBatchIds !== undefined && state.currentGeneratedBatchIds.length === 1) return (<SingleOutputImagePreview/>);
 
                     // Not rendering && multiple result previews available
-                    else if (state.phase === "default" && state.currentGeneratedBatchIds !== undefined && state.currentGeneratedBatchIds.length > 1) {
-                        return (
-                            <ISADBImageGrid isaTable={"sdInterfaceResults"} imageIDs={state.currentGeneratedBatchIds}/>
-                        );
-                    }
+                    else if (state.phase === "default" && state.currentGeneratedBatchIds !== undefined && state.currentGeneratedBatchIds.length > 1) return (
+                        <ISADBImageGrid isaTable={"sdInterfaceResults"} imageIDs={state.currentGeneratedBatchIds}/>
+                    );
 
                     // Not rendering && No image available
-                    else if ((state.currentGeneratedBatchIds === undefined || state.currentGeneratedBatchIds.length === 0) && !state.previewImage) {
-                        return (
-                            <div style={{
-                                height: "100%",
+                    else if ((state.currentGeneratedBatchIds === undefined || state.currentGeneratedBatchIds.length === 0) && !state.previewImage) return (
+                        <div style={{
+                            height: "100%",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center"
+                        }} children={
+                            <span style={{
+                                height: "auto",
+                                width: "100%",
                                 display: "flex",
                                 justifyContent: "center",
-                                alignItems: "center"
-                            }} children={
-                                <span style={{
-                                    height: "auto",
-                                    width: "100%",
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    alignItems: "center"}
-                                } children={
-                                    <ImageRounded/>
-                                }/>
+                                alignItems: "center"}
+                            } children={
+                                <ImageRounded/>
                             }/>
-                        )
-                    }
+                        }/>
+                    );
                 })()
             }/>
         </div>
