@@ -22,6 +22,12 @@ import {ButtonModalCompound} from "../ButtonModalCompound";
 import {SDInterfaceStateContext} from "./SDInterfaceMain";
 import {MainTab} from "./MainTab";
 import {MixinTab} from "./MixinTab";
+import {HistoryTab} from "./HistoryTab";
+import {Menu} from "../Menu";
+import {MenuButton} from "../MenuButton";
+import {LinearProgress, Zoom} from "@mui/material";
+import Collapse from "@mui/material/Collapse";
+import {TransitionGroup} from "react-transition-group";
 
 export type SDDefaultInterfaceProps = {
     bus: DuplexEventRelay,
@@ -70,7 +76,8 @@ export const SDDefaultInterface: React.FC<SDDefaultInterfaceProps> = props => {
                             active={state.activeTab}
                             tabs={new Map<string, () => React.ReactElement>([
                                 ["main", () => <MainTab/>],
-                                ["mixins", () => <MixinTab/>]
+                                ["mixins", () => <MixinTab/>],
+                                ["history", () => <HistoryTab/>],
                             ])}
                         />
                     }/>
@@ -78,30 +85,67 @@ export const SDDefaultInterface: React.FC<SDDefaultInterfaceProps> = props => {
             }
             footer={
                 <div style={{
-                    display: "flex",
-                    flexDirection: "row",
+                    display: "grid",
+                    gridTemplateColumns: "repeat(3, 1fr)",
                     alignItems: "center",
                     width: "100%",
                     gap: "8px"
                 }}>
-                    <IconButton
-                        tooltip={state.phase === "default" ? "Generate" : "Interrupt"}
-                        onClick={() => {
-                            if (state.phase === "generating") sdApi.interruptImageGeneration();
-                            else if (state.phase === "default") sdApi.generate();
-                        }}
-                        size={"small"}
-                        children={state.phase === "default" ? (
-                            <PlayArrowRounded style={{ color: "mediumseagreen" }}/>
-                        ) : (
-                            <StopRounded style={{ color: "crimson" }}/>
-                        )}
-                    />
+                    <div style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                        width: "100%",
+                        gap: "8px"
+                    }}>
+                        <Menu>
+                            <MenuButton icon={<StopRounded/>} text={"Try to interrupt SD generation"} onSelect={() => {
+                                sdApi.interruptImageGeneration();
+                            }}/>
+                        </Menu>
+                        <IconButton
+                            tooltip={state.phase === "default" ? "Generate" : "Interrupt"}
+                            onClick={() => {
+                                if (state.phase === "generating") sdApi.interruptImageGeneration();
+                                else if (state.phase === "default") sdApi.generate().then(() => {});
+                            }}
+                            size={"small"}
+                            children={state.phase === "default" ? (
+                                <PlayArrowRounded style={{ color: "mediumseagreen" }}/>
+                            ) : (
+                                <StopRounded style={{ color: "crimson" }}/>
+                            )}
+                        />
+                        { state.progress && (
+                            <DescriptiveTypography
+                                text={`${Math.ceil(state.progress.progress * 100)}% ETA: ${Math.floor(state.progress.eta_relative)}`}
+                            />
+                        ) }
+                    </div>
 
-
-                    { state.progress && (
-                        <DescriptiveTypography text={`${Math.ceil(state.progress.progress * 100)}% ETA: ${state.progress.eta_relative} STATE: ${state.progress.textinfo}`}/>
-                    ) }
+                    <div style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                        width: "100%",
+                        gap: "8px"
+                    }}>
+                        <TransitionGroup style={{
+                            width: "100%",
+                            height: "100%"
+                        }} children={
+                            (state.progress !== undefined) && (
+                                <Zoom children={
+                                    <LinearProgress
+                                        value={Math.ceil(state.progress.progress * 100)}
+                                        style={{ width: "100%", borderRadius: "50px", overflow: "hidden" }}
+                                        variant={"determinate"}
+                                        color={"error"}
+                                    />
+                                }/>
+                            )
+                        }/>
+                    </div>
                 </div>
             }
         />

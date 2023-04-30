@@ -39,6 +39,8 @@ import {SDPromptEngine} from "./SDPromptEngine";
 import {SDPromptField} from "./SDPromptField";
 import {TabBar} from "../TabBar";
 import {TabBodyRenderer} from "../TabBodyRenderer";
+import {isaDB} from "../ImageSorterAppDB";
+import {v4} from "uuid";
 
 export type SDRequestDialogProps = {
     bus: DuplexEventRelay,
@@ -122,6 +124,16 @@ export const SDRequestDialog: React.FC<SDRequestDialogProps> = props => {
                 previewImage: undefined,
                 progress: undefined
             }));
+
+            (res.data.images as any[]).forEach(img => {
+                isaDB.sdInterfaceResults.add({
+                    id: v4(),
+                    favourite: false,
+                    tags: [],
+                    data: new Blob(img)
+                })
+            });
+
         }).catch(reason => {
             clearInterval(progressRetriever);
             setState(prevState => ({

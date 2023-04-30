@@ -9,12 +9,13 @@ export type ISAImageProps = {
     imageRenderer?: (i: Image) => React.ReactElement,
     noImageComponent?: React.ReactElement,
     style?: CSSProperties,
-    onClick?: (event: React.MouseEvent<HTMLImageElement, MouseEvent>) => void
+    onClick?: (event: React.MouseEvent<HTMLImageElement, MouseEvent>) => void,
+    isaTable?: "images" | "sdInterfaceResults"
 }
 
 export const ISAImage: React.FC<ISAImageProps> = props => {
     const image = useLiveQuery(async () => {
-        return isaDB.images
+        return isaDB[props.isaTable ?? "sdInterfaceResults"]
             .where("id")
             .equals(props.imageID)
             .first();

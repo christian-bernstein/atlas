@@ -14,6 +14,8 @@ export class ImageSorterAppDB extends Dexie {
 
     images!: Table<Image>;
 
+    sdInterfaceResults!: Table<Image>;
+
     settings!: Table<ISADBSettingsEntry>;
 
     styles!: Table<StyleData>
@@ -22,10 +24,11 @@ export class ImageSorterAppDB extends Dexie {
 
     constructor() {
         super("ImageSorterAppDB");
-        this.version(9).stores({
+        this.version(10).stores({
             projects: 'id, title, tags, resources, meta, previewImageID, description',
             vfsElements: 'id, parentID, title, targetID, subElements, projects, type, path, fullPath',
             images: 'id, data, tags',
+            sdInterfaceResults: 'id, data, tags',
             settings: 'id, value',
             styles: 'id, title, description, meta, previewID, additionalPreviewIDs, note',
             mixins: 'id, key, type, target'

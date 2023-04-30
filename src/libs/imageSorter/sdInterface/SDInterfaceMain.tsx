@@ -40,8 +40,6 @@ export const SDInterfaceMain: React.FC<SDInterfaceMainProps> = props => {
         }
     });
 
-    console.log("[main] state:", state, "state dispatcher available:", setState !== undefined)
-
     const sdApiData = useRef<{
         sdApi: SDInterfaceAPI
     }>({

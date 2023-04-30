@@ -77,11 +77,7 @@ export const AdvancedISAImage: React.FC<AdvancedISAImageProps> = props => {
     const areControlsOpened = () => state.latchControls || state.showControls;
 
     return (
-
-        <StyledAdvancedISAImage
-            onMouseEnter={event => showControls(true)}
-            onMouseLeave={event => showControls(false)}
-        >
+        <StyledAdvancedISAImage onMouseEnter={() => showControls(true)} onMouseLeave={() => showControls(false)}>
             <TransitionGroup style={{
                 position: "absolute",
                 top: 0,

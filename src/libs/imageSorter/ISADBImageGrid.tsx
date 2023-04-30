@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {useLiveQuery} from "dexie-react-hooks";
-import {isaDB} from "./ImageSorterAppDB";
+import {ImageSorterAppDB, isaDB} from "./ImageSorterAppDB";
 import {DescriptiveTypography} from "../triton/components/typography/DescriptiveTypography";
 import {ButtonBase} from "../triton/components/buttons/ButtonBase";
 import {Image} from "./Image";
@@ -11,10 +11,12 @@ import {MenuButton} from "./MenuButton";
 import {FormikSingleSelectInput} from "../triton/components/forms/FormikSingleSelectInput";
 import {Formik} from "formik";
 import {MenuDivider} from "@szhsin/react-menu";
+import {Table} from "dexie";
 
 export type ImageGridProps = {
-    imageIDs: Array<string>,
-    imageRenderer?: (data: Image) => React.ReactNode
+    imageIDs?: Array<string>,
+    imageRenderer?: (data: Image) => React.ReactNode,
+    isaTable?: "images" | "sdInterfaceResults"
 }
 
 export type ImageGridState = {
@@ -28,16 +30,26 @@ export const ISADBImageGrid: React.FC<ImageGridProps> = props => {
         itemsPerPage: 16
     });
 
+    const tableLen = useLiveQuery(() => (isaDB[props.isaTable ?? "images"] as Table<Image>).count()) ?? 0;
+    const dataLen = props.imageIDs?.length ?? tableLen;
+
     const images = useLiveQuery(async () => {
-        return isaDB.images
+        const table = isaDB[props.isaTable ?? "images"] as Table<Image>;
+
+        if (props.imageIDs === undefined) {
+            return table
+                .offset(state.itemsPerPage === undefined ? 0 : ((state.page - 1) * state.itemsPerPage))
+                .limit(state.itemsPerPage ?? -1)
+                .toArray();
+        }
+
+        return table
             .where("id")
             .anyOfIgnoreCase(props.imageIDs)
             .offset(state.itemsPerPage === undefined ? 0 : ((state.page - 1) * state.itemsPerPage))
             .limit( state.itemsPerPage === -1 ? props.imageIDs.length : (state.itemsPerPage ?? props.imageIDs.length))
             .toArray();
     }, [props, state]);
-
-    console.log("rendering image grid..");
 
     return (
         <div style={{
@@ -54,7 +66,7 @@ export const ISADBImageGrid: React.FC<ImageGridProps> = props => {
                 gridTemplateColumns: "32px auto min-content"
             }}>
                 <span/>
-                <DescriptiveTypography style={{ textAlign: "center" }} text={`${props.imageIDs.length} images / ${images?.length ?? "0"} loaded`}/>
+                <DescriptiveTypography style={{ textAlign: "center" }} text={`${dataLen} images / ${images?.length ?? "0"} loaded`}/>
                 <Menu>
                     <MenuButton text={"Refresh"} appendix={"Ctrl+F5"} disabled icon={<RefreshRounded/>}/>
 
@@ -124,10 +136,10 @@ export const ISADBImageGrid: React.FC<ImageGridProps> = props => {
 
                 <DescriptiveTypography style={{
                     textAlign: "center"
-                }} text={`Page ${state.page} / ${Math.ceil(props.imageIDs.length / (state.itemsPerPage ?? 1))}`}/>
+                }} text={`Page ${state.page} / ${Math.ceil(dataLen / (state.itemsPerPage ?? 1))}`}/>
 
-                <IconButton size={"small"} children={<ArrowRightRounded/>} deactivated={state.page >= Math.ceil(props.imageIDs.length / (state.itemsPerPage ?? 1))} onClick={() => {
-                    if (state.page < Math.ceil(props.imageIDs.length / (state.itemsPerPage ?? 1))) {
+                <IconButton size={"small"} children={<ArrowRightRounded/>} deactivated={state.page >= Math.ceil(dataLen / (state.itemsPerPage ?? 1))} onClick={() => {
+                    if (state.page < Math.ceil(dataLen / (state.itemsPerPage ?? 1))) {
                         setState(prevState => ({
                             ...prevState,
                             page: prevState.page + 1
