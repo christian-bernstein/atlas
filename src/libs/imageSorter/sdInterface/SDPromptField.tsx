@@ -8,7 +8,8 @@ export type SDPromptFieldProps = {
     value?: string,
     h?: string | DimensionalMeasured,
     readonly?: boolean,
-    backgroundColor?: Color
+    backgroundColor?: Color,
+    // onSubmit?: (value: string) => void
 }
 
 export const SDPromptField: React.FC<SDPromptFieldProps> = props => {
@@ -60,6 +61,12 @@ export const SDPromptField: React.FC<SDPromptFieldProps> = props => {
                 onChange={(value, ev) => {
                     props.onChange?.(value, ev);
                 }}
+                // onMount={(editor, monaco) => {
+                //     editor.addCommand(monaco.KeyCode.F8, args => {
+                //         console.log("[monaco] F8", props, props.onSubmit)
+                //         props.onSubmit?.(editor.getValue());
+                //     });
+                // }}
                 beforeMount={monaco => {
                     monaco.languages.register({ id: "sd-prompt" });
 

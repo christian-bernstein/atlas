@@ -74,7 +74,8 @@ export class SDInterfaceAPI {
             // negative_prompt: deltaRequestData.current.negativePrompt,
             negative_prompt: compiledNegativePromptData.cmd,
             // steps: 60,
-            steps: 20,
+            // steps: 20,
+            steps: 5,
             // steps: 1,
             sampler_index: "DPM++ 2M Karras",
             cfg_scale: 9,
@@ -89,7 +90,8 @@ export class SDInterfaceAPI {
             hr_scale: 1.5,
             hr_upscaler: "R-ESRGAN 4x+ Anime6B",
             // hr_second_pass_steps: 100,
-            hr_second_pass_steps: 50,
+            // hr_second_pass_steps: 50,
+            hr_second_pass_steps: 5,
         };
 
         axios.post("http://127.0.0.1:7860/sdapi/v1/txt2img", conf).then(async res => {

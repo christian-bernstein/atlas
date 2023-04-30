@@ -3,9 +3,13 @@ import Dialog from "@mui/material/Dialog";
 import {TransitionProps} from "react-transition-group/Transition";
 import Grow from "@mui/material/Grow";
 
+export type ModalRenderer = (ctx: ModalCompoundContext, param: any) => (React.ReactNode | [React.ReactNode, ModalPolicy]);
+
+export type ModalDict = Map<string, ModalRenderer>;
+
 export type ControlModalCompoundProps = {
     controller: (ctx: ModalCompoundContext) => React.ReactNode,
-    modals: Map<string, (ctx: ModalCompoundContext, param: any) => React.ReactNode | [React.ReactNode, ModalPolicy?]>,
+    modals: ModalDict,
     onPreModalClose?: () => void,
     onUnsuccessfulClosingAttempt?: () => void,
     preventClosingOnBackdropClick?: boolean,
@@ -82,7 +86,7 @@ export const ControlModalCompound: React.FC<ControlModalCompoundProps> = props =
     }
 
     return (
-        <span>
+        <>
             <Dialog
                 onClose={(event, reason: "backdropClick" | "escapeKeyDown") => {
                     if (props.preventClosingMasterSwitch ?? false) {
@@ -109,9 +113,11 @@ export const ControlModalCompound: React.FC<ControlModalCompoundProps> = props =
                 }}
             />
 
-            <span onClick={() => setState(prevState => ({ ...prevState, open: true }))} children={
+            {/* <span onClick={() => setState(prevState => ({ ...prevState, open: true }))} children={
                 props.controller(ctx.current)
-            }/>
-        </span>
+            }/> */}
+
+            { props.controller(ctx.current) }
+        </>
     );
 }

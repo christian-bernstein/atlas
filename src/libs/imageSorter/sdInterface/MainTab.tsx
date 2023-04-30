@@ -20,6 +20,14 @@ import {SingleOutputImagePreview} from "./SingleOutputImagePreview";
 import {SDLivePreview} from "./SDLivePreview";
 import {Menu} from "../Menu";
 import {MenuButton} from "../MenuButton";
+import {
+    ControlModalCompound,
+    ModalCompoundContext,
+    ModalDict,
+    ModalPolicy,
+    ModalRenderer
+} from "../ControlModalCompound";
+import {StyledModal} from "../StyledModal";
 
 export const MainTab: React.FC = props => {
     const sdApi = useContext(SDInterfaceAPIContext);
@@ -67,12 +75,27 @@ export const MainTab: React.FC = props => {
                     </div>
                 </div>
 
-                <SDPromptField
-                    value={initialRequestData?.prompt ?? ""}
-                    onChange={value => sdApi.updateRequestData({
-                        prompt: value ?? ""
-                    })}
-                />
+                <ControlModalCompound controller={ctx => (
+                    <SDPromptField
+                        value={initialRequestData?.prompt ?? ""}
+                        // onSubmit={() => {
+                        //     // if (state.phase === "generating") {
+                        //     //     console.log("ALREADY GENERATING");
+                        //     //     ctx.open("cancel-dialog", undefined);
+                        //     // } else {
+                        //     //     console.log("NOW GENERATING..");
+                        //     //     sdApi.generate().then(() => {});
+                        //     // }
+                        // }}
+                        onChange={value => sdApi.updateRequestData({
+                            prompt: value ?? ""
+                        })}
+                    />
+                )} modals={new Map<string, ModalRenderer>([
+                    ["cancel-dialog", (ctx, param) => (
+                        <StyledModal title={"Cancel"}/>
+                    )]
+                ])}/>
 
                 <div style={{
                     display: "flex",
@@ -99,6 +122,7 @@ export const MainTab: React.FC = props => {
                 </div>
                 <SDPromptField
                     value={initialRequestData?.negativePrompt ?? ""}
+                    // onSubmit={() => sdApi.postTTIRequestIfIdle()}
                     onChange={value => sdApi.updateRequestData({
                         negativePrompt: value ?? ""
                     })}
