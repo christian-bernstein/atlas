@@ -11,7 +11,7 @@ import {
     FileOpenRounded,
     InfoRounded, LineStyleRounded,
     PreviewRounded,
-    SelectAllRounded, StyleRounded
+    SelectAllRounded, StyleRounded, UploadRounded
 } from "@mui/icons-material";
 import {ButtonGroup} from "./ButtonGroup";
 import {ImageViewFooter} from "./ImageViewFooter";
@@ -26,6 +26,7 @@ import {ButtonBase} from "../triton/components/buttons/ButtonBase";
 import {v4} from "uuid";
 import {ImageMetaData} from "./ImageMetaData";
 import {getMetadata} from "meta-png";
+import {ImageSourceSelectionDialog} from "./ImageSourceSelectionDialog";
 
 export const ImageView: React.FC = props => {
     const state = useContext(ImageSorterAPIStateContext);
@@ -96,6 +97,16 @@ export const ImageView: React.FC = props => {
                     }}
                 />
                 */}
+
+                <ButtonModalCompound
+                    button={<IconButton children={
+                        <UploadRounded/>
+                    }/>}
+                    modalContent={ctx => (
+                        <ImageSourceSelectionDialog/>
+                    )}
+                />
+
             </div>
         );
     }
