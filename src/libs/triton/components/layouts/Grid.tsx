@@ -13,7 +13,8 @@ export const Grid: React.FC<GridProps> = props => {
     const gap = props.gap === undefined ? "8px" : typeof props.gap === "string" ? props.gap : props.gap.css();
 
     return (
-        <div {...props.props} style={{ ...props.style,
+        <div {...props.props} children={props.children} style={{ ...props.style,
+            display: "grid",
             gridTemplateColumns: props.gTC,
             gridTemplateRows: props.gTR,
             gap: gap
