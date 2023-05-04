@@ -12,8 +12,8 @@ export const Navbar: React.FC = props => {
             alignItems: "center",
             gap: "8px"
         }}>
-            <IconButton children={<ImageRounded/>} tooltip={"Gallery"}/>
-            <IconButton children={<HubRounded/>} tooltip={"Stable-Diffusion suite"}/>
+            <IconButton size={"small"} children={<ImageRounded/>} tooltip={"Gallery"}/>
+            <IconButton size={"small"} children={<HubRounded/>} tooltip={"Stable-Diffusion suite"}/>
         </div>
     );
 }

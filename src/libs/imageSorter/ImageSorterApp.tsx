@@ -34,6 +34,7 @@ import {ButtonModalCompound} from "./ButtonModalCompound";
 import {DuplexEventRelay} from "./DuplexEventRelay";
 import {SDDefaultInterface} from "./sdInterface/SDDefaultInterface";
 import {SDInterfaceMain} from "./sdInterface/SDInterfaceMain";
+import {PromptTestUIView} from "./tests/mobilePromptUI/PromptTestUIView";
 
 export type ImageSorterAppState = {
     fvsPath: Array<string>,
@@ -78,8 +79,14 @@ export const ImageSorterApp: React.FC = props => {
         <ImageSorterAPIStateContext.Provider value={state} children={
             <ImageSorterMaster children={
                 <ImageSorterAPIContext.Provider value={api.current}>
+                    {/*
                     <Mobile children={
                         <MobileMainView/>
+                    }/>
+                    */}
+
+                    <Mobile children={
+                        <PromptTestUIView/>
                     }/>
 
                     <Default children={

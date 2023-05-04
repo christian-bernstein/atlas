@@ -7,7 +7,7 @@ import {
     DeleteRounded,
     DownloadRounded,
     FullscreenRounded,
-    ImageRounded, InfoRounded
+    ImageRounded, InfoRounded, PreviewRounded
 } from "@mui/icons-material";
 import {SDPromptEngine} from "./SDPromptEngine";
 import {SDPromptField} from "./SDPromptField";

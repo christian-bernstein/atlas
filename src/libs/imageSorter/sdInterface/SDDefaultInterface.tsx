@@ -6,7 +6,7 @@ import {
     BugReportRounded, CloseRounded,
     CodeRounded,
     CommitRounded, DownloadRounded,
-    HistoryRounded, ImageRounded, PlayArrowRounded,
+    HistoryRounded, ImageRounded, LiveTvRounded, PlayArrowRounded, PreviewRounded,
     SettingsApplicationsRounded, StopRounded, TokenRounded
 } from "@mui/icons-material";
 import {StyledModal} from "../StyledModal";
@@ -28,6 +28,7 @@ import {MenuButton} from "../MenuButton";
 import {LinearProgress, Zoom} from "@mui/material";
 import {TransitionGroup} from "react-transition-group";
 import {GenerationConfigTab} from "./GenerationConfigTab";
+import {LiveProcessTab} from "./LiveProcessTab";
 
 export type SDDefaultInterfaceProps = {
     bus: DuplexEventRelay,
@@ -60,7 +61,8 @@ export const SDDefaultInterface: React.FC<SDDefaultInterfaceProps> = props => {
                             { id: "main", title: "SD Prompt", icon: <CodeRounded/> },
                             { id: "config", title: "Generation config", icon: <SettingsApplicationsRounded/> },
                             { id: "mixins", title: "Mixins", icon: <TokenRounded/> },
-                            { id: "history", title: "History", icon: <HistoryRounded/> }
+                            { id: "history", title: "History", icon: <HistoryRounded/> },
+                            { id: "live", title: "Live process preview", icon: <LiveTvRounded/> }
                         ]}
                     />
 
@@ -77,6 +79,7 @@ export const SDDefaultInterface: React.FC<SDDefaultInterfaceProps> = props => {
                                 ["mixins", () => <MixinTab/>],
                                 ["history", () => <HistoryTab/>],
                                 ["config", () => <GenerationConfigTab/>],
+                                ["live", () => <LiveProcessTab/>],
                             ])}
                         />
                     }/>
